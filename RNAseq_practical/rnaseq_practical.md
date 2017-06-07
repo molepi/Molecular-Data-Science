@@ -11,6 +11,7 @@ RNAseq practical
 -   [Differential expression analysis](#differential-expression-analysis)
     -   [Running the differential expression pipeline](#running-the-differential-expression-pipeline)
     -   [!!!ADVANCED: Multiple testing](#advanced-multiple-testing)
+    -   [visualizing results](#visualizing-results)
 -   [Reference](#reference)
 
 Introduction
@@ -290,7 +291,7 @@ This function will print out a message for the various steps it performs. These 
 A *DESeqDataSet* is returned that contains all the fitted parameters within it, and the following section describes how to extract out results tables of interest from this object.
 
 ``` r
-res <- results(dds, alpha = 0.05)
+res <- results(dds)
 res
 ```
 
@@ -310,25 +311,59 @@ res
     ## ENSG00000273487   8.1632350     0.55007412  0.3725061  1.4766847
     ## ENSG00000273488   8.5844790     0.10515293  0.3683834  0.2854442
     ## ENSG00000273489   0.2758994     0.06947900  0.1512520  0.4593591
-    ##                      pvalue        padj
-    ##                   <numeric>   <numeric>
-    ## ENSG00000000003 0.000153545 0.001207653
-    ## ENSG00000000419 0.065587276 0.187241454
-    ## ENSG00000000457 0.793768939 0.905590644
-    ## ENSG00000000460 0.735377161 0.874863971
-    ## ENSG00000000938 0.578223585          NA
-    ## ...                     ...         ...
-    ## ENSG00000273485   0.9077261          NA
-    ## ENSG00000273486   0.7792120   0.8981397
-    ## ENSG00000273487   0.1397602   0.3241124
-    ## ENSG00000273488   0.7753038   0.8956032
-    ## ENSG00000273489   0.6459763          NA
+    ##                      pvalue       padj
+    ##                   <numeric>  <numeric>
+    ## ENSG00000000003 0.000153545 0.00128686
+    ## ENSG00000000419 0.065587276 0.19676183
+    ## ENSG00000000457 0.793768939 0.91372953
+    ## ENSG00000000460 0.735377161 0.88385059
+    ## ENSG00000000938 0.578223585         NA
+    ## ...                     ...        ...
+    ## ENSG00000273485   0.9077261         NA
+    ## ENSG00000273486   0.7792120  0.9062268
+    ## ENSG00000273487   0.1397602  0.3389275
+    ## ENSG00000273488   0.7753038  0.9039857
+    ## ENSG00000273489   0.6459763         NA
+
+``` r
+res[order(res$padj),]
+```
+
+    ## log2 fold change (MAP): dex trt vs untrt 
+    ## Wald test p-value: dex trt vs untrt 
+    ## DataFrame with 29391 rows and 6 columns
+    ##                   baseMean log2FoldChange     lfcSE       stat
+    ##                  <numeric>      <numeric> <numeric>  <numeric>
+    ## ENSG00000152583   997.4398       4.313968 0.1721375   25.06117
+    ## ENSG00000165995   495.0929       3.186818 0.1281563   24.86665
+    ## ENSG00000101347 12703.3871       3.618751 0.1489433   24.29616
+    ## ENSG00000120129  3409.0294       2.871488 0.1182491   24.28338
+    ## ENSG00000189221  2341.7673       3.230386 0.1366745   23.63562
+    ## ...                    ...            ...       ...        ...
+    ## ENSG00000273474  1.5868550    0.006251418 0.3008329 0.02078037
+    ## ENSG00000273476  0.5334215    0.081543999 0.1636397 0.49831434
+    ## ENSG00000273483  2.6895651    0.162556697 0.3311375 0.49090397
+    ## ENSG00000273485  1.2864477    0.033988148 0.2932360 0.11590715
+    ## ENSG00000273489  0.2758994    0.069479001 0.1512520 0.45935911
+    ##                        pvalue          padj
+    ##                     <numeric>     <numeric>
+    ## ENSG00000152583 1.319002e-138 2.373412e-134
+    ## ENSG00000165995 1.708334e-136 1.536988e-132
+    ## ENSG00000101347 2.152388e-130 1.291002e-126
+    ## ENSG00000120129 2.937637e-130 1.321496e-126
+    ## ENSG00000189221 1.659454e-123 5.972044e-120
+    ## ...                       ...           ...
+    ## ENSG00000273474     0.9834209            NA
+    ## ENSG00000273476     0.6182625            NA
+    ## ENSG00000273483     0.6234944            NA
+    ## ENSG00000273485     0.9077261            NA
+    ## ENSG00000273489     0.6459763            NA
 
 Calling results without any arguments will extract the estimated log2 fold changes and p values for the last variable in the design formula. If there are more than 2 levels for this variable, results will extract the results table for a comparison of the last level over the first level. The comparison is printed at the top of the output: dex trt vs untrt.
 
 The first column, baseMean, is a just the average of the normalized count values, divided by the size factors, taken over all samples in the DESeqDataSet. The remaining four columns refer to a specific contrast, namely the comparison of the trt level over the untrt level for the factor variable dex. We will find out below how to obtain other contrasts.
 
-The column log2FoldChange is the effect size estimate. It tells us how much the gene's expression seems to have changed due to treatment with dexamethasone in comparison to untreated samples. This value is reported on a logarithmic scale to base 2: for example, a log2 fold change of 1.5 means that the gene’s expression is increased by a multiplicative factor of \(2^{1.5} \approx 2.82\).
+The column log2FoldChange is the effect size estimate. It tells us how much the gene's expression seems to have changed due to treatment with dexamethasone in comparison to untreated samples. This value is reported on a logarithmic scale to base 2: for example, a log2 fold change of 1.5 means that the gene's expression is increased by a multiplicative factor of 2^1.5 ~ 2.82.
 
 Of course, this estimate has an uncertainty associated with it, which is available in the column lfcSE, the standard error estimate for the log2 fold change estimate. We can also express the uncertainty of a particular effect size estimate as the result of a statistical test. The purpose of a test for differential expression is to test whether the data provides sufficient evidence to conclude that this value is really different from zero. DESeq2 performs for each gene a hypothesis test to see whether evidence is sufficient to decide against the null hypothesis that there is zero effect of the treatment on the gene and that the observed difference between treatment and control was merely caused by experimental variability (i.e., the type of variability that you can expect between different samples in the same treatment group). As usual in statistics, the result of this test is reported as a p value, and it is found in the column pvalue. Remember that a p value indicates the probability that a fold change as strong as the observed one, or even stronger, would be seen under the situation described by the null hypothesis.
 
@@ -349,14 +384,15 @@ summary(res)
     ## [1] see 'cooksCutoff' argument of ?results
     ## [2] see 'independentFiltering' argument of ?results
 
-> What is the effect of treatment with dexamethasone on the top differentially expressed gene?
+Note that there are many genes with differential expression due to dexamethasone treatment at the FDR level of 10%. This makes sense, as the smooth muscle cells of the airway are known to react to glucocorticoid steroids. However, there are two ways to be more strict about which set of genes are considered significant:
 
-> How strong is this effect in fold-change comparing treated vs untreated?
+    lower the false discovery rate threshold (the threshold on padj in
+    the results table) 
 
-!!!ADVANCED: Multiple testing
------------------------------
+    raise the log2 fold change threshold from 0 using the lfcThreshold
+    argument of results
 
-In high-throughput biology, we are careful to not use the p values directly as evidence against the null, but to correct for multiple testing. What would happen if we were to simply threshold the p values at a low value, say 0.05? There are 5676 genes with a p value below 0.05 among the 29391 genes for which the test succeeded in reporting a p value:
+If we lower the false discovery rate threshold, we should also inform the results() function about it, so that the function can use this threshold for the optimal independent filtering that it performs:
 
 ``` r
 res.05 <- results(dds, alpha = 0.05)
@@ -367,13 +403,109 @@ table(res.05$padj < 0.05)
     ## FALSE  TRUE 
     ## 12841  4014
 
+If we want to raise the log2 fold change threshold, so that we test for genes that show more substantial changes due to treatment, we simply supply a value on the log2 scale. For example, by specifying lfcThreshold = 1, we test for genes that show significant effects of treatment on gene counts more than doubling or less than halving, because 2^1 = 2.
+
+``` r
+resLFC1 <- results(dds, lfcThreshold=1)
+table(resLFC1$padj < 0.1)
+```
+
+    ## 
+    ## FALSE  TRUE 
+    ## 18368   196
+
+> What is the effect of treatment with dexamethasone on the top differentially expressed gene?
+
+> How strong is this effect in fold-change comparing treated vs untreated?
+
+!!!ADVANCED: Multiple testing
+-----------------------------
+
+In high-throughput biology, we are careful to not use the p values directly as evidence against the null, but to correct for multiple testing. What would happen if we were to simply threshold the p values at a low value, say 0.05? There are 5676 genes with a p value below 0.05 among the 29391 genes for which the test succeeded in reporting a p value:
+
+``` r
+sum(res$pvalue < 0.05, na.rm=TRUE)
+```
+
+    ## [1] 5648
+
+``` r
+sum(!is.na(res$pvalue))
+```
+
+    ## [1] 29391
+
 Now, assume for a moment that the null hypothesis is true for all genes, i.e., no gene is affected by the treatment with dexamethasone. Then, by the definition of the p value, we expect up to 5% of the genes to have a p value below 0.05. This amounts to 1470 genes. If we just considered the list of genes with a p value below 0.05 as differentially expressed, this list should therefore be expected to contain up to 1470 / 5676 = 26% false positives.
 
-DESeq2 uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R p.adjust function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene’s adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column padj of the res object.
+`DESeq2` uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R `p.adjust` function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene's adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column padj of the res object.
 
 The FDR is a useful statistic for many high-throughput experiments, as we are often interested in reporting or focusing on a set of interesting genes, and we would like to put an upper bound on the percent of false positives in this set.
 
 Hence, if we consider a fraction of 10% false positives acceptable, we can consider all genes with an adjusted p value below 10% = 0.1 as significant. How many such genes are there?
+
+``` r
+sum(res$padj < 0.1, na.rm=TRUE)
+```
+
+    ## [1] 4821
+
+We subset the results table to these genes and then sort it by the log2 fold change estimate to get the significant genes with the strongest down-regulation:
+
+``` r
+resSig <- subset(res, padj < 0.1)
+head(resSig[ order(resSig$log2FoldChange), ])
+```
+
+    ## log2 fold change (MAP): dex trt vs untrt 
+    ## Wald test p-value: dex trt vs untrt 
+    ## DataFrame with 6 rows and 6 columns
+    ##                  baseMean log2FoldChange     lfcSE       stat       pvalue
+    ##                 <numeric>      <numeric> <numeric>  <numeric>    <numeric>
+    ## ENSG00000162692 508.17023      -3.449451 0.1767133 -19.520040 7.418019e-85
+    ## ENSG00000105989 333.21469      -2.847367 0.1763077 -16.149989 1.135822e-58
+    ## ENSG00000146006  46.80760      -2.828103 0.3377002  -8.374596 5.541346e-17
+    ## ENSG00000214814 243.27698      -2.753580 0.2235524 -12.317379 7.302919e-35
+    ## ENSG00000267339  26.23357      -2.704529 0.3519704  -7.683967 1.542363e-14
+    ## ENSG00000013293 244.49733      -2.641033 0.1992865 -13.252442 4.367569e-40
+    ##                         padj
+    ##                    <numeric>
+    ## ENSG00000162692 9.534273e-82
+    ## ENSG00000105989 5.839423e-56
+    ## ENSG00000146006 2.702195e-15
+    ## ENSG00000214814 1.228119e-32
+    ## ENSG00000267339 5.904954e-13
+    ## ENSG00000013293 8.830342e-38
+
+... and with the strongest up-regulation:
+
+``` r
+head(resSig[ order(resSig$log2FoldChange, decreasing = TRUE), ])
+```
+
+    ## log2 fold change (MAP): dex trt vs untrt 
+    ## Wald test p-value: dex trt vs untrt 
+    ## DataFrame with 6 rows and 6 columns
+    ##                  baseMean log2FoldChange     lfcSE      stat        pvalue
+    ##                 <numeric>      <numeric> <numeric> <numeric>     <numeric>
+    ## ENSG00000109906 385.07103       4.847146 0.3313650  14.62781  1.866877e-48
+    ## ENSG00000179593  67.24305       4.830826 0.3314188  14.57620  3.980821e-48
+    ## ENSG00000152583 997.43977       4.313968 0.1721375  25.06117 1.319002e-138
+    ## ENSG00000163884 561.10717       4.074334 0.2104702  19.35824  1.737077e-83
+    ## ENSG00000250978  56.31819       4.054730 0.3294741  12.30667  8.339021e-35
+    ## ENSG00000168309 159.52692       3.977125 0.2558468  15.54495  1.721597e-54
+    ##                          padj
+    ##                     <numeric>
+    ## ENSG00000109906  5.893437e-46
+    ## ENSG00000179593  1.193848e-45
+    ## ENSG00000152583 2.373412e-134
+    ## ENSG00000163884  1.953560e-80
+    ## ENSG00000250978  1.389373e-32
+    ## ENSG00000168309  7.744606e-52
+
+visualizing results
+-------------------
+
+A quick way to visualize the counts for a particular gene is to use the plotCounts function that takes as arguments the DESeqDataSet, a gene name, and the group over which to plot the counts (figure below).
 
 ``` r
 topGene <- rownames(res)[which.min(res$padj)]
@@ -381,6 +513,10 @@ plotCounts(dds, gene = topGene, intgroup=c("dex"))
 ```
 
 ![](rnaseq_practical_files/figure-markdown_github/plottop-1.png)
+
+In the sample distance heatmap made previously, the dendrogram at the side shows us a hierarchical clustering of the samples. Such a clustering can also be performed for the genes. Since the clustering is only relevant for genes that actually carry a signal, one usually would only cluster a subset of the most highly variable genes. Here, for demonstration, let us select the 20 genes with the highest variance across samples. We will work with the rlog transformed counts:
+
+The heatmap becomes more interesting if we do not look at absolute expression strength but rather at the amount by which each gene deviates in a specific sample from the gene's average across all samples. Hence, we center each genes' values across samples, and plot a heatmap (figure below). We provide a data.frame that instructs the pheatmap function how to label the columns.
 
 ``` r
 library(genefilter)

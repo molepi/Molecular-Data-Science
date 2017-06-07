@@ -307,8 +307,9 @@ results tables of interest from this object.
 
 
 ```{r, results}
-res <- results(dds, alpha = 0.05)
+res <- results(dds)
 res
+res[order(res$padj),]
 ```
 
 Calling results without any arguments will extract the estimated log2
@@ -329,8 +330,8 @@ The column log2FoldChange is the effect size estimate. It tells us how
 much the gene's expression seems to have changed due to treatment with
 dexamethasone in comparison to untreated samples. This value is
 reported on a logarithmic scale to base 2: for example, a log2 fold
-change of 1.5 means that the gene’s expression is increased by a
-multiplicative factor of $2^{1.5} \approx 2.82$.
+change of 1.5 means that the gene's expression is increased by a
+multiplicative factor of 2^1.5 ~ 2.82.
 
 Of course, this estimate has an uncertainty associated with it, which
 is available in the column lfcSE, the standard error estimate for the
@@ -357,6 +358,40 @@ which reports some additional information.
 summary(res)
 ```
 
+Note that there are many genes with differential expression due to
+dexamethasone treatment at the FDR level of 10%. This makes sense, as
+the smooth muscle cells of the airway are known to react to
+glucocorticoid steroids. However, there are two ways to be more strict
+about which set of genes are considered significant:
+
+    lower the false discovery rate threshold (the threshold on padj in
+    the results table) 
+	
+	raise the log2 fold change threshold from 0 using the lfcThreshold
+    argument of results
+
+If we lower the false discovery rate threshold, we should also inform
+the results() function about it, so that the function can use this
+threshold for the optimal independent filtering that it performs:
+
+```{r, resulst2}
+res.05 <- results(dds, alpha = 0.05)
+table(res.05$padj < 0.05)
+```
+
+If we want to raise the log2 fold change threshold, so that we test
+for genes that show more substantial changes due to treatment, we
+simply supply a value on the log2 scale. For example, by specifying
+lfcThreshold = 1, we test for genes that show significant effects of
+treatment on gene counts more than doubling or less than halving,
+because 2^1 = 2.
+
+```{r, resulst3}
+resLFC1 <- results(dds, lfcThreshold=1)
+table(resLFC1$padj < 0.1)
+```
+
+
 > What is the effect of treatment with dexamethasone on the top
 > differentially expressed gene?
 
@@ -373,12 +408,10 @@ at a low value, say 0.05? There are 5676 genes with a p value below
 0.05 among the 29391 genes for which the test succeeded in reporting a
 p value:
 
-```{r, multipletesting}
-res.05 <- results(dds, alpha = 0.05)
-table(res.05$padj < 0.05)
-
+```{r, multipletesting1}
+sum(res$pvalue < 0.05, na.rm=TRUE)
+sum(!is.na(res$pvalue))
 ```
-
 
 Now, assume for a moment that the null hypothesis is true for all
 genes, i.e., no gene is affected by the treatment with
@@ -388,11 +421,11 @@ genes. If we just considered the list of genes with a p value below
 0.05 as differentially expressed, this list should therefore be
 expected to contain up to 1470 / 5676 = 26% false positives.
 
-DESeq2 uses the Benjamini-Hochberg (BH) adjustment (Benjamini and
-Hochberg 1995) as implemented in the base R p.adjust function; in
+`DESeq2` uses the Benjamini-Hochberg (BH) adjustment (Benjamini and
+Hochberg 1995) as implemented in the base R `p.adjust` function; in
 brief, this method calculates for each gene an adjusted p value that
 answers the following question: if one called significant all genes
-with an adjusted p value less than or equal to this gene’s adjusted p
+with an adjusted p value less than or equal to this gene's adjusted p
 value threshold, what would be the fraction of false positives (the
 false discovery rate, FDR) among them, in the sense of the calculation
 outlined above? These values, called the BH-adjusted p values, are
@@ -407,10 +440,51 @@ Hence, if we consider a fraction of 10% false positives acceptable, we
 can consider all genes with an adjusted p value below 10% = 0.1 as
 significant. How many such genes are there?
 
+```{r, multipletesting2}
+sum(res$padj < 0.1, na.rm=TRUE)
+```
+
+We subset the results table to these genes and then sort it by the
+log2 fold change estimate to get the significant genes with the
+strongest down-regulation:
+
+```{r, multipletesting3}
+resSig <- subset(res, padj < 0.1)
+head(resSig[ order(resSig$log2FoldChange), ])
+```
+... and with the strongest up-regulation:
+
+```{r, multipletesting4}
+head(resSig[ order(resSig$log2FoldChange, decreasing = TRUE), ])
+```
+
+## visualizing results ##
+
+A quick way to visualize the counts for a particular gene is to use
+the plotCounts function that takes as arguments the DESeqDataSet, a
+gene name, and the group over which to plot the counts (figure below).
+
 ```{r, plottop}
 topGene <- rownames(res)[which.min(res$padj)]
 plotCounts(dds, gene = topGene, intgroup=c("dex"))
 ```
+
+In the sample distance heatmap made previously, the dendrogram at the
+side shows us a hierarchical clustering of the samples. Such a
+clustering can also be performed for the genes. Since the clustering
+is only relevant for genes that actually carry a signal, one usually
+would only cluster a subset of the most highly variable genes. Here,
+for demonstration, let us select the 20 genes with the highest
+variance across samples. We will work with the rlog transformed
+counts:
+
+The heatmap becomes more interesting if we do not look at absolute
+expression strength but rather at the amount by which each gene
+deviates in a specific sample from the gene's average across all
+samples. Hence, we center each genes' values across samples, and plot
+a heatmap (figure below). We provide a data.frame that instructs the
+pheatmap function how to label the columns.
+
 
 ```{r, heatmaptop}
 library(genefilter)

@@ -42,6 +42,7 @@ body {
 <ul>
 <li><a href="#running-the-differential-expression-pipeline">Running the differential expression pipeline</a></li>
 <li><a href="#advanced-multiple-testing">!!!ADVANCED: Multiple testing</a></li>
+<li><a href="#visualizing-results">visualizing results</a></li>
 </ul></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
@@ -233,7 +234,7 @@ pcaData</code></pre></div>
 ## fitting model and testing</code></pre>
 <p>This function will print out a message for the various steps it performs. These are described in more detail in the manual page for DESeq, which can be accessed by typing ?DESeq. Briefly these are: the estimation of size factors (controlling for differences in the sequencing depth of the samples), the estimation of dispersion values for each gene, and fitting a generalized linear model.</p>
 <p>A <em>DESeqDataSet</em> is returned that contains all the fitted parameters within it, and the following section describes how to extract out results tables of interest from this object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">results</span>(dds, <span class="dt">alpha =</span> <span class="fl">0.05</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">results</span>(dds)
 res</code></pre></div>
 <pre><code>## log2 fold change (MAP): dex trt vs untrt 
 ## Wald test p-value: dex trt vs untrt 
@@ -251,22 +252,52 @@ res</code></pre></div>
 ## ENSG00000273487   8.1632350     0.55007412  0.3725061  1.4766847
 ## ENSG00000273488   8.5844790     0.10515293  0.3683834  0.2854442
 ## ENSG00000273489   0.2758994     0.06947900  0.1512520  0.4593591
-##                      pvalue        padj
-##                   &lt;numeric&gt;   &lt;numeric&gt;
-## ENSG00000000003 0.000153545 0.001207653
-## ENSG00000000419 0.065587276 0.187241454
-## ENSG00000000457 0.793768939 0.905590644
-## ENSG00000000460 0.735377161 0.874863971
-## ENSG00000000938 0.578223585          NA
-## ...                     ...         ...
-## ENSG00000273485   0.9077261          NA
-## ENSG00000273486   0.7792120   0.8981397
-## ENSG00000273487   0.1397602   0.3241124
-## ENSG00000273488   0.7753038   0.8956032
-## ENSG00000273489   0.6459763          NA</code></pre>
+##                      pvalue       padj
+##                   &lt;numeric&gt;  &lt;numeric&gt;
+## ENSG00000000003 0.000153545 0.00128686
+## ENSG00000000419 0.065587276 0.19676183
+## ENSG00000000457 0.793768939 0.91372953
+## ENSG00000000460 0.735377161 0.88385059
+## ENSG00000000938 0.578223585         NA
+## ...                     ...        ...
+## ENSG00000273485   0.9077261         NA
+## ENSG00000273486   0.7792120  0.9062268
+## ENSG00000273487   0.1397602  0.3389275
+## ENSG00000273488   0.7753038  0.9039857
+## ENSG00000273489   0.6459763         NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res[<span class="kw">order</span>(res$padj),]</code></pre></div>
+<pre><code>## log2 fold change (MAP): dex trt vs untrt 
+## Wald test p-value: dex trt vs untrt 
+## DataFrame with 29391 rows and 6 columns
+##                   baseMean log2FoldChange     lfcSE       stat
+##                  &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;
+## ENSG00000152583   997.4398       4.313968 0.1721375   25.06117
+## ENSG00000165995   495.0929       3.186818 0.1281563   24.86665
+## ENSG00000101347 12703.3871       3.618751 0.1489433   24.29616
+## ENSG00000120129  3409.0294       2.871488 0.1182491   24.28338
+## ENSG00000189221  2341.7673       3.230386 0.1366745   23.63562
+## ...                    ...            ...       ...        ...
+## ENSG00000273474  1.5868550    0.006251418 0.3008329 0.02078037
+## ENSG00000273476  0.5334215    0.081543999 0.1636397 0.49831434
+## ENSG00000273483  2.6895651    0.162556697 0.3311375 0.49090397
+## ENSG00000273485  1.2864477    0.033988148 0.2932360 0.11590715
+## ENSG00000273489  0.2758994    0.069479001 0.1512520 0.45935911
+##                        pvalue          padj
+##                     &lt;numeric&gt;     &lt;numeric&gt;
+## ENSG00000152583 1.319002e-138 2.373412e-134
+## ENSG00000165995 1.708334e-136 1.536988e-132
+## ENSG00000101347 2.152388e-130 1.291002e-126
+## ENSG00000120129 2.937637e-130 1.321496e-126
+## ENSG00000189221 1.659454e-123 5.972044e-120
+## ...                       ...           ...
+## ENSG00000273474     0.9834209            NA
+## ENSG00000273476     0.6182625            NA
+## ENSG00000273483     0.6234944            NA
+## ENSG00000273485     0.9077261            NA
+## ENSG00000273489     0.6459763            NA</code></pre>
 <p>Calling results without any arguments will extract the estimated log2 fold changes and p values for the last variable in the design formula. If there are more than 2 levels for this variable, results will extract the results table for a comparison of the last level over the first level. The comparison is printed at the top of the output: dex trt vs untrt.</p>
 <p>The first column, baseMean, is a just the average of the normalized count values, divided by the size factors, taken over all samples in the DESeqDataSet. The remaining four columns refer to a specific contrast, namely the comparison of the trt level over the untrt level for the factor variable dex. We will find out below how to obtain other contrasts.</p>
-<p>The column log2FoldChange is the effect size estimate. It tells us how much the gene's expression seems to have changed due to treatment with dexamethasone in comparison to untreated samples. This value is reported on a logarithmic scale to base 2: for example, a log2 fold change of 1.5 means that the gene’s expression is increased by a multiplicative factor of <span class="math inline">2<sup>1.5</sup> ≈ 2.82</span>.</p>
+<p>The column log2FoldChange is the effect size estimate. It tells us how much the gene's expression seems to have changed due to treatment with dexamethasone in comparison to untreated samples. This value is reported on a logarithmic scale to base 2: for example, a log2 fold change of 1.5 means that the gene's expression is increased by a multiplicative factor of 2^1.5 ~ 2.82.</p>
 <p>Of course, this estimate has an uncertainty associated with it, which is available in the column lfcSE, the standard error estimate for the log2 fold change estimate. We can also express the uncertainty of a particular effect size estimate as the result of a statistical test. The purpose of a test for differential expression is to test whether the data provides sufficient evidence to conclude that this value is really different from zero. DESeq2 performs for each gene a hypothesis test to see whether evidence is sufficient to decide against the null hypothesis that there is zero effect of the treatment on the gene and that the observed difference between treatment and control was merely caused by experimental variability (i.e., the type of variability that you can expect between different samples in the same treatment group). As usual in statistics, the result of this test is reported as a p value, and it is found in the column pvalue. Remember that a p value indicates the probability that a fold change as strong as the observed one, or even stronger, would be seen under the situation described by the null hypothesis.</p>
 <p>We can also summarize the results with the following line of code, which reports some additional information.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(res)</code></pre></div>
@@ -280,6 +311,24 @@ res</code></pre></div>
 ## (mean count &lt; 7)
 ## [1] see 'cooksCutoff' argument of ?results
 ## [2] see 'independentFiltering' argument of ?results</code></pre>
+<p>Note that there are many genes with differential expression due to dexamethasone treatment at the FDR level of 10%. This makes sense, as the smooth muscle cells of the airway are known to react to glucocorticoid steroids. However, there are two ways to be more strict about which set of genes are considered significant:</p>
+<pre><code>lower the false discovery rate threshold (the threshold on padj in
+the results table) 
+
+raise the log2 fold change threshold from 0 using the lfcThreshold
+argument of results</code></pre>
+<p>If we lower the false discovery rate threshold, we should also inform the results() function about it, so that the function can use this threshold for the optimal independent filtering that it performs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="fl">.05</span> &lt;-<span class="st"> </span><span class="kw">results</span>(dds, <span class="dt">alpha =</span> <span class="fl">0.05</span>)
+<span class="kw">table</span>(res<span class="fl">.05</span>$padj &lt;<span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 12841  4014</code></pre>
+<p>If we want to raise the log2 fold change threshold, so that we test for genes that show more substantial changes due to treatment, we simply supply a value on the log2 scale. For example, by specifying lfcThreshold = 1, we test for genes that show significant effects of treatment on gene counts more than doubling or less than halving, because 2^1 = 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resLFC1 &lt;-<span class="st"> </span><span class="kw">results</span>(dds, <span class="dt">lfcThreshold=</span><span class="dv">1</span>)
+<span class="kw">table</span>(resLFC1$padj &lt;<span class="st"> </span><span class="fl">0.1</span>)</code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 18368   196</code></pre>
 <blockquote>
 <p>What is the effect of treatment with dexamethasone on the top differentially expressed gene?</p>
 </blockquote>
@@ -288,18 +337,66 @@ res</code></pre></div>
 </blockquote>
 <h2 id="advanced-multiple-testing">!!!ADVANCED: Multiple testing</h2>
 <p>In high-throughput biology, we are careful to not use the p values directly as evidence against the null, but to correct for multiple testing. What would happen if we were to simply threshold the p values at a low value, say 0.05? There are 5676 genes with a p value below 0.05 among the 29391 genes for which the test succeeded in reporting a p value:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res<span class="fl">.05</span> &lt;-<span class="st"> </span><span class="kw">results</span>(dds, <span class="dt">alpha =</span> <span class="fl">0.05</span>)
-<span class="kw">table</span>(res<span class="fl">.05</span>$padj &lt;<span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
-<pre><code>## 
-## FALSE  TRUE 
-## 12841  4014</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(res$pvalue &lt;<span class="st"> </span><span class="fl">0.05</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 5648</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(!<span class="kw">is.na</span>(res$pvalue))</code></pre></div>
+<pre><code>## [1] 29391</code></pre>
 <p>Now, assume for a moment that the null hypothesis is true for all genes, i.e., no gene is affected by the treatment with dexamethasone. Then, by the definition of the p value, we expect up to 5% of the genes to have a p value below 0.05. This amounts to 1470 genes. If we just considered the list of genes with a p value below 0.05 as differentially expressed, this list should therefore be expected to contain up to 1470 / 5676 = 26% false positives.</p>
-<p>DESeq2 uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R p.adjust function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene’s adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column padj of the res object.</p>
+<p><code>DESeq2</code> uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R <code>p.adjust</code> function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene's adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column padj of the res object.</p>
 <p>The FDR is a useful statistic for many high-throughput experiments, as we are often interested in reporting or focusing on a set of interesting genes, and we would like to put an upper bound on the percent of false positives in this set.</p>
 <p>Hence, if we consider a fraction of 10% false positives acceptable, we can consider all genes with an adjusted p value below 10% = 0.1 as significant. How many such genes are there?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(res$padj &lt;<span class="st"> </span><span class="fl">0.1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 4821</code></pre>
+<p>We subset the results table to these genes and then sort it by the log2 fold change estimate to get the significant genes with the strongest down-regulation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resSig &lt;-<span class="st"> </span><span class="kw">subset</span>(res, padj &lt;<span class="st"> </span><span class="fl">0.1</span>)
+<span class="kw">head</span>(resSig[ <span class="kw">order</span>(resSig$log2FoldChange), ])</code></pre></div>
+<pre><code>## log2 fold change (MAP): dex trt vs untrt 
+## Wald test p-value: dex trt vs untrt 
+## DataFrame with 6 rows and 6 columns
+##                  baseMean log2FoldChange     lfcSE       stat       pvalue
+##                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;    &lt;numeric&gt;
+## ENSG00000162692 508.17023      -3.449451 0.1767133 -19.520040 7.418019e-85
+## ENSG00000105989 333.21469      -2.847367 0.1763077 -16.149989 1.135822e-58
+## ENSG00000146006  46.80760      -2.828103 0.3377002  -8.374596 5.541346e-17
+## ENSG00000214814 243.27698      -2.753580 0.2235524 -12.317379 7.302919e-35
+## ENSG00000267339  26.23357      -2.704529 0.3519704  -7.683967 1.542363e-14
+## ENSG00000013293 244.49733      -2.641033 0.1992865 -13.252442 4.367569e-40
+##                         padj
+##                    &lt;numeric&gt;
+## ENSG00000162692 9.534273e-82
+## ENSG00000105989 5.839423e-56
+## ENSG00000146006 2.702195e-15
+## ENSG00000214814 1.228119e-32
+## ENSG00000267339 5.904954e-13
+## ENSG00000013293 8.830342e-38</code></pre>
+<p>... and with the strongest up-regulation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(resSig[ <span class="kw">order</span>(resSig$log2FoldChange, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ])</code></pre></div>
+<pre><code>## log2 fold change (MAP): dex trt vs untrt 
+## Wald test p-value: dex trt vs untrt 
+## DataFrame with 6 rows and 6 columns
+##                  baseMean log2FoldChange     lfcSE      stat        pvalue
+##                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;     &lt;numeric&gt;
+## ENSG00000109906 385.07103       4.847146 0.3313650  14.62781  1.866877e-48
+## ENSG00000179593  67.24305       4.830826 0.3314188  14.57620  3.980821e-48
+## ENSG00000152583 997.43977       4.313968 0.1721375  25.06117 1.319002e-138
+## ENSG00000163884 561.10717       4.074334 0.2104702  19.35824  1.737077e-83
+## ENSG00000250978  56.31819       4.054730 0.3294741  12.30667  8.339021e-35
+## ENSG00000168309 159.52692       3.977125 0.2558468  15.54495  1.721597e-54
+##                          padj
+##                     &lt;numeric&gt;
+## ENSG00000109906  5.893437e-46
+## ENSG00000179593  1.193848e-45
+## ENSG00000152583 2.373412e-134
+## ENSG00000163884  1.953560e-80
+## ENSG00000250978  1.389373e-32
+## ENSG00000168309  7.744606e-52</code></pre>
+<h2 id="visualizing-results">visualizing results</h2>
+<p>A quick way to visualize the counts for a particular gene is to use the plotCounts function that takes as arguments the DESeqDataSet, a gene name, and the group over which to plot the counts (figure below).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">topGene &lt;-<span class="st"> </span><span class="kw">rownames</span>(res)[<span class="kw">which.min</span>(res$padj)]
 <span class="kw">plotCounts</span>(dds, <span class="dt">gene =</span> topGene, <span class="dt">intgroup=</span><span class="kw">c</span>(<span class="st">&quot;dex&quot;</span>))</code></pre></div>
 <p><img src="data:image/png;base64,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" /></p>
+<p>In the sample distance heatmap made previously, the dendrogram at the side shows us a hierarchical clustering of the samples. Such a clustering can also be performed for the genes. Since the clustering is only relevant for genes that actually carry a signal, one usually would only cluster a subset of the most highly variable genes. Here, for demonstration, let us select the 20 genes with the highest variance across samples. We will work with the rlog transformed counts:</p>
+<p>The heatmap becomes more interesting if we do not look at absolute expression strength but rather at the amount by which each gene deviates in a specific sample from the gene's average across all samples. Hence, we center each genes' values across samples, and plot a heatmap (figure below). We provide a data.frame that instructs the pheatmap function how to label the columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(genefilter)
 topVarGenes &lt;-<span class="st"> </span><span class="kw">head</span>(<span class="kw">order</span>(<span class="kw">rowVars</span>(<span class="kw">assay</span>(rld)), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">20</span>)
 mat  &lt;-<span class="st"> </span><span class="kw">assay</span>(rld)[ topVarGenes, ]
