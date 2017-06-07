@@ -145,7 +145,7 @@ weighted average of the different modules.
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
 | 9:00-10.15  | Lecture: Introduction to RNA-sequencing data analysis                                                                                          | Maarten van Iterson  | J1-82 |
 | 10:00-10:15 | Coffee Break                                                                                                                                   |                      |       |
-| 10:15-12.00 | Hands on: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_partical.md)                                                                  | Maarten van Iterson  | J1-82 |
+| 10:15-12.00 | Hands on: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
 | 12:00-13:00 | Lunch                                                                                                                                          |                      |       |
 | 13:00-15:00 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt    | J1-82 |
 | 15:15-15:45 | Lecture; Functional genomic approaches to Osteoarthritis                                                                                       | Ingrid Meulenbelt    | J1-82 |
