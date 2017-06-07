@@ -56,9 +56,9 @@ weighted average of the different modules.
 | 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-82 |
 | 11.15-12.00 | Lecture: Introduction to large scale datasets; from SPSS to R          | Bas Heijmans                     | J1-82 |
 | 12.00-13.00 | Lunch                                                                  |                                  |       |
-| 13.30-15.00 | [Hands on: Introduction to R]RIntro/Rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
+| 13.30-15.00 | [Hands on: Introduction to R](https://github.com/molepi/FOS2017/blob/master/RIntro_practical/rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
 | 15.00-15.15 | Tea break                                                              |                                  |       |
-| 15.15-17.00 | [Hands on: Introduction to R](https://github.com/molepi/FOS2017/RIntro/Rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
+| 15.15-17.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
