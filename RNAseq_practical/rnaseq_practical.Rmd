@@ -4,6 +4,13 @@ output:
   html_document:
     toc: true
     toc_depth: 2
+  pdf_document:
+    toc: true
+    toc_depth: 2	
+  github_document:
+    toc: true
+    toc_depth: 2	
+bibliography: rnaseq_practical.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -317,7 +324,7 @@ much the gene's expression seems to have changed due to treatment with
 dexamethasone in comparison to untreated samples. This value is
 reported on a logarithmic scale to base 2: for example, a log2 fold
 change of 1.5 means that the gene’s expression is increased by a
-multiplicative factor of $2^{1.5} \aprox 2.82$.
+multiplicative factor of $2^{1.5} \approx 2.82$.
 
 Of course, this estimate has an uncertainty associated with it, which
 is available in the column lfcSE, the standard error estimate for the
@@ -354,5 +361,38 @@ at a low value, say 0.05? There are 5676 genes with a p value below
 0.05 among the 29391 genes for which the test succeeded in reporting a
 p value:
 
+```{r, multipletesting}
+res.05 <- results(dds, alpha = 0.05)
+table(res.05$padj < 0.05)
+
+```
+
+
+Now, assume for a moment that the null hypothesis is true for all
+genes, i.e., no gene is affected by the treatment with
+dexamethasone. Then, by the definition of the p value, we expect up to
+5% of the genes to have a p value below 0.05. This amounts to 1470
+genes. If we just considered the list of genes with a p value below
+0.05 as differentially expressed, this list should therefore be
+expected to contain up to 1470 / 5676 = 26% false positives.
+
+DESeq2 uses the Benjamini-Hochberg (BH) adjustment (Benjamini and
+Hochberg 1995) as implemented in the base R p.adjust function; in
+brief, this method calculates for each gene an adjusted p value that
+answers the following question: if one called significant all genes
+with an adjusted p value less than or equal to this gene’s adjusted p
+value threshold, what would be the fraction of false positives (the
+false discovery rate, FDR) among them, in the sense of the calculation
+outlined above? These values, called the BH-adjusted p values, are
+given in the column padj of the res object.
+
+The FDR is a useful statistic for many high-throughput experiments, as
+we are often interested in reporting or focusing on a set of
+interesting genes, and we would like to put an upper bound on the
+percent of false positives in this set.
+
+Hence, if we consider a fraction of 10% false positives acceptable, we
+can consider all genes with an adjusted p value below 10% = 0.1 as
+significant. How many such genes are there?
 
 # Reference #
