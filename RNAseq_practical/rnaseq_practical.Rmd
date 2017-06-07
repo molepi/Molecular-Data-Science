@@ -26,7 +26,8 @@ suppressPackageStartupMessages({ ##to get rid of annoying startup messages
     library(ggplot2)
     library(gridExtra)
     library(pheatmap)
-    library(RColorBrewer)    
+    library(RColorBrewer)
+    library(genefilter)
 })
 
 ```
@@ -317,7 +318,6 @@ will extract the results table for a comparison of the last level over
 the first level. The comparison is printed at the top of the output:
 dex trt vs untrt.
 
-
 The first column, baseMean, is a just the average of the normalized
 count values, divided by the size factors, taken over all samples in
 the DESeqDataSet. The remaining four columns refer to a specific
@@ -351,12 +351,18 @@ change as strong as the observed one, or even stronger, would be seen
 under the situation described by the null hypothesis.
 
 We can also summarize the results with the following line of code,
-which reports some additional information, that will be covered in
-later sections.
+which reports some additional information.
 
 ```{r, summary}
 summary(res)
 ```
+
+> What is the effect of treatment with dexamethasone on the top
+> differentially expressed gene?
+
+> How strong is this effect in fold-change comparing treated vs
+> untreated?
+
 
 ## !!!ADVANCED: Multiple testing ##
 
@@ -400,5 +406,20 @@ percent of false positives in this set.
 Hence, if we consider a fraction of 10% false positives acceptable, we
 can consider all genes with an adjusted p value below 10% = 0.1 as
 significant. How many such genes are there?
+
+```{r, plottop}
+topGene <- rownames(res)[which.min(res$padj)]
+plotCounts(dds, gene = topGene, intgroup=c("dex"))
+```
+
+```{r, heatmaptop}
+library(genefilter)
+topVarGenes <- head(order(rowVars(assay(rld)), decreasing = TRUE), 20)
+mat  <- assay(rld)[ topVarGenes, ]
+mat  <- mat - rowMeans(mat)
+anno <- as.data.frame(colData(rld)[, c("cell","dex")])
+pheatmap(mat, annotation_col = anno)
+```
+
 
 # Reference #

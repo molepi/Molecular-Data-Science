@@ -332,7 +332,7 @@ The column log2FoldChange is the effect size estimate. It tells us how much the 
 
 Of course, this estimate has an uncertainty associated with it, which is available in the column lfcSE, the standard error estimate for the log2 fold change estimate. We can also express the uncertainty of a particular effect size estimate as the result of a statistical test. The purpose of a test for differential expression is to test whether the data provides sufficient evidence to conclude that this value is really different from zero. DESeq2 performs for each gene a hypothesis test to see whether evidence is sufficient to decide against the null hypothesis that there is zero effect of the treatment on the gene and that the observed difference between treatment and control was merely caused by experimental variability (i.e., the type of variability that you can expect between different samples in the same treatment group). As usual in statistics, the result of this test is reported as a p value, and it is found in the column pvalue. Remember that a p value indicates the probability that a fold change as strong as the observed one, or even stronger, would be seen under the situation described by the null hypothesis.
 
-We can also summarize the results with the following line of code, which reports some additional information, that will be covered in later sections.
+We can also summarize the results with the following line of code, which reports some additional information.
 
 ``` r
 summary(res)
@@ -348,6 +348,10 @@ summary(res)
     ## (mean count < 7)
     ## [1] see 'cooksCutoff' argument of ?results
     ## [2] see 'independentFiltering' argument of ?results
+
+> What is the effect of treatment with dexamethasone on the top differentially expressed gene?
+
+> How strong is this effect in fold-change comparing treated vs untreated?
 
 !!!ADVANCED: Multiple testing
 -----------------------------
@@ -370,6 +374,24 @@ DESeq2 uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995)
 The FDR is a useful statistic for many high-throughput experiments, as we are often interested in reporting or focusing on a set of interesting genes, and we would like to put an upper bound on the percent of false positives in this set.
 
 Hence, if we consider a fraction of 10% false positives acceptable, we can consider all genes with an adjusted p value below 10% = 0.1 as significant. How many such genes are there?
+
+``` r
+topGene <- rownames(res)[which.min(res$padj)]
+plotCounts(dds, gene = topGene, intgroup=c("dex"))
+```
+
+![](rnaseq_practical_files/figure-markdown_github/plottop-1.png)
+
+``` r
+library(genefilter)
+topVarGenes <- head(order(rowVars(assay(rld)), decreasing = TRUE), 20)
+mat  <- assay(rld)[ topVarGenes, ]
+mat  <- mat - rowMeans(mat)
+anno <- as.data.frame(colData(rld)[, c("cell","dex")])
+pheatmap(mat, annotation_col = anno)
+```
+
+![](rnaseq_practical_files/figure-markdown_github/heatmaptop-1.png)
 
 Reference
 =========
