@@ -62,16 +62,16 @@ and for raw data see the GEO entry
 
 ## Loading and Exploring the data ##
 
-The [airway](http://bioconductor.org/packages/airway/) is available
-from BioConductor as a data-package and contains both the gene
-expression counts as well as metadata on the experiment and
-samples. This prepared dataset is what we will use in this practical. 
+The [airway](http://bioconductor.org/packages/airway/)-package is
+available from BioConductor as a data-package and contains both the
+gene expression counts as well as metadata on the experiment and
+samples. This prepared dataset is what we will use in this practical.
 
 We won't go into the details of how to construct such a dataset or
 object but it is good to known that many BioConductor package use
-specialized object to ease different analyses, for example, later we
-will see an *DESeqDataSet* which we will construct specifically for
-doing differential expression analysis using the `DESeq2`-package.
+specialized objects to ease various analyses, for example, later we
+will see an *DESeqDataSet* which we will use specifically for doing
+differential expression analysis using the `DESeq2`-package.
 
 > Use the following code to figure out how many samples and genes are
 > in the dataset.
@@ -104,29 +104,35 @@ the differential expression analysis.
 
 ```{r, deseqdata}
 library(DESeq2)
-se$dex <- relevel(se$dex, "untrt")      #it is prefered in R that the first level of a factor be the reference level (e.g. control, or untreated samples), so we need to relevel the dex factor
+## it is prefered in R that the first level of a factor be the
+## reference level (e.g. control, or untreated samples), so we need to
+## relevel the dex factor
+se$dex <- relevel(se$dex, "untrt")
 dds <- DESeqDataSet(se, design = ~ cell + dex) #add formula
 dds
 ```
 
-Our count matrix with our *DESeqDataSet* contains many rows with only
-zeros, and additionally many rows with only a few fragments total. In
-order to reduce the size of the object, and to increase the speed of
-our functions, we can remove the rows that have no or nearly no
+Our *DESeqDataSet* contains many rows with only zeros, and
+additionally many rows with only a few fragments total. In order to
+reduce the size of the object, and to increase the speed of our
+functions, we can remove the rows that have no or nearly no
 information about the amount of gene expression. Here we apply the
 most minimal filtering rule: removing rows of the *DESeqDataSet* that
 have no counts, or only a single count across all samples. Additional
 weighting/filtering to improve power is applied at a later step in the
 workflow.
 
-```{r, zerocounts}
+```{r, lowexpressed}
 nrow(dds)
 dds <- dds[ rowSums(counts(dds)) > 1, ]
 nrow(dds)
 ```
 
-> How many genes had zero counts across all samples?
+> How many genes have zero counts across all samples?
 
+```{r, zerocounts}
+table(rowSums(assays(se)$counts) == 0)
+```
 
 ## !!!ADVANCED: The rlog and variance stabilizing transformations ##
 
@@ -160,7 +166,7 @@ msCts <- meanSdPlot(cts, ranks = FALSE, plot=FALSE)
 log.cts.one <- log2(cts + 1)
 msLog <- meanSdPlot(log.cts.one, ranks = FALSE, plot=FALSE)
 library(gridExtra)
-grid.arrange(msCts$gg, msLog$gg, ncol=2)
+grid.arrange(msCts$gg, msLog$gg, nrow=2)
 ```
 
 The logarithm with a small pseudocount amplifies differences when the

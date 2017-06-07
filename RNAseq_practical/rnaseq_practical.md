@@ -29,9 +29,9 @@ Exploratory analysis and visualization
 Loading and Exploring the data
 ------------------------------
 
-The [airway](http://bioconductor.org/packages/airway/) is available from BioConductor as a data-package and contains both the gene expression counts as well as metadata on the experiment and samples. This prepared dataset is what we will use in this practical.
+The [airway](http://bioconductor.org/packages/airway/)-package is available from BioConductor as a data-package and contains both the gene expression counts as well as metadata on the experiment and samples. This prepared dataset is what we will use in this practical.
 
-We won't go into the details of how to construct such a dataset or object but it is good to known that many BioConductor package use specialized object to ease different analyses, for example, later we will see an *DESeqDataSet* which we will construct specifically for doing differential expression analysis using the `DESeq2`-package.
+We won't go into the details of how to construct such a dataset or object but it is good to known that many BioConductor package use specialized objects to ease various analyses, for example, later we will see an *DESeqDataSet* which we will use specifically for doing differential expression analysis using the `DESeq2`-package.
 
 > Use the following code to figure out how many samples and genes are in the dataset.
 
@@ -97,7 +97,10 @@ Here we will construct a *DESeqDataSet* from the airway data and add the design 
 
 ``` r
 library(DESeq2)
-se$dex <- relevel(se$dex, "untrt")      #it is prefered in R that the first level of a factor be the reference level (e.g. control, or untreated samples), so we need to relevel the dex factor
+## it is prefered in R that the first level of a factor be the
+## reference level (e.g. control, or untreated samples), so we need to
+## relevel the dex factor
+se$dex <- relevel(se$dex, "untrt")
 dds <- DESeqDataSet(se, design = ~ cell + dex) #add formula
 dds
 ```
@@ -111,7 +114,7 @@ dds
     ## colnames(8): SRR1039508 SRR1039509 ... SRR1039520 SRR1039521
     ## colData names(9): SampleName cell ... Sample BioSample
 
-Our count matrix with our *DESeqDataSet* contains many rows with only zeros, and additionally many rows with only a few fragments total. In order to reduce the size of the object, and to increase the speed of our functions, we can remove the rows that have no or nearly no information about the amount of gene expression. Here we apply the most minimal filtering rule: removing rows of the *DESeqDataSet* that have no counts, or only a single count across all samples. Additional weighting/filtering to improve power is applied at a later step in the workflow.
+Our *DESeqDataSet* contains many rows with only zeros, and additionally many rows with only a few fragments total. In order to reduce the size of the object, and to increase the speed of our functions, we can remove the rows that have no or nearly no information about the amount of gene expression. Here we apply the most minimal filtering rule: removing rows of the *DESeqDataSet* that have no counts, or only a single count across all samples. Additional weighting/filtering to improve power is applied at a later step in the workflow.
 
 ``` r
 nrow(dds)
@@ -126,7 +129,15 @@ nrow(dds)
 
     ## [1] 29391
 
-> How many genes had zero counts across all samples?
+> How many genes have zero counts across all samples?
+
+``` r
+table(rowSums(assays(se)$counts) == 0)
+```
+
+    ## 
+    ## FALSE  TRUE 
+    ## 33469 30633
 
 !!!ADVANCED: The rlog and variance stabilizing transformations
 --------------------------------------------------------------
@@ -141,7 +152,7 @@ msCts <- meanSdPlot(cts, ranks = FALSE, plot=FALSE)
 log.cts.one <- log2(cts + 1)
 msLog <- meanSdPlot(log.cts.one, ranks = FALSE, plot=FALSE)
 library(gridExtra)
-grid.arrange(msCts$gg, msLog$gg, ncol=2)
+grid.arrange(msCts$gg, msLog$gg, nrow=2)
 ```
 
 ![](rnaseq_practical_files/figure-markdown_github/poisson-1.png)
