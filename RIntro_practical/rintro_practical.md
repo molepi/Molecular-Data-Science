@@ -1,0 +1,16 @@
+Rintro practical
+================
+
+There are many good online resources for start learning R:
+
+1.  For example at [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
+2.  Or at [RStudio](https://www.rstudio.com/online-learning/#R)
+3.  Or focussed on Bioinformatic analysis at [bioc](http://master.bioconductor.org/help/course-materials/)
+
+In this introduction to R you should run a few examples/exercises from the following Bioconductor courses:
+
+1.  [Intro to R](http://master.bioconductor.org/help/course-materials/2017/Moffitt/A1_Using_R.html)
+2.  [Data Input and Manipulation](https://bioconductor.org/help/course-materials/2017/Moffitt/A2_IO.html)
+3.  [Statistical Analysis](https://bioconductor.org/help/course-materials/2017/Moffitt/A3_Statistics.html)
+
+In a few examples/exercises a datasets is required. These can be downloaded from [datasets](https://github.com/Bioconductor/BiocIntro/tree/Moffitt-2017/inst/extdata).
