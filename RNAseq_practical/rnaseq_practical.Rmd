@@ -69,7 +69,7 @@ doing differential expression analysis using the `DESeq2`-package.
 > Use the following code to figure out how many samples and genes are
 > in the dataset.
 
-```{r}
+```{r, loading}
 library(airway)                         #loading the airway library 
 data("airway")                          #loading the airway data
 se <- airway                            #for ease of typing
@@ -81,7 +81,7 @@ colData(se)
 > sample?
 
 
-```{r}
+```{r, totalcounts}
 round( colSums(assay(se)) / 1e6, 1 )
 ```
 
@@ -95,7 +95,7 @@ Here we will construct a *DESeqDataSet* from the airway data and add
 the design formula containing the covariates on which we will perform
 the differential expression analysis.
 
-```{r}
+```{r, deseqdata}
 library(DESeq2)
 se$dex <- relevel(se$dex, "untrt")      #it is prefered in R that the first level of a factor be the reference level (e.g. control, or untreated samples), so we need to relevel the dex factor
 dds <- DESeqDataSet(se, design = ~ cell + dex) #add formula
@@ -112,8 +112,8 @@ have no counts, or only a single count across all samples. Additional
 weighting/filtering to improve power is applied at a later step in the
 workflow.
 
-```{r}
-nrows(dds)
+```{r, zerocounts}
+nrow(dds)
 dds <- dds[ rowSums(counts(dds)) > 1, ]
 nrow(dds)
 ```
@@ -145,15 +145,15 @@ to 100). We plot the standard deviation of each row (genes) against
 the mean:
 
 
-```{r}
+```{r, poisson}
 lambda <- 10^seq(from = -1, to = 2, length = 1000)
 cts <- matrix(rpois(1000*100, lambda), ncol = 100)
 library(vsn)
-cts <- meanSdPlot(cts, ranks = FALSE, plot=FALSE)
+msCts <- meanSdPlot(cts, ranks = FALSE, plot=FALSE)
 log.cts.one <- log2(cts + 1)
-log <- meanSdPlot(log.cts.one, ranks = FALSE, plot=FALSE)
+msLog <- meanSdPlot(log.cts.one, ranks = FALSE, plot=FALSE)
 library(gridExtra)
-grid.arrange(cts$gg, log$gg, ncol=2)
+grid.arrange(msCts$gg, msLog$gg, ncol=2)
 ```
 
 The logarithm with a small pseudocount amplifies differences when the
@@ -168,7 +168,7 @@ becomes approximately homoskedastic, and can be used directly for
 computing distances between samples, making PCA plots, or as input to
 downstream methods which perform best with homoskedastic data.
 
-```{r}
+```{r, vsnrlog}
 library(dplyr)
 library(ggplot2)
 rld <- rlog(dds, blind = FALSE)
@@ -212,7 +212,7 @@ the matrix of values using t, because the dist function expects the
 different samples to be rows of its argument, and different dimensions
 (here, genes) to be columns.
 
-```{r}
+```{r, dist}
 sampleDists <- dist(t(assay(rld)))
 sampleDists
 ```
@@ -222,7 +222,7 @@ function `pheatmap` from the
 [pheatmap](https://cran.r-project.org/web/packages/pheatmap) package.
 
 
-```{r}
+```{r, heatmap}
 library(pheatmap)
 library(RColorBrewer)
 sampleDistMatrix <- as.matrix( sampleDists )
@@ -253,7 +253,7 @@ there are more dimensions that contain the remaining variance
 (although each of these remaining dimensions will explain less than
 the two that we see).
 
-```{r}
+```{r, pca}
 pcaData <- plotPCA(rld, intgroup = c( "dex", "cell"), returnData = TRUE)
 pcaData
 percentVar <- round(100 * attr(pcaData, "percentVar"))
@@ -276,7 +276,7 @@ As we have already specified an experimental design when we created
 the DESeqDataSet, we can run the differential expression pipeline on
 the raw counts with a single call to the function DESeq:
 
-```{r}
+```{r, deseq}
 dds <- DESeq(dds)
 ```
 
@@ -292,7 +292,7 @@ within it, and the following section describes how to extract out
 results tables of interest from this object.
 
 
-```{r}
+```{r, results}
 res <- results(dds, alpha = 0.05)
 res
 ```
@@ -341,7 +341,7 @@ We can also summarize the results with the following line of code,
 which reports some additional information, that will be covered in
 later sections.
 
-```{r}
+```{r, summary}
 summary(res)
 ```
 
