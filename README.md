@@ -157,7 +157,7 @@ biological information and to form new hypotheses.
 
 | When        | What: Next generation RNA sequencing                                                                                                            | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9:00-10.15  | Lecture: Introduction to RNA-sequencing data analysis                                                                                          | Maarten van Iterson  | J1-82 |
+| 9:00-10.15  | Lecture: [Introduction to RNA-sequencing data analysis](RNAseq_lecture/FOS2017_vanIterson_AnalysisOfRNAseqData.pdf)                           | Maarten van Iterson  | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                                                   |                      |       |
 | 10:15-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
 | 12:00-13:00 | **Lunch**                                                                                                                                          |                      |       |
