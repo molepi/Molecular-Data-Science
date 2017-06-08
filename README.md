@@ -62,7 +62,7 @@ biological information and to form new hypotheses.
 
 # Monday June 19 (Location J1-82/building 1, LUMC) #
 
- when        | What Introduction to Molecular Epidemiology & R                        | who                              | where |
+| When        | What: Introduction to Molecular Epidemiology & R                        | Who                              | Where |
 |-------------|------------------------------------------------------------------------|----------------------------------|-------|
 | 9.00-9.45   | Lecture: Introduction to FOS course                                    | Ingrid Meulenbelt                | J1-82 |
 | 09.45-10.15 | Coffee break + questions                                               |                                  |       |
@@ -75,7 +75,7 @@ biological information and to form new hypotheses.
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
-| when        |                                                What Transcriptomics                                               |           who | where |
+| When        |                                                What: Transcriptomics                                               |           Who | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Yolande Ramos | J1-82 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
@@ -87,7 +87,7 @@ biological information and to form new hypotheses.
 
 # Wednesday June 21 (Location J1-82/building 1, LUMC) #
 
-| when        |                   What Genetics                  |            who | where |
+| When        |                   What: Genetics                  |            Who | Where |
 |-------------|--------------------------------------------------|----------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Genome wide association | Marian Beekman | J1-82 |
 | 10.00-10.15 |  **Coffee break**                                |                |       |
@@ -99,7 +99,7 @@ biological information and to form new hypotheses.
 
 # Thursday June 22 (Location J1-82/building 1, LUMC) #
 
-| when        |                         What Methylomics                        |                            Who | where |
+| When        |                         What: Methylomics                        |                            Who | Where |
 |-------------|-----------------------------------------------------------------|--------------------------------|-------|
 | 09:00-10.00 | Lecture: Introduction to the epigenome                          |                   Bas Heijmans | J1-82 |
 | 10:00-10.15 | **Coffee Break**                                                |                                |       |
@@ -112,13 +112,13 @@ biological information and to form new hypotheses.
 
 # Friday June 23 (Location J1-82/building 1, LUMC) #
 
-| when        | What Multiple omics analysis                                                                                            | who                       | where |
+| When        | What: Multiple omics analysis                                                                                            | Who                       | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
 | 9:00-10.00  | Lecture; Integrated analysis of multiple –omics data and Mendelian randomization                                        | Bas Heijmans and Koen Dekkers | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
 | 10:15-12.30 | Hands on Integration of –omics datasets: genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
 | 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
-| when        | What Clustering analyses                                                                                                | who                       | where |
+| **When**    | **What: Clustering analyses**                                                                                                | **Who**               | **Where** |
 | 13:30-14:30 | Lecture Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
 | 14:30-15:00 | Practical: Clustering analyses transcriptomic data                                                                      | Marcel Reinders           |       |
 | 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
@@ -127,13 +127,13 @@ biological information and to form new hypotheses.
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
 
-| when        |    What Metabolomics    |            who | where |
+| When        |    What: Metabolomics    |            Who | Where |
 |-------------|-------------------------|----------------|-------|
 | 9.00-10.00  | Lecture:         | Marian Beekman | J1-82 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
 | 10.15-12.30 | Practical:        | Marian Beekman | J1-82 |
 | 12.30-13.30 | **Lunch**                   |                |       |
-| when        | What Ageing biomarkers  | who            |       |
+| **When**        | **What: Ageing biomarkers**  | **Who**            | **Where**  |
 | 13.30-14.30 | Lecture:                | Marian Beekman | J1-82 |
 | 14.30-15.30 | Practical:              | Marian Beekman | J1-82 |
 | 15:30-15.45 | **Tea Break**               |                |       |
@@ -142,7 +142,7 @@ biological information and to form new hypotheses.
 
 # Tuesday June 27 (Location J1-82/building 1, LUMC) #
 
-| when        | What Next generation sequencing                                   | who               | where |
+| When        | What: Next generation sequencing                                   | Who               | Where |
 |-------------|-------------------------------------------------------------------|-------------------|-------|
 | 9.00-10.00  | Lecture: Next generation sequencing technology                    | Yavuz Ariyurek    | J1-82 |
 | 10.00-10.15 | **Coffee Break**                                                      |                   |       |
@@ -155,7 +155,7 @@ biological information and to form new hypotheses.
 
 # Wednesday June 28 (Location J1-82/building 1, LUMC) #
 
-| when        | What Next generation RNA sequencing                                                                                                            | who                  | where |
+| When        | What: Next generation RNA sequencing                                                                                                            | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
 | 9:00-10.15  | Lecture: Introduction to RNA-sequencing data analysis                                                                                          | Maarten van Iterson  | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                                                   |                      |       |
@@ -168,7 +168,7 @@ biological information and to form new hypotheses.
 
 # Thursday June 29 (Location J1-82/building 1, LUMC) #
 
-| when        | What Methylome (& transcriptome) clocks of chronological and biological age | who             | where |
+| When        | What: Methylome (& transcriptome) clocks of chronological and biological age | Who             | Where |
 |-------------|-----------------------------------------------------------------------------|-----------------|-------|
 | 9.00 -10.30 | Self study                                                                  | Eline Slagboom  | J1-82 |
 | 10.30-10.45 | **Coffee break**                                                                |                 |       |
@@ -179,7 +179,7 @@ biological information and to form new hypotheses.
 
 # Friday June 30 (Location J1-82/building 1, LUMC) #
 
-| when        | What Public data and reproducibility              | who                                    | where |
+| When        | What: Public data and reproducibility              | Who                                    | Where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
 | 9.00 -10.30 | The use of public omics databases | Bas Heijmans | J1-82 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
