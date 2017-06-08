@@ -56,9 +56,9 @@ weighted average of the different modules.
 | 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-82 |
 | 11.15-12.00 | Lecture: Introduction to large scale datasets; from SPSS to R          | Bas Heijmans                     | J1-82 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
-| 13.30-15.00 | [Hands on: Introduction to R](Rintro_practical.md)                     | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 13.30-15.00 | [Hands on: Introduction to R](rintro_practical.md)                     | Bas Heijmans and Maarten van Iterson | J1-82 |
 | 15.00-15.15 | **Tea break**                                                          |                                  |       |
-| 15.15-17.00 | [Hands on: Introduction to R](Rintro_practical.md)                     | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 15.15-17.00 | [Hands on: Introduction to R](rintro_practical.md)                     | Bas Heijmans and Maarten van Iterson | J1-82 |
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
@@ -145,7 +145,7 @@ weighted average of the different modules.
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
 | 9:00-10.15  | Lecture: Introduction to RNA-sequencing data analysis                                                                                          | Maarten van Iterson  | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                                                   |                      |       |
-| 10:15-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_partical.md)                                                                  | Maarten van Iterson  | J1-82 |
+| 10:15-12.00 | Practical: [RNA-sequencing data analyses](rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
 | 12:00-13:00 | **Lunch**                                                                                                                                          |                      |       |
 | 13:00-15:00 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt    | J1-82 |
 | 15:15-15:45 | Lecture: Functional genomic approaches to Osteoarthritis                                                                                       | Ingrid Meulenbelt    | J1-82 |
