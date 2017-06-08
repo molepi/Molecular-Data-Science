@@ -36,15 +36,28 @@ library entrance.
 #### Evaluation ####
 
 For individual evaluation of students, the module coordinators of the
-first 2 weeks will judge the following: participation in the (paper)
-discussions answers to the questions in the practicals
+first 2 weeks will judge the following: 
 
-The module coordinators of the third week will judge the following
-Written project proposal 
-Oral project defense
+- participation in the (paper) discussions 
+- answers to the questions in the practicals
+
+The module coordinators of the third week will judge the following:
+
+- written project proposal 
+- oral project defense
 
 Overall the evaluation will be a score between 0-10 composed of a
 weighted average of the different modules.
+
+
+## PART 1 Acquiring knowledge and skills ##
+
+Knowledge with respect to complex diseases and the different study
+designs available to investigate. In the practicals students will
+acquire skills (bioinformatic and statistical tools) how large
+datasets of genetic, gene expression and phenotypic data are analysed
+for pattern recognition in the data and to match results with existing
+biological information and to form new hypotheses.
 
 
 # Monday June 19 (Location J1-82/building 1, LUMC) #
@@ -99,17 +112,18 @@ weighted average of the different modules.
 
 # Friday June 23 (Location J1-82/building 1, LUMC) #
 
-| when        |                           What Clustering analyses                          |                       who | where |
-|-------------|-----------------------------------------------------------------------------|---------------------------|-------|
-| 9:00-10.00  | Lecture: Integration of –omics datasets                                     | Bas Heijmans and Koen Dekkers | J1-82 |
-| 10:00-10:15 | **Coffee Break**                                                            |                           |       |
-| 10:15-12.30 | Practical: Integration of –omics datasets; eQTL, mQTL, Mendelian Randomization | Bas Heijmans and Koen Dekkers  | J1-82 |
-| 12:30-13:30 | **Lunch**                                                                   |                           |       |
-| when        | What Integration of –omics datasets                                         | who                       | where |
-| 13:30-14:30 | Lecture: Clustering analysis transcriptomic data                            | Marcel Reinders           | J1-82 |
-| 14:30-15:00 | Practical: Clustering analyses transcriptomic data                          | Marcel Reinders           |       |
-| 15:00-15:15 | **Tea Break**                                                               |                           |       |
-| 15:15-16:00 | Continued practical: Clustering analyses transcriptomic data                | Marcel Reinders           | J1-82 |
+| when        | What Multiple omics analysis                                                                                            | who                       | where |
+|-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
+| 9:00-10.00  | Lecture; Integrated analysis of multiple –omics data and Mendelian randomization                                        | Bas Heijmans and Koen Dekkers | J1-82 |
+| 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
+| 10:15-12.30 | Hands on Integration of –omics datasets: genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
+| 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
+| when        | What Clustering analyses                                                                                                | who                       | where |
+| 13:30-14:30 | Lecture Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
+| 14:30-15:00 | Practical: Clustering analyses transcriptomic data                                                                      | Marcel Reinders           |       |
+| 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
+| 15:15-16:00 | Continued practical: Clustering analyses transcriptomic data                                                            | Marcel Reinders           | J1-82 |
+
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
 
@@ -165,11 +179,11 @@ weighted average of the different modules.
 
 # Friday June 30 (Location J1-82/building 1, LUMC) #
 
-| when        | What Databases reproducibility??              | who                                    | where |
+| when        | What Public data and reproducibility              | who                                    | where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
-| 9.00 -10.30 | GONL, BIOS, UK biobank, GTEX, reproducibility | Roderick Slieker / Maarten van Iterson | J1-82 |
+| 9.00 -10.30 | The use of public omics databases | Bas Heijmans | J1-82 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10:45-12:00 | Practical: Online databases exploration        | Roderick Slieker / Maarten van Iterson | J1-82 |
+| 10:45-12:00 | Reproducibility of omics analyses        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
