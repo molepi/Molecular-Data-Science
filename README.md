@@ -75,7 +75,7 @@ biological information and to form new hypotheses.
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
-| When        |                                                What: Transcriptomics                                               |           Who | Where |
+| When        | What: Transcriptomics                                               | Who | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Yolande Ramos | J1-82 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
@@ -87,7 +87,7 @@ biological information and to form new hypotheses.
 
 # Wednesday June 21 (Location J1-82/building 1, LUMC) #
 
-| When        |                   What: Genetics                  |            Who | Where |
+| When        | What: Genetics                  | Who | Where |
 |-------------|--------------------------------------------------|----------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Genome wide association | Marian Beekman | J1-82 |
 | 10.00-10.15 |  **Coffee break**                                |                |       |
@@ -99,7 +99,7 @@ biological information and to form new hypotheses.
 
 # Thursday June 22 (Location J1-82/building 1, LUMC) #
 
-| When        |                         What: Methylomics                        |                            Who | Where |
+| When        | What: Methylomics                        | Who | Where |
 |-------------|-----------------------------------------------------------------|--------------------------------|-------|
 | 09:00-10.00 | Lecture: Introduction to the epigenome                          |                   Bas Heijmans | J1-82 |
 | 10:00-10.15 | **Coffee Break**                                                |                                |       |
@@ -127,7 +127,7 @@ biological information and to form new hypotheses.
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
 
-| When        |    What: Metabolomics    |            Who | Where |
+| When        | What: Metabolomics    | Who | Where |
 |-------------|-------------------------|----------------|-------|
 | 9.00-10.00  | Lecture:         | Marian Beekman | J1-82 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
