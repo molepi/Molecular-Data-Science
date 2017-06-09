@@ -36,141 +36,155 @@ library entrance.
 #### Evaluation ####
 
 For individual evaluation of students, the module coordinators of the
-first 2 weeks will judge the following: participation in the (paper)
-discussions answers to the questions in the practicals
+first 2 weeks will judge the following: 
 
-The module coordinators of the third week will judge the following
-Written project proposal 
-Oral project defense
+- participation in the (paper) discussions 
+- answers to the questions in the practicals
+
+The module coordinators of the third week will judge the following:
+
+- written project proposal 
+- oral project defense
 
 Overall the evaluation will be a score between 0-10 composed of a
 weighted average of the different modules.
 
 
+## PART 1 Acquiring knowledge and skills ##
+
+Knowledge with respect to complex diseases and the different study
+designs available to investigate. In the practicals students will
+acquire skills (bioinformatic and statistical tools) how large
+datasets of genetic, gene expression and phenotypic data are analysed
+for pattern recognition in the data and to match results with existing
+biological information and to form new hypotheses.
+
+
 # Monday June 19 (Location J1-82/building 1, LUMC) #
 
- when        | What Introduction to Molecular Epidemiology & R                        | who                              | where |
+| When        | What: Introduction to Molecular Epidemiology & R                        | Who                              | Where |
 |-------------|------------------------------------------------------------------------|----------------------------------|-------|
 | 9.00-9.45   | Lecture: Introduction to FOS course                                    | Ingrid Meulenbelt                | J1-82 |
 | 09.45-10.15 | Coffee break + questions                                               |                                  |       |
 | 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-82 |
 | 11.15-12.00 | Lecture: Introduction to large scale datasets; from SPSS to R          | Bas Heijmans                     | J1-82 |
-| 12.00-13.00 | Lunch                                                                  |                                  |       |
-| 13.30-15.00 | [Hands on: Introduction to R](https://github.com/molepi/FOS2017/blob/master/RIntro_practical/rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
-| 15.00-15.15 | Tea break                                                              |                                  |       |
-| 15.15-17.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)                     | Bas Heijmans Maarten van Iterson | J1-82 |
+| 12.00-13.00 | **Lunch**                                                              |                                  |       |
+| 13.30-15.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 15.00-15.15 | **Tea break**                                                          |                                  |       |
+| 15.15-17.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
-| when        |                                                What Transcriptomics                                               |           who | where |
-|-------------|:-----------------------------------------------------------------------------------------------------------------:|--------------:|-------|
-| 9.00-10.00  |                                      Lecture: Introduction to Transcriptomics                                     | Yolande Ramos | J1-82 |
-| 10.00-10.15 |                                                    Coffee break                                                   |               |       |
-| 10.15-12.30 | Practicles: Statistical analysis of expression data: Normalization, differential expression and multiple testing  | Yolande Ramos | J1-82 |
-| 12.30-13.30 | Lunch                                                                                                             |               |       |
-| 13.30-14.15 | Lecture Finding functional relevant genes                                                                         | Yolande Ramos | J1-82 |
-| 15:30-15.45 | Tea Break                                                                                                         |               |       |
+| When        | What: Transcriptomics                                               | Who | Where |
+|-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
+| 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Yolande Ramos | J1-82 |
+| 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
+| 10.15-12.30 | Practicals: Statistical analysis of expression data: Normalization, differential expression and multiple testing  | Yolande Ramos | J1-82 |
+| 12.30-13.30 | **Lunch**                                                                                                         |               |       |
+| 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos | J1-82 |
+| 15:30-15.45 | **Tea Break**                                                                                                     |               |       |
 | 14.15-17.00 | Practical: Finding genes in practice                                                                              | Yolande Ramos | J1-82 |
 
 # Wednesday June 21 (Location J1-82/building 1, LUMC) #
 
-| when        |                   What Genetics                  |            who | where |
-|-------------|:------------------------------------------------:|---------------:|-------|
+| When        | What: Genetics                  | Who | Where |
+|-------------|--------------------------------------------------|----------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Genome wide association | Marian Beekman | J1-82 |
-| 10.00-10.15 |                   Coffee break                   |                |       |
-| 10.15-12.00 |  Lecture and Practical; Genome wide association  | Marian Beekman | J1-82 |
-| 12.00-13.00 | Lunch                                            |                |       |
-| 13.00-15.00 | Lecture and Practical; Genome wide association   | Marian Beekman | J1-82 |
-| 15.00-15.15 | Tea break                                        |                |       |
-| 15.30-17.00 | Lecture and Practical; Genome wide association   | Marian Beekman | J1-82 |
+| 10.00-10.15 |  **Coffee break**                                |                |       |
+| 10.15-12.00 | Lecture and Practical: Genome wide association   | Marian Beekman | J1-82 |
+| 12.00-13.00 | **Lunch**                                        |                |       |
+| 13.00-15.00 | Lecture and Practical: Genome wide association   | Marian Beekman | J1-82 |
+| 15.00-15.15 | **Tea break**                                    |                |       |
+| 15.30-17.00 | Lecture and Practical: Genome wide association   | Marian Beekman | J1-82 |
 
 # Thursday June 22 (Location J1-82/building 1, LUMC) #
 
-| when        |                         What Methylomics                        |                            Who | where |
-|-------------|:---------------------------------------------------------------:|-------------------------------:|-------|
-| 09:00-10.00 |              Lecture: Introduction to the epigenome             |                   Bas Heijmans | J1-82 |
-| 10:00-10.15 |                           Coffee Break                          |                                |       |
-| 10:00-12:30 |         Practical: Tissues & 450K methylation chip data         | Bas Heijmans, Roderick Slieker | J1-82 |
-| 12:30-13.30 | Lunch                                                           |                                |       |
-| 13.30-15.30 | Practical: Tissues & 450K methylation chip data cont’d          | Bas Heijmans, Roderick Slieker | J1-82 |
+| When        | What: Methylomics                        | Who | Where |
+|-------------|-----------------------------------------------------------------|--------------------------------|-------|
+| 09:00-10.00 | Lecture: Introduction to the epigenome                          |                   Bas Heijmans | J1-82 |
+| 10:00-10.15 | **Coffee Break**                                                |                                |       |
+| 10:00-12:30 | Practical: Tissues & 450K methylation chip data                 | Bas Heijmans and Roderick Slieker | J1-82 |
+| 12:30-13.30 | **Lunch**                                                           |                                |       |
+| 13.30-15.30 | Practical: Tissues & 450K methylation chip data cont'd          | Bas Heijmans and Roderick Slieker | J1-82 |
 | 14.45-15.15 | Lecture: DNA methylation signatures of prenatal famine exposure | Bas Heijmans                   | J1-82 |
-| 15:30-16.0  | Tea Break                                                       |                                |       |
+| 15:30-16.0  | **Tea Break**                                                       |                                |       |
 | 16.00-17.00 | Lecture: DNA methylation signatures of prenatal famine exposure | Bas Heijmans                   |       |
 
 # Friday June 23 (Location J1-82/building 1, LUMC) #
 
-| when        |                           What Clustering analyses                          |                       who | where |
-|-------------|:---------------------------------------------------------------------------:|--------------------------:|-------|
-| 9:00-10.00  |                   Lecture; Integration of –omics datasets                   | BT Heijmans  Koen Dekkers | J1-82 |
-| 10:00-10:15 |                                 Coffee Break                                |                           |       |
-| 10:15-12.30 | Hands on Integration of –omics datasets;eQTL, mQTL, Mendelian Randomization |  BT Heijmans Koen Dekkers | J1-82 |
-| 12:30-13:30 | Lunch                                                                       |                           |       |
-| when        | What Integration of –omics datasets                                         | who                       | where |
-| 13:30-14:30 | Lecture Clustering analysis transcriptomic data                             | Marcel Reinders           | J1-82 |
-| 14:30-15:00 | Practical: Clustering analyses transcriptomic data                          | Marcel Reinders           |       |
-| 15:00-15:15 | Tea Break                                                                   |                           |       |
-| 15:15-16:00 | Continued practical: Clustering analyses transcriptomic data                | Marcel Reinders           | J1-82 |
+| When        | What: Multiple omics analysis                                                                                            | Who                       | Where |
+|-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
+| 9:00-10.00  | Lecture; Integrated analysis of multiple –omics data and Mendelian randomization                                        | Bas Heijmans and Koen Dekkers | J1-82 |
+| 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
+| 10:15-12.30 | Hands on Integration of –omics datasets: genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
+| 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
+| **When**    | **What: Clustering analyses**                                                                                                | **Who**               | **Where** |
+| 13:30-14:30 | Lecture Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
+| 14:30-15:00 | Practical: Clustering analyses transcriptomic data                                                                      | Marcel Reinders           |       |
+| 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
+| 15:15-16:00 | Continued practical: Clustering analyses transcriptomic data                                                            | Marcel Reinders           | J1-82 |
+
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
 
-| when        |    What Metabolomics    |            who | where |
-|-------------|:-----------------------:|---------------:|-------|
-| 9.00-10.00  |        Lecture:         | Marian Beekman | J1-82 |
-| 10.00-10.15 |       Coffee break      |                |       |
-| 10.15-12.30 |        Hands on:        | Marian Beekman | J1-82 |
-| 12.30-13.30 | Lunch                   |                |       |
-| when        | What Ageing biomarkers  | who            |       |
+| When        | What: Metabolomics    | Who | Where |
+|-------------|-------------------------|----------------|-------|
+| 9.00-10.00  | Lecture:         | Marian Beekman | J1-82 |
+| 10.00-10.15 | **Coffee Break**      |                |       |
+| 10.15-12.30 | Practical:        | Marian Beekman | J1-82 |
+| 12.30-13.30 | **Lunch**                   |                |       |
+| **When**        | **What: Ageing biomarkers**  | **Who**            | **Where**  |
 | 13.30-14.30 | Lecture:                | Marian Beekman | J1-82 |
-| 14.30-15.30 | Hands on:               | Marian Beekman | J1-82 |
-| 15:30-15.45 | Tea Break               |                |       |
-| 15.45-17.00 | Hands on:               | Marian Beekman | J1-82 |
+| 14.30-15.30 | Practical:              | Marian Beekman | J1-82 |
+| 15:30-15.45 | **Tea Break**               |                |       |
+| 15.45-17.00 | Practical:              | Marian Beekman | J1-82 |
 
 
 # Tuesday June 27 (Location J1-82/building 1, LUMC) #
 
-| when        | What Next generation sequencing                                   | who               | where |
+| When        | What: Next generation sequencing                                   | Who               | Where |
 |-------------|-------------------------------------------------------------------|-------------------|-------|
 | 9.00-10.00  | Lecture: Next generation sequencing technology                    | Yavuz Ariyurek    | J1-82 |
-| 10.00-10.15 | Coffee break                                                      |                   |       |
+| 10.00-10.15 | **Coffee Break**                                                      |                   |       |
 | 10.15-11.15 | Lecture: Medical sequencing (principles exome and WGA sequencing) | Ingrid Meulenbelt | J1-82 |
 | 11.15-12.00 | Practical Exome sequencing early onset OA                         | Ingrid Meulenbelt | J1-82 |
-| 12.00-13.00 | Lunch                                                             |                   |       |
+| 12.00-13.00 | **Lunch**                                                             |                   |       |
 | 13.00-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
-| 15.00-15.15 | Tea break                                                         |                   |       |
+| 15.00-15.15 | **Tea Break**                                                         |                   |       |
 | 15.15-17.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
 
 # Wednesday June 28 (Location J1-82/building 1, LUMC) #
 
-| when        | What Next generation RNA sequencing                                                                                                            | who                  | where |
+| When        | What: Next generation RNA sequencing                                                                                                            | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9:00-10.15  | Lecture: Introduction to RNA-sequencing data analysis                                                                                          | Maarten van Iterson  | J1-82 |
-| 10:00-10:15 | Coffee Break                                                                                                                                   |                      |       |
-| 10:15-12.00 | Hands on: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
-| 12:00-13:00 | Lunch                                                                                                                                          |                      |       |
+| 9:00-10.15  | Lecture: [Introduction to RNA-sequencing data analysis](RNAseq_lecture/FOS2017_vanIterson_AnalysisOfRNAseqData.pdf)                           | Maarten van Iterson  | J1-82 |
+| 10:00-10:15 | **Coffee Break**                                                                                                                                   |                      |       |
+| 10:15-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
+| 12:00-13:00 | **Lunch**                                                                                                                                          |                      |       |
 | 13:00-15:00 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt    | J1-82 |
-| 15:15-15:45 | Lecture; Functional genomic approaches to Osteoarthritis                                                                                       | Ingrid Meulenbelt    | J1-82 |
+| 15:15-15:45 | Lecture: Functional genomic approaches to Osteoarthritis                                                                                       | Ingrid Meulenbelt    | J1-82 |
 | 15.45-17.00 | Paper (Freedman et al. 2011) and lecture discussion                                                                                            | Ingrid Meulenbelt    | J1-82 |
 
 
 # Thursday June 29 (Location J1-82/building 1, LUMC) #
 
-| when        | What Methylome (& transcriptome) clocks of chronological and biological age | who             | where |
+| When        | What: Methylome (& transcriptome) clocks of chronological and biological age | Who             | Where |
 |-------------|-----------------------------------------------------------------------------|-----------------|-------|
 | 9.00 -10.30 | Self study                                                                  | Eline Slagboom  | J1-82 |
-| 10.30-10.45 | Coffee break                                                                |                 |       |
+| 10.30-10.45 | **Coffee break**                                                                |                 |       |
 | 10:45-12:00 | Paper discussion:                                                           | Eline Slagboom  | J1-82 |
-| 12.00-13.00 | Lunch                                                                       |                 |       |
+| 12.00-13.00 | **Lunch**                                                                       |                 |       |
 | 13.00-14.00 | Quadratic models in age associated profiles                                 | Vered Raz       | J1-82 |
-| 14.00-16.00 | Hands on: quadratic models in age associated profiles                       | Vered Raz       | J1-82 |
+| 14.00-16.00 | Practical: quadratic models in age associated profiles                       | Vered Raz       | J1-82 |
 
 # Friday June 30 (Location J1-82/building 1, LUMC) #
 
-| when        | What Databases reproducibility??              | who                                    | where |
+| When        | What: Public data and reproducibility              | Who                                    | Where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
-| 9.00 -10.30 | GONL, BIOS, UK biobank, GTEX, reproducibility | Roderick Slieker / Maarten van Iterson | J1-82 |
-| 10.30-10.45 | Coffee break                                  |                                        |       |
-| 10:45-12:00 | Hands on: Online databases exploration        | Roderick Slieker / Maarten van Iterson | J1-82 |
-| 12.00-13.00 | Lunch                                         |                                        |       |
+| 9.00 -10.30 | The use of public omics databases | Bas Heijmans | J1-82 |
+| 10.30-10.45 | **Coffee Break**                                  |                                        |       |
+| 10:45-12:00 | Reproducibility of omics analyses        |  Maarten van Iterson | J1-82 |
+| 12.00-13.00 | **Lunch**                                         |                                        |       |
 | 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
-| 15:00-15:15 | Tea Break                                     |                                        |       |
+| 15:00-15:15 | **Tea Break**                                     |                                        |       |
 | 15:15-17:00 | Paper discussion                              | Vered Raz                              | J1-82 |

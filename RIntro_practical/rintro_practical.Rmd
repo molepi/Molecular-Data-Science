@@ -25,6 +25,10 @@ the following Bioconductor courses:
 2. [Data Input and Manipulation](https://bioconductor.org/help/course-materials/2017/Moffitt/A2_IO.html)
 3. [Statistical Analysis](https://bioconductor.org/help/course-materials/2017/Moffitt/A3_Statistics.html)
 
+At least finish **Intro to R** and first exercise **Data Input and Manipulation** and those how are quick have a look at the first part of **Statistical Analysis**.
+
 In a few examples/exercises a datasets is required. These can be
 downloaded from
-[datasets](https://github.com/Bioconductor/BiocIntro/tree/Moffitt-2017/inst/extdata).
+[datasets](https://github.com/Bioconductor/BiocIntro/tree/Moffitt-2017/inst/extdata) (click on the file, press the `Raw` button and use `Save as` to save it locally).
+
+At the end of the practical you should have some understanding of R data types, how to perform simple manipulations on vectors, matrices and data.frames, how to create simple plots using R base graphics and able to extract summary statistics on data sets.
