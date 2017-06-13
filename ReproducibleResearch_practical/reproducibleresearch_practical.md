@@ -88,7 +88,7 @@ sessionInfo()
 
 Actually, there are ways to store the R version and all the libraries that are used in a particular analysis to make your analysis even more reproducible e.g. see [packrat](https://github.com/rstudio/packrat/).
 
-Here is an example [rmarkdown file](ReproducibleResearch_practical/RNAseq_vanIterson.Rmd) and generated [pdf document](ReproducibleResearch_practical/RNAseq_vanIterson.pdf).
+Here is an example [rmarkdown file](RNAseq_vanIterson.Rmd) and generated [pdf document](RNAseq_vanIterson.pdf).
 
 Tip of the iceberg
 ==================

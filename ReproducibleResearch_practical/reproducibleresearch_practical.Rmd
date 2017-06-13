@@ -121,9 +121,9 @@ reproducible e.g. see [packrat](https://github.com/rstudio/packrat/).
 
 
 Here is an example
-[rmarkdown file](ReproducibleResearch_practical/RNAseq_vanIterson.Rmd)
+[rmarkdown file](RNAseq_vanIterson.Rmd)
 and generated
-[pdf document](ReproducibleResearch_practical/RNAseq_vanIterson.pdf).
+[pdf document](RNAseq_vanIterson.pdf).
 
 # Tip of the iceberg #
 
