@@ -1,0 +1,66 @@
+---
+title: "RNAseq analysis"
+author: "Maarten van Iterson"
+date: "6/13/2017"
+output: pdf_document
+---
+
+A DESeqData obtject is created from the airway data.
+
+```{r, loading}
+library(airway)
+library(DESeq2)
+data("airway")
+airway$dex <- relevel(airway$dex, "untrt")
+dds <- DESeqDataSet(airway, design = ~ cell + dex) #add formula
+dds
+```
+
+Filtering un- or lowly expressed genes using counts per million is
+advocated by the developers of edgeR[@] another package for the
+differential expression analysis (see
+[section 2.6 Filtering](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)).
+
+
+```{r, filtering}
+cpm <- 1e6*counts(dds)/colSums(counts(dds))
+keep <- rowSums(cpm>1) >= 4                
+dds <- dds[keep, ]
+dds
+```
+
+
+Differential expression analysis is performed using the DESeq2-packages. An FDR of 5% is used to determine differential expressed genes.  
+
+```{r, deseq}
+library(org.Hs.eg.db)
+dds <- DESeq(dds)
+res <- results(dds, alpha = 0.05)
+res$Symbol <- mapIds(org.Hs.eg.db, rownames(res), "SYMBOL", "ENSEMBL")
+res[order(res$padj),]
+```
+
+A principal component plot for exploratory analysis.
+
+```{r, pca}
+library(vsn)
+library(ggplot2)
+rld <- rlog(dds, blind = FALSE)
+pcaData <- plotPCA(rld, intgroup = c( "dex", "cell"), returnData = TRUE)
+pcaData
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(x = PC1, y = PC2, color = dex, shape = cell)) +
+  geom_point(size =3) +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  coord_fixed()
+```
+
+
+Overview of R and package version used in this analysis.
+
+```{r, sessioninfo}
+sessionInfo()
+```
+
+

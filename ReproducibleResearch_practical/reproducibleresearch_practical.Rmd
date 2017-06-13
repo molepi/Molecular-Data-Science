@@ -13,7 +13,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, eval=TRUE, cache.lazy = FALSE)
+knitr::opts_chunk$set(cache=TRUE, eval=FALSE, cache.lazy = FALSE)
 suppressPackageStartupMessages({ ##to get rid of annoying startup messages
     library(airway)
     library(DESeq2)
@@ -29,7 +29,11 @@ A Rmarkdown template file (*Untitled1*) is generated use the `Knit`
 button to create your first reproducible document (you will be
 requested to give the file a name and to store it somewhere).
 
-# Adding code chunks #
+Now remove everything except the header (yaml code between the `---`)
+and follow the sections below:
+
+
+## Adding code chunks ##
 
 Now add the following code chunks and type a small description of what
 kind of analysis is performed.
@@ -42,7 +46,7 @@ library(DESeq2)
 data("airway")
 airway$dex <- relevel(airway$dex, "untrt")
 dds <- DESeqDataSet(airway, design = ~ cell + dex) #add formula
-nrow(dds)
+dds
 ```
 
 _describe results..._
@@ -57,7 +61,7 @@ differential expression analysis (see
 cpm <- 1e6*counts(dds)/colSums(counts(dds))
 keep <- rowSums(cpm>1) >= 4                
 dds <- dds[keep, ]
-nrow(dds)
+dds
 ```
 
 _describe results..._
@@ -74,7 +78,7 @@ res[order(res$padj),]
 ```
 _describe results..._
 
-# Adding a figure #
+## Adding a figure ##
 
 Adding a figure is as easy as a code chunk! 
 
@@ -97,8 +101,31 @@ ggplot(pcaData, aes(x = PC1, y = PC2, color = dex, shape = cell)) +
 _describe results..._
 
 
+## R and package versions ##
 
-# Tip of iceberg #
+It is advisable to let R tell exactly which R version was used and
+which packages and there version numbers. Every half year there is a
+new R version and packages can change even more frequent. By attaching
+this information to your analysis you know exactly to to reproduce it. 
+
+Add something like this to the end of your analysis:
+
+
+```{r, sessioninfo}
+sessionInfo()
+```
+
+Actually, there are ways to store the R version and all the libraries
+that are used in a particular analysis to make your analysis even more
+reproducible e.g. see [packrat](https://github.com/rstudio/packrat/).
+
+
+Here is an example
+[rmarkdown file](ReproducibleResearch_practical/RNAseq_vanIterson.Rmd)
+and generated
+[pdf document](ReproducibleResearch_practical/RNAseq_vanIterson.pdf).
+
+# Tip of the iceberg #
 
 This is really the _tip of the iceberg_ check out the
 [rmarkdown website](http://rmarkdown.rstudio.com/) or the
