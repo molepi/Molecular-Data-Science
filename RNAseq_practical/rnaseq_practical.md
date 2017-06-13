@@ -6,18 +6,17 @@ RNAseq practical
 -   [Exploratory analysis and visualization](#exploratory-analysis-and-visualization)
     -   [Loading and Exploring the data](#loading-and-exploring-the-data)
     -   [The *DESeqDataSet* object, sample information and the design formula](#the-deseqdataset-object-sample-information-and-the-design-formula)
-    -   [!!!ADVANCED: The rlog and variance stabilizing transformations](#advanced-the-rlog-and-variance-stabilizing-transformations)
     -   [Clustering and PCA](#clustering-and-pca)
 -   [Differential expression analysis](#differential-expression-analysis)
     -   [Running the differential expression pipeline](#running-the-differential-expression-pipeline)
-    -   [!!!ADVANCED: Multiple testing](#advanced-multiple-testing)
+    -   [Multiple testing](#multiple-testing)
     -   [visualizing results](#visualizing-results)
 -   [Reference](#reference)
 
 Introduction
 ============
 
-This practical is based on the BioConductors' *RNA-seq workflow: gene-level exploratory analysis and differential expression*; a comprehensive workflow that the describes how to go from FASTQ-files to perform a differential expression analysis and annotating results. Here, we will only explore a few steps and focus on the differential expression analysis. The full workflow is described [here](https://www.bioconductor.org/help/workflows/rnaseqGene/). The workflow also appread as a F1000 paper(Love et al. 2015).
+This practical is based on the BioConductors' *RNA-seq workflow: gene-level exploratory analysis and differential expression*; a comprehensive workflow that the describes how to go from FASTQ-files to perform a differential expression analysis and annotating results. Here, we will only explore a few steps and focus on the differential expression analysis. The full workflow is described [here](https://www.bioconductor.org/help/workflows/rnaseqGene/). The workflow also appread as a F1000 paper(Love et al. 2015) and a slightly shorter version is available as the [DESeq2 vignette](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
 
 Experimental Data
 -----------------
@@ -30,16 +29,16 @@ Exploratory analysis and visualization
 Loading and Exploring the data
 ------------------------------
 
-The [airway](http://bioconductor.org/packages/airway/)-package is available from BioConductor as a data-package and contains both the gene expression counts as well as metadata on the experiment and samples. This prepared dataset is what we will use in this practical.
+The [airway](http://bioconductor.org/packages/airway/)-package is available from BioConductor as a data-package and contains both the gene expression counts as well as metadata on the experiment and samples. This prepared dataset is what we will use in the practical.
 
 We won't go into the details of how to construct such a dataset or object but it is good to known that many BioConductor package use specialized objects to ease various analyses, for example, later we will see an *DESeqDataSet* which we will use specifically for doing differential expression analysis using the `DESeq2`-package.
 
-> Use the following code to figure out how many samples and genes are in the dataset.
+> Use the following code to figure out how many samples and genes are in the dataset, i.e. what is the dimension of the object?
 
 ``` r
 library(airway)                         #loading the airway library 
 data("airway")                          #loading the airway data
-se <- airway                            #for ease of typing
+se <- airway                            #for ease of typing shorter name
 se 
 ```
 
@@ -78,21 +77,305 @@ colData(se)
     ## SRR1039520  SRX384357 SRS508579 SAMN02422683
     ## SRR1039521  SRX384358 SRS508580 SAMN02422677
 
-> How many million reads are sequenced/aligned to genes for each sample?
+> Use the following code to see which are the three most abundant [gene biotypes](http://www.ensembl.org/Help/Faq?id=468).
 
 ``` r
-round( colSums(assay(se)) / 1e6, 1 )
+library(EnsDb.Hsapiens.v75)
+listGenebiotypes(EnsDb.Hsapiens.v75)
 ```
 
-    ## SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 
-    ##       20.6       18.8       25.3       15.2       24.4       30.8 
-    ## SRR1039520 SRR1039521 
-    ##       19.1       21.2
+    ##  [1] "protein_coding"           "pseudogene"              
+    ##  [3] "processed_transcript"     "antisense"               
+    ##  [5] "lincRNA"                  "polymorphic_pseudogene"  
+    ##  [7] "IG_V_pseudogene"          "IG_V_gene"               
+    ##  [9] "sense_overlapping"        "sense_intronic"          
+    ## [11] "TR_V_gene"                "misc_RNA"                
+    ## [13] "snRNA"                    "miRNA"                   
+    ## [15] "snoRNA"                   "rRNA"                    
+    ## [17] "Mt_tRNA"                  "Mt_rRNA"                 
+    ## [19] "IG_C_gene"                "IG_J_gene"               
+    ## [21] "TR_J_gene"                "TR_C_gene"               
+    ## [23] "TR_V_pseudogene"          "TR_J_pseudogene"         
+    ## [25] "IG_D_gene"                "IG_C_pseudogene"         
+    ## [27] "TR_D_gene"                "IG_J_pseudogene"         
+    ## [29] "3prime_overlapping_ncrna" "processed_pseudogene"    
+    ## [31] "LRG_gene"
 
-For the differential expression analysis we will use the [`DESeq2`](http://bioconductor.org/packages/DESeq2/)-package(Love, Huber, and Anders 2014).
+``` r
+gene_length <- lengthOf(EnsDb.Hsapiens.v75) #extract gene lengths
+annotation <- genes(EnsDb.Hsapiens.v75)     #extract gene annotation
+annotation$gene_length <- gene_length       #add gene lengths
+mid <- match(rownames(se), names(annotation)) #matching to se object
+annotation[mid, ]                             #verify match
+```
+
+    ## GRanges object with 64102 ranges and 7 metadata columns:
+    ##                   seqnames                 ranges strand |         gene_id
+    ##                      <Rle>              <IRanges>  <Rle> |     <character>
+    ##   ENSG00000000003        X [ 99883667,  99894988]      - | ENSG00000000003
+    ##   ENSG00000000005        X [ 99839799,  99854882]      + | ENSG00000000005
+    ##   ENSG00000000419       20 [ 49551404,  49575092]      - | ENSG00000000419
+    ##   ENSG00000000457        1 [169818772, 169863408]      - | ENSG00000000457
+    ##   ENSG00000000460        1 [169631245, 169823221]      + | ENSG00000000460
+    ##               ...      ...                    ...    ... .             ...
+    ##            LRG_94       10   [72357104, 72362531]      - |          LRG_94
+    ##            LRG_96       15   [55495792, 55582001]      - |          LRG_96
+    ##            LRG_97       22   [37621310, 37640305]      - |          LRG_97
+    ##            LRG_98       11   [36589563, 36601312]      + |          LRG_98
+    ##            LRG_99       11   [36613493, 36619812]      - |          LRG_99
+    ##                     gene_name    entrezid   gene_biotype seq_coord_system
+    ##                   <character> <character>    <character>      <character>
+    ##   ENSG00000000003      TSPAN6        7105 protein_coding       chromosome
+    ##   ENSG00000000005        TNMD       64102 protein_coding       chromosome
+    ##   ENSG00000000419        DPM1        8813 protein_coding       chromosome
+    ##   ENSG00000000457       SCYL3       57147 protein_coding       chromosome
+    ##   ENSG00000000460    C1orf112       55732 protein_coding       chromosome
+    ##               ...         ...         ...            ...              ...
+    ##            LRG_94      LRG_94        5551       LRG_gene       chromosome
+    ##            LRG_96      LRG_96        5873       LRG_gene       chromosome
+    ##            LRG_97      LRG_97        5880       LRG_gene       chromosome
+    ##            LRG_98      LRG_98        5896       LRG_gene       chromosome
+    ##            LRG_99      LRG_99        5897       LRG_gene       chromosome
+    ##                        symbol gene_length
+    ##                   <character>   <integer>
+    ##   ENSG00000000003      TSPAN6         106
+    ##   ENSG00000000005        TNMD         415
+    ##   ENSG00000000419        DPM1         412
+    ##   ENSG00000000457       SCYL3        6928
+    ##   ENSG00000000460    C1orf112        9865
+    ##               ...         ...         ...
+    ##            LRG_94      LRG_94        4554
+    ##            LRG_96      LRG_96        1640
+    ##            LRG_97      LRG_97         981
+    ##            LRG_98      LRG_98        1682
+    ##            LRG_99      LRG_99        6813
+    ##   -------
+    ##   seqinfo: 273 sequences from GRCh37 genome
+
+``` r
+head(rownames(se))
+```
+
+    ## [1] "ENSG00000000003" "ENSG00000000005" "ENSG00000000419" "ENSG00000000457"
+    ## [5] "ENSG00000000460" "ENSG00000000938"
+
+``` r
+tail(rownames(se))
+```
+
+    ## [1] "LRG_93" "LRG_94" "LRG_96" "LRG_97" "LRG_98" "LRG_99"
+
+``` r
+rowRanges(se)  <- annotation[mid,]      #add to se object
+rowRanges(se)                           #inspect annotation
+```
+
+    ## GRanges object with 64102 ranges and 7 metadata columns:
+    ##                   seqnames                 ranges strand |         gene_id
+    ##                      <Rle>              <IRanges>  <Rle> |     <character>
+    ##   ENSG00000000003        X [ 99883667,  99894988]      - | ENSG00000000003
+    ##   ENSG00000000005        X [ 99839799,  99854882]      + | ENSG00000000005
+    ##   ENSG00000000419       20 [ 49551404,  49575092]      - | ENSG00000000419
+    ##   ENSG00000000457        1 [169818772, 169863408]      - | ENSG00000000457
+    ##   ENSG00000000460        1 [169631245, 169823221]      + | ENSG00000000460
+    ##               ...      ...                    ...    ... .             ...
+    ##            LRG_94       10   [72357104, 72362531]      - |          LRG_94
+    ##            LRG_96       15   [55495792, 55582001]      - |          LRG_96
+    ##            LRG_97       22   [37621310, 37640305]      - |          LRG_97
+    ##            LRG_98       11   [36589563, 36601312]      + |          LRG_98
+    ##            LRG_99       11   [36613493, 36619812]      - |          LRG_99
+    ##                     gene_name    entrezid   gene_biotype seq_coord_system
+    ##                   <character> <character>    <character>      <character>
+    ##   ENSG00000000003      TSPAN6        7105 protein_coding       chromosome
+    ##   ENSG00000000005        TNMD       64102 protein_coding       chromosome
+    ##   ENSG00000000419        DPM1        8813 protein_coding       chromosome
+    ##   ENSG00000000457       SCYL3       57147 protein_coding       chromosome
+    ##   ENSG00000000460    C1orf112       55732 protein_coding       chromosome
+    ##               ...         ...         ...            ...              ...
+    ##            LRG_94      LRG_94        5551       LRG_gene       chromosome
+    ##            LRG_96      LRG_96        5873       LRG_gene       chromosome
+    ##            LRG_97      LRG_97        5880       LRG_gene       chromosome
+    ##            LRG_98      LRG_98        5896       LRG_gene       chromosome
+    ##            LRG_99      LRG_99        5897       LRG_gene       chromosome
+    ##                        symbol gene_length
+    ##                   <character>   <integer>
+    ##   ENSG00000000003      TSPAN6         106
+    ##   ENSG00000000005        TNMD         415
+    ##   ENSG00000000419        DPM1         412
+    ##   ENSG00000000457       SCYL3        6928
+    ##   ENSG00000000460    C1orf112        9865
+    ##               ...         ...         ...
+    ##            LRG_94      LRG_94        4554
+    ##            LRG_96      LRG_96        1640
+    ##            LRG_97      LRG_97         981
+    ##            LRG_98      LRG_98        1682
+    ##            LRG_99      LRG_99        6813
+    ##   -------
+    ##   seqinfo: 273 sequences from GRCh37 genome
+
+``` r
+rowData(se)
+```
+
+    ## DataFrame with 64102 rows and 7 columns
+    ##               gene_id   gene_name    entrezid   gene_biotype
+    ##           <character> <character> <character>    <character>
+    ## 1     ENSG00000000003      TSPAN6        7105 protein_coding
+    ## 2     ENSG00000000005        TNMD       64102 protein_coding
+    ## 3     ENSG00000000419        DPM1        8813 protein_coding
+    ## 4     ENSG00000000457       SCYL3       57147 protein_coding
+    ## 5     ENSG00000000460    C1orf112       55732 protein_coding
+    ## ...               ...         ...         ...            ...
+    ## 64098          LRG_94      LRG_94        5551       LRG_gene
+    ## 64099          LRG_96      LRG_96        5873       LRG_gene
+    ## 64100          LRG_97      LRG_97        5880       LRG_gene
+    ## 64101          LRG_98      LRG_98        5896       LRG_gene
+    ## 64102          LRG_99      LRG_99        5897       LRG_gene
+    ##       seq_coord_system      symbol gene_length
+    ##            <character> <character>   <integer>
+    ## 1           chromosome      TSPAN6         106
+    ## 2           chromosome        TNMD         415
+    ## 3           chromosome        DPM1         412
+    ## 4           chromosome       SCYL3        6928
+    ## 5           chromosome    C1orf112        9865
+    ## ...                ...         ...         ...
+    ## 64098       chromosome      LRG_94        4554
+    ## 64099       chromosome      LRG_96        1640
+    ## 64100       chromosome      LRG_97         981
+    ## 64101       chromosome      LRG_98        1682
+    ## 64102       chromosome      LRG_99        6813
+
+``` r
+table(rowData(se)$gene_biotype)
+```
+
+    ## 
+    ## 3prime_overlapping_ncrna                antisense                IG_C_gene 
+    ##                       24                     5485                       23 
+    ##          IG_C_pseudogene                IG_D_gene                IG_J_gene 
+    ##                       11                       64                       24 
+    ##          IG_J_pseudogene                IG_V_gene          IG_V_pseudogene 
+    ##                        6                      178                      255 
+    ##                  lincRNA                 LRG_gene                    miRNA 
+    ##                     7340                      425                     3361 
+    ##                 misc_RNA                  Mt_rRNA                  Mt_tRNA 
+    ##                     2174                        2                       22 
+    ##   polymorphic_pseudogene     processed_pseudogene     processed_transcript 
+    ##                       53                        1                      819 
+    ##           protein_coding               pseudogene                     rRNA 
+    ##                    22810                    15583                      566 
+    ##           sense_intronic        sense_overlapping                   snoRNA 
+    ##                      767                      208                     1549 
+    ##                    snRNA                TR_C_gene                TR_D_gene 
+    ##                     2067                        6                        3 
+    ##                TR_J_gene          TR_J_pseudogene                TR_V_gene 
+    ##                       82                        4                      150 
+    ##          TR_V_pseudogene 
+    ##                       40
+
+> What is the library-size or sequencing depth of each sample/run?
+
+``` r
+counts <- assay(se)
+colnames(counts) <- paste( se$dex, se$cell, sep = " - " )
+colSums(counts)
+```
+
+    ##  untrt - N61311    trt - N61311 untrt - N052611   trt - N052611 
+    ##        20637971        18809481        25348649        15163415 
+    ## untrt - N080611   trt - N080611 untrt - N061011   trt - N061011 
+    ##        24448408        30818215        19126151        21164133
+
+``` r
+round(colSums(counts)/1e6 , 1) #this is often represented as counts
+```
+
+    ##  untrt - N61311    trt - N61311 untrt - N052611   trt - N052611 
+    ##            20.6            18.8            25.3            15.2 
+    ## untrt - N080611   trt - N080611 untrt - N061011   trt - N061011 
+    ##            24.4            30.8            19.1            21.2
+
+``` r
+                               #per million
+```
+
+> How many genes are there without any reads?
+
+> To which biotypes belong these genes; give a few examples?
+
+``` r
+zeroReads <- rowSums(counts) == 0            #identify genes with zero number of reads across all samples
+table(zeroReads)                             #how many genes are there
+```
+
+    ## zeroReads
+    ## FALSE  TRUE 
+    ## 33469 30633
+
+``` r
+data <- data.frame(zeroReads = zeroReads,
+                   biotype = rowData(se)$gene_biotype)
+gp <- ggplot(data, aes(biotype, fill=zeroReads))
+gp + geom_bar() + coord_flip() + ggtitle("#Some biotypes do not have any reads")
+```
+
+![](rnaseq_practical_files/figure-markdown_github/readsperbiotype-1.png)
+
+For example, microRNA are overrepresented among the genes with zero reads.
+
+> Could you give an explanation for this?
+
+Actually we can formally test this using the Fisher exact test.
+
+``` r
+miRNAs <- rowData(se)$gene_biotype == "miRNA"
+table(miRNAs, zeroReads)
+```
+
+    ##        zeroReads
+    ## miRNAs  FALSE  TRUE
+    ##   FALSE 32861 27880
+    ##   TRUE    608  2753
+
+``` r
+fisher.test(table(miRNAs, zeroReads))
+```
+
+    ## 
+    ##  Fisher's Exact Test for Count Data
+    ## 
+    ## data:  table(miRNAs, zeroReads)
+    ## p-value < 2.2e-16
+    ## alternative hypothesis: true odds ratio is not equal to 1
+    ## 95 percent confidence interval:
+    ##  4.879031 5.845114
+    ## sample estimates:
+    ## odds ratio 
+    ##   5.337562
+
+Tests for enrichment of a certain group of genes are performed frequently in downstream analysis of gene expression data.
+
+The number of reads for a given gene depends on the expression level of the gene but also on the length. This is because mRNA (or actually the cDNA) is fragmented into reads and long genes/transcripts produce more reads.
+
+``` r
+pc <- se[rowData(se)$gene_biotype == "protein_coding",]
+qs <- c(0, quantile(rowData(pc)$gene_length, 0:4/4))
+lengths <- cut(rowData(pc)$gene_length, qs)
+data <- data.frame(lengths = rep(lengths, ncol(pc)),
+                   counts = as.vector(assay(pc)),
+                   sample = rep(colnames(pc), each=nrow(pc)))
+gp <- ggplot(data, aes(lengths, log2(1 + counts), fill=sample))
+gp + geom_boxplot() + ggtitle("#Reads dependent on gene length")
+```
+
+![](rnaseq_practical_files/figure-markdown_github/genelength-1.png)
+
+Actually, for differential expression analysis this is not a concern since the interest is on comparisons among samples, e.g. dexamethasone treated versus untreated and not among genes. However, tests for enrichment of a certain group of genes should take this in account(Young et al. 2010).
 
 The *DESeqDataSet* object, sample information and the design formula
 --------------------------------------------------------------------
+
+For the differential expression analysis we will use the [`DESeq2`](http://bioconductor.org/packages/DESeq2/)-package(Love, Huber, and Anders 2014).
 
 Here we will construct a *DESeqDataSet* from the airway data and add the design formula containing the covariates on which we will perform the differential expression analysis.
 
@@ -111,11 +394,11 @@ dds
     ## metadata(2): '' version
     ## assays(1): counts
     ## rownames(64102): ENSG00000000003 ENSG00000000005 ... LRG_98 LRG_99
-    ## rowData names(0):
+    ## rowData names(7): gene_id gene_name ... symbol gene_length
     ## colnames(8): SRR1039508 SRR1039509 ... SRR1039520 SRR1039521
     ## colData names(9): SampleName cell ... Sample BioSample
 
-Our *DESeqDataSet* contains many rows with only zeros, and additionally many rows with only a few fragments total. In order to reduce the size of the object, and to increase the speed of our functions, we can remove the rows that have no or nearly no information about the amount of gene expression. Here we apply the most minimal filtering rule: removing rows of the *DESeqDataSet* that have no counts, or only a single count across all samples. Additional weighting/filtering to improve power is applied at a later step in the workflow.
+Our *DESeqDataSet* contains many rows with only zeros, and additionally many rows with only a few fragments total. In order to reduce the size of the object, and to increase the speed of our functions, we can remove the rows that have no or nearly no information about the amount of gene expression. Here we apply the most minimal filtering rule: removing rows of the *DESeqDataSet* that have no counts, or only a single count across all samples. Still some ambiguous biotypes are present using this mild filter rule.
 
 ``` r
 nrow(dds)
@@ -130,68 +413,16 @@ nrow(dds)
 
     ## [1] 29391
 
-> How many genes have zero counts across all samples?
-
-``` r
-table(rowSums(assays(se)$counts) == 0)
-```
-
-    ## 
-    ## FALSE  TRUE 
-    ## 33469 30633
-
-!!!ADVANCED: The rlog and variance stabilizing transformations
---------------------------------------------------------------
-
-Many common statistical methods for exploratory analysis of multidimensional data, for example clustering and principal components analysis (PCA), work best for data that generally has the same range of variance at different ranges of the mean values. When the expected amount of variance is approximately the same across different mean values, the data is said to be homoskedastic. For RNA-seq counts, however, the expected variance grows with the mean. For example, if one performs PCA directly on a matrix of counts or normalized counts (e.g. correcting for differences in sequencing depth), the resulting plot typically depends mostly on the genes with highest counts because they show the largest absolute differences between samples. A simple and often used strategy to avoid this is to take the logarithm of the normalized count values plus a pseudocount of 1; however, depending on the choice of pseudocount, now the genes with the very lowest counts will contribute a great deal of noise to the resulting plot, because taking the logarithm of small counts actually inflates their variance. We can quickly show this property of counts with some simulated data (here, Poisson counts with a range of lambda from 0.1 to 100). We plot the standard deviation of each row (genes) against the mean:
-
-``` r
-lambda <- 10^seq(from = -1, to = 2, length = 1000)
-cts <- matrix(rpois(1000*100, lambda), ncol = 100)
-library(vsn)
-msCts <- meanSdPlot(cts, ranks = FALSE, plot=FALSE)
-log.cts.one <- log2(cts + 1)
-msLog <- meanSdPlot(log.cts.one, ranks = FALSE, plot=FALSE)
-library(gridExtra)
-grid.arrange(msCts$gg, msLog$gg, nrow=2)
-```
-
-![](rnaseq_practical_files/figure-markdown_github/poisson-1.png)
-
-The logarithm with a small pseudocount amplifies differences when the values are close to 0. The low count genes with low signal-to-noise ratio will overly contribute to sample-sample distances and PCA plots.
-
-For genes with high counts, the rlog and VST will give similar result to the ordinary log2 transformation of normalized counts. For genes with lower counts, however, the values are shrunken towards the genes’ averages across all samples. The rlog-transformed or VST data then becomes approximately homoskedastic, and can be used directly for computing distances between samples, making PCA plots, or as input to downstream methods which perform best with homoskedastic data.
-
-``` r
-library(dplyr)
-library(ggplot2)
-rld <- rlog(dds, blind = FALSE)
-vsd <- vst(dds, blind = FALSE)
-dds <- estimateSizeFactors(dds)
-df <- bind_rows(
-  as_data_frame(log2(counts(dds, normalized=TRUE)[, 1:2]+1)) %>%
-         mutate(transformation = "log2(x + 1)"),
-  as_data_frame(assay(rld)[, 1:2]) %>% mutate(transformation = "rlog"),
-  as_data_frame(assay(vsd)[, 1:2]) %>% mutate(transformation = "vst"))  
-colnames(df)[1:2] <- c("x", "y")  
-ggplot(df, aes(x = x, y = y)) + geom_hex(bins = 80) +
-  coord_fixed() + facet_grid( . ~ transformation)  
-```
-
-![](rnaseq_practical_files/figure-markdown_github/vsnrlog-1.png)
-
-Scatterplot of transformed counts from two samples. Shown are scatterplots using the log2 transform of normalized counts (left), using the rlog (middle), and using the VST (right). While the rlog is on roughly the same scale as the log2 counts, the VST has a upward shift for the smaller values. It is the differences between samples (deviation from y=x in these scatterplots) which will contribute to the distance calculations and the PCA plot.
-
-We can see how genes with low counts (bottom left-hand corner) seem to be excessively variable on the ordinary logarithmic scale, while the rlog transform and VST compress differences for the low count genes for which the data provide little information about differential expression.
-
 Clustering and PCA
 ------------------
 
 A useful first step in an RNA-seq analysis is often to assess overall similarity between samples: Which samples are similar to each other, which are different? Does this fit to the expectation from the experiment’s design?
 
-We use the R function dist to calculate the Euclidean distance between samples. To ensure we have a roughly equal contribution from all genes, we use it on the rlog-transformed data. We need to transpose the matrix of values using t, because the dist function expects the different samples to be rows of its argument, and different dimensions (here, genes) to be columns.
+We use the R function `dist` to calculate the Euclidean distance between samples. To ensure we have a roughly equal contribution from all genes, we use it on the rlog-transformed data. We need to transpose the matrix of values using `t`, because the `dist` function expects the different samples to be rows of its argument, and different dimensions (here, genes) to be columns.
 
 ``` r
+library(vsn)
+rld <- rlog(dds, blind = FALSE)
 sampleDists <- dist(t(assay(rld)))
 sampleDists
 ```
@@ -268,13 +499,13 @@ Differential expression analysis
 Running the differential expression pipeline
 --------------------------------------------
 
-As we have already specified an experimental design when we created the DESeqDataSet, we can run the differential expression pipeline on the raw counts with a single call to the function DESeq:
+As we have already specified an experimental design when we created the `DESeqDataSet`, we can run the differential expression pipeline on the raw counts with a single call to the function `DESeq`:
 
 ``` r
 dds <- DESeq(dds)
 ```
 
-    ## using pre-existing size factors
+    ## estimating size factors
 
     ## estimating dispersions
 
@@ -286,7 +517,7 @@ dds <- DESeq(dds)
 
     ## fitting model and testing
 
-This function will print out a message for the various steps it performs. These are described in more detail in the manual page for DESeq, which can be accessed by typing ?DESeq. Briefly these are: the estimation of size factors (controlling for differences in the sequencing depth of the samples), the estimation of dispersion values for each gene, and fitting a generalized linear model.
+This function will print out a message for the various steps it performs. These are described in more detail in the manual page for DESeq, which can be accessed by typing `?DESeq`. Briefly these are: - the estimation of size factors (controlling for differences in the sequencing depth of the samples), - the estimation of dispersion values for each gene, -and fitting a generalized linear model.
 
 A *DESeqDataSet* is returned that contains all the fitted parameters within it, and the following section describes how to extract out results tables of interest from this object.
 
@@ -375,12 +606,12 @@ summary(res)
 
     ## 
     ## out of 29391 with nonzero total read count
-    ## adjusted p-value < 0.05
-    ## LFC > 0 (up)     : 2210, 7.5% 
-    ## LFC < 0 (down)   : 1804, 6.1% 
+    ## adjusted p-value < 0.1
+    ## LFC > 0 (up)     : 2617, 8.9% 
+    ## LFC < 0 (down)   : 2204, 7.5% 
     ## outliers [1]     : 0, 0% 
-    ## low counts [2]   : 12536, 43% 
-    ## (mean count < 7)
+    ## low counts [2]   : 11397, 39% 
+    ## (mean count < 5)
     ## [1] see 'cooksCutoff' argument of ?results
     ## [2] see 'independentFiltering' argument of ?results
 
@@ -418,8 +649,8 @@ table(resLFC1$padj < 0.1)
 
 > How strong is this effect in fold-change comparing treated vs untreated?
 
-!!!ADVANCED: Multiple testing
------------------------------
+Multiple testing
+----------------
 
 In high-throughput biology, we are careful to not use the p values directly as evidence against the null, but to correct for multiple testing. What would happen if we were to simply threshold the p values at a low value, say 0.05? There are 5676 genes with a p value below 0.05 among the 29391 genes for which the test succeeded in reporting a p value:
 
@@ -437,7 +668,7 @@ sum(!is.na(res$pvalue))
 
 Now, assume for a moment that the null hypothesis is true for all genes, i.e., no gene is affected by the treatment with dexamethasone. Then, by the definition of the p value, we expect up to 5% of the genes to have a p value below 0.05. This amounts to 1470 genes. If we just considered the list of genes with a p value below 0.05 as differentially expressed, this list should therefore be expected to contain up to 1470 / 5676 = 26% false positives.
 
-`DESeq2` uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R `p.adjust` function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene's adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column padj of the res object.
+`DESeq2` uses the Benjamini-Hochberg (BH) adjustment (Benjamini and Hochberg 1995) as implemented in the base R `p.adjust` function; in brief, this method calculates for each gene an adjusted p value that answers the following question: if one called significant all genes with an adjusted p value less than or equal to this gene's adjusted p value threshold, what would be the fraction of false positives (the false discovery rate, FDR) among them, in the sense of the calculation outlined above? These values, called the BH-adjusted p values, are given in the column `padj` of the `res` object.
 
 The FDR is a useful statistic for many high-throughput experiments, as we are often interested in reporting or focusing on a set of interesting genes, and we would like to put an upper bound on the percent of false positives in this set.
 
@@ -514,6 +745,10 @@ plotCounts(dds, gene = topGene, intgroup=c("dex"))
 
 ![](rnaseq_practical_files/figure-markdown_github/plottop-1.png)
 
+> Did you find the same gene as top differentially expressed and in the same direction as the previous two questions?
+
+> What is the gene symbol of this top gene?
+
 In the sample distance heatmap made previously, the dendrogram at the side shows us a hierarchical clustering of the samples. Such a clustering can also be performed for the genes. Since the clustering is only relevant for genes that actually carry a signal, one usually would only cluster a subset of the most highly variable genes. Here, for demonstration, let us select the 20 genes with the highest variance across samples. We will work with the rlog transformed counts:
 
 The heatmap becomes more interesting if we do not look at absolute expression strength but rather at the amount by which each gene deviates in a specific sample from the gene's average across all samples. Hence, we center each genes' values across samples, and plot a heatmap (figure below). We provide a data.frame that instructs the pheatmap function how to label the columns.
@@ -529,6 +764,10 @@ pheatmap(mat, annotation_col = anno)
 
 ![](rnaseq_practical_files/figure-markdown_github/heatmaptop-1.png)
 
+> What are the gene symbols of these genes?
+
+> Repeat the analysis but now keeping genes with at least 1 count per million in at least for samples!
+
 Reference
 =========
 
@@ -537,3 +776,5 @@ Himes, B. E., X. Jiang, P. Wagner, R. Hu, Q. Wang, B. Klanderman, R. M. Whitaker
 Love, M. I., S. Anders, V. Kim, and W. Huber. 2015. “RNA-Seq workflow: gene-level exploratory analysis and differential expression.” *F1000Res* 4: 1070.
 
 Love, M. I., W. Huber, and S. Anders. 2014. “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.” *Genome Biol.* 15 (12): 550.
+
+Young, M. D., M. J. Wakefield, G. K. Smyth, and A. Oshlack. 2010. “Gene ontology analysis for RNA-seq: accounting for selection bias.” *Genome Biol.* 11 (2): R14.
