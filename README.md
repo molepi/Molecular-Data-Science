@@ -183,7 +183,7 @@ biological information and to form new hypotheses.
 |-------------|-----------------------------------------------|----------------------------------------|-------|
 | 9.00 -10.30 | The use of public omics databases | Bas Heijmans | J1-82 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10:45-12:00 | Reproducibility of omics analyses        |  Maarten van Iterson | J1-82 |
+| 10:45-12:00 | [Reproducibility research practical](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
