@@ -1,0 +1,107 @@
+---
+title: "Reproducible Research practical"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    toc: true
+    toc_depth: 2	
+  github_document:
+    toc: true
+    toc_depth: 2	
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, eval=TRUE, cache.lazy = FALSE)
+suppressPackageStartupMessages({ ##to get rid of annoying startup messages
+    library(airway)
+    library(DESeq2)
+    library(vsn)
+    library(org.Hs.eg.db)
+    library(ggplot2)
+})
+```
+
+Choose `File` and then `R Markdown` give *Title*, *Author* and press `OK`. 
+
+A Rmarkdown template file (*Untitled1*) is generated use the `Knit`
+button to create your first reproducible document (you will be
+requested to give the file a name and to store it somewhere).
+
+# Adding code chunks #
+
+Now add the following code chunks and type a small description of what
+kind of analysis is performed.
+
+_describe code ..._
+
+```{r, loading}
+library(airway)
+library(DESeq2)
+data("airway")
+airway$dex <- relevel(airway$dex, "untrt")
+dds <- DESeqDataSet(airway, design = ~ cell + dex) #add formula
+nrow(dds)
+```
+
+_describe results..._
+
+Filtering un- or lowly expressed genes using counts per million is
+advocated by the developers of edgeR[@] another package for the
+differential expression analysis (see
+[section 2.6 Filtering](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)).
+
+
+```{r, filtering}
+cpm <- 1e6*counts(dds)/colSums(counts(dds))
+keep <- rowSums(cpm>1) >= 4                
+dds <- dds[keep, ]
+nrow(dds)
+```
+
+_describe results..._
+
+
+_describe code ..._
+
+
+```{r, deseq}
+dds <- DESeq(dds)
+res <- results(dds, alpha = 0.05)
+res$Symbol <- mapIds(org.Hs.eg.db, rownames(res), "SYMBOL", "ENSEMBL")
+res[order(res$padj),]
+```
+_describe results..._
+
+# Adding a figure #
+
+Adding a figure is as easy as a code chunk! 
+
+_describe code ..._
+
+```{r, pca}
+library(vsn)
+library(ggplot2)
+rld <- rlog(dds, blind = FALSE)
+pcaData <- plotPCA(rld, intgroup = c( "dex", "cell"), returnData = TRUE)
+pcaData
+percentVar <- round(100 * attr(pcaData, "percentVar"))
+ggplot(pcaData, aes(x = PC1, y = PC2, color = dex, shape = cell)) +
+  geom_point(size =3) +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  coord_fixed()
+```
+
+_describe results..._
+
+
+
+# Tip of iceberg #
+
+This is really the _tip of the iceberg_ check out the
+[rmarkdown website](http://rmarkdown.rstudio.com/) or the
+[knitr website](https://yihui.name/knitr/) that show many applications
+of `rmarkdown` i.e. how to write complete books, website, scientific
+manuscripts and much more!
