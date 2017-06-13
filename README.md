@@ -131,7 +131,7 @@ biological information and to form new hypotheses.
 |-------------|-------------------------|----------------|-------|
 | 9.00-10.00  | Lecture:         | Marian Beekman | J1-82 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
-| 10.15-12.30 | Practical:        | Marian Beekman | J1-82 |
+| 10.15-12.30 | Practical:        | Marian Beekman and Maarten van Iterson| J1-82 |
 | 12.30-13.30 | **Lunch**                   |                |       |
 | **When**        | **What: Ageing biomarkers**  | **Who**            | **Where**  |
 | 13.30-14.30 | Lecture:                | Marian Beekman | J1-82 |
