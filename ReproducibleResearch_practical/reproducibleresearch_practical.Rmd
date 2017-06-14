@@ -52,8 +52,9 @@ dds
 _describe results..._
 
 Filtering un- or lowly expressed genes using counts per million is
-advocated by the developers of edgeR[@] another package for the
-differential expression analysis (see
+advocated by the developers of
+[edgeR](http://bioconductor.org/packages/edgeR/) another package for
+the differential expression analysis (see
 [section 2.6 Filtering](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)).
 
 

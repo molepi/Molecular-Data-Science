@@ -1,0 +1,16 @@
+source("https://bioconductor.org/biocLite.R")
+biocLite(c("Hmisc",
+"ggplot2",
+"AER",
+"limma",
+"lumi",
+"rmarkdown",
+"knitr",
+"airway",
+"DESeq2",
+"vsn",
+"EnsDb.Hsapiens.v75",
+"ggplot2",
+"pheatmap",
+"RColorBrewer",
+"genefilter"))

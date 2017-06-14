@@ -67,11 +67,12 @@ biological information and to form new hypotheses.
 | 9.00-9.45   | Lecture: Introduction to FOS course                                    | Ingrid Meulenbelt                | J1-82 |
 | 09.45-10.15 | Coffee break + questions                                               |                                  |       |
 | 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-82 |
-| 11.15-12.00 | Lecture: Introduction to large scale datasets; from SPSS to R          | Bas Heijmans                     | J1-82 |
+| 11.15-11.45 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-82 |
+| 11.45-12.00 | Lecture: Introduction to o R  | Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
-| 13.30-15.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 13.30-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
 | 15.00-15.15 | **Tea break**                                                          |                                  |       |
-| 15.15-17.00 | [Hands on: Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 15.15-17.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
 
 # Tuesday June 20 (Location J1-82/building 1, LUMC) #
 
@@ -101,28 +102,27 @@ biological information and to form new hypotheses.
 
 | When        | What: Methylomics                        | Who | Where |
 |-------------|-----------------------------------------------------------------|--------------------------------|-------|
-| 09:00-10.00 | Lecture: Introduction to the epigenome                          |                   Bas Heijmans | J1-82 |
+| 09:00-10.00 | Lecture: [Introduction to the epigenome](22jun17_0900_lecture_Heijmans_FOS_IntroEpigenetics.pdf) |                   Bas Heijmans | J1-82 |
 | 10:00-10.15 | **Coffee Break**                                                |                                |       |
 | 10:00-12:30 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS%20Course%20Epigenetics%20practical_Rversion.docx)                 | Bas Heijmans and Roderick Slieker | J1-82 |
 | 12:30-13.30 | **Lunch**                                                           |                                |       |
 | 13.30-15.30 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS%20Course%20Epigenetics%20practical_Rversion.docx)          | Bas Heijmans and Roderick Slieker | J1-82 |
-| 14.45-15.15 | Lecture: DNA methylation signatures of prenatal famine exposure | Bas Heijmans                   | J1-82 |
-| 15:30-16.0  | **Tea Break**                                                       |                                |       |
-| 16.00-17.00 | Lecture: DNA methylation signatures of prenatal famine exposure | Bas Heijmans                   |       |
+| 15:30-16.00 | **Tea Break**                                                       |                                |       |
+| 16.00-17.00 | Lecture: [DNA methylation signatures of prenatal famine exposure](22jun17_1600_lecture_Heijmans_FOS_Development-Hungerwinter.pdf) | Bas Heijmans                   |       |
 
 # Friday June 23 (Location J1-82/building 1, LUMC) #
 
 | When        | What: Multiple omics analysis                                                                                            | Who                       | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
-| 9:00-10.00  | Lecture; Integrated analysis of multiple –omics data and Mendelian randomization                                        | Bas Heijmans and Koen Dekkers | J1-82 |
+| 9:00-10.00  | Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](23jun17_0900_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans and Koen Dekkers | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
-| 10:15-12.30 | Hands on Integration of –omics datasets: genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
+| 10:15-12.30 | Practical: Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
 | 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
-| **When**    | **What: Clustering analyses**                                                                                                | **Who**               | **Where** |
-| 13:30-14:30 | Lecture Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
-| 14:30-15:00 | Practical: Clustering analyses transcriptomic data                                                                      | Marcel Reinders           |       |
+| **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
+| 13:30-14:30 | Lecture: Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
+| 14:30-15:00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |       |
 | 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
-| 15:15-16:00 | Continued practical: Clustering analyses transcriptomic data                                                            | Marcel Reinders           | J1-82 |
+| 15:15-16:00 | Practical: Clustering analysis transcriptomic data                                                            | Marcel Reinders           | J1-82 |
 
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
@@ -181,9 +181,10 @@ biological information and to form new hypotheses.
 
 | When        | What: Public data and reproducibility              | Who                                    | Where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
-| 9.00 -10.30 | The use of public omics databases | Bas Heijmans | J1-82 |
+| 9.00 -9.30 | Lecture: [The use of public omics databases](30jun17_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-82 |
+| 9.30 -10.30 | Practical: [The use of public omics databases](30jun17_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-82 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10:45-12:00 | [Reproducibility research practical](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
+| 10:45-12:00 | Practical: [Reproducibility research practical](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
