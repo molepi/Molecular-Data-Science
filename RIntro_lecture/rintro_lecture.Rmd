@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - repository specific for bioinformatic analysis 
 - expression, DNA methylation, copy number, proteomics, metabolomics, genetics, etc.
 - not only methods but annotation and data as well
-- >1000 interrelated packages
+- $>1000$ interrelated packages
 - high quality software (reviewed), daily build system (garantees software works) and obligatory documentation
 - mailing list, example worksflows, course material, etc. 
 
