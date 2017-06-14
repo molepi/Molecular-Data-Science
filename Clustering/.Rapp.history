@@ -1,0 +1,16 @@
+data = cbind(c(1,2.5,2,4,4),c(2,4.5,2,1.5,2.5)) # Make small data matrix
+par(mfrow=c(2,2)) # Plot all figures in the same window
+labs = c('A','B','C','D','E') # Define labels
+rownames(data)<-labs # Set new labelstext(data+0.05, labs) # Plot the labels
+plot(data) # Plot to screen
+data = cbind(c(1,2.5,2,4,4),c(2,4.5,2,1.5,2.5)) # Make small data matrixpar(mfrow=c(2,2)) # Plot all figures in the same windowplot(data) # Plot to screen
+data = cbind(c(1,2.5,2,4,4),c(2,4.5,2,1.5,2.5)) # Make small data matrixpar(mfrow=c(2,2)) # Plot all figures in the same windowplot(data) # Plot to screen
+labs = c('A','B','C','D','E') # Define labelsrownames(data)<-labs # Set new labelstext(data+0.05, labs) # Plot the labels
+data = cbind(c(1,2.5,2,4,4),c(2,4.5,2,1.5,2.5)) # Make small data matrixpar(mfrow=c(2,2)) # Plot all figures in the same windowplot(data) # Plot to screenlabs = c('A','B','C','D','E') # Define labelsrownames(data)<-labs # Set new labelstext(data+0.05, labs) # Plot the labels
+data = read.delim("messy.txt", header=T, dec=".") #read datadata = data[,2:3] # get only datacl <- kmeans(data, 7) # kmeans clustering starting with 7 centers plot(data, col = cl$cluster) #Plot datapoints(cl$centers, col = 1:2, pch = 8, cex = 2) #Show the centers
+data = read.delim("messy.txt", header=T, dec=".") #read datadata = data[,2:3] # get only datacl <- kmeans(data, 7) # kmeans clustering starting with 7 centers plot(data, col = cl$cluster) #Plot datapoints(cl$centers, col = 1:2, pch = 8, cex = 2) #Show the centers
+pwd
+pwd
+data = read.delim("messy.txt", header=T, dec=".") #read datadata = data[,2:3] # get only datacl <- kmeans(data, 7) # kmeans clustering starting with 7 centers plot(data, col = cl$cluster) #Plot datapoints(cl$centers, col = 1:2, pch = 8, cex = 2) #Show the centers
+data = read.delim("messy.txt", header=T, dec=".") #read datadata = data[,2:3] # get only datacl <- kmeans(data, 7) # kmeans clustering starting with 7 centers plot(data, col = cl$cluster) #Plot datapoints(cl$centers, col = 1:2, pch = 8, cex = 2) #Show the centers
+SEED = 6 # set seed for random initializationWAITTIME = 1 # waiting time between updates (enlarge in case it goes to fast)par(mfrow=c(2,5))for (i in 1:10) { set.seed(SEED) ; cl<-kmeans(data,7,iter.max=i) ; plot(data, col = cl$cluster) ; points(cl$centers, col = 1:2, pch = 8, cex = 2) ; Sys.sleep(WAITTIME)}
