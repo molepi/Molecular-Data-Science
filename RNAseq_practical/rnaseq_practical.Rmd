@@ -31,6 +31,9 @@ suppressPackageStartupMessages({ ##to get rid of annoying startup messages
 
 ```
 
+
+**PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!**
+
 # Introduction #
 
 This practical is based on the BioConductors' *RNA-seq workflow:

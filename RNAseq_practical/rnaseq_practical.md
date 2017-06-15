@@ -13,6 +13,8 @@ RNAseq practical
     -   [visualizing results](#visualizing-results)
 -   [Reference](#reference)
 
+**PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!**
+
 Introduction
 ============
 
