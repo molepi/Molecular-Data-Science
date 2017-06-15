@@ -47,9 +47,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - syntax not always intuitive
 - dynamic language; continuously changing (often more efficient and additional features)
-- bianually new releases (incl. bug fixes) so keep uptodate
+- biannually new releases (incl. bug fixes) so keep uptodate
 - many solutions for the same problem often one robust and most efficient (requires experiences)
-- too many functions do know which to use (just google e.g. cran r t test)
+- too many functions don't know which to use (just google e.g. cran r t test)
 
 # Some nice examples
 
@@ -57,4 +57,10 @@ knitr::opts_chunk$set(echo = TRUE)
 - [r web application](https://shiny.rstudio.com/gallery/)
 - [biocondcutor workflows](https://www.bioconductor.org/help/workflows)
 
----
+# Learning R
+
+- large amount of online course material
+- many books 
+- [R course LUMC](https://www.lumc.nl/research/graduate-school/cal/C34392426?year=2017&month=5)
+- practical brief introduction
+
