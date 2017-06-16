@@ -13,27 +13,6 @@ RNAseq practical
     -   [visualizing results](#visualizing-results)
 -   [Reference](#reference)
 
-<!-- Here we style our button a little bit -->
-<style>
-  .showopt {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #004c93;
-    color: #FFFFFF; 
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle !important;
-    border-radius: 8px;
-    float:right;
-  }
-  .showopt:hover {
-    background-color: #dfe4f2;
-    color: #004c93;
-}
-
-</style>
-<!--Include script for hiding output chunks-->
-<script src="hideOutput.js"></script>
 **PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!**
 
 Introduction
