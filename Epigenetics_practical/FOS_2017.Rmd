@@ -44,7 +44,7 @@ unique(TissueData$Tissue) # What groups are in the vector?
 
 **B Make a boxplot of DNA methylation in the different tissues. Also, calculate the mean methylation and standard deviation for the tissues. Do you think that these differences are biologically relevant?**
 
-```{r Q1B, fig.show='hide'}
+```{r Q1B}
 ggplot(TissueData, aes(x=Tissue, y=cg21507095, fill=Tissue))+ # Assign variables to x, y, and fill
 	geom_boxplot()+ # Make a boxplot
 	scale_fill_manual(values=c("#F9A23F","#009AC7","#8B1A4F")) # Give custom colors to the boxes using HEX colors
@@ -76,7 +76,7 @@ nrow(TissueData22) #Number of rows
 ```
 
 **B Make a histogram for DNA methylation data for blood. Inspect the histogram and describe the characteristics of DNA methylation in the human genome (note that the histogram will look virtually identical for other chromosomes and tissues).**
-```{r Q2B, fig.show='hide'}
+```{r Q2B}
 ggplot(TissueData22, aes(x=Blood))+
   geom_histogram(bins = 200) # Histogram
 ```
@@ -87,7 +87,7 @@ ggplot(TissueData22, aes(x=Blood))+
 
 
 **D The file Tissue data chromosome 22.csv contains columns with annotation information. Make boxplots for the gene centric annotation for blood. Describe the differences in DNA methylation across annotations and explain whether this is according to your expectation given your knowledge of the function of DNA methylation.**
-```{r Q2D, fig.show='hide'}
+```{r Q2D}
 ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
   geom_boxplot()+
   scale_fill_manual(values=c("#D12633","#F9A23F","#4B8E55","#009AC7","#8B1A4F"))+
@@ -96,7 +96,7 @@ ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
 
 
 **E Do the same for the CpG island annotation. Where is DNA methylation lowest?**
-```{r Q2E, fig.show='hide'}
+```{r Q2E}
 ggplot(TissueData22, aes(x=CGI_centric, y=Blood, fill=CGI_centric))+
   geom_boxplot()+
   scale_fill_manual(values=c("#D12633","#F9A23F","#4B8E55","#009AC7","#8B1A4F"))+
