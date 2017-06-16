@@ -13,24 +13,6 @@ output:
 bibliography: rnaseq_practical.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, eval=TRUE, cache.lazy = FALSE)
-
-rm(list=ls()) ##clear work space
-
-suppressPackageStartupMessages({ ##to get rid of annoying startup messages
-    library(airway)
-    library(DESeq2)
-    library(vsn)
-    library(EnsDb.Hsapiens.v75) 
-    library(ggplot2)
-    library(pheatmap)
-    library(RColorBrewer)
-    library(genefilter)
-})
-
-```
-
 <!-- Here we style our button a little bit -->
 <style>
   .showopt {
@@ -53,6 +35,24 @@ suppressPackageStartupMessages({ ##to get rid of annoying startup messages
 
 <!--Include script for hiding output chunks-->
 <script src="hideOutput.js"></script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, eval=TRUE, cache.lazy = FALSE)
+
+rm(list=ls()) ##clear work space
+
+suppressPackageStartupMessages({ ##to get rid of annoying startup messages
+    library(airway)
+    library(DESeq2)
+    library(vsn)
+    library(EnsDb.Hsapiens.v75) 
+    library(ggplot2)
+    library(pheatmap)
+    library(RColorBrewer)
+    library(genefilter)
+})
+
+```
 
 **PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!**
 
