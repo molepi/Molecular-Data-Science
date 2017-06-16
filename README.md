@@ -104,9 +104,9 @@ biological information and to form new hypotheses.
 |-------------|-----------------------------------------------------------------|--------------------------------|-------|
 | 09:00-10.00 | Lecture: [Introduction to the epigenome](22jun17_0900_lecture_Heijmans_FOS_IntroEpigenetics.pdf) |                   Bas Heijmans | J1-82 |
 | 10:00-10.15 | **Coffee Break**                                                |                                |       |
-| 10:00-12:30 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2017.html)                 | Bas Heijmans and Roderick Slieker | J1-82 |
+| 10:00-12:30 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2017.md)                 | Bas Heijmans and Roderick Slieker | J1-82 |
 | 12:30-13.30 | **Lunch**                                                           |                                |       |
-| 13.30-15.30 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.html)          | Bas Heijmans and Roderick Slieker | J1-82 |
+| 13.30-15.30 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.md)          | Bas Heijmans and Roderick Slieker | J1-82 |
 | 15:30-16.00 | **Tea Break**                                                       |                                |       |
 | 16.00-17.00 | Lecture: [DNA methylation signatures of prenatal famine exposure](22jun17_1600_lecture_Heijmans_FOS_Development-Hungerwinter.pdf) | Bas Heijmans                   |       |
 
