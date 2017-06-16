@@ -45,6 +45,27 @@ body {
 </ul></li>
 <li><a href="#reference">Reference</a></li>
 </ul>
+<!-- Here we style our button a little bit -->
+<style>
+  .showopt {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #004c93;
+    color: #FFFFFF; 
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle !important;
+    border-radius: 8px;
+    float:right;
+  }
+  .showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+</style>
+<!--Include script for hiding output chunks-->
+<script src="data:application/x-javascript;base64,JChkb2N1bWVudCkucmVhZHkoZnVuY3Rpb24oKSB7CiAgJG91dHB1dCA9ICQoInByZSIpLm5vdCgiLnIiKTsKICAkb3V0cHV0LnByZXBlbmQoIjxkaXYgY2xhc3M9Jy5zaG93b3B0Jz5TaG93IE91dHB1dDwvZGl2Pjxici8+Iik7CiAgJG91dHB1dC5jaGlsZHJlbigiY29kZSIpLmNzcyh7ZGlzcGxheTogIm5vbmUifSk7CiAgICAgICAgICAgIAogICQoIi5zaG93b3B0IikuY2xpY2soZnVuY3Rpb24oKSB7CiAgICAkYnRuID0gJCh0aGlzKTsKICAgICRjaHVuayA9ICQodGhpcykucGFyZW50KCkuY2hpbGRyZW4oImNvZGUiKTsKICAgIGlmKCRidG4uaHRtbCgpID09PSAiU2hvdyBPdXRwdXQiKSB7CiAgICAgICRidG4uaHRtbCgiSGlkZSBPdXRwdXQiKTsKICAgIH0gZWxzZSB7CiAgICAgICRidG4uaHRtbCgiU2hvdyBPdXRwdXQiKTsKICAgIH0KICAgICRjaHVuay5zbGlkZVRvZ2dsZSgiZmFzdCIsICJzd2luZyIpOwogIH0pOwp9KTsK"></script>
 <p><strong>PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!</strong></p>
 <h1 id="introduction">Introduction</h1>
 <p>This practical is based on the BioConductors' <em>RNA-seq workflow: gene-level exploratory analysis and differential expression</em>; a comprehensive workflow that the describes how to go from FASTQ-files to perform a differential expression analysis and annotating results. Here, we will only explore a few steps and focus on the differential expression analysis. The full workflow is described <a href="https://www.bioconductor.org/help/workflows/rnaseqGene/">here</a>. The workflow also appread as a F1000 paper(Love et al. 2015) and a slightly shorter version is available as the <a href="https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">DESeq2 vignette</a>.</p>

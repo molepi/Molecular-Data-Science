@@ -13,6 +13,27 @@ RNAseq practical
     -   [visualizing results](#visualizing-results)
 -   [Reference](#reference)
 
+<!-- Here we style our button a little bit -->
+<style>
+  .showopt {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #004c93;
+    color: #FFFFFF; 
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle !important;
+    border-radius: 8px;
+    float:right;
+  }
+  .showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+</style>
+<!--Include script for hiding output chunks-->
+<script src="hideOutput.js"></script>
 **PLEASE WRITE DOWN THE ANSWERS TO THE QUESTIONS IN A SEPARATED DOCUMENT!**
 
 Introduction
@@ -37,7 +58,6 @@ We won't go into the details of how to construct such a dataset or object but it
 
 > Use the following code to figure out how many samples and genes are in the dataset, i.e. what is the dimension of the object?
 
-<script src="toggleR.js"></script> 
 ``` r
 library(airway)                         #loading the airway library 
 data("airway")                          #loading the airway data
@@ -322,7 +342,7 @@ gp <- ggplot(data, aes(biotype, fill=zeroReads))
 gp + geom_bar() + coord_flip() + ggtitle("#Some biotypes do not have any reads")
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/readsperbiotype-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/readsperbiotype-1.png)
 
 For example, microRNA are overrepresented among the genes with zero reads.
 
@@ -371,7 +391,7 @@ gp <- ggplot(data, aes(lengths, log2(1 + counts), fill=sample))
 gp + geom_boxplot() + ggtitle("#Reads dependent on gene length")
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/genelength-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/genelength-1.png)
 
 Actually, for differential expression analysis this is not a concern since the interest is on comparisons among samples, e.g. dexamethasone treated versus untreated and not among genes. However, tests for enrichment of a certain group of genes should take this in account(Young et al. 2010).
 
@@ -462,7 +482,7 @@ pheatmap(sampleDistMatrix,
          col = colors)
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/heatmap-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/heatmap-1.png)
 
 > Which samples are more similar to each other?
 
@@ -492,7 +512,7 @@ ggplot(pcaData, aes(x = PC1, y = PC2, color = dex, shape = cell)) +
   coord_fixed()
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/pca-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/pca-1.png)
 
 > Which samples are more similar to each other? What can you say about the impact of different cell-lines?
 
@@ -746,7 +766,7 @@ topGene <- rownames(res)[which.min(res$padj)]
 plotCounts(dds, gene = topGene, intgroup=c("dex"))
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/plottop-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/plottop-1.png)
 
 > Did you find the same gene as top differentially expressed and in the same direction as the previous two questions?
 
@@ -765,7 +785,7 @@ anno <- as.data.frame(colData(rld)[, c("cell","dex")])
 pheatmap(mat, annotation_col = anno)
 ```
 
-![](rnaseq_practical_files/figure-markdown_github/heatmaptop-1.png)
+![](rnaseq_practical_files/figure-markdown_github-ascii_identifiers/heatmaptop-1.png)
 
 > What are the gene symbols of these genes?
 
