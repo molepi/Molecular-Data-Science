@@ -189,3 +189,60 @@ biological information and to form new hypotheses.
 | 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
 | 15:15-17:00 | Paper discussion                              | Vered Raz                              | J1-82 |
+
+
+## PART 2. Applying acquired knowledge and skill to ageing. ##
+
+Students will work on an assignment in duos. In these assignments all
+knowledge and hands on experience that is acquired in part 1 will be
+applied to the topic of ageing. A project proposal should be written
+using all information accessible on the websites that were part of the
+course. It is important to determine the appropriate study design and
+power to establish and defend a “genomic” research
+proposal. Therefore, a pilot study should performed on an available
+real ‘-omics’ dataset. During the week there will be regular moments
+of interaction with the module coordinators and the possibility to
+contact other tutors of the course.
+
+
+# Monday July 3 (Location J1-82/building 1, LUMC) #
+
+| When        | What: Introduction to final assignment                  | Who               | Where |
+|-------------|---------------------------------------------------------|-------------------|-------|
+| 9.00-10.00  | Project proposal: where does research start. Part 1     | Ingrid Meulenbelt | J1-82 |
+| 10.00-10.15 | **Coffee Break**                                            |                   |       |
+| 10.15-11.00 | Project proposal: where does research start. Part 2     | Ingrid Meulenbelt | J1-82 |
+| 11.00-12.00 | Work on the project proposal: formulation of hypothesis | Self              | J1-82 |
+| 12.00-13.00 | **Lunch** and self study                                    |                   |       |
+| 13.00-17.00 | Work on the project proposal: formulation of objectives | Self              | J1-82 |
+
+
+# Tuesday July 4 (Location J1-82/building 1, LUMC) #
+
+| When       | What: Final assignment               | Who  | Where |
+|------------|--------------------------------------|------|-------|
+| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
+
+
+# Wednesday July 5 (Location J1-82/building 1, LUMC) #
+
+| When       | What: Final assignment               | Who  | Where |
+|------------|--------------------------------------|------|-------|
+| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
+
+
+# Thursday July 6 (Location J1-82/building 1, LUMC) #
+
+| When       | What: Final assignment               | Who  | Where |
+|------------|--------------------------------------|------|-------|
+| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
+| **17.00** |  **Hand in project proposals** |  |  | 
+
+
+# Friday July 7 (Location Building 2, R1) #
+
+| When        | What Final assignment  | Who  | Where  |
+|-------------|------------------------|------|--------|
+| 9.00-11.00  | Project defences       | Self | R1 egg |
+| 11.15-12.00 | Evaluation and closure |      |        |
+| 01:00:00 PM | End of course          |      |        |
