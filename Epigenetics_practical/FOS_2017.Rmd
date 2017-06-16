@@ -2,6 +2,16 @@
 title: "FOS Computational Biology of Complex disease and Ageing"
 subtitle: "Practical on Epigenomics, June 22nd 2017" 
 author: "Roderick Slieker and Bas Heijmans"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    toc: true
+    toc_depth: 2	
+  github_document:
+    toc: true
+    toc_depth: 2	
 ---
 
 ##Important:
