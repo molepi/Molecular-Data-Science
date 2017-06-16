@@ -37,6 +37,7 @@ We won't go into the details of how to construct such a dataset or object but it
 
 > Use the following code to figure out how many samples and genes are in the dataset, i.e. what is the dimension of the object?
 
+<script src="toggleR.js"></script> 
 ``` r
 library(airway)                         #loading the airway library 
 data("airway")                          #loading the airway data
