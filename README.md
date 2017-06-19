@@ -70,7 +70,7 @@ biological information and to form new hypotheses.
 | 11.15-11.45 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-82 |
 | 11.45-12.00 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf)  | Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
-| 13.30-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 13.00-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
 | 15.00-15.15 | **Tea break**                                                          |                                  |       |
 | 15.15-17.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
 
