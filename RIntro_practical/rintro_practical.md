@@ -12,6 +12,7 @@ In this introduction to R you should run a few examples/exercises from the follo
 1.  [Intro to R](http://master.bioconductor.org/help/course-materials/2017/Moffitt/A1_Using_R.html)
 2.  [Data Input and Manipulation](https://bioconductor.org/help/course-materials/2017/Moffitt/A2_IO.html)
 3.  [Statistical Analysis](https://bioconductor.org/help/course-materials/2017/Moffitt/A3_Statistics.html)
+4. Optional [Intro bioc](https://bioconductor.org/help/course-materials/2017/OMRF/B1_Bioconductor_intro.html)
 
 At least finish **Intro to R** and first exercise **Data Input and Manipulation** and those how are quick have a look at the first part of **Statistical Analysis**.
 
