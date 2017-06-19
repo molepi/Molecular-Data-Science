@@ -6,7 +6,6 @@ output: github_document
 ---
 
 ##Important:
-- Before performing this practical, make sure that the regional settings on are right: decimals separator a point, thousands separator a comma. 
 - Download the following files and save them in one folder:
 
 [Tissue data subset.csv](Tissue data subset.csv)
@@ -22,15 +21,15 @@ output: github_document
 
 
 ##Introduction
-**A primary function of DNA methylation, a key component of the epigenome, is to control cell differentiation. In this practical, you will identify and annotate differential methylation between tissues using genome-wide data generated with Illumina 450k chips. The coming few hours you will replicate many of our group’s findings which were published in 2013. Good luck and have fun!**
+**A primary function of DNA methylation, a key component of the epigenome, is to control cell differentiation. In this practical, you will identify and annotate differential methylation between tissues using genome-wide data generated with Illumina 450k chips. The coming few hours you will replicate many of our group'\s findings which were published in 2013. Good luck and have fun!**
 
 ##Question 1
-**The data that you will use in this practical consists of genome-wide DNA methylation data (Illumina 450k methylation array) of tissues from autopsy samples. Load the file ‘Tissue data subset.csv’ in R. The file contains the DNA methylation data of a single CpG site with identifier number cg21507095.**
+**The data that you will use in this practical consists of genome-wide DNA methylation data (Illumina 450k methylation array) of tissues from autopsy samples. Load the file 'Tissue data subset.csv' in R. The file contains the DNA methylation data of a single CpG site with identifier number cg21507095.**
 
 ```{r packages}
 library(ggplot2)
 #Change this to the directory where you saved the files
-setwd("/Users/roderick/Documents/Onderwijs/FOS/2017/Git/Epigenetics_practical")
+setwd("Z:/Roderick/Onderwijs/FOS/Epigenetics_practical")
 TissueData <- read.table("Tissue data subset.csv", sep=";", header=T)
 ```
 
@@ -61,14 +60,16 @@ by(data = TissueData$cg21507095, INDICES = TissueData$Tissue, FUN=sd)
 anova(lm(cg21507095~Tissue, data=TissueData)) 
 ``` 
 
-**D Now, use the UCSC Genome Browser to annotate the CpG site. Go to http://genome.ucsc.edu/, click Genomes (Assembly: Feb 2009 (GRCh37/hg19)) and look up the position of the CpG site (type the CpG identifier in the search term box). Then scroll down to Regulation, find CpG islands, set this feature to ‘show’ and click refresh on the right of the screen. Describe in your own words what CpG islands do and how they are defined ( right click on the CpG island track, Show details).**
+**D Now, use the UCSC Genome Browser to annotate the CpG site. Go to http://genome.ucsc.edu/, click Genomes (Assembly: Feb 2009 (GRCh37/hg19)) and look up the position of the CpG site (type the CpG identifier in the search term box). Then scroll down to Regulation, find CpG islands, set this feature to 'show' and click refresh on the right of the screen. Describe in your own words what CpG islands do and how they are defined ( right click on the CpG island track, Show details).**
 
-**E Go back to the genome browser. Scroll up and use ‘zoom out’ to find out: (1) in which gene the CpG is located, (2) what part of the gene it is located (intron, exon, etc.) and (3) whether it is located in a CpG island.**
+**E Go back to the genome browser. Scroll up and use 'zoom out' to find out: (1) in which gene the CpG is located, (2) what part of the gene it is located (intron, exon, etc.) and (3) whether it is located in a CpG island.**
 
 ##Question 2
+
 **You will investigate DNA methylation between tissues across a complete chromosome instead of a single CpG site. Load the file Tissue data chromosome 22.csv with DNA methylation data for chromosome 22 across three tissues. **
 
 **A How many CpGs were measured on chromosome 22?**
+
 ```{r Q2A}
 TissueData22 <- read.table("Tissue data chromosome 22.csv", sep=";", header=T)
 head(TissueData22)
@@ -76,6 +77,7 @@ nrow(TissueData22) #Number of rows
 ```
 
 **B Make a histogram for DNA methylation data for blood. Inspect the histogram and describe the characteristics of DNA methylation in the human genome (note that the histogram will look virtually identical for other chromosomes and tissues).**
+
 ```{r Q2B}
 ggplot(TissueData22, aes(x=Blood))+
   geom_histogram(bins = 200) # Histogram
@@ -87,6 +89,7 @@ ggplot(TissueData22, aes(x=Blood))+
 
 
 **D The file Tissue data chromosome 22.csv contains columns with annotation information. Make boxplots for the gene centric annotation for blood. Describe the differences in DNA methylation across annotations and explain whether this is according to your expectation given your knowledge of the function of DNA methylation.**
+
 ```{r Q2D}
 ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
   geom_boxplot()+
@@ -96,6 +99,7 @@ ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
 
 
 **E Do the same for the CpG island annotation. Where is DNA methylation lowest?**
+
 ```{r Q2E}
 ggplot(TissueData22, aes(x=CGI_centric, y=Blood, fill=CGI_centric))+
   geom_boxplot()+
@@ -104,6 +108,7 @@ ggplot(TissueData22, aes(x=CGI_centric, y=Blood, fill=CGI_centric))+
 ```
 
 **F In question Q1C we calculated the P-value for one CpG site. Now we want to run this for each of the CpGs sites across chromosome 22. Instead of saving data as csv, one can also save it as RData files. Load the RData file TissueData chr22.RData. This file contains two files, namely samplesheet and TissueDataChr22. Look at both files. What are the dimensions of both files? **
+
 ```{r Q2F}
 load("TissueData chr22.RData") # Contains two files samplesheet, TissueDataChr22
 head(samplesheet)
@@ -113,6 +118,7 @@ dim(TissueDataChr22)
 ```
 
 **G In R we can use functions to easily run a model across many loci. Run the function for the first and the second line.**
+
 ```{r Q2G}
 getPvalue <- function(row, data, samplesheet)
 {
@@ -125,7 +131,8 @@ getPvalue <- function(row, data, samplesheet)
 getPvalue('cg00017461', data=TissueDataChr22, samplesheet=samplesheet)
 ```
 
-**H Now run the model across all CpGs on chromosome 22. Note that this takes a bit of time – after all R is running 8513 tests – and note that this couldn’t be achieved using SPSS (only when the tests were done one by one). Look at the output.**
+**H Now run the model across all CpGs on chromosome 22. Note that this takes a bit of time - after all R is running 8513 tests - and note that this couldn't be achieved using SPSS (only when the tests were done one by one). Look at the output.**
+
 ```{r Q2H}
 #Which CpGs are there
 cpgs <- rownames(TissueDataChr22)
@@ -144,12 +151,14 @@ head(ResultsChromosome22)
 
 **C For question 1C, you calculated a P-value for the example CpG site. Compare this P-value to the P-value calculated in 3B (after all it's only one of many CpG sites measured on chromosome 22). Is the difference significant after multiple testing correction?**
 
-**D The column Pval_corrected contains 0 and 1’s that mark non-significant and significant CpGs based on the P-value calculated in 3B. How many CpGs (absolute and as percentage) are significant after multiple testing?**
+**D The column Pval_corrected contains 0 and 1's that mark non-significant and significant CpGs based on the P-value calculated in 3B. How many CpGs (absolute and as percentage) are significant after multiple testing?**
+
 ```{r Q3D}
 table(TissueData22$Pval_corrected)
 ```
 
 **E Now, we want to know whether a particular genomic feature is overrepresented in the identified significant CpG sites. You will focus on the two best covered genic annotations (proximal promoters and gene bodies). The significant CpGs in these two features can be found in the file Tissue data chromosome 22 significant.csv. Load the file. Make a frequency table of the number of CpGs per group and split by CpG islands and non-CpG islands.**
+
 ```{r Q3E}
 TissueData22sign <- read.table("Tissue data chromosome 22 significant.csv", sep=";", header=T)
 head(TissueData22sign)
@@ -158,14 +167,15 @@ table3e
 ```
 
 **F Now you have the frequency per combined feature (so for example proximal promoter CpG islands). Calculate the percentages of the number of significant CpGs per feature compared to the total number of significant CpGs from 3D. What is your interpretation?**
+
 ```{r Q3F}
 table3f <- (table3e / 1805)*100
 round(table3f,1)
 ```
 
 ##Question 4
-**Now, you will focus on ‘top-hits’ (=CpG sites with lowest P-values)**
 
+**Now, you will focus on 'top-hits' (=CpG sites with lowest P-values)**
 **A Sort the file by P-value (ascending). Select the two CpG sites with the lowest and second lowest P-value. What is the methylation level of these CpGs in the tissues investigated? What is the largest difference in DNA methylation observed?**
 
 ```{r Q4A}
@@ -173,9 +183,9 @@ TissueData22signOrdered <- TissueData22sign[order(TissueData22sign$Pval),]
 head(TissueData22signOrdered)
 ```
 
-**B Go to the UCSC genome browser at http://genome.ucsc.edu/. Click on My Data at the top of the page and then Custom Tracks. Upload the significant probe.bed as a custom track (click Choose File and then Submit; like before, use assembly Feb 2009 (GRCh37/hg19)). Click go to genome browser. For clarity, display the track as ‘dense’. A red dot denotes a differentially methylated CpG (accounting for multiple testing), a blue dot a CpG for which there is no statistical evidence for differential methylation.**
+**B Go to the UCSC genome browser at http://genome.ucsc.edu/. Click on My Data at the top of the page and then Custom Tracks. Upload the significant probe.bed as a custom track (click Choose File and then Submit; like before, use assembly Feb 2009 (GRCh37/hg19)). Click go to genome browser. For clarity, display the track as 'dense'. A red dot denotes a differentially methylated CpG (accounting for multiple testing), a blue dot a CpG for which there is no statistical evidence for differential methylation.**
 
-**C Look up to the two top-hits (See 1E how to if you don’t know how). In which gene centric / CGI centric feature are the top-hits? Also see/use question 2C.**
+**C Look up to the two top-hits (See 1E how to if you don't know how). In which gene centric / CGI centric feature are the top-hits? Also see/use question 2C.**
 
 **D Zoom out in UCSC for both top-hits. Is the differential methylation limited to a single CpG site or does it extend across a region (Use the custom track from 4B)? Does this influence your interest in the two CpGs and why?**
 
@@ -188,7 +198,7 @@ head(TissueData22signOrdered)
 
 ##Facultative question: Question 5 
 
-**There is increasing evidence that DNA methylation is associated with alternative transcription events. A paper showed that there is a role for intragenic (differential) DNA methylation in the regulation of alternative transcription events (Maunakea AK et al. Conserved role of intragenic DNA methylation in regulating alternative promoters. Nature 2010; 466: 253–7).**
+**There is increasing evidence that DNA methylation is associated with alternative transcription events. A paper showed that there is a role for intragenic (differential) DNA methylation in the regulation of alternative transcription events (Maunakea AK et al. Conserved role of intragenic DNA methylation in regulating alternative promoters. Nature 2010; 466: 253-7).**
 
 **A Read the abstract and inspect Figure 3a in the paper. In what process is DNA methylation implicated to play a role in? For which gene and which annotation within that gene do the authors provide experimental evidence for this role? Discuss the tracks given in Figure 3a and their implication.**
 
