@@ -80,7 +80,7 @@ biological information and to form new hypotheses.
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Yolande Ramos | J1-82 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
-| 10.15-12.30 | Practicals: Statistical analysis of expression data: Normalization, differential expression and multiple testing  | Yolande Ramos | J1-82 |
+| 10.15-12.30 | Practicals: Statistical analysis of [expression data](FOS2017/ExpressionData/README.md): Normalization, differential expression and multiple testing  | Yolande Ramos | J1-82 |
 | 12.30-13.30 | **Lunch**                                                                                                         |               |       |
 | 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos | J1-82 |
 | 15:30-15.45 | **Tea Break**                                                                                                     |               |       |
