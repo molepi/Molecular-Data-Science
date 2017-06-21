@@ -116,7 +116,7 @@ biological information and to form new hypotheses.
 |-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
 | 9:00-10.00  | Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](23jun17_0900_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans and Koen Dekkers | J1-82 |
 | 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
-| 10:15-12.30 | Practical: Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization  | Bas Heijmans and Koen Dekkers  | J1-82 |
+| 10:15-12.30 | Practical: [Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-82 |
 | 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
 | **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
 | 13:30-14:30 | Lecture: Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
