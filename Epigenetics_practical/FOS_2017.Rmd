@@ -65,6 +65,7 @@ anova(lm(cg21507095~Tissue, data=TissueData))
 
 ##Question 2
 
+
 **You will investigate DNA methylation between tissues across a complete chromosome instead of a single CpG site. Load the file Tissue data chromosome 22.csv with DNA methylation data for chromosome 22 across three tissues. **
 
 **A How many CpGs were measured on chromosome 22?**
