@@ -15,6 +15,8 @@ output: github_document
 
 [Significant probes.bed](Significant probes.bed)
 
+[TissueData chr22.RData](TissueData chr22.RData)
+
 
 -	At the end of the practical send your work to **r.c.slieker@lumc.nl** as Word document with your name(s) on top of the first page. The file name should contain your surname(s). 
 
