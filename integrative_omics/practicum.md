@@ -31,11 +31,8 @@ load(url("https://raw.githubusercontent.com/molepi/FOS2017/master/integrative_om
 ls() # list of objects in environment
 ```
 
-    ##  [1] "coefficients"         "cpg_snps"             "cpgs"                
-    ##  [4] "fit"                  "i"                    "ivreg_tg_transcripts"
-    ##  [7] "ivreg_transcripts_tg" "lm_transcripts_cpgs"  "lm_transcripts_snps" 
-    ## [10] "lm_transcripts_tg"    "prop"                 "tg"                  
-    ## [13] "tg_snp"               "transcript_snps"      "transcripts"
+    ## [1] "cpg_snps"        "cpgs"            "tg"              "tg_snp"         
+    ## [5] "transcript_snps" "transcripts"
 
 ``` r
 str(tg) # structure of object tg
@@ -107,7 +104,7 @@ plot(tg, transcripts$abcg1)
 abline(lm(transcripts$abcg1 ~ tg))
 ```
 
-![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
+![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 1.  Are higher triglyceride levels associated with higher or lower *ABCG1* transcription levels?
 
@@ -180,7 +177,7 @@ Mendelian randomization requires genetic variants associated with your explanato
 boxplot(tg ~ tg_snp)
 ```
 
-![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
 
 1.  What would be the risk allele, i.e. the allele associated with higher triglyceride levels, if AA is 0 and BB is 2?
 

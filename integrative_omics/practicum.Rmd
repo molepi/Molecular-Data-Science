@@ -30,6 +30,10 @@ AND in the file name.
 
 ## Load data ##
 
+```{r, echo=FALSE, include=FALSE}
+rm(list=ls())
+```
+
 ```{r}
 load(url("https://raw.githubusercontent.com/molepi/FOS2017/master/integrative_omics/data.RData"))
 ```
