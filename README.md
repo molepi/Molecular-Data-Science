@@ -119,7 +119,7 @@ biological information and to form new hypotheses.
 | 10:15-12.30 | Practical: [Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-82 |
 | 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
 | **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
-| 13:30-14:30 | Lecture: Clustering analysis transcriptomic data                                                                         | Marcel Reinders           | J1-82 |
+| 13:30-14:30 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-82 |
 | 14:30-15:00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |       |
 | 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
 | 15:15-16:00 | Practical: Clustering analysis transcriptomic data                                                            | Marcel Reinders           | J1-82 |
