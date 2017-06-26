@@ -1,0 +1,527 @@
+
+---
+title: "FOS 2017 METABOLOMICS"
+author: "Erik van den Akker, Maarten van Iterson & Marian Beekman"
+date: "`r BiocStyle::doc_date()`"
+abstract: >   
+  Cardiovascular disease is one of the leading causes of death world-wide and its type and onset is strongly associated with age and gender. Interestingly, many of the known serum-based risc factors for cardiovascular disease display a similar dependency on age and gender. The [Nightingale health platform](https://nightingalehealth.com/services) is a NMR metabolomics platform targeting ~230 metabolite parameters and is optimized to measure serum-based risc factors for cardiovascular disease and diabetes. Its design is heavily biased towards lipid and fat parameters, but includes measurements targeting other branches of the metabolome as well, like the glucose metabolism or amino acid metabolism.   
+  During this practical you will investigate which of the Nightingale metabolites displays strong differences between sexes, using a cohort of Dutch middle-aged participants of the Leiden Longevity Study (LLS). Participants in this cohort are the children (and their partners) of the second cohort of participants you will have access to and which you will employ for investigating the consistency of observed gender associations across different ages.   
+  By the end of these practicals, you should have a basic understanding of data quality control procedures and should be able to identify metabolites that putatively underly the observed age and sex biases in cardiovascular risk using a metabolome wide association analysis (METABO-WAS).   
+output:
+  BiocStyle::html_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, echo = FALSE, results = 'hide', message=FALSE, warning=FALSE}
+suppressPackageStartupMessages({
+  library(limma)
+  library(ggplot2)
+  
+})
+BiocStyle::markdown()
+
+## Set switch for showing the answers of the practicals:
+ANSWER <- FALSE
+```
+
+# STARTUP   
+We have prepared data of the Leiden Longevity Study and ready-to-use R functions for analyses for the practicals. Before you start, make sure you:   
+1. Create a working folder, for example H:/FOS2017METABOLOMICS.   
+2. Download the data and R files from [https://github.com/molepi/FOS2017/tre/master/METABOLOMICSday](https://github.com/molepi/FOS2017/tree/master/METABOLOMICSday) to your working directory.   
+3. Set the working directory in R to your working directory using:
+```{r,eval=FALSE}
+setwd("H:/FOS2017METABOLOMICS")
+```
+
+Now load the prepared data and functions into your workspace by:   
+```{r,echo = FALSE, results = 'hide'}
+# Load my own data for debug purposes:
+load("/Users/erikvandenakker/Desktop/metabolomics_FOS_23062017.RData")
+source("/Users/erikvandenakker/Documents/MyDropBox/Dropbox/MyGit/BBMRImetabolomics/FOS2017_METABOLOMICS_functions.R")
+```
+
+```{r, eval=FALSE}
+load("metabolomics_FOS_23062017.RData")
+source("FOS2017_METABOLOMICS_functions.R")
+```
+
+Load the libraries required for the practicals:   
+```{r}
+  library(limma)
+  library(ggplot2)
+  library(pander)
+```
+**Note:** Startup messages have been surpressed in this vignette for a clear overview.   
+**Note:** The package 'pander' might not have been installed yet. If receiving an error run: *install.packages("pander")* and try again.   
+
+# DATA EXPLORATION   
+Have a look at the objects loaded to your workspace:   
+```{r}
+ls()
+```
+
+The **L**eiden **L**ongevity **S**tudy (LLS) consists of two cohorts, **LLS_SIBS** (elderly siblings) and **LLS_PARTOFFS** (their offspring and partners thereoff), for which Nigthingale metabolomics data has been generated. Explore the objects storing metabolomics data, **dat_partoffs** and **dat_sibs** and the objects storing the phenotypic data **phen_partoffs** and **phen_sibs** by using *dim* and looking at the first few entries, e.g:   
+```{r}
+dim(dat_partoffs)
+dat_partoffs[1:4,1:4]
+```
+Notice that the objects storing metabolomics data are matrices with numbers, and that the *columns* in each of the data matrices correspond to *samples* and the *rows* to *measurements*.   
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q1:** How many measurements are there in **dat_partoffs**? How is the first measurement called? And the first sample?   
+**Q2:** How many samples are there in **dat_sibs**?   
+</div>
+```{r,echo=ANSWER}
+## Q1:
+# Use 'dim' to show the dimensions of the data in partoffs:
+# > dim(dat_partoffs)
+## [1]  231 2313
+# The second figure indicates the number of columns, which corresponds to the number of samples measured: 2313.
+# Use '[ , ]' to subset a matrix:
+# > dat_partoffs[1:4,1:4]
+##       LLS_PARTOFFS-937 LLS_PARTOFFS-1831 LLS_PARTOFFS-935 LLS_PARTOFFS-716
+## acace          0.02724           0.04410          0.00362          0.02829
+## ace            0.02652           0.02117          0.02700          0.02716
+## ala            0.25490           0.28930          0.41290          0.35190
+## alb            0.08420           0.08649          0.09922          0.09055
+# The first row corresponds to the first measurement and the rownames hold the names of the meaurements: acace
+# The first columns corresponds to the first sample and the columnnames hold the names of the samples: LLS_PARTOFFS-937
+
+## Q2:
+# > dim(dat_sibs)
+## [1] 231 998
+# 998 samples
+```
+<br>
+Next to the metabolomics data, two data objects are given that hold phenotypic data: **sibs_partoffs** and **phen_sibs**. Again, explore these using  *dim* and looking at the first few entries, e.g:   
+```{r}
+dim(phen_partoffs)
+phen_partoffs[1:4,1:4]
+```
+
+Verify that the matrices containing the metabolomics measurements have the same ordering of samples as the matrices containing the phenotypic data, using:   
+```{r}
+all(rownames(phen_partoffs) == colnames(dat_partoffs))
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q3:** Verify this for **phen_sibs** too. What do the functions 'colnames', and 'rownames' do?   
+**HINT:** Rerun part of the code above, e.g: *rownames(phen_sibs)*   
+</div>
+```{r,echo=ANSWER}
+## Q3:
+# > all(rownames(phen_sibs) == colnames(dat_sibs))
+## TRUE
+# > rownames(phen_sibs)
+##   [1] "LLS_SIBS-761"  "LLS_SIBS-633"  "LLS_SIBS-617"  "LLS_SIBS-569" etc.
+# Takes the row names of matrix phen_sibs
+# > colnames(dat_sibs)
+##   [1] "LLS_SIBS-761"  "LLS_SIBS-633"  "LLS_SIBS-617"  "LLS_SIBS-569" etc.
+# Takes the column names of matrix phen_sibs; Notice how these correpond.
+```
+<br>
+
+## Phenotypes   
+You will have access to data of two cohorts within the Leiden Longevity Study, each with its own age and sex distribution. To explore these distributions, repeatedly use histograms:   
+```{r,fig.width=5,fig.height=10}
+# Open a figure with 4 x 1 pannels:
+par(mfrow=c(4,1))
+# Set range in years equal for all histograms:
+XLIM <- c(20,120)
+# Set range in counts of histogram equal for all histograms: 
+YLIM <- c(0,400)
+# Plot histograms on age:
+# Ages of females in partoffs:
+age_fpo <- phen_partoffs[which(phen_partoffs$sex==FALSE),"age"]
+# Draw a histogram:
+hist(age_fpo,xlim=XLIM,ylim=YLIM,col="pink",xlab="age [years]",main="Partners and Offspring",sub="FEMALES")
+# For males in partoffs:
+age_mpo <- phen_partoffs[which(phen_partoffs$sex==TRUE),"age"]
+hist(age_mpo,xlim=XLIM,ylim=YLIM,col="lightblue",xlab="age [years]",main="Partners and Offspring",sub="MALES")
+# For females in sibs:
+age_fs <- phen_sibs[which(phen_sibs$sex==FALSE),"age"]
+hist(age_fs,xlim=XLIM,ylim=YLIM,col="darkred",xlab="age [years]",main="Nonagenarian Siblings",sub="FEMALES")
+# For males in sibs:
+age_ms <- phen_sibs[which(phen_sibs$sex==TRUE),"age"] 
+hist(age_ms,xlim=XLIM,ylim=YLIM,col="darkblue",xlab="age [years]",main="Nonagenarian Siblings",sub="MALES")
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q4:** Viewing the four age distributions, what do you think what the mean age is of each of the four groups?   
+**Q5:** Verify this using the function *summary*, e.g.: *summary(age_fpo)*   
+</div>
+```{r,echo=ANSWER}
+## Q4:
+# LLS_PARTOFFS: 60
+# LLS_SIBS:     90
+## Q5:
+# > summary(age_fpo)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  30.00   54.00   58.00   58.16   63.00   76.00 
+# > summary(age_mpo)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  30.00   55.00   59.00   59.32   64.00   80.00 
+# > summary(age_fs)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  56.00   91.00   93.00   92.73   95.00  103.00 
+# > summary(age_ms)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  53.00   89.00   91.00   91.01   93.00  102.00 
+```
+<br>
+
+## Metabolomics   
+As previously stated, the Nightingale platform reports on different types of metabolites, but has a focus on lipid parameters. These lipid parameters measures are  highly intercorrelated. To vizualize the correlation structure between metabolites draw a heatmap of of pairwise correlations of all metabolites (see function cor, use “pairwise.complete.obs”).   
+```{r}
+cors <- cor(t(dat_partoffs), use="pairwise.complete.obs")
+heatmap(cors,col=colorRampPalette(c("red", "white", "blue"))(256), scale="none", labCol=NA, cexRow=0.15)
+```
+
+On the rows and columns of this heatmap are metabolites. Strong positive correlations ("blue") are observed along the diagonal (including correlations with itself), whereas strong negative correlations ("red") are only observed off diagonal.   
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q6:** Where do you think are the lipids located in the heatmap?   
+</div>
+```{r,echo=ANSWER}
+## Q6: 
+# The big blue square in the upper right corner. 
+```
+<br>
+
+# QUALITY CONTROL   
+## Discontinued metabolites   
+Nightingale discontinued reporting on 5 of the metabolites due to high technical variation. Make sure these are not these are removed from the data by typing:   
+```{r}
+IND <- which(rownames(dat_partoffs) %in% c("dag","dagtg","falen","cla","cla_fa"))
+dat_partoffs <- dat_partoffs[-IND,]
+dat_sibs <- dat_sibs[-IND,]
+```
+
+## QC Flags
+The final columns in the phen matrices are actually not phenotypes, but contain quality control flags provided by Nightingale. Print an overview of these flags using print.flag.report.   
+```{r}
+print.flag.report(phen_partoffs)
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q7:** Some samples in partoffs have a warning of high ethanol contents. Where does this ethanol come from?   
+**Q8:** In **phen_sibs** next to cases with high ethanol flags, some other types of warnings for out of range measurements are given. What are they? To what could they point?   
+</div>
+```{r,echo=ANSWER}
+## Q7:
+# Residual ethanol might be in the sample due to the employed isolation protocol.
+## Q8:
+# Use 'print.flag.report':
+# > print.flag.report(phen_sibs)
+## --------------------------------------
+##            QCflag              counts 
+## ----------------------------- --------
+##   abnormal_macromolecule_a       0    
+##          low_glucose             0    
+## low_glutamine_high_glutamate     0    
+##      low_protein_content         3    
+##         high_citrate             1    
+##         high_ethanol             14   
+##         high_lactate             0    
+##         high_pyruvate            0    
+##         serum_sample             0    
+## unidentified_small_molecule_a    0    
+## unidentified_small_molecule_b    0    
+##  unknown_acetylated_compound     0    
+##       isopropyl_alcohol          0    
+##        polysaccharides           0    
+##       aminocaproic_acid          0    
+##             fast                 0    
+##            ANYFLAG               18   
+##            NOFLAG               980   
+## --------------------------------------
+
+# low_protein_content flagged samples could indicate errors in the employed isolation protocol. [Marian?]
+# high_citrate flagged samples could indicate that blood samples were not immediately processed after withdrawal. [Marian?]
+```
+<br>
+
+Lets exclude the samples having a "high_ethanol" QCflag in dat_partoffs. First find the rownumbers of samples having a QCflag:   
+```{r}
+IND <- which(phen_partoffs[,"high_ethanol"]==1)
+IND
+```
+
+Then remove these samples from **dat_partoffs** and **phen_partoffs**:   
+```{r}
+dat_partoffs <- dat_partoffs[,-IND]
+phen_partoffs <- phen_partoffs[-IND,]
+```
+
+Check whether the two files still contain the same samples in the same ordering:   
+```{r}
+all(rownames(phen_partoffs) == colnames(dat_partoffs))
+```
+
+Rerun the QC overview:   
+```{r}
+print.flag.report(phen_partoffs)
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q9:** Perform this QC step for **dat_sibs** too and apply the exclusion of samples to both the data, -**dat_sibs**-, and phenotypes, -**phen_sibs**-.   
+**HINT:** You can filter for multiple QC flags by repeating the procedure you just performed.   
+</div>
+```{r,echo=ANSWER}
+## Q9:
+# > IND <- which(phen_sibs[,"high_ethanol"]==1)
+# > dat_sibs <- dat_sibs[,-IND]
+# > phen_sibs <- phen_sibs[-IND,]
+# > IND <- which(phen_sibs[,"low_protein_content"]==1)
+# > dat_sibs <- dat_sibs[,-IND]
+# > phen_sibs <- phen_sibs[-IND,]
+# > IND <- which(phen_sibs[,"high_citrate"]==1)
+# > dat_sibs <- dat_sibs[,-IND]
+# > phen_sibs <- phen_sibs[-IND,]
+```
+<br>
+```{r,results='hide',echo=FALSE}
+## APPLY THIS FILTER:
+IND <- which(phen_sibs[,"high_ethanol"]==1|phen_sibs[,"low_protein_content"]==1|phen_sibs[,"high_citrate"]==1)
+dat_sibs <- dat_sibs[,-IND]
+phen_sibs <- phen_sibs[-IND,]
+```
+
+## Missingness & zeros   
+Another aspect of data quality control is to look into missing or zero measurements. In case a measurement could not be succesfully obtained, this is indicated with a missing value (in our case NA). Failing measurements may have many causes, and this missingness may become problematic if it somehow relates to the outcome of your study.   
+Likewise, we are especially careful with measurements with a zero result. Again, there may be many reasons why a measurement for a specific sample equals 0, for instance when the measured metabolite abundances are below the detection treshhold of the machine. Often the occurence of missing or zero measurements are not randomly distributed in a dataset. To get a feeling whether the missing and zero values are linked to particular samples or measurements, we plot a missingness heatmap:   
+```{r,fig.width=20,fig.height=8}
+plot.na.heatmap(dat_partoffs)
+```
+The colors in the heatmap indicate the status of a particular measurement (rows) for a particular sample (columns). The barplots on the sides indicate the percentage of missing + zero measurements per metabolite (right pannel) or per sample (top pannel). Note that a single sample almost completely failed, as indicated by the grey vertical bar. Also note that apparently some measurements are apparently more prone to fail than others and that missing and zero values co-occur in these particular measurements.   
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q10:** Draw the missingness heatmap for **dat_sibs**. Is the degree of missing and zero measurements comparable between the studies? What is different between the studies in terms of number of failed samples and problematic measurements?   
+**HINT:** Also have a a look at the scale of the axis!   
+</div>
+```{r,echo=ANSWER,fig.width=20,fig.height=8}
+## Q10:
+plot.na.heatmap(dat_sibs)
+# Far less measurements in sibs compared to partoffs have a high missingess or zero rate. Whereas a totally failed sample was observed in partoffs and moreover about 10% of the samples had more than 10% failed measurements, only few problematic samples were observed in sibs.
+```
+<br>
+
+As a first step we exclude problematic samples. To get an overview of the missingness in samples, we use print.miss.report:   
+```{r}
+print.miss.report(dat_partoffs,on_sample=TRUE,type="missingOrZero")
+```
+
+The first column describes the number of measurements missing for a sample; the second puts this as a percentage of all measurements; the third column states the number of samples having this missing number of measurements; the fourth again puts this as a percentage of all samples. Hence, viewing this output, we note that 1515 samples had all measurements complete (first row), whereas only a single sample almost completely failed (final row).   
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q11:** How many samples had at most two failed measurements?   
+</div>
+```{r,echo=ANSWER}
+## Q11:
+# 1515 + 230 + 1 = 1746
+```
+<br>
+
+Thresholds for a maximum number of missing values are always arbitrary and here we will stick to keeping samples having 5% or less zero or missing values. This corresponds to a maximum of 5 zero or missing values per sample.   
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q12:** What percentage of samples had at most 5 zero or missing values per sample?   
+</div>
+```{r,echo=ANSWER}
+## Q12:
+# 66.5 + 10.1 + 0.04 + 0.04 + 0.04 = 76.7
+```
+<br>
+
+Excluding samples on this criterium can be done using:   
+```{r}
+## Getting the counts per sample:
+counts <- count.miss(dat_partoffs,on_sample=TRUE)
+## Finding the row numbers of samples to exclude:
+IND <- which(counts$miss_or_zero>5)
+## Subset data:
+dat_partoffs <- dat_partoffs[,-IND]
+phen_partoffs <- phen_partoffs[-IND,]
+```
+
+Lets have a look at the missingness heatmap again:   
+```{r,fig.width=20,fig.height=8}
+plot.na.heatmap(dat_partoffs)
+```
+
+Stringent exclusion of samples off course also alleviates some of the problems with problematic measurements. However, it appears that there is still a measurement left with a high number of missing or zero values. Again use print.miss.report for a detailed overview (with 'on_sample' set to FALSE):
+```{r}
+print.miss.report(dat_partoffs,on_sample=FALSE,type="missingOrZero")
+```
+
+Analogous to the previous report characterizing **samples** on the number of **missing measurements**, this overview now describes **measurements** in terms of numbers of **failed samples**. Hence, the first column describes the number of unsuccesfully measured samples ranging from 0 to 221; the second puts this as a percentage of all typed samples; the third column states the number of measurements having this missing number of failed samples; the fourth again puts this as a percentage of all measurements. Viewing this output, we note that 217 measurements were succesfully measured in all remaining samples (first row), whereas only one measurment failed in more than 12% of the samples (final row).   
+
+Thresholds for the maximum number of failed samples for a measurement is arbitrarely set to 10%, corresponding to a maximum of 6 failed samples:   
+```{r}
+## Getting the counts per measurement:
+counts <- count.miss(dat_partoffs,on_sample=FALSE)
+## Finding the column numbers of measurements to exclude:
+IND_meas <- which(counts$miss_or_zero>6)
+## Subset data:
+dat_partoffs <- dat_partoffs[-IND_meas,]
+```
+
+Since we want to compare results within **partoffs** and **sibs**, we discard the same measurements in **sibs**:   
+```{r}
+## Subset data:
+dat_sibs <- dat_sibs[-IND_meas,]
+```
+
+To check whether there are problematic samples or measurements left in **dat_sibs** we run once more:   
+```{r,fig.width=20,fig.height=8}
+plot.na.heatmap(dat_sibs)
+```
+
+And observe that no other measurement exceeds the 10% treshhold and only a few samples exceed 5% threshold. To remove these samples too:   
+```{r}
+print.miss.report(dat_sibs,on_sample=TRUE,type="missingOrZero")
+```
+
+```{r}
+## Getting the counts per sample:
+counts <- count.miss(dat_sibs,on_sample=TRUE)
+## Finding the row numbers of samples to exclude:
+IND <- which(counts$miss_or_zero>2)
+## Subset data:
+dat_sibs <- dat_sibs[,-IND]
+phen_sibs <- phen_sibs[-IND,]
+```
+
+# DATA TRANSFORMATION   
+## Normality & standardization   
+In order to investigate whether metabolites may serve as a biomarker for partcular traits, we model the metabolite as the dependent variable and the trait as the independent variable, ergo: metabolite~age+sex+trait   
+In this model, we require the metabolites to be normally distributed. However, some of the measured metabolites have a skewed distribution instead. Have a look at the distributions of the first 4 metabolites, using:   
+```{r,fig.width=8,fig.heigth=12}
+par(mfrow=c(2,2))
+for(i in 1:4){
+  hist(dat_partoffs[i,],main=rownames(dat_partoffs)[i],50,xlab="abundance",las=2)
+}
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q13:** Which of the four metabolites has a skewed distribution, and which ones not?   
+</div>
+```{r,echo=ANSWER}
+## Q13:
+# acace and ace are skwewed.
+```
+<br>
+
+Moreover, metabolites each have their own mean and variance. To be able to compare the effects of metabolites on traits, we usually standardize the distributions of metabolites, so that each metabolite is distributed with a comparable mean and variance. We can achieve normality, -'unskewing' the distribution-, and standardization, -metabolites having the same mean and variance-, in various ways and one method is the **R**ank **I**nverse **N**ormal (RIN) transformation. When applying this to the four metabolites above, we obtain:   
+```{r,fig.width=8,fig.heigth=12}
+par(mfrow=c(2,2))
+for(i in 1:4){
+  hist(RIN(dat_partoffs[i,]),main=rownames(dat_partoffs)[i],50,xlab="abundance",las=2)
+}
+```
+
+Apply RIN transformation on **dat_partoffs** and **dat_sibs** using:   
+```{r}
+new_dat_partoffs <- RIN(dat_partoffs)
+new_dat_sibs <- RIN(dat_sibs)
+```
+
+# ANALYSIS   
+Data is now ready for analysis! In order to identify metabolites that have a different serum level in males versus females, we will subject all metabolite measurements within a cohort to a **M**etabolome **W**ide **A**ssociation **S**tudy (Metabo-WAS) on gender. Performing the Metabo-WAS on sex in both cohorts independently, will allow us to identify metabolites whos gender differences change with age.   
+
+## Metabo-WAS   
+ In the following analysis, we will associate each of the metabolite levels with sex, while adjusting for age:  
+```{r}
+res_partoffs <- do.metabowas(phen=phen_partoffs,dat=new_dat_partoffs,test_variable="sex",covariates=c("age"))
+head(res_partoffs)
+```
+
+To find the number of significantly associated metabolites after correction for multiple testing (FDR), type:   
+```{r}
+length(which(res_partoffs$pval.adj<=0.05))
+```
+
+Then repeat the procedure for **sibs**:
+```{r}
+res_sibs <- do.metabowas(phen=phen_sibs,dat=new_dat_sibs,test_variable="sex",covariates=c("age"))
+head(res_sibs)
+```
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q14:** How many metabolite parameters are significantly associated with gender in **sibs**?   
+</div>
+```{r,echo=ANSWER}
+## Q14:
+# > length(which(res_sibs$pval.adj<=0.05))
+## 185
+```
+<br>
+
+## beta's vs. beta's   
+To make a systematic comparisson between the gender associations in **partoffs** and **sibs**, we draw a scatterplot of observed effects in the middle-aged cohort versus the observed effects in the elderly cohort using:   
+
+```{r,fig.width=10,fig.height=10}
+plot.beta_beta(res1=res_partoffs,res2=res_sibs,main="Consistency in Sex Differences",
+               xlab="Partners and Offspring",ylab="Nonagenarian Siblings")
+```
+
+Each of the dots represents a metabolite parameter. We have added a trendline with confidence intervals to illustrate the general trend. The top right and bottom left quadrants of the plot show the metabolites with consistent gender effects in the two groups, whereas the top left and bottom right show metabolites with opposite effects. The colors and shapes indicate the significance (after Bonferroni adjustment) in both cohorts. Purple squares indicate a significant effect in both cohorts; circles, -blue or red-, indicate significant effects in only one of the cohorts and solid dots indicates no significant effects in both cohorts. Notice the big group of purple squares in the bottom left quadrant. These indicate consistent significantly lowered levels within both age groups. Notice also the big group of purple squares in the bottom right corner. These indicate metabolites are significantly associated in the opposite direction across both age groups.   
+
+<br>
+<div style="background-color:#FADBD8;padding:10px;border:2px dashed black">
+**EXCERCISES**   
+**Q15:** Browse your Metabo-WAS to find examples for which the sex-effect is significantly opposite between cohorts.   
+</div>
+```{r,echo=ANSWER}
+## Q15: 
+## BASIC SOLUTION:
+# Type:
+# > res_partoffs
+# And compare with:
+# > res_sibs
+## ADVANCED SOLUTION:
+# To do this systematically, you need the command 'merge'
+res <- merge(res_partoffs,res_sibs,by.x=0,by.y=0)
+# Then filter:
+# First group:
+# > res[which(res$pval.adj.x<=0.05 & res$pval.adj.y<=0.05 & sign(res$tstat.x)!=sign(res$tstat.y) & res$tstat.x>0),"Row.names"]
+##  [1] "l_hdl_pl_percentage"  "l_vldl_c"             "l_vldl_ce"            "l_vldl_fc"            "l_vldl_l"             "l_vldl_p"            
+## [7] "l_vldl_pl"            "l_vldl_tg"            "m_hdl_tg_percentage"  "m_vldl_c"             "m_vldl_ce"            "m_vldl_fc"           
+## [13] "m_vldl_l"             "m_vldl_p"             "m_vldl_pl"            "mufa_fa"              "s_hdl_tg"             "s_vldl_c"            
+## [19] "s_vldl_fc"            "s_vldl_l"             "s_vldl_p"             "s_vldl_pl"            "serum_tg"             "vldl_c"              
+## [25] "xl_hdl_fc_percentage" "xl_vldl_c"            "xl_vldl_ce"           "xl_vldl_fc"           "xl_vldl_l"            "xl_vldl_p"           
+## [31] "xl_vldl_pl"           "xl_vldl_tg"           "xs_vldl_tg"           "xxl_vldl_c"           "xxl_vldl_ce"          "xxl_vldl_fc"         
+## [37] "xxl_vldl_l"           "xxl_vldl_p"           "xxl_vldl_pl"          "xxl_vldl_tg" 
+# Second group:
+# > res[which(res$pval.adj.x<=0.05 & res$pval.adj.y<=0.05 & sign(res$tstat.x)!=sign(res$tstat.y) & res$tstat.x<0),"Row.names"]
+## [1] "idl_pl_percentage"     "l_hdl_c_percentage"    "l_hdl_ce_percentage"   "l_ldl_fc_percentage"   "ldl_d"                 "xs_vldl_c_percentage" 
+## [7] "xs_vldl_ce_percentage"
+```
+<br>
+
+# SESSIONINFO   
+```{r session}
+sessionInfo()
+```
