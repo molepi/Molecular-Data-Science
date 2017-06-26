@@ -8,9 +8,12 @@ abstract: >
   During this practical you will investigate which of the Nightingale metabolites displays strong differences between sexes, using a cohort of Dutch middle-aged participants of the Leiden Longevity Study (LLS). Participants in this cohort are the children (and their partners) of the second cohort of participants you will have access to and which you will employ for investigating the consistency of observed gender associations across different ages.   
   By the end of these practicals, you should have a basic understanding of data quality control procedures and should be able to identify metabolites that putatively underly the observed age and sex biases in cardiovascular risk using a metabolome wide association analysis (METABO-WAS).   
 output:
-  BiocStyle::html_document:
+  html_document:
     toc: true
-    number_sections: true
+  pdf_document:
+    toc: true
+  github_document:
+    toc: true
 ---
 
 ```{r setup, echo = FALSE, results = 'hide', message=FALSE, warning=FALSE}
@@ -19,34 +22,38 @@ suppressPackageStartupMessages({
   library(ggplot2)
   
 })
-BiocStyle::markdown()
+##BiocStyle::markdown()
 
 ## Set switch for showing the answers of the practicals:
 ANSWER <- FALSE
 ```
 
-# STARTUP   
-We have prepared data of the Leiden Longevity Study and ready-to-use R functions for analyses for the practicals. Before you start, make sure you:   
-1. Create a working folder, for example H:/FOS2017METABOLOMICS.   
-2. Download the data and R files from [https://github.com/molepi/FOS2017/tre/master/METABOLOMICSday](https://github.com/molepi/FOS2017/tree/master/METABOLOMICSday) to your working directory.   
-3. Set the working directory in R to your working directory using:
-```{r,eval=FALSE}
-setwd("H:/FOS2017METABOLOMICS")
+<!-- # STARTUP -->
+<!-- We have prepared data of the Leiden Longevity Study and ready-to-use R functions for analyses for the practicals. Before you start, make sure you:    -->
+<!-- 1. Create a working folder, for example H:/FOS2017METABOLOMICS.    -->
+<!-- 2. Download the data and R files from [https://github.com/molepi/FOS2017/tre/master/METABOLOMICSday](https://github.com/molepi/FOS2017/tree/master/METABOLOMICSday) to your working directory. -->
+<!-- 3. Set the working directory in R to your working directory using: -->
+<!-- ```{r,eval=FALSE} -->
+<!-- setwd("H:/FOS2017METABOLOMICS") -->
+<!-- ``` -->
+
+<!-- Now load the prepared data and functions into your workspace by: -->
+<!-- ```{r,echo = FALSE, results = 'hide'} -->
+<!-- # Load my own data for debug purposes: -->
+<!-- load("/Users/erikvandenakker/Desktop/metabolomics_FOS_23062017.RData") -->
+<!-- source("/Users/erikvandenakker/Documents/MyDropBox/Dropbox/MyGit/BBMRImetabolomics/FOS2017_METABOLOMICS_functions.R") -->
+<!-- ``` -->
+
+
+We have prepared data of the Leiden Longevity Study and ready-to-use R
+functions for analyses for the practicals. Load them like this:
+
+```{r}
+load(url("https://raw.githubusercontent.com/molepi/FOS2017/master/Metabolomics_practical/metabolomics_FOS_23062017.RData"))
+source(url("https://raw.githubusercontent.com/molepi/FOS2017/master/Metabolomics_practical/FOS2017_METABOLOMICS_functions.R"))
 ```
 
-Now load the prepared data and functions into your workspace by:   
-```{r,echo = FALSE, results = 'hide'}
-# Load my own data for debug purposes:
-load("/Users/erikvandenakker/Desktop/metabolomics_FOS_23062017.RData")
-source("/Users/erikvandenakker/Documents/MyDropBox/Dropbox/MyGit/BBMRImetabolomics/FOS2017_METABOLOMICS_functions.R")
-```
-
-```{r, eval=FALSE}
-load("metabolomics_FOS_23062017.RData")
-source("FOS2017_METABOLOMICS_functions.R")
-```
-
-Load the libraries required for the practicals:   
+Load the libraries required for the practicals:
 ```{r}
   library(limma)
   library(ggplot2)
