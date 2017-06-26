@@ -129,17 +129,16 @@ biological information and to form new hypotheses.
 
 | When        | What: Metabolomics    | Who | Where |
 |-------------|-------------------------|----------------|-------|
-| 9.00-10.00  | Lecture:         | Marian Beekman | J1-82 |
+| 9.00-10.00  | Lecture: Introduction to metabolomics  | Marian Beekman | J1-82 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
 | 10.15-12.30 | Practical: [Metabolomics practical](Metabolomics_practical/FOS2017_06062017.md)       | Marian Beekman and Maarten van Iterson| J1-82 |
-| 12.30-13.30 | **Lunch**                   |                |       |
-| **When**        | **What: Ageing biomarkers**  | **Who**            | **Where**  |
-| 13.30-14.30 | Lecture:                | Marian Beekman | J1-82 |
-| 14.30-15.30 | Practical:              | Marian Beekman | J1-82 |
-| 15:30-15.45 | **Tea Break**               |                |       |
-| 15.45-17.00 | Practical:              | Marian Beekman | J1-82 |
-
-
+| 12.30-13.30 | **Lunch**      
+| When        | What Ageing biomarkers; clocks of chronological and biological age | Who    |  Where|
+|-------------|----------------------------------------------------------|----------------|-------|
+| 13.30-14.00 | Lecture: Metabolomics as biomarkers | Eline Slagboom | J1-82 |
+| 14.00-15.30 | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality. | Self | J1-82 |
+| 15:30-15:45 | Tea Break |  | J1-82 |
+| 15:45-17:00 | Paper discussion: Marioni et al. (2016) | Eline Slagboom | J1-82 |                                                                                                     
 # Tuesday June 27 (Location J1-82/building 1, LUMC) #
 
 | When        | What: Next generation sequencing                                   | Who               | Where |
