@@ -151,7 +151,7 @@ biological information and to form new hypotheses.
 | 13.00-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
 | 15.00-15.15 | **Tea Break**                                                         |                   |       |
 | 15.15-17.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
-
+README.md
 # Wednesday June 28 (Location J1-82/building 1, LUMC) #
 
 | When        | What: Next generation RNA sequencing                                                      | Who                  | Where |
@@ -166,11 +166,11 @@ biological information and to form new hypotheses.
 
 # Thursday June 29 (Location J1-82/building 1, LUMC) #
 
-| When        | What: Methylome (& transcriptome) clocks of chronological and biological age | Who             | Where |
+| When        | What: post-GWAs functional follow up | Who             | Where |
 |-------------|-----------------------------------------------------------------------------|-----------------|-------|
-| 9.00 -10.30 | Self study                                                                  | Eline Slagboom  | J1-82 |
+| 9.00 -10.30 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt | J1-82 |
 | 10.30-10.45 | **Coffee break**                                                                |                 |       |
-| 10:45-12:00 | Paper discussion:                                                           | Eline Slagboom  | J1-82 |
+| 10.45-12.00 | Paper discussion: Freedman, M.L. et al.(2011) | Ingrid Meulenbelt | J1-82 |
 | 12.00-13.00 | **Lunch**                                                                       |                 |       |
 | 13.00-14.00 | Quadratic models in age associated profiles                                 | Vered Raz       | J1-82 |
 | 14.00-16.00 | Practical: quadratic models in age associated profiles                       | Vered Raz       | J1-82 |
@@ -184,9 +184,9 @@ biological information and to form new hypotheses.
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
 | 10:45-12:00 | Practical: [Reproducibility research practical](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
-| 13:30-15:00 | Self-study:                                   | Vered Raz                              | J1-82 |
+| 13:30-15:00 | Self-study: Self-study: Kim et al. (2014) Genome‐wide profiling of the microRNA-mRNA regulatory network in skeletal muscle with aging. AGING: 6(7) 524-544                                  | Vered Raz                              | J1-82 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
-| 15:15-17:00 | Paper discussion                              | Vered Raz                              | J1-82 |
+| 15:15-17:00 | Paper discussion  Kim et al. (2014)    | Vered Raz                              | J1-82 |
 
 
 ## PART 2. Applying acquired knowledge and skill to ageing. ##
