@@ -77,16 +77,10 @@ body {
 <h1 id="data-exploration">DATA EXPLORATION</h1>
 <p>Have a look at the objects loaded to your workspace:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()</code></pre></div>
-<pre><code>##  [1] &quot;age_fpo&quot;           &quot;age_fs&quot;            &quot;age_mpo&quot;          
-##  [4] &quot;age_ms&quot;            &quot;ANSWER&quot;            &quot;cors&quot;             
-##  [7] &quot;count.miss&quot;        &quot;counts&quot;            &quot;dat_partoffs&quot;     
-## [10] &quot;dat_sibs&quot;          &quot;do.metabowas&quot;      &quot;i&quot;                
-## [13] &quot;IND&quot;               &quot;IND_meas&quot;          &quot;new_dat_partoffs&quot; 
-## [16] &quot;new_dat_sibs&quot;      &quot;phen_partoffs&quot;     &quot;phen_sibs&quot;        
-## [19] &quot;plot.beta_beta&quot;    &quot;plot.na.heatmap&quot;   &quot;print.flag.report&quot;
-## [22] &quot;print.miss.report&quot; &quot;res&quot;               &quot;res_partoffs&quot;     
-## [25] &quot;res_sibs&quot;          &quot;RIN&quot;               &quot;XLIM&quot;             
-## [28] &quot;YLIM&quot;</code></pre>
+<pre><code>##  [1] &quot;ANSWER&quot;            &quot;count.miss&quot;        &quot;dat_partoffs&quot;     
+##  [4] &quot;dat_sibs&quot;          &quot;do.metabowas&quot;      &quot;phen_partoffs&quot;    
+##  [7] &quot;phen_sibs&quot;         &quot;plot.beta_beta&quot;    &quot;plot.na.heatmap&quot;  
+## [10] &quot;print.flag.report&quot; &quot;print.miss.report&quot; &quot;RIN&quot;</code></pre>
 <p>The <strong>L</strong>eiden <strong>L</strong>ongevity <strong>S</strong>tudy (LLS) consists of two cohorts, <strong>LLS_SIBS</strong> (elderly siblings) and <strong>LLS_PARTOFFS</strong> (their offspring and partners thereoff), for which Nigthingale metabolomics data has been generated. Explore the objects storing metabolomics data, <strong>dat_partoffs</strong> and <strong>dat_sibs</strong> and the objects storing the phenotypic data <strong>phen_partoffs</strong> and <strong>phen_sibs</strong> by using <em>dim</em> and looking at the first few entries, e.g:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(dat_partoffs)</code></pre></div>
 <pre><code>## [1]  231 2313</code></pre>

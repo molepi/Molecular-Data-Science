@@ -19,10 +19,11 @@ output:
 ```{r setup, echo = FALSE, results = 'hide', message=FALSE, warning=FALSE}
 suppressPackageStartupMessages({
   library(limma)
-  library(ggplot2)
-  
+  library(ggplot2)  
 })
 ##BiocStyle::markdown()
+
+rm(list=ls())
 
 ## Set switch for showing the answers of the practicals:
 ANSWER <- FALSE
