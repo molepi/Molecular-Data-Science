@@ -127,18 +127,18 @@ biological information and to form new hypotheses.
 
 # Monday June 26 (Location J1-82/building 1, LUMC) #
 
-| When        | What: Metabolomics    | Who | Where |
+| When        | What: Metabolomics      | Who            | Where |
 |-------------|-------------------------|----------------|-------|
 | 9.00-10.00  | Lecture: Introduction to metabolomics  | Marian Beekman | J1-82 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
 | 10.15-12.30 | Practical: [Metabolomics practical](Metabolomics_practical/FOS2017_06062017.md)       | Marian Beekman and Maarten van Iterson| J1-82 |
-| 12.30-13.30 | **Lunch**      
-| When        | What Ageing biomarkers; clocks of chronological and biological age | Who    |  Where|
-|-------------|----------------------------------------------------------|----------------|-------|
-| 13.30-14.00 | Lecture: Metabolomics as biomarkers | Eline Slagboom | J1-82 |
+| 12.30-13.30 | **Lunch**
+| **When**    | **What: Ageing biomarkers; clocks of chronological and biological age** | **Who**  | **Where** |
+| 13.30-14.00 | Lecture: Metabolomics as biomarkers                      | Eline Slagboom | J1-82 |
 | 14.00-15.30 | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality. | Self | J1-82 |
-| 15:30-15:45 | Tea Break |  | J1-82 |
-| 15:45-17:00 | Paper discussion: Marioni et al. (2016) | Eline Slagboom | J1-82 |                                                                                                     
+| 15:30-15:45 | **Tea Break**                           |      | J1-82 |
+| 15:45-17:00 | Paper discussion: Marioni et al. (2016) | Eline Slagboom | J1-82 |                                                                                           
+
 # Tuesday June 27 (Location J1-82/building 1, LUMC) #
 
 | When        | What: Next generation sequencing                                   | Who               | Where |
@@ -154,16 +154,15 @@ biological information and to form new hypotheses.
 
 # Wednesday June 28 (Location J1-82/building 1, LUMC) #
 
-| When        | What: Next generation RNA sequencing                                                                                                            | Who                  | Where |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9:00-10.15  | Lecture: [Introduction to RNA-sequencing data analysis](RNAseq_lecture/FOS2017_vanIterson_AnalysisOfRNAseqData.pdf)                           | Maarten van Iterson  | J1-82 |
-| 10:00-10:15 | **Coffee Break**                                                                                                                                   |                      |       |
-| 10:15-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                                                                  | Maarten van Iterson  | J1-82 |
-| 12:00-13:00 | **Lunch**                                                                                                                                          |                      |       |
-| 13:00-15:00 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt    | J1-82 |
-| 15:15-15:45 | Lecture: Functional genomic approaches to Osteoarthritis                                                                                       | Ingrid Meulenbelt    | J1-82 |
-| 15.45-17.00 | Paper (Freedman et al. 2011) and lecture discussion                                                                                            | Ingrid Meulenbelt    | J1-82 |
-
+| When        | What: Next generation RNA sequencing                                                      | Who                  | Where |
+|-------------|------------------------------------------------------------------------------------------------------------------|----------------------|-------|
+| 9:00-10:00  | Lecture: Functional genomic approaches to Osteoarthritis                           | Ingrid Meulenbelt    | J1-82 |
+| 10:00-10:15 | **Coffee Break**                                                                               |                      |       |
+| 10:15-11.00 | Lecture: [Introduction to RNA-sequencing data analysis](RNAseq_lecture/FOS2017_vanIterson_AnalysisOfRNAseqData.pdf)    | Maarten van Iterson  | J1-82 |
+| 11:00-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                           | Maarten van Iterson  | J1-82 |
+| 12:00-13:00 | **Lunch**                                                                                                 |                      |       |
+| 13:00-15.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                           | Maarten van Iterson  | J1-82 |
+| 15.00-15.15 | **Tea Break**                                                         |                   |       |
 
 # Thursday June 29 (Location J1-82/building 1, LUMC) #
 
