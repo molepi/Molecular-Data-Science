@@ -7,5 +7,5 @@ file <- url("https://raw.githubusercontent.com/molepi/FOS2017/master/QuadraticMo
 data <- read.table(file, sep="\t", header=TRUE)
 
 file <- url("https://raw.githubusercontent.com/molepi/FOS2017/master/QuadraticModelsAge/FOS_brain_training.txt")
-data <- read.table(file, sep="\t", header=TRUE)
+data <- read.table(file, sep="\t", header=TRUE, check.names=FALSE)
 ```
