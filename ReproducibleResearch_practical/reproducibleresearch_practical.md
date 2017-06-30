@@ -30,7 +30,7 @@ dds
 
 *describe results...*
 
-Filtering un- or lowly expressed genes using counts per million is advocated by the developers of [edgeR](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf) another package for the differential expression analysis (see [section 2.6 Filtering](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)).
+Filtering un- or lowly expressed genes using counts per million is advocated by the developers of [edgeR](http://bioconductor.org/packages/edgeR/) another package for the differential expression analysis (see [section 2.6 Filtering](https://bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)).
 
 ``` r
 cpm <- 1e6*counts(dds)/colSums(counts(dds))
