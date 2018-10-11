@@ -1,37 +1,38 @@
-# Focus of the course: *Molecular Epidemiology in Ageing research* #
+# Molecular Data Science: from disease mechanisms to personalized medicine
+## Focus of the course: *Molecular Epidemiology in Ageing research* #
 
-The student will be taken into a natural sequence of issues that are
-met in different disciplines of genetic/genomic research. Introduction
-into genomics of complex disease: which research questions are of
-importance in different disease fields, what common designs are
-applied in genetic and gene expression studies, how and why are large
-datasets of genetic, gene expression and phenotypic data collected,
-what do the datatypes look like, how are such datasets managed, which
-bioinformatic tools are used for pattern recognition in the data, to
-match results with existing biological information, to form new
-hypotheses
+Biomedical research increasingly involves the generation and analysis of very large data sets whether it is whole-genome DNA sequencing, gene expression or magnetic resonance imaging data. In particular, large-scale data will be the cornerstone of personalized medicine. This course is aimed at biomedical students who not only want to be responsible for the generation of large-scale data in their future projects, but also want to be able to analyse and interpret their own data.
 
-Literature and documents for study assignments will be handed out
-during the course.
+Literature and documents for study assignments will be handed out during the course.
+
 
 
 #### Coordinators #### 
 
-Ingrid Meulenbelt, Molecular Epidemiology; 071-526 9734, i.meulenbelt@lumc.nl 
-
 Bas Heijmans, Molecular Epidemiology; 071-526 69785, B.T.Heijmans@lumc.nl 
+Ingrid Meulenbelt, Molecular Epidemiology; 071-526 9734, i.meulenbelt@lumc.nl 
 
 #### Location ####
 
-Leiden University Medical Center, Albinusdreef 2, 2333 ZA Leiden: room
-J1-82 at the main building. For the practicals, computers in J1-82
-will be used.
+Leiden University Medical Center, Albinusdreef 2, 2333 ZA Leiden: room J1-84 at the main building. 
+For the practicals, computers in J1-84 will be used.
 
 #### Storing valuables ####
 
 Store valuables, especially during breaks, in one of
 the lockers available for library users, located on the left of the
 library entrance.
+
+### Assessment plan ###
+
+•	Handing in assignments (Pass/Fail, individually assessed).
+•	Contribute to interim evaluation of student participation and development during workgroups (0%).
+•	Fill out project proposal form as preparation for reflective assignment (0%).
+•	Presentation project proposal (background, hypothesis, pilot data, objectives, study design, workplan, expected outcomes; 45%, assessed in duos).
+•	Active and critical participation during discussion after project presentations of peers (15%, individually assessed).
+•	Reflective assignment that shows mastering key aspects of development of research proposal in molecular data science and addressing points raised during peer review (40%, individually assessed).
+
+Overall the evaluation will be a score between 0-10 composed of a weighted average of the different modules.
 
 #### Evaluation ####
 
@@ -59,15 +60,15 @@ datasets of genetic, gene expression and phenotypic data are analysed
 for pattern recognition in the data and to match results with existing
 biological information and to form new hypotheses.
 
-
-# Monday June 19 (Location J1-82/building 1, LUMC) #
+## WEEK 1
+# Monday October 22 (Location J1-84/building 1, LUMC) #
 
 | When        | What: Introduction to Molecular Epidemiology & R                        | Who                              | Where |
 |-------------|------------------------------------------------------------------------|----------------------------------|-------|
-| 9.00-9.45   | Lecture: Introduction to FOS course                                    | Ingrid Meulenbelt                | J1-82 |
-| 09.45-10.15 | Coffee break + questions                                               |                                  |       |
-| 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-82 |
-| 11.15-11.45 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-82 |
+| 9.00-10.00  | Lecture: Introduction to FOS course                                    | Bas Heijmans                     | J1-84 |
+| 10.00-10.15 | Coffee break + questions                                               |                                  |       |
+| 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-84 |
+| 11.15-11.45 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-84 |
 | 11.45-12.00 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf)  | Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
 | 13.00-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
