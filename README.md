@@ -10,6 +10,7 @@ Literature and documents for study assignments will be handed out during the cou
 #### Coordinators #### 
 
 Bas Heijmans, Molecular Epidemiology; 071-526 69785, B.T.Heijmans@lumc.nl 
+
 Ingrid Meulenbelt, Molecular Epidemiology; 071-526 9734, i.meulenbelt@lumc.nl 
 
 #### Location ####
@@ -68,24 +69,25 @@ biological information and to form new hypotheses.
 | 9.00-10.00  | Lecture: Introduction to FOS course                                    | Bas Heijmans                     | J1-84 |
 | 10.00-10.15 | Coffee break + questions                                               |                                  |       |
 | 10.15-11.00 | Lecture: Introduction to Molecular Epidemiology, large scale datasets. | Eline Slagboom                   | J1-84 |
-| 11.15-11.45 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-84 |
-| 11.45-12.00 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf)  | Maarten van Iterson | J1-82 |
+| 11.15-12.00 | Lecture: [Introduction to large scale datasets; from SPSS to R](19jun17_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-84 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
-| 13.00-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 13.00-15.00 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf)  | Koen Dekkers | J1-84 |
+| 13.00-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Koen Dekkers | J1-84 |
 | 15.00-15.15 | **Tea break**                                                          |                                  |       |
-| 15.15-17.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Bas Heijmans and Maarten van Iterson | J1-82 |
+| 15.15-17.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Koen Dekkers | J1-84 |
 
-# Tuesday June 20 (Location J1-82/building 1, LUMC) #
+# Tuesday October 23 (Location J1-84/building 1, LUMC) #
 
 | When        | What: Transcriptomics                                               | Who | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
-| 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Yolande Ramos | J1-82 |
+| 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
-| 10.15-12.30 | Practicals: Statistical analysis of [expression data](ExpressionData/README.md): Normalization, differential expression and multiple testing  | Yolande Ramos | J1-82 |
+| 10.15-12.30 | Practicals: Statistical analysis of [expression data](ExpressionData/README.md): Normalization, differential expression and multiple testing  | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 12.30-13.30 | **Lunch**                                                                                                         |               |       |
-| 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos | J1-82 |
-| 15:30-15.45 | **Tea Break**                                                                                                     |               |       |
-| 14.15-17.00 | Practical: Finding genes in practice                                                                              | Yolande Ramos | J1-82 |
+| 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
+| 14.15-15.00 | Lecture: Finding genes in practice                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
+| 15.00-15.15 | **Tea Break**                                                                                                     |               |       |
+| 15.15-17.00 | Practical: Finding genes in practice cont'd                                                                             | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 
 # Wednesday June 21 (Location J1-82/building 1, LUMC) #
 
