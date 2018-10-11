@@ -89,121 +89,121 @@ biological information and to form new hypotheses.
 | 15.00-15.15 | **Tea Break**                                                                                                     |               |       |
 | 15.15-17.00 | Practical: Finding genes in practice cont'd                                                                             | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 
-# Wednesday June 21 (Location J1-82/building 1, LUMC) #
+# Wednesday October 24 (Location J1-84/building 1, LUMC) #
 
 | When        | What: Genetics                  | Who | Where |
 |-------------|--------------------------------------------------|----------------|-------|
-| 9.00-10.00  | Lecture: Introduction to Genome wide association | Marian Beekman | J1-82 |
+| 9.00-10.00  | Lecture: Introduction to Genome wide association | Marian Beekman | J1-84 |
 | 10.00-10.15 |  **Coffee break**                                |                |       |
-| 10.15-12.00 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)   | Marian Beekman | J1-82 |
+| 10.15-12.00 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)   | Marian Beekman | J1-84 |
 | 12.00-13.00 | **Lunch**                                        |                |       |
-| 13.00-15.00 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-82 |
+| 13.00-15.00 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
 | 15.00-15.15 | **Tea break**                                    |                |       |
-| 15.30-17.00 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-82 |
+| 15.30-16.30 | Lecture and Practical: [Genome wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
+| 16.30-17.00 | Interim evaluation of participation and interaction   | Marian Beekman | J1-84 |
 
-# Thursday June 22 (Location J1-82/building 1, LUMC) #
+# Thursday October 25 (Location morning: J1-83 / Afternoon: J1-84/building 1, LUMC) #
 
-| When        | What: Methylomics                        | Who | Where |
-|-------------|-----------------------------------------------------------------|--------------------------------|-------|
-| 09:00-10.00 | Lecture: [Introduction to the epigenome](22jun17_0900_lecture_Heijmans_FOS_IntroEpigenetics.pdf) |                   Bas Heijmans | J1-82 |
+| When        | What: post-GWAs functional follow up                 | Who | Where |
+|-------------|--------------------------------------------------|----------------|-------|
+| 9.00-10.00  | Self-study: Freedman et al. (2011) Principles for the post-GWAS functional characterization | Ingrid Meulenbelt | J1-83 |
 | 10:00-10.15 | **Coffee Break**                                                |                                |       |
-| 10:00-12:30 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2017.md)                 | Bas Heijmans and Roderick Slieker | J1-82 |
+| 10:15-10.30 | Self-study: Freedman et al. continued                           | Self              | J1-83       |
+| 10:30-12.30 | Paper discussion: Freedman et al.                          | Ingrid Meulenbelt              | J1-83       |
 | 12:30-13.30 | **Lunch**                                                           |                                |       |
-| 13.30-15.30 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.md)          | Bas Heijmans and Roderick Slieker | J1-82 |
-| 15:30-16.00 | **Tea Break**                                                       |                                |       |
-| 16.00-17.00 | Lecture: [DNA methylation signatures of prenatal famine exposure](22jun17_1600_lecture_Heijmans_FOS_Development-Hungerwinter.pdf) | Bas Heijmans                   |       |
+| When        | What: DNA Methylomics                        | Who | Where |
+|-------------|-----------------------------------------------------------------|--------------------------------|-------|
+| 13.30-14.15 | Lecture: [Introduction to the epigenome](22jun17_0900_lecture_Heijmans_FOS_IntroEpigenetics.pdf) |                   Bas Heijmans and Roderick Slieker | J1-84 |
+| 14:15-15.15 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2017.md)                 | Roderick Slieker | J1-84 |
+| 15.15-15.30 | **Tea Break**                                                           |                                |       |
+| 15.30-17.00 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.md)          | Roderick Slieker | J1-84 |
 
-# Friday June 23 (Location J1-82/building 1, LUMC) #
+# Friday October 26 (Location J1-84/building 1, LUMC) #
 
-| When        | What: Multiple omics analysis                                                                                            | Who                       | Where |
+| When        | What: DNA Methylomics                                                      | Who                       | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------|-------|
-| 9:00-10.00  | Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](23jun17_0900_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans and Koen Dekkers | J1-82 |
+| 9:00-10.00  | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.md) cont'd      | Roderick Slieker | J1-84 |
 | 10:00-10:15 | **Coffee Break**                                                                                                            |                           |       |
-| 10:15-12.30 | Practical: [Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-82 |
+| 10:15-11.30 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2017.md) cont'd   | Roderick Slieker| J1-84 |
+| 11:30-12:30 |   Lecture: DNA methylation signatures of prenatal famine exposure   | Bas Heijmans                       | J1-84   |
+
 | 12:30-13:30 | **Lunch**                                                                                                                   |                           |       |
-| **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
-| 13:30-14:30 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-82 |
-| 14:30-15:00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |       |
-| 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
-| 15:15-16:00 | Practical: Clustering analysis transcriptomic data                                                            | Marcel Reinders           | J1-82 |
+| **When**    | **What: Ageing biomarkers; clocks of chronological and biological age**                                                                                                | **Who**               | **Where** |
+| 13:30-15:30 | Lecture: Metabolomics as biomarkers                             | Eline Slagboom          | J1-84 |
+|  | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality.                                                                      | Self           | J1-84     |
+| 15:00-15:15 | **Coffee Break**                                                                                                               |                           |       |
+| 15:15-17:00 | Paper discussion: Marioni et al.                                                            | Eline Slagboom          | J1-84 |
 
-
-# Monday June 26 (Location J1-82/building 1, LUMC) #
+## WEEK 2
+# Monday October 29 (Location J1-84/building 1, LUMC) #
 
 | When        | What: Metabolomics      | Who            | Where |
 |-------------|-------------------------|----------------|-------|
-| 9.00-10.00  | Lecture: Introduction to metabolomics  | Marian Beekman | J1-82 |
+| 9.00-10.00  | Lecture: Introduction to metabolomics  | Marian Beekman and Erik van den Akker | J1-84 |
 | 10.00-10.15 | **Coffee Break**      |                |       |
-| 10.15-12.30 | Practical: [Metabolomics practical](Metabolomics_practical/FOS2017_06062017.md)       | Marian Beekman and Maarten van Iterson| J1-82 |
+| 10.15-12.30 | Practical: [Metabolomics practical](Metabolomics_practical/FOS2017_06062017.md)       | Marian Beekman and Erik van den Akker| J1-84 |
 | 12.30-13.30 | **Lunch**
-| **When**    | **What: Ageing biomarkers; clocks of chronological and biological age** | **Who**  | **Where** |
-| 13.30-14.00 | Lecture: Metabolomics as biomarkers                      | Eline Slagboom | J1-82 |
-| 14.00-15.30 | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality. | Self | J1-82 |
-| 15:30-15:45 | **Tea Break**                           |      | J1-82 |
-| 15:45-17:00 | Paper discussion: Marioni et al. (2016) | Eline Slagboom | J1-82 |                                                                                           
+| **When**    | **What: Integrative approaches** | **Who**  | **Where** |
+| 13.30-14.00 |  Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](23jun17_0900_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
+| 14.00-15.00 | Practical: [Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-84 |
+| 15:00-15:15 | **Tea Break**                           |      | J1-82 |
+| 15:15-17:00 | Practical: [Integration of –omics datasets, genetic, gene expression and DNA methylation data and Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-84 |                                                                                      
 
-# Tuesday June 27 (Location J1-82/building 1, LUMC) #
+# Tuesday October 30 (Location J1-84/building 1, LUMC) #
 
 | When        | What: Next generation sequencing                                   | Who               | Where |
 |-------------|-------------------------------------------------------------------|-------------------|-------|
-| 9.00-10.00  | Lecture: Next generation sequencing technology                    | Yavuz Ariyurek    | J1-82 |
+| 9.00-10.00  | Lecture: Next generation sequencing technology                    | Yavuz Ariyurek    | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                                      |                   |       |
-| 10.15-11.15 | Lecture: Medical sequencing (principles exome and WGA sequencing) | Ingrid Meulenbelt | J1-82 |
-| 11.15-12.00 | Practical Exome sequencing early onset OA                         | Ingrid Meulenbelt | J1-82 |
-| 12.00-13.00 | **Lunch**                                                             |                   |       |
-| 13.00-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
+| 10.15-11.15 | Lab tour Next generation sequencing technology | Yavuz Ariyurek | Building 2 |
+| 11.15-12.00 | Lecture: Medical sequencing (principles exome and WGA sequencing) | Ingrid Meulenbelt | J1-84 |
+| 12.00-12.30 | Practical Exome sequencing early onset OA                         | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
+| 12.30-13.30 | **Lunch**                                                             |                   |       |
+| 13.30-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                         |                   |       |
-| 15.15-17.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt | J1-82 |
+| 15.15-16.30 | Practical continued: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos| J1-84 |
+| 16.30-17.00 | Interim evaluation of participation and interaction                        | Bas Heijmans | J1-84 |
+
 README.md
-# Wednesday June 28 (Location J1-82/building 1, LUMC) #
+# Wednesday October 31 (Location J1-84/building 1, LUMC) #
 
-| When        | What: Next generation RNA sequencing                                                      | Who                  | Where |
+| When        | What: Single cell RNA-sequencing & clustering                                                      | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9:00-10:00  | Lecture: Functional genomic approaches to Osteoarthritis                           | Ingrid Meulenbelt    | J1-82 |
+| 9:00-10:00  | Lecture: Introduction to single cell RNA-sequencing data analysis                           | Erik van den Akker. Ahmed Mahfouz    | J1-84 |
 | 10:00-10:15 | **Coffee Break**                                                                               |                      |       |
-| 10:15-11.00 | Lecture: [Introduction to RNA-sequencing data analysis](RNAseq_lecture/FOS2017_vanIterson_AnalysisOfRNAseqData.pdf)    | Maarten van Iterson  | J1-82 |
-| 11:00-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                           | Maarten van Iterson  | J1-82 |
+| 10:15-12.00 | Practical   | Maarten van Iterson  | J1-82 |
+| 11:00-12.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                           | Erik van den Akker. Ahmed Mahfouz | J1-84 |
 | 12:00-13:00 | **Lunch**                                                                                                 |                      |       |
-| 13:00-15.00 | Practical: [RNA-sequencing data analyses](RNAseq_practical/rnaseq_practical.md)                           | Maarten van Iterson  | J1-82 |
-| 15.00-15.15 | **Tea Break**                                                         |                   |       |
+| **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
+| 13:00-15:00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-84 |
+| 15:00-15:15 | **Tea Break**                                                                                                               |                           |       |
+| 15:15-17:00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |  J1-84    |
 
-# Thursday June 29 (Location J1-82/building 1, LUMC) #
+# Thursday November 1  (Location J1-84/building 1, LUMC)  #
 
-| When        | What: post-GWAs functional follow up | Who             | Where |
-|-------------|-----------------------------------------------------------------------------|-----------------|-------|
-| 9.00 -10.30 | Self-study: Freedman, M.L. et al. Principles for the post-GWAS functional characterization of cancer risk loci. Nat. Genet 43, 513-518 (2011). | Ingrid Meulenbelt | J1-82 |
-| 10.30-10.45 | **Coffee break**                                                                |                 |       |
-| 10.45-12.00 | Paper discussion: Freedman, M.L. et al.(2011) | Ingrid Meulenbelt | J1-82 |
-| 12.00-13.00 | **Lunch**                                                                       |                 |       |
-| 13.00-14.00 | Quadratic models in age associated profiles                                 | Vered Raz       | J1-82 |
-| 14.00-16.00 | Practical: quadratic models in age associated profiles                       | Vered Raz       | J1-82 |
-
-# Friday June 30 (Location J1-82/building 1, LUMC) #
-
-| When        | What: Public data and reproducibility              | Who                                    | Where |
+| When        | What: Databases reproducibility              | Who                                    | Where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
-| 9.00 -9.30 | Lecture: [The use of public omics databases](30jun17_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-82 |
-| 9.30 -10.30 | Practical: [The use of public omics databases](30jun17_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-82 |
+| 9.00 -10.30 | Lecture: [GONL, BIOS, UK biobank, GTEX, reproducibility](30jun17_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10:45-12:00 | Practical: [Reproducibility research practical](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
+| 10.45 -12.00 | Practical: [Online databases exploration](30jun17_1000_practical_Heijmans_FOS_PublicData.pdf) | Roderick Slieker | J1-82 |
+
+| 10:45-12:00 | Practical: [Reproducibility research practical (Download in R and age-related expression changes](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
-| 13:30-15:00 | Self-study: Self-study: Kim et al. (2014) Genome‐wide profiling of the microRNA-mRNA regulatory network in skeletal muscle with aging. AGING: 6(7) 524-544                                  | Vered Raz                              | J1-82 |
+| **When**    | **What: Mouse studies on ageing**                                               | **Who**               | **Where** |
+| 13:30-14:00 | Lecture                                 | Vered Raz                              | J1-84 |
+| 14:00-15:00 | Self study                                 | Vered Raz                              | J1-84 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
-| 15:15-17:00 | Paper discussion  Kim et al. (2014)    | Vered Raz                              | J1-82 |
+| 15:15-17:00 | Discussion)    | Vered Raz                              | J1-84 |
+
+
+                                                                                               |                           |       |
 
 
 ## PART 2. Applying acquired knowledge and skill to ageing. ##
 
-Students will work on an assignment in duos. In these assignments all
-knowledge and hands on experience that is acquired in part 1 will be
-applied to the topic of ageing. A project proposal should be written
-using all information accessible on the websites that were part of the
-course. It is important to determine the appropriate study design and
-power to establish and defend a “genomic” research
-proposal. Therefore, a pilot study should performed on an available
-real ‘-omics’ dataset. During the week there will be regular moments
-of interaction with the module coordinators and the possibility to
-contact other tutors of the course.
+Students will apply newly acquired competences to write a research proposal 
+that follows a data science approach to study ageing as a key example of a complex human trait. 
+Students will work on developing a project proposal in duos. Generating pilot data by analyzing available ‘real’ omics data sets to support hypotheses will be an integral part of the project proposal. During the week there will be regular moments of interaction with the module coordinators and the possibility to contact other tutors of the course.
 
 
 # Monday July 3 (Location J1-82/building 1, LUMC) #
