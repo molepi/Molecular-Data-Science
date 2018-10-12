@@ -130,7 +130,7 @@ biological information and to form new hypotheses.
 | **When**    | **What: Ageing biomarkers; clocks of chronological and biological age**                                                                                                | **Who**               | **Where** |
 | 13.30-15.30 | Lecture: Metabolomics as biomarkers                             | Eline Slagboom          | J1-84 |
 |  | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality.                                                                      | Self           | J1-84     |
-| 15.00-15.15 | **Coffee Break**                                                                                                               |                           |       |
+| 15.00-15.15 | **Coffee Break**                                                                 |                           |       |
 | 15.15-17.00 | Paper discussion: Marioni et al.                                                            | Eline Slagboom          | J1-84 |
 
 ## WEEK 2
