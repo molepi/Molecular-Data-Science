@@ -198,44 +198,51 @@ that follows a data science approach to study ageing as a key example of a compl
 Students will work on developing a project proposal in duos. Generating pilot data by analyzing available ‘real’ omics data sets to support hypotheses will be an integral part of the project proposal. During the week there will be regular moments of interaction with the module coordinators and the possibility to contact other tutors of the course.
 
 
-# Monday July 3 (Location J1-82/building 1, LUMC) #
+# Friday November 2 (Location J1-84/building 1, LUMC) #
 
-| When        | What: Introduction to final assignment                  | Who               | Where |
+| When        | What: Introduction to Developing Project Proposal                  | Who               | Where |
 |-------------|---------------------------------------------------------|-------------------|-------|
-| 9.00-10.00  | Project proposal: where does research start. Part 1     | Ingrid Meulenbelt | J1-82 |
+| 9.00-10.00  | Project proposal: where does research start. Part 1     | Eline Slagboom | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                            |                   |       |
-| 10.15-11.00 | Project proposal: where does research start. Part 2     | Ingrid Meulenbelt | J1-82 |
-| 11.00-12.00 | Work on the project proposal: formulation of hypothesis | Self              | J1-82 |
+| 10.15-11.00 | Project proposal: where does research start. Part 2     | Eline Slagboom | J1-84 |
+| 11.00-12.00 | Work on the project proposal: formulation of hypothesis | Self              | J1-84 |
 | 12.00-13.00 | **Lunch** and self study                                    |                   |       |
-| 13.00-17.00 | Work on the project proposal: formulation of objectives | Self              | J1-82 |
+| 13.00-17.00 | Work on the project proposal: formulation of objectives | Self              | J1-84 |
 
 
-# Tuesday July 4 (Location J1-82/building 1, LUMC) #
+# Monday November 5  (Location J1-84/building 1, LUMC) #
+
+| When       | What: Final assignment               | Who  | Where |
+|------------|--------------------------------------|------|-------|
+| 9.00-17.00 | Work on the project proposal (J1-84) | Self | J1-84 |
+
+
+# Tuesday November 6  (Location J1-84/building 1, LUMC) #
 
 | When       | What: Final assignment               | Who  | Where |
 |------------|--------------------------------------|------|-------|
 | 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
 
 
-# Wednesday July 5 (Location J1-82/building 1, LUMC) #
+# Wednesday November 7  (Location J1-84/building 1, LUMC) #
 
 | When       | What: Final assignment               | Who  | Where |
 |------------|--------------------------------------|------|-------|
-| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
+| 9.00-17.00 | Work on the project proposal (J1-84) | Self | J1-84 |
 
-
-# Thursday July 6 (Location J1-82/building 1, LUMC) #
+# Thursday November 8 (Location J1-84/building 1, LUMC) #
 
 | When       | What: Final assignment               | Who  | Where |
 |------------|--------------------------------------|------|-------|
-| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
-| **17.00** |  **Hand in project proposals** |  |  | 
+| 9.00-12.30 | Work on the project proposal (J1-84) | Self | J1-84 |
+| 13.30-16.30 | Oral presentation and defence of project proposal | All | J1-84 |
+| 16.30-17.00 | Looking back on course |  |  |
 
 
-# Friday July 7 (Location Building 2, R1) #
+# Friday November 9  (Location J1-84/building 1, LUMC) #
 
 | When        | What Final assignment  | Who  | Where  |
 |-------------|------------------------|------|--------|
-| 9.00-11.00  | Project defences       | Self | R1 egg |
-| 11.15-12.00 | Evaluation and closure |      |        |
+| 9.00-13.00  | Self study       | Self | J1-84 |
+| 13.00-15.00 | Reflective Assignment |      | J1-84       |
 | 01:00:00 PM | End of course          |      |        |
