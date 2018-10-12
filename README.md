@@ -172,7 +172,7 @@ biological information and to form new hypotheses.
 | 10.15-12.00 | Practical   | Erik van den Akker. Ahmed | J1-84 |
 
 | 12.00-13.00 | **Lunch**                                                                                                 |    |       |
-| **When**    | **What: Clustering analysis**                                                                                                | **Who**               | **Where** |
+| **When**    | **What: Clustering analysis**                                                     | **Who**               | **Where** |
 | 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                        |                           |       |
 | 15.15-17.00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |  J1-84    |
