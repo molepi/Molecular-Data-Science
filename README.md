@@ -188,7 +188,7 @@ biological information and to form new hypotheses.
 | 13:30-14:00 | Lecture                                 | Vered Raz                              | J1-84 |
 | 14:00-15:00 | Self study                                 | Vered Raz                              | J1-84 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
-| 15:15-17:00 | Discussion)    | Vered Raz                              | J1-84 |
+| 15:15-17:00 | Discussion    | Vered Raz                              | J1-84 |
 
 
 ## PART 2. Applying acquired knowledge and skill to ageing. ##
