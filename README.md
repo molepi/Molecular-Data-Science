@@ -206,7 +206,7 @@ Students will work on developing a project proposal in duos. Generating pilot da
 | 10.00-10.15 | **Coffee Break**                                            |                   |       |
 | 10.15-11.00 | Project proposal: where does research start. Part 2     | Eline Slagboom | J1-84 |
 | 11.00-12.00 | Work on the project proposal: formulation of hypothesis | Self              | J1-84 |
-| 12.00-13.00 | **Lunch** and self study                                    |                   |       |
+| 12.00-13.00 | **Lunch and self study**                                    |                   |       |
 | 13.00-17.00 | Work on the project proposal: formulation of objectives | Self              | J1-84 |
 
 
