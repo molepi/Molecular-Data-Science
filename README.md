@@ -52,7 +52,7 @@ Overall the evaluation will be a score between 0-10 composed of a
 weighted average of the different modules.
 
 
-# PART 1 Acquiring knowledge and skills #
+## PART 1 Acquiring knowledge and skills ##
 
 Knowledge with respect to complex diseases and the different study
 designs available to investigate. In the practicals students will
@@ -193,7 +193,7 @@ biological information and to form new hypotheses.
 | 15:15-17:00 | Discussion)    | Vered Raz                              | J1-84 |
 
 
-# PART 2. Applying acquired knowledge and skill to ageing. #
+## PART 2. Applying acquired knowledge and skill to ageing. ##
 
 Students will apply newly acquired competences to write a research proposal 
 that follows a data science approach to study ageing as a key example of a complex human trait. 
