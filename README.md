@@ -181,7 +181,7 @@ biological information and to form new hypotheses.
 |-------------|-----------------------------------------------|----------------------------------------|-------|
 | 9.00-10.30 | Lecture: [GONL, BIOS, UK biobank, GTEX, reproducibility](30jun17_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10.45 -12.00 | Practical: [Online databases exploration](30jun17_1000_practical_Heijmans_FOS_PublicData.pdf) | Roderick Slieker | J1-82 |
+| 10.45 -12.00 | Practical: [Online databases exploration](Online_databases_exploration/Practical_Databases.md) | Roderick Slieker | J1-82 |
 | 10:45-12:00 | Practical: [Reproducibility research practical (Download in R and age-related expression changes](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | **When**    | **What: Mouse studies on ageing**                                               | **Who**               | **Where** |
