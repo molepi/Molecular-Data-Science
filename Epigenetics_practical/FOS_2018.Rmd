@@ -1,5 +1,5 @@
 ---
-title: "Epigenomics Practical, June 22nd 2017"
+title: "Epigenomics Practical 2018"
 author: "Roderick Slieker and Bas Heijmans"
 output: github_document
 ---
@@ -27,7 +27,7 @@ output: github_document
 ##Question 1
 **The data that you will use in this practical consists of genome-wide DNA methylation data (Illumina 450k methylation array) of tissues from autopsy samples. Load the file 'Tissue data subset.csv' in R. The file contains the DNA methylation data of a single CpG site with identifier number cg21507095.**
 
-```{r packages}
+```{r packages, eval=FALSE}
 library(ggplot2)
 #Change this to the directory where you saved the files
 setwd("Z:/Roderick/Onderwijs/FOS/Epigenetics_practical")
@@ -36,7 +36,7 @@ TissueData <- read.table("Tissue data subset.csv", sep=";", header=T)
 
 **A Which tissues were studied? And on how many cases?**
 
-```{r Q1A}
+```{r Q1A, eval=FALSE}
 head(TissueData) # First 6 lines of the data
 str(TissueData) # Characteristics of the data
 unique(TissueData$Tissue) # What groups are in the vector?
@@ -44,7 +44,7 @@ unique(TissueData$Tissue) # What groups are in the vector?
 
 **B Make a boxplot of DNA methylation in the different tissues. Also, calculate the mean methylation and standard deviation for the tissues. Do you think that these differences are biologically relevant?**
 
-```{r Q1B}
+```{r Q1B, eval=FALSE}
 ggplot(TissueData, aes(x=Tissue, y=cg21507095, fill=Tissue))+ # Assign variables to x, y, and fill
 	geom_boxplot()+ # Make a boxplot
 	scale_fill_manual(values=c("#F9A23F","#009AC7","#8B1A4F")) # Give custom colors to the boxes using HEX colors
@@ -56,7 +56,7 @@ by(data = TissueData$cg21507095, INDICES = TissueData$Tissue, FUN=sd)
 
 **C Test whether the difference is statistically significant using ANOVA. Is the difference between tissues statistically significant?** 
 
-```{r Q1C}
+```{r Q1C, eval=FALSE}
 #Run the anova for one CpG
 anova(lm(cg21507095~Tissue, data=TissueData)) 
 ``` 
@@ -72,7 +72,7 @@ anova(lm(cg21507095~Tissue, data=TissueData))
 
 **A How many CpGs were measured on chromosome 22?**
 
-```{r Q2A}
+```{r Q2A, eval=FALSE}
 TissueData22 <- read.table("Tissue data chromosome 22.csv", sep=";", header=T)
 head(TissueData22)
 nrow(TissueData22) #Number of rows
@@ -80,7 +80,7 @@ nrow(TissueData22) #Number of rows
 
 **B Make a histogram for DNA methylation data for blood. Inspect the histogram and describe the characteristics of DNA methylation in the human genome (note that the histogram will look virtually identical for other chromosomes and tissues).**
 
-```{r Q2B}
+```{r Q2B, eval=FALSE}
 ggplot(TissueData22, aes(x=Blood))+
   geom_histogram(bins = 200) # Histogram
 ```
@@ -92,7 +92,7 @@ ggplot(TissueData22, aes(x=Blood))+
 
 **D The file Tissue data chromosome 22.csv contains columns with annotation information. Make boxplots for the gene centric annotation for blood. Describe the differences in DNA methylation across annotations and explain whether this is according to your expectation given your knowledge of the function of DNA methylation.**
 
-```{r Q2D}
+```{r Q2D, eval=FALSE}
 ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
   geom_boxplot()+
   scale_fill_manual(values=c("#D12633","#F9A23F","#4B8E55","#009AC7","#8B1A4F"))+
@@ -102,7 +102,7 @@ ggplot(TissueData22, aes(x=Gene_centric, y=Blood, fill=Gene_centric))+
 
 **E Do the same for the CpG island annotation. Where is DNA methylation lowest?**
 
-```{r Q2E}
+```{r Q2E, eval=FALSE}
 ggplot(TissueData22, aes(x=CGI_centric, y=Blood, fill=CGI_centric))+
   geom_boxplot()+
   scale_fill_manual(values=c("#D12633","#F9A23F","#4B8E55","#009AC7","#8B1A4F"))+
@@ -111,7 +111,7 @@ ggplot(TissueData22, aes(x=CGI_centric, y=Blood, fill=CGI_centric))+
 
 **F In question Q1C we calculated the P-value for one CpG site. Now we want to run this for each of the CpGs sites across chromosome 22. Instead of saving data as csv, one can also save it as RData files. Load the RData file TissueData chr22.RData. This file contains two files, namely samplesheet and TissueDataChr22. Look at both files. What are the dimensions of both files? **
 
-```{r Q2F}
+```{r Q2F, eval=FALSE}
 load("TissueData chr22.RData") # Contains two files samplesheet, TissueDataChr22
 head(samplesheet)
 dim(samplesheet) # Number of rows and number of columns
@@ -121,7 +121,7 @@ dim(TissueDataChr22)
 
 **G In R we can use functions to easily run a model across many loci. Run the function for the first and the second line.**
 
-```{r Q2G}
+```{r Q2G, eval=FALSE}
 getPvalue <- function(row, data, samplesheet)
 {
   fit <- anova(lm(data[row,]~samplesheet$Tissue)) # Run the model
@@ -135,7 +135,7 @@ getPvalue('cg00017461', data=TissueDataChr22, samplesheet=samplesheet)
 
 **H Now run the model across all CpGs on chromosome 22. Note that this takes a bit of time - after all R is running 8513 tests - and note that this couldn't be achieved using SPSS (only when the tests were done one by one). Look at the output.**
 
-```{r Q2H}
+```{r Q2H, eval=FALSE}
 #Which CpGs are there
 cpgs <- rownames(TissueDataChr22)
 head(cpgs)
@@ -155,13 +155,13 @@ head(ResultsChromosome22)
 
 **D The column Pval_corrected contains 0 and 1's that mark non-significant and significant CpGs based on the P-value calculated in 3B. How many CpGs (absolute and as percentage) are significant after multiple testing?**
 
-```{r Q3D}
+```{r Q3D, eval=FALSE}
 table(TissueData22$Pval_corrected)
 ```
 
 **E Now, we want to know whether a particular genomic feature is overrepresented in the identified significant CpG sites. You will focus on the two best covered genic annotations (proximal promoters and gene bodies). The significant CpGs in these two features can be found in the file Tissue data chromosome 22 significant.csv. Load the file. Make a frequency table of the number of CpGs per group and split by CpG islands and non-CpG islands.**
 
-```{r Q3E}
+```{r Q3E, eval=FALSE}
 TissueData22sign <- read.table("Tissue data chromosome 22 significant.csv", sep=";", header=T)
 head(TissueData22sign)
 table3e <- table(TissueData22sign$Gene_centric, TissueData22sign$CGI_centric)
@@ -170,7 +170,7 @@ table3e
 
 **F Now you have the frequency per combined feature (so for example proximal promoter CpG islands). Calculate the percentages of the number of significant CpGs per feature compared to the total number of significant CpGs from 3D. What is your interpretation?**
 
-```{r Q3F}
+```{r Q3F, eval=FALSE}
 table3f <- (table3e / 1805)*100
 round(table3f,1)
 ```
@@ -180,7 +180,7 @@ round(table3f,1)
 **Now, you will focus on 'top-hits' (=CpG sites with lowest P-values)**
 **A Sort the file by P-value (ascending). Select the two CpG sites with the lowest and second lowest P-value. What is the methylation level of these CpGs in the tissues investigated? What is the largest difference in DNA methylation observed?**
 
-```{r Q4A}
+```{r Q4A, eval=FALSE}
 TissueData22signOrdered <- TissueData22sign[order(TissueData22sign$Pval),]
 head(TissueData22signOrdered)
 ```
