@@ -26,12 +26,12 @@ library entrance.
 
 ### Assessment plan ###
 
-•	Handing in assignments (Pass/Fail, individually assessed).
-•	Contribute to interim evaluation of student participation and development during workgroups (0%).
-•	Fill out project proposal form as preparation for reflective assignment (0%).
-•	Presentation project proposal (background, hypothesis, pilot data, objectives, study design, workplan, expected outcomes; 45%, assessed in duos).
-•	Active and critical participation during discussion after project presentations of peers (15%, individually assessed).
-•	Reflective assignment that shows mastering key aspects of development of research proposal in molecular data science and addressing points raised during peer review (40%, individually assessed).
+-	Handing in assignments (Pass/Fail, individually assessed).
+-	Contribute to interim evaluation of student participation and development during workgroups (0%).
+-	Fill out project proposal form as preparation for reflective assignment (0%).
+-	Presentation project proposal (background, hypothesis, pilot data, objectives, study design, workplan, expected outcomes; 45%, assessed in duos).
+-	Active and critical participation during discussion after project presentations of peers (15%, individually assessed).
+-	Reflective assignment that shows mastering key aspects of development of research proposal in molecular data science and addressing points raised during peer review (40%, individually assessed).
 
 Overall the evaluation will be a score between 0-10 composed of a weighted average of the different modules.
 
