@@ -184,11 +184,11 @@ biological information and to form new hypotheses.
 | 10.45 -12.00 | Practical: [Online databases exploration](Online_databases_exploration/Practical_Databases.md) | Roderick Slieker | J1-82 |
 | 10:45-12:00 | Practical: [Reproducibility research practical (Download in R and age-related expression changes](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
-| **When**    | **What: Mouse studies on ageing**                                               | **Who**               | **Where** |
-| 13:00-14:00 | Lecture                                 | Vered Raz                              | J1-84 |
-| 14:00-15:00 | Self study                                 | Vered Raz                              | J1-84 |
+| **When**    | **What: Animal models on ageing**                                               | **Who**               | **Where** |
+| 13:00-13:30 | Lecture                                 | Vered Raz                              | J1-84 |
+| 13:30-16:00 | Self study on papers in groups                                 | Vered Raz                              | J1-84 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
-| 15:15-17:00 | Discussion    | Vered Raz                              | J1-84 |
+| 16:00-17:00 | Presentation of papers by groups    | Vered Raz                              | J1-84 |
 
 
 ## PART 2. Applying acquired knowledge and skill to ageing. ##
