@@ -100,7 +100,7 @@ biological information and to form new hypotheses.
 | 13.00-15.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
 | 15.00-15.15 | **Tea break**                                    |                |       |
 | 15.30-16.30 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
-| 16.30-17.00 | Interim evaluation of participation and interaction   | Marian Beekman | J1-84 |
+| 16.30-17.00 | Interim evaluation of participation and interaction   | Bas Heijmans | J1-84 |
 
 # Thursday October 25 (Location morning: J1-83 / Afternoon: J1-84/building 1, LUMC) #
 
