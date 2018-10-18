@@ -185,7 +185,7 @@ biological information and to form new hypotheses.
 | 10:45-12:00 | Practical: [Reproducibility research practical (Download in R and age-related expression changes](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | **When**    | **What: Mouse studies on ageing**                                               | **Who**               | **Where** |
-| 13:30-14:00 | Lecture                                 | Vered Raz                              | J1-84 |
+| 13:00-14:00 | Lecture                                 | Vered Raz                              | J1-84 |
 | 14:00-15:00 | Self study                                 | Vered Raz                              | J1-84 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
 | 15:15-17:00 | Discussion    | Vered Raz                              | J1-84 |
