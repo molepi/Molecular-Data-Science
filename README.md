@@ -166,9 +166,9 @@ biological information and to form new hypotheses.
 
 | When        | What: Single cell RNA-sequencing & clustering                                                      | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9.00-10.00  | Lecture: Introduction to single cell RNA-sequencing data analysis                           | Erik van den Akker. Ahmed Mahfouz    | J1-84 |
+| 9.00-10.00  | Lecture: Single cell RNA-sequencing                           | Ahmed Mahfouz    | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                                                               |                      |       |
-| 10.15-12.00 | Practical   | Erik van den Akker. Ahmed | J1-84 |
+| 10.15-12.00 | Practical: Single cell RNA-sequencing   | Indu Khatri, Ahmed Mahfouz | J1-84 |
 | 12.00-13.00 | **Lunch**                                                                          |              |       |
 | **When**    | **What: Clustering analysis**                                                     | **Who**               | **Where** |
 | 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-84 |
