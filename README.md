@@ -82,7 +82,7 @@ biological information and to form new hypotheses.
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
 | 9.00-10.00  | Lecture: [Introduction to Transcriptomics](Transcriptomics_FOS2018.pdf)                                                                          | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
-| 10.15-12.30 | Practicals: Statistical analysis of [RNA-seq data](ExpressionData/README.md): Normalization, differential expression and multiple testing  | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
+| 10.15-12.30 | Practicals: [Statistical analysis of RNA-seq data](Identifying_DEGs_in_practice_2018_RA.pdf): Normalization, differential expression and multiple testing  | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 12.30-13.30 | **Lunch**                                                                                                         |               |       |
 | 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 | 14.15-15.00 | Lecture: Finding genes in practice                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
