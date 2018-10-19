@@ -66,10 +66,10 @@ biological information and to form new hypotheses.
 
 | When        | What: Introduction to Molecular Epidemiology & R                        | Who                              | Where |
 |-------------|------------------------------------------------------------------------|----------------------------------|-------|
-| 9.00-9.30  | Lecture: [Introduction to FOS course](22oct18_0900_lecture_Heijmans_FOS_Introduction.pptx)                                    | Bas Heijmans                     | J1-84 |
+| 9.00-9.30  | Lecture: [Introduction to FOS course](22oct18_0900_lecture_Heijmans_FOS_Introduction.pdf)                                    | Bas Heijmans                     | J1-84 |
 | 9.30-11.00 | Lecture: [Introduction to Molecular Epidemiology, large scale datasets](FOS_introduction_2018.pdf) | Eline Slagboom  | J1-84 |
 | 10.00-10.15 | Coffee break + questions                                               |                                  |       |
-| 11.00-12.00 | Lecture: [Introduction to large scale datasets; from SPSS to R](22oct18_1100_lecture_Heijmans_FOS_SPSSvsR.pptx)  | Bas Heijmans | J1-84 |
+| 11.00-12.00 | Lecture: [Introduction to large scale datasets; from SPSS to R](22oct18_1100_lecture_Heijmans_FOS_SPSSvsR.pdf)  | Bas Heijmans | J1-84 |
 | 12.00-13.00 | **Lunch**                                                              |                                  |       |
 | 13.00-15.00 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf)  | Koen Dekkers | J1-84 |
 | 13.00-15.00 | Practical: [Introduction to R](RIntro_practical/rintro_practical.md)    | Koen Dekkers | J1-84 |
