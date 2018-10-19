@@ -80,7 +80,7 @@ biological information and to form new hypotheses.
 
 | When        | What: Transcriptomics                                               | Who | Where |
 |-------------|-------------------------------------------------------------------------------------------------------------------|---------------|-------|
-| 9.00-10.00  | Lecture: Introduction to Transcriptomics                                                                          | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
+| 9.00-10.00  | Lecture: [Introduction to Transcriptomics](Transcriptomics_FOS2018.pdf)                                                                          | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
 | 10.15-12.30 | Practicals: Statistical analysis of [RNA-seq data](ExpressionData/README.md): Normalization, differential expression and multiple testing  | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 12.30-13.30 | **Lunch**                                                                                                         |               |       |
