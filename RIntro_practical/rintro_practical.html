@@ -1035,41 +1035,41 @@ gr1 &lt;- GRanges(&quot;chr1&quot;, IRanges(1:5, width = 1, names = paste0(&quot
                alt_allele = sample(c(&quot;A&quot;, &quot;G&quot;, &quot;C&quot;, &quot;T&quot;), 5, replace = T)) 
 gr1</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCAgcmVmX2FsbGVsZSAgYWx0X2FsbGVsZVxuICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICBzbnAxICAgICBjaHIxICAgIFsxLCAxXSAgICAgICogfCAgICAgICAgICAgQSAgICAgICAgICAgQVxuICBzbnAyICAgICBjaHIxICAgIFsyLCAyXSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgVFxuICBzbnAzICAgICBjaHIxICAgIFszLCAzXSAgICAgICogfCAgICAgICAgICAgQSAgICAgICAgICAgVFxuICBzbnA0ICAgICBjaHIxICAgIFs0LCA0XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgVCAgICAgICAgICAgR1xuICAtLS0tLS0tXG4gIHNlcWluZm86IDEgc2VxdWVuY2UgZnJvbSBhbiB1bnNwZWNpZmllZCBnZW5vbWU7IG5vIHNlcWxlbmd0aHNcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCAgcmVmX2FsbGVsZSAgYWx0X2FsbGVsZVxuICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICBzbnAxICAgICBjaHIxICAgIFsxLCAxXSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgVFxuICBzbnAyICAgICBjaHIxICAgIFsyLCAyXSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgVFxuICBzbnAzICAgICBjaHIxICAgIFszLCAzXSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICBzbnA0ICAgICBjaHIxICAgIFs0LCA0XSAgICAgICogfCAgICAgICAgICAgQSAgICAgICAgICAgQVxuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgR1xuICAtLS0tLS0tXG4gIHNlcWluZm86IDEgc2VxdWVuY2UgZnJvbSBhbiB1bnNwZWNpZmllZCBnZW5vbWU7IG5vIHNlcWxlbmd0aHNcbiJ9 -->
 <pre><code>GRanges object with 5 ranges and 2 metadata columns:
        seqnames    ranges strand |  ref_allele  alt_allele
           &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-  snp1     chr1    [1, 1]      * |           A           A
-  snp2     chr1    [2, 2]      * |           G           T
-  snp3     chr1    [3, 3]      * |           A           T
-  snp4     chr1    [4, 4]      * |           G           C
-  snp5     chr1    [5, 5]      * |           T           G
+  snp1     chr1    [1, 1]      * |           C           T
+  snp2     chr1    [2, 2]      * |           C           T
+  snp3     chr1    [3, 3]      * |           G           C
+  snp4     chr1    [4, 4]      * |           A           A
+  snp5     chr1    [5, 5]      * |           C           G
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3IxWzFdXG5gYGAifQ== -->
 <pre class="r"><code>gr1[1]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAxIHJhbmdlIGFuZCAyIG1ldGFkYXRhIGNvbHVtbnM6XG4gICAgICAgc2VxbmFtZXMgICAgcmFuZ2VzIHN0cmFuZCB8ICByZWZfYWxsZWxlICBhbHRfYWxsZWxlXG4gICAgICAgICAgPFJsZT4gPElSYW5nZXM+ICA8UmxlPiB8IDxjaGFyYWN0ZXI+IDxjaGFyYWN0ZXI+XG4gIHNucDEgICAgIGNocjEgICAgWzEsIDFdICAgICAgKiB8ICAgICAgICAgICBBICAgICAgICAgICBBXG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAxIHJhbmdlIGFuZCAyIG1ldGFkYXRhIGNvbHVtbnM6XG4gICAgICAgc2VxbmFtZXMgICAgcmFuZ2VzIHN0cmFuZCB8ICByZWZfYWxsZWxlICBhbHRfYWxsZWxlXG4gICAgICAgICAgPFJsZT4gPElSYW5nZXM+ICA8UmxlPiB8IDxjaGFyYWN0ZXI+IDxjaGFyYWN0ZXI+XG4gIHNucDEgICAgIGNocjEgICAgWzEsIDFdICAgICAgKiB8ICAgICAgICAgICBDICAgICAgICAgICBUXG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
 <pre><code>GRanges object with 1 range and 2 metadata columns:
        seqnames    ranges strand |  ref_allele  alt_allele
           &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-  snp1     chr1    [1, 1]      * |           A           A
+  snp1     chr1    [1, 1]      * |           C           T
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFsdWVzKGdyMSlcbmBgYCJ9 -->
 <pre class="r"><code>values(gr1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRGF0YUZyYW1lIHdpdGggNSByb3dzIGFuZCAyIGNvbHVtbnNcbiAgIHJlZl9hbGxlbGUgIGFsdF9hbGxlbGVcbiAgPGNoYXJhY3Rlcj4gPGNoYXJhY3Rlcj5cbjEgICAgICAgICAgIEEgICAgICAgICAgIEFcbjIgICAgICAgICAgIEcgICAgICAgICAgIFRcbjMgICAgICAgICAgIEEgICAgICAgICAgIFRcbjQgICAgICAgICAgIEcgICAgICAgICAgIENcbjUgICAgICAgICAgIFQgICAgICAgICAgIEdcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YUZyYW1lIHdpdGggNSByb3dzIGFuZCAyIGNvbHVtbnNcbiAgIHJlZl9hbGxlbGUgIGFsdF9hbGxlbGVcbiAgPGNoYXJhY3Rlcj4gPGNoYXJhY3Rlcj5cbjEgICAgICAgICAgIEMgICAgICAgICAgIFRcbjIgICAgICAgICAgIEMgICAgICAgICAgIFRcbjMgICAgICAgICAgIEcgICAgICAgICAgIENcbjQgICAgICAgICAgIEEgICAgICAgICAgIEFcbjUgICAgICAgICAgIEMgICAgICAgICAgIEdcbiJ9 -->
 <pre><code>DataFrame with 5 rows and 2 columns
    ref_allele  alt_allele
   &lt;character&gt; &lt;character&gt;
-1           A           A
-2           G           T
-3           A           T
-4           G           C
-5           T           G</code></pre>
+1           C           T
+2           C           T
+3           G           C
+4           A           A
+5           C           G</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFuZ2VzKGdyMSlcbmBgYCJ9 -->
 <pre class="r"><code>ranges(gr1)</code></pre>
@@ -1117,15 +1117,15 @@ gr2 &lt;- GRanges(&quot;chr1&quot;, IRanges(4:8, width = 5,
                 names = paste0(&quot;gene&quot;, 1:5)), GC_content = sample(1:100 / 100, 5))
 gr2</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMSBtZXRhZGF0YSBjb2x1bW46XG4gICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCBHQ19jb250ZW50XG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCAgPG51bWVyaWM+XG4gIGdlbmUxICAgICBjaHIxICAgWzQsICA4XSAgICAgICogfCAgICAgICAwLjc2XG4gIGdlbmUyICAgICBjaHIxICAgWzUsICA5XSAgICAgICogfCAgICAgICAwLjM2XG4gIGdlbmUzICAgICBjaHIxICAgWzYsIDEwXSAgICAgICogfCAgICAgICAwLjQ1XG4gIGdlbmU0ICAgICBjaHIxICAgWzcsIDExXSAgICAgICogfCAgICAgICAgMC44XG4gIGdlbmU1ICAgICBjaHIxICAgWzgsIDEyXSAgICAgICogfCAgICAgICAwLjU3XG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMSBtZXRhZGF0YSBjb2x1bW46XG4gICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCBHQ19jb250ZW50XG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCAgPG51bWVyaWM+XG4gIGdlbmUxICAgICBjaHIxICAgWzQsICA4XSAgICAgICogfCAgICAgICAwLjEzXG4gIGdlbmUyICAgICBjaHIxICAgWzUsICA5XSAgICAgICogfCAgICAgICAwLjg0XG4gIGdlbmUzICAgICBjaHIxICAgWzYsIDEwXSAgICAgICogfCAgICAgICAwLjAzXG4gIGdlbmU0ICAgICBjaHIxICAgWzcsIDExXSAgICAgICogfCAgICAgICAwLjEyXG4gIGdlbmU1ICAgICBjaHIxICAgWzgsIDEyXSAgICAgICogfCAgICAgICAwLjQ4XG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
 <pre><code>GRanges object with 5 ranges and 1 metadata column:
         seqnames    ranges strand | GC_content
            &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; |  &lt;numeric&gt;
-  gene1     chr1   [4,  8]      * |       0.76
-  gene2     chr1   [5,  9]      * |       0.36
-  gene3     chr1   [6, 10]      * |       0.45
-  gene4     chr1   [7, 11]      * |        0.8
-  gene5     chr1   [8, 12]      * |       0.57
+  gene1     chr1   [4,  8]      * |       0.13
+  gene2     chr1   [5,  9]      * |       0.84
+  gene3     chr1   [6, 10]      * |       0.03
+  gene4     chr1   [7, 11]      * |       0.12
+  gene5     chr1   [8, 12]      * |       0.48
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
@@ -1147,26 +1147,26 @@ hits</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3IxW3F1ZXJ5SGl0cyhoaXRzKV1cbmBgYCJ9 -->
 <pre class="r"><code>gr1[queryHits(hits)]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAzIHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCAgcmVmX2FsbGVsZSAgYWx0X2FsbGVsZVxuICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICBzbnA0ICAgICBjaHIxICAgIFs0LCA0XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgVCAgICAgICAgICAgR1xuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgVCAgICAgICAgICAgR1xuICAtLS0tLS0tXG4gIHNlcWluZm86IDEgc2VxdWVuY2UgZnJvbSBhbiB1bnNwZWNpZmllZCBnZW5vbWU7IG5vIHNlcWxlbmd0aHNcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAzIHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCAgcmVmX2FsbGVsZSAgYWx0X2FsbGVsZVxuICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICBzbnA0ICAgICBjaHIxICAgIFs0LCA0XSAgICAgICogfCAgICAgICAgICAgQSAgICAgICAgICAgQVxuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgR1xuICBzbnA1ICAgICBjaHIxICAgIFs1LCA1XSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgR1xuICAtLS0tLS0tXG4gIHNlcWluZm86IDEgc2VxdWVuY2UgZnJvbSBhbiB1bnNwZWNpZmllZCBnZW5vbWU7IG5vIHNlcWxlbmd0aHNcbiJ9 -->
 <pre><code>GRanges object with 3 ranges and 2 metadata columns:
        seqnames    ranges strand |  ref_allele  alt_allele
           &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-  snp4     chr1    [4, 4]      * |           G           C
-  snp5     chr1    [5, 5]      * |           T           G
-  snp5     chr1    [5, 5]      * |           T           G
+  snp4     chr1    [4, 4]      * |           A           A
+  snp5     chr1    [5, 5]      * |           C           G
+  snp5     chr1    [5, 5]      * |           C           G
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3IyW3N1YmplY3RIaXRzKGhpdHMpXVxuYGBgIn0= -->
 <pre class="r"><code>gr2[subjectHits(hits)]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAzIHJhbmdlcyBhbmQgMSBtZXRhZGF0YSBjb2x1bW46XG4gICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCBHQ19jb250ZW50XG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCAgPG51bWVyaWM+XG4gIGdlbmUxICAgICBjaHIxICAgIFs0LCA4XSAgICAgICogfCAgICAgICAwLjc2XG4gIGdlbmUxICAgICBjaHIxICAgIFs0LCA4XSAgICAgICogfCAgICAgICAwLjc2XG4gIGdlbmUyICAgICBjaHIxICAgIFs1LCA5XSAgICAgICogfCAgICAgICAwLjM2XG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAzIHJhbmdlcyBhbmQgMSBtZXRhZGF0YSBjb2x1bW46XG4gICAgICAgIHNlcW5hbWVzICAgIHJhbmdlcyBzdHJhbmQgfCBHQ19jb250ZW50XG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCAgPG51bWVyaWM+XG4gIGdlbmUxICAgICBjaHIxICAgIFs0LCA4XSAgICAgICogfCAgICAgICAwLjEzXG4gIGdlbmUxICAgICBjaHIxICAgIFs0LCA4XSAgICAgICogfCAgICAgICAwLjEzXG4gIGdlbmUyICAgICBjaHIxICAgIFs1LCA5XSAgICAgICogfCAgICAgICAwLjg0XG4gIC0tLS0tLS1cbiAgc2VxaW5mbzogMSBzZXF1ZW5jZSBmcm9tIGFuIHVuc3BlY2lmaWVkIGdlbm9tZTsgbm8gc2VxbGVuZ3Roc1xuIn0= -->
 <pre><code>GRanges object with 3 ranges and 1 metadata column:
         seqnames    ranges strand | GC_content
            &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; |  &lt;numeric&gt;
-  gene1     chr1    [4, 8]      * |       0.76
-  gene1     chr1    [4, 8]      * |       0.76
-  gene2     chr1    [5, 9]      * |       0.36
+  gene1     chr1    [4, 8]      * |       0.13
+  gene1     chr1    [4, 8]      * |       0.13
+  gene2     chr1    [5, 9]      * |       0.84
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
@@ -1187,15 +1187,15 @@ gr3 &lt;- GRanges(&quot;chr1&quot;, IRanges(6:10, width = 1, names = paste0(&quo
                alt_allele = sample(c(&quot;A&quot;, &quot;G&quot;, &quot;C&quot;, &quot;T&quot;), 5, replace = T))
 gr3</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgICBzZXFuYW1lcyAgICByYW5nZXMgc3RyYW5kIHwgIHJlZl9hbGxlbGUgIGFsdF9hbGxlbGVcbiAgICAgICAgICAgPFJsZT4gPElSYW5nZXM+ICA8UmxlPiB8IDxjaGFyYWN0ZXI+IDxjaGFyYWN0ZXI+XG4gICBzbnA2ICAgICBjaHIxICBbIDYsICA2XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICAgc25wNyAgICAgY2hyMSAgWyA3LCAgN10gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIEFcbiAgIHNucDggICAgIGNocjEgIFsgOCwgIDhdICAgICAgKiB8ICAgICAgICAgICBHICAgICAgICAgICBUXG4gICBzbnA5ICAgICBjaHIxICBbIDksICA5XSAgICAgICogfCAgICAgICAgICAgVCAgICAgICAgICAgVFxuICBzbnAxMCAgICAgY2hyMSAgWzEwLCAxMF0gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIEFcbiAgLS0tLS0tLVxuICBzZXFpbmZvOiAxIHNlcXVlbmNlIGZyb20gYW4gdW5zcGVjaWZpZWQgZ2Vub21lOyBubyBzZXFsZW5ndGhzXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCA1IHJhbmdlcyBhbmQgMiBtZXRhZGF0YSBjb2x1bW5zOlxuICAgICAgICBzZXFuYW1lcyAgICByYW5nZXMgc3RyYW5kIHwgIHJlZl9hbGxlbGUgIGFsdF9hbGxlbGVcbiAgICAgICAgICAgPFJsZT4gPElSYW5nZXM+ICA8UmxlPiB8IDxjaGFyYWN0ZXI+IDxjaGFyYWN0ZXI+XG4gICBzbnA2ICAgICBjaHIxICBbIDYsICA2XSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgQVxuICAgc25wNyAgICAgY2hyMSAgWyA3LCAgN10gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIFRcbiAgIHNucDggICAgIGNocjEgIFsgOCwgIDhdICAgICAgKiB8ICAgICAgICAgICBUICAgICAgICAgICBHXG4gICBzbnA5ICAgICBjaHIxICBbIDksICA5XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQVxuICBzbnAxMCAgICAgY2hyMSAgWzEwLCAxMF0gICAgICAqIHwgICAgICAgICAgIEcgICAgICAgICAgIFRcbiAgLS0tLS0tLVxuICBzZXFpbmZvOiAxIHNlcXVlbmNlIGZyb20gYW4gdW5zcGVjaWZpZWQgZ2Vub21lOyBubyBzZXFsZW5ndGhzXG4ifQ== -->
 <pre><code>GRanges object with 5 ranges and 2 metadata columns:
         seqnames    ranges strand |  ref_allele  alt_allele
            &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-   snp6     chr1  [ 6,  6]      * |           G           C
-   snp7     chr1  [ 7,  7]      * |           T           A
-   snp8     chr1  [ 8,  8]      * |           G           T
-   snp9     chr1  [ 9,  9]      * |           T           T
-  snp10     chr1  [10, 10]      * |           T           A
+   snp6     chr1  [ 6,  6]      * |           C           A
+   snp7     chr1  [ 7,  7]      * |           T           T
+   snp8     chr1  [ 8,  8]      * |           T           G
+   snp9     chr1  [ 9,  9]      * |           G           A
+  snp10     chr1  [10, 10]      * |           G           T
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
@@ -1204,20 +1204,20 @@ gr3</code></pre>
 gr4 &lt;- c(gr1, gr3)
 gr4</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAxMCByYW5nZXMgYW5kIDIgbWV0YWRhdGEgY29sdW1uczpcbiAgICAgICAgc2VxbmFtZXMgICAgcmFuZ2VzIHN0cmFuZCB8ICByZWZfYWxsZWxlICBhbHRfYWxsZWxlXG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICAgc25wMSAgICAgY2hyMSAgWyAxLCAgMV0gICAgICAqIHwgICAgICAgICAgIEEgICAgICAgICAgIEFcbiAgIHNucDIgICAgIGNocjEgIFsgMiwgIDJdICAgICAgKiB8ICAgICAgICAgICBHICAgICAgICAgICBUXG4gICBzbnAzICAgICBjaHIxICBbIDMsICAzXSAgICAgICogfCAgICAgICAgICAgQSAgICAgICAgICAgVFxuICAgc25wNCAgICAgY2hyMSAgWyA0LCAgNF0gICAgICAqIHwgICAgICAgICAgIEcgICAgICAgICAgIENcbiAgIHNucDUgICAgIGNocjEgIFsgNSwgIDVdICAgICAgKiB8ICAgICAgICAgICBUICAgICAgICAgICBHXG4gICBzbnA2ICAgICBjaHIxICBbIDYsICA2XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICAgc25wNyAgICAgY2hyMSAgWyA3LCAgN10gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIEFcbiAgIHNucDggICAgIGNocjEgIFsgOCwgIDhdICAgICAgKiB8ICAgICAgICAgICBHICAgICAgICAgICBUXG4gICBzbnA5ICAgICBjaHIxICBbIDksICA5XSAgICAgICogfCAgICAgICAgICAgVCAgICAgICAgICAgVFxuICBzbnAxMCAgICAgY2hyMSAgWzEwLCAxMF0gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIEFcbiAgLS0tLS0tLVxuICBzZXFpbmZvOiAxIHNlcXVlbmNlIGZyb20gYW4gdW5zcGVjaWZpZWQgZ2Vub21lOyBubyBzZXFsZW5ndGhzXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiR1JhbmdlcyBvYmplY3Qgd2l0aCAxMCByYW5nZXMgYW5kIDIgbWV0YWRhdGEgY29sdW1uczpcbiAgICAgICAgc2VxbmFtZXMgICAgcmFuZ2VzIHN0cmFuZCB8ICByZWZfYWxsZWxlICBhbHRfYWxsZWxlXG4gICAgICAgICAgIDxSbGU+IDxJUmFuZ2VzPiAgPFJsZT4gfCA8Y2hhcmFjdGVyPiA8Y2hhcmFjdGVyPlxuICAgc25wMSAgICAgY2hyMSAgWyAxLCAgMV0gICAgICAqIHwgICAgICAgICAgIEMgICAgICAgICAgIFRcbiAgIHNucDIgICAgIGNocjEgIFsgMiwgIDJdICAgICAgKiB8ICAgICAgICAgICBDICAgICAgICAgICBUXG4gICBzbnAzICAgICBjaHIxICBbIDMsICAzXSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQ1xuICAgc25wNCAgICAgY2hyMSAgWyA0LCAgNF0gICAgICAqIHwgICAgICAgICAgIEEgICAgICAgICAgIEFcbiAgIHNucDUgICAgIGNocjEgIFsgNSwgIDVdICAgICAgKiB8ICAgICAgICAgICBDICAgICAgICAgICBHXG4gICBzbnA2ICAgICBjaHIxICBbIDYsICA2XSAgICAgICogfCAgICAgICAgICAgQyAgICAgICAgICAgQVxuICAgc25wNyAgICAgY2hyMSAgWyA3LCAgN10gICAgICAqIHwgICAgICAgICAgIFQgICAgICAgICAgIFRcbiAgIHNucDggICAgIGNocjEgIFsgOCwgIDhdICAgICAgKiB8ICAgICAgICAgICBUICAgICAgICAgICBHXG4gICBzbnA5ICAgICBjaHIxICBbIDksICA5XSAgICAgICogfCAgICAgICAgICAgRyAgICAgICAgICAgQVxuICBzbnAxMCAgICAgY2hyMSAgWzEwLCAxMF0gICAgICAqIHwgICAgICAgICAgIEcgICAgICAgICAgIFRcbiAgLS0tLS0tLVxuICBzZXFpbmZvOiAxIHNlcXVlbmNlIGZyb20gYW4gdW5zcGVjaWZpZWQgZ2Vub21lOyBubyBzZXFsZW5ndGhzXG4ifQ== -->
 <pre><code>GRanges object with 10 ranges and 2 metadata columns:
         seqnames    ranges strand |  ref_allele  alt_allele
            &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt; &lt;character&gt;
-   snp1     chr1  [ 1,  1]      * |           A           A
-   snp2     chr1  [ 2,  2]      * |           G           T
-   snp3     chr1  [ 3,  3]      * |           A           T
-   snp4     chr1  [ 4,  4]      * |           G           C
-   snp5     chr1  [ 5,  5]      * |           T           G
-   snp6     chr1  [ 6,  6]      * |           G           C
-   snp7     chr1  [ 7,  7]      * |           T           A
-   snp8     chr1  [ 8,  8]      * |           G           T
-   snp9     chr1  [ 9,  9]      * |           T           T
-  snp10     chr1  [10, 10]      * |           T           A
+   snp1     chr1  [ 1,  1]      * |           C           T
+   snp2     chr1  [ 2,  2]      * |           C           T
+   snp3     chr1  [ 3,  3]      * |           G           C
+   snp4     chr1  [ 4,  4]      * |           A           A
+   snp5     chr1  [ 5,  5]      * |           C           G
+   snp6     chr1  [ 6,  6]      * |           C           A
+   snp7     chr1  [ 7,  7]      * |           T           T
+   snp8     chr1  [ 8,  8]      * |           T           G
+   snp9     chr1  [ 9,  9]      * |           G           A
+  snp10     chr1  [10, 10]      * |           G           T
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths</code></pre>
 <!-- rnb-output-end -->
