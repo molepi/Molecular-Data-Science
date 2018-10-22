@@ -1,7 +1,8 @@
 ---
 title: "Introduction to R"
-output:
-  html_notebook: default
+output: 
+  md_document:
+    variant: markdown_github
 ---
 
 * This practical is intended for students who have never used R before. Parts 1 and 2 are mandatory, Parts 3 and 4 are for fast students. At the end of this practical we expect you to be able to follow along with the other practicals of this course. Save your R-script or paste your answers in a Word document and mail it to k.f.dekkers@lumc.nl.
