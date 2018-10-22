@@ -344,7 +344,7 @@ df3
 Part 2: Explore data set, plot and perform statistical tests
 ------------------------------------------------------------
 
--   We are now going to load a data set from the Framingham heart study [BioLINCC](biolincc.nhlbi.nih.gov).
+-   We are now going to load a data set from the Framingham heart study [BioLINCC](https://biolincc.nhlbi.nih.gov/home/).
 
 ``` r
 fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
@@ -749,10 +749,10 @@ gr1
     ## GRanges object with 5 ranges and 2 metadata columns:
     ##        seqnames    ranges strand |  ref_allele  alt_allele
     ##           <Rle> <IRanges>  <Rle> | <character> <character>
-    ##   snp1     chr1    [1, 1]      * |           T           A
-    ##   snp2     chr1    [2, 2]      * |           A           C
-    ##   snp3     chr1    [3, 3]      * |           A           C
-    ##   snp4     chr1    [4, 4]      * |           C           A
+    ##   snp1     chr1    [1, 1]      * |           C           T
+    ##   snp2     chr1    [2, 2]      * |           C           A
+    ##   snp3     chr1    [3, 3]      * |           G           C
+    ##   snp4     chr1    [4, 4]      * |           G           C
     ##   snp5     chr1    [5, 5]      * |           T           G
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
@@ -764,7 +764,7 @@ gr1[1]
     ## GRanges object with 1 range and 2 metadata columns:
     ##        seqnames    ranges strand |  ref_allele  alt_allele
     ##           <Rle> <IRanges>  <Rle> | <character> <character>
-    ##   snp1     chr1    [1, 1]      * |           T           A
+    ##   snp1     chr1    [1, 1]      * |           C           T
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
@@ -775,10 +775,10 @@ values(gr1)
     ## DataFrame with 5 rows and 2 columns
     ##    ref_allele  alt_allele
     ##   <character> <character>
-    ## 1           T           A
-    ## 2           A           C
-    ## 3           A           C
-    ## 4           C           A
+    ## 1           C           T
+    ## 2           C           A
+    ## 3           G           C
+    ## 4           G           C
     ## 5           T           G
 
 ``` r
@@ -832,10 +832,10 @@ gr2
     ##         seqnames    ranges strand | GC_content
     ##            <Rle> <IRanges>  <Rle> |  <numeric>
     ##   gene1     chr1   [4,  8]      * |       0.65
-    ##   gene2     chr1   [5,  9]      * |       0.75
-    ##   gene3     chr1   [6, 10]      * |       0.07
-    ##   gene4     chr1   [7, 11]      * |       0.48
-    ##   gene5     chr1   [8, 12]      * |       0.83
+    ##   gene2     chr1   [5,  9]      * |        0.6
+    ##   gene3     chr1   [6, 10]      * |       0.47
+    ##   gene4     chr1   [7, 11]      * |       0.44
+    ##   gene5     chr1   [8, 12]      * |       0.22
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
@@ -861,7 +861,7 @@ gr1[queryHits(hits)]
     ## GRanges object with 3 ranges and 2 metadata columns:
     ##        seqnames    ranges strand |  ref_allele  alt_allele
     ##           <Rle> <IRanges>  <Rle> | <character> <character>
-    ##   snp4     chr1    [4, 4]      * |           C           A
+    ##   snp4     chr1    [4, 4]      * |           G           C
     ##   snp5     chr1    [5, 5]      * |           T           G
     ##   snp5     chr1    [5, 5]      * |           T           G
     ##   -------
@@ -876,7 +876,7 @@ gr2[subjectHits(hits)]
     ##            <Rle> <IRanges>  <Rle> |  <numeric>
     ##   gene1     chr1    [4, 8]      * |       0.65
     ##   gene1     chr1    [4, 8]      * |       0.65
-    ##   gene2     chr1    [5, 9]      * |       0.75
+    ##   gene2     chr1    [5, 9]      * |        0.6
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
@@ -901,10 +901,10 @@ gr3
     ##         seqnames    ranges strand |  ref_allele  alt_allele
     ##            <Rle> <IRanges>  <Rle> | <character> <character>
     ##    snp6     chr1  [ 6,  6]      * |           T           T
-    ##    snp7     chr1  [ 7,  7]      * |           A           C
-    ##    snp8     chr1  [ 8,  8]      * |           T           T
-    ##    snp9     chr1  [ 9,  9]      * |           C           G
-    ##   snp10     chr1  [10, 10]      * |           G           T
+    ##    snp7     chr1  [ 7,  7]      * |           T           A
+    ##    snp8     chr1  [ 8,  8]      * |           G           C
+    ##    snp9     chr1  [ 9,  9]      * |           G           G
+    ##   snp10     chr1  [10, 10]      * |           C           A
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
@@ -917,16 +917,16 @@ gr4
     ## GRanges object with 10 ranges and 2 metadata columns:
     ##         seqnames    ranges strand |  ref_allele  alt_allele
     ##            <Rle> <IRanges>  <Rle> | <character> <character>
-    ##    snp1     chr1  [ 1,  1]      * |           T           A
-    ##    snp2     chr1  [ 2,  2]      * |           A           C
-    ##    snp3     chr1  [ 3,  3]      * |           A           C
-    ##    snp4     chr1  [ 4,  4]      * |           C           A
+    ##    snp1     chr1  [ 1,  1]      * |           C           T
+    ##    snp2     chr1  [ 2,  2]      * |           C           A
+    ##    snp3     chr1  [ 3,  3]      * |           G           C
+    ##    snp4     chr1  [ 4,  4]      * |           G           C
     ##    snp5     chr1  [ 5,  5]      * |           T           G
     ##    snp6     chr1  [ 6,  6]      * |           T           T
-    ##    snp7     chr1  [ 7,  7]      * |           A           C
-    ##    snp8     chr1  [ 8,  8]      * |           T           T
-    ##    snp9     chr1  [ 9,  9]      * |           C           G
-    ##   snp10     chr1  [10, 10]      * |           G           T
+    ##    snp7     chr1  [ 7,  7]      * |           T           A
+    ##    snp8     chr1  [ 8,  8]      * |           G           C
+    ##    snp9     chr1  [ 9,  9]      * |           G           G
+    ##   snp10     chr1  [10, 10]      * |           C           A
     ##   -------
     ##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
 

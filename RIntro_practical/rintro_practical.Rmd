@@ -166,7 +166,7 @@ df3
 
 ## Part 2: Explore data set, plot and perform statistical tests
 
-* We are now going to load a data set from the Framingham heart study [BioLINCC](biolincc.nhlbi.nih.gov).
+* We are now going to load a data set from the Framingham heart study [BioLINCC](https://biolincc.nhlbi.nih.gov/home/).
 
 ```{r}
 fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
