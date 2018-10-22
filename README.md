@@ -87,7 +87,7 @@ biological information and to form new hypotheses.
 | 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 | 14.15-15.00 | Lecture: Finding genes in practice                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                                                                     |               |       |
-| 15.15-17.00 | Practical: Finding genes in practice cont'd                                                                             | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
+| 15.15-17.00 | Practical: [Finding genes in practice cont'd](GenesInPractice/)                                                                             | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 
 # Wednesday October 24 (Location J1-84/building 1, LUMC) #
 
