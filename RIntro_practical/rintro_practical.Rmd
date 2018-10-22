@@ -210,7 +210,7 @@ xtabs(~ MI, fhs[fhs$SEX == "Female", ]) # table of MI for females only
 
 * The plots will appear in the Plots pane (see Figure), you can save the plots using the Export tab if you want.
 
-```{r}
+```{r message=FALSE}
 library(ggplot2)
 ggplot(fhs, aes(MI)) + geom_bar()
 ggplot(fhs, aes(BMI)) + geom_histogram(binwidth = 1)
@@ -339,7 +339,7 @@ greater(2, 1)
 
 * Explore the following example of how to make and use genomic ranges. 
 
-```{r}
+```{r message=FALSE}
 library(GenomicRanges)
 
 # make a genomic ranges object that resembles snp data
