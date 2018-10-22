@@ -235,8 +235,8 @@ Students will work on developing a project proposal in duos. Generating pilot da
 | When       | What: Final assignment               | Who  | Where |
 |------------|--------------------------------------|------|-------|
 | 9.00-12.30 | Work on the project proposal (J1-84) | Self | J1-84 |
-| 13.30-16.30 | Oral presentation and defence of project proposal | All | J1-84 |
-| 16.30-17.00 | Looking back on course |  |  |
+| 13.30-16.30 | Oral presentation and defence of project proposal | All | S0-19 |
+| 16.30-17.00 | Looking back on course | All | S0-19 |
 
 
 # Friday November 9  (Location J1-84/building 1, LUMC) #
