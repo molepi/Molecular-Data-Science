@@ -11,7 +11,7 @@ output:
 * Open RStudio
 
 * Open a new R-script with Ctrl-Shift-N, it should look like the following screenshot:
-![Figure](https://github.com/molepi/Molecular-Data-Science/tree/master/RIntro_practical/figure.png)
+![Figure](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/figure.png?raw=true)
 
 * You can type equations in the Console (see Figure) and R will calculate the result, try this by typing the following equation in the Console:
 
@@ -32,7 +32,7 @@ sqrt(9)
 abs(-5)
 ```
 
-* You can store values in variables for later use. You can view all your stored variables in the Environment (see figure).
+* You can store values in variables for later use. You can view all your stored variables in the Environment (see Figure).
 
 ```{r}
 x <- 1 + 1
@@ -60,7 +60,7 @@ y * y
 ```{r}
 y[1] # first value of y
 y[2:3] # second and third value of y
-c(y, 8) # add 4 to y
+c(y, 8) # add 8 to y
 y[-3] # remove third value from y
 ```
 
@@ -168,7 +168,7 @@ df3
 * We are now going to load a data set from the Framingham heart study [BioLINCC](biolincc.nhlbi.nih.gov).
 
 ```{r}
-fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/tree/master/RIntro_practical.csv"))
+fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
 ```
 
 * First we will explore the data.
@@ -265,7 +265,7 @@ summary(fit)
 2. Is MI associated with GLUCOSE (use t-test and logistic regression)?
 3. Is MI associated with GLUCOSE in individuals with diabetes (use t-test and logistic regression) 
 
-* One of the advantages of using R is to use loops to perform multiple analyses at once. The following loop calculates the association of MI with all the other variables and stores them in a data frame. We don't expect you to create your loops like this in these 4 hours, but try to follow along with the code and see if it makes sense. In Part 3 we will explore some simple loops and self-made functions.
+* One of the advantages of using R is to use loops to perform multiple analyses at once. The following loop calculates the association of MI with all the other variables and stores them in a data frame. We don't expect you to create loops like this in these 4 hours, but try to follow along with the code and see if it makes sense. In Part 3 we will explore some simple loops and self-made functions.
 
 ```{r}
 results <- data.frame() # create empty data frame
@@ -326,7 +326,7 @@ greater(2, 1)
 
 #### Question 6:
 
-1. Make a for-loop, so don't use subsetting like we practiced earlier, that returns all values of MI (of data frame fhs) where BMI is greater than 30.
+1. Make a for-loop, don't use subsetting like we practiced earlier, that returns all values of MI (of data frame fhs) where BMI is greater than 30.
 2. Make a function that requires as arguments x, y and z and returns their product.
 3. Make a loop that returns the association of all columns of data frame fhs with AGE, instead of using *glm* you can use *lm*.
 
@@ -334,25 +334,50 @@ greater(2, 1)
 
 * [Bioconductor](https://www.bioconductor.org/) contains a lot of packages to analyse biological data sets.
 
-* The genomic ranges (?GRanges) object of the GenomicRanges package is often used in these packages to store genomic data (SNPs, RNA-seq, DNA methylation).
+* The genomic ranges (?GRanges) object of the **GenomicRanges** package is often used in Bioconductor packages to store genomic data (SNP data, gene expression data, DNA methylation data, etc).
 
-* Explore the following example of how to make and use genomic ranges.
+* Explore the following example of how to make and use genomic ranges. 
 
 ```{r}
 library(GenomicRanges)
-gr1 <- GRanges("chr1", IRanges(1:5, width = 1, names=paste0("snp", 1:5)), 
-               ref = sample(c("A", "G", "C", "T"), 1), alt = sample(c("A", "G", "C", "T"), 1))
+
+# make a genomic ranges object that resembles snp data
+gr1 <- GRanges("chr1", IRanges(1:5, width = 1, names = paste0("snp", 1:5)), 
+               ref_allele = sample(c("A", "G", "C", "T"), 5, replace = T), 
+               alt_allele = sample(c("A", "G", "C", "T"), 5, replace = T)) 
 gr1
 gr1[1]
+values(gr1)
+ranges(gr1)
+start(gr1)
+end(gr1)
+seqnames(gr1)
+seqlevels(gr1)
 
+# make a genomic ranges object that resembles gene expression data
+gr2 <- GRanges("chr1", IRanges(4:8, width = 5,
+                names = paste0("gene", 1:5)), GC_content = sample(1:100 / 100, 5))
+gr2
 
-gr2 <- GRanges("chr1", IRanges(8:12, width=5,
-                names=paste0("gene", 1:5)), score=10:14)
-
+# find snps in genes
 hits <- findOverlaps(gr1, gr2)
 hits
 gr1[queryHits(hits)]
 gr2[subjectHits(hits)]
+data.frame(snps = names(gr1[queryHits(hits)]), genes = names(gr2[subjectHits(hits)]))
 
+# make another genomic ranges object that resembles snp data
+gr3 <- GRanges("chr1", IRanges(6:10, width = 1, names = paste0("snp", 6:10)), 
+               ref_allele = sample(c("A", "G", "C", "T"), 5, replace = T), 
+               alt_allele = sample(c("A", "G", "C", "T"), 5, replace = T))
+gr3
 
+# combine both snp data genomic ranges
+gr4 <- c(gr1, gr3)
+gr4
+
+# find snps (of both snp data genomic ranges) in or near (within 2 base pairs) genes
+hits <- findOverlaps(gr4, gr2, maxgap = 2)
+hits
+data.frame(snps = names(gr4[queryHits(hits)]), genes = names(gr2[subjectHits(hits)]))
 ```
