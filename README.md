@@ -181,8 +181,7 @@ biological information and to form new hypotheses.
 |-------------|-----------------------------------------------|----------------------------------------|-------|
 | 9.00-10.30 | Lecture: [GONL, BIOS, UK biobank, GTEX, reproducibility](30jun17_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 10.30-10.45 | **Coffee Break**                                  |                                        |       |
-| 10.45 -12.00 | Practical: [Online databases exploration](Online_databases_exploration/Practical_Databases.md) | Roderick Slieker | J1-82 |
-| 10:45-12:00 | Practical: [Reproducibility research practical (Download in R and age-related expression changes](ReproducibleResearch_practical/reproducibleresearch_practical.md)        |  Maarten van Iterson | J1-82 |
+| 10.45 -12.00 | Practical: [Online databases exploration](Online_databases_exploration/Practical_Databases.md) | Roderick Slieker | J1-84 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | **When**    | **What: Animal models on ageing**                                               | **Who**               | **Where** |
 | 13:00-13:30 | Lecture                                 | Vered Raz                              | J1-84 |
@@ -221,7 +220,7 @@ Students will work on developing a project proposal in duos. Generating pilot da
 
 | When       | What: Final assignment               | Who  | Where |
 |------------|--------------------------------------|------|-------|
-| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-82 |
+| 9.00-17.00 | Work on the project proposal (J1-82) | Self | J1-84 |
 
 
 # Wednesday November 7  (Location J1-84/building 1, LUMC) #
