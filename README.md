@@ -95,9 +95,9 @@ biological information and to form new hypotheses.
 |-------------|--------------------------------------------------|----------------|-------|
 | 9.00-10.00  | Lecture: Introduction to Genome-wide association | Marian Beekman | J1-84 |
 | 10.00-10.15 |  **Coffee break**                                |                |       |
-| 10.15-12.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2017.pdf)   | Marian Beekman | J1-84 |
+| 10.15-12.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2018_24102018.pdf)   | Marian Beekman | J1-84 |
 | 12.00-13.00 | **Lunch**                                        |                |       |
-| 13.00-15.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
+| 13.00-15.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2018_24102018.pdf)    | Marian Beekman | J1-84 |
 | 15.00-15.15 | **Tea break**                                    |                |       |
 | 15.30-16.30 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2017.pdf)    | Marian Beekman | J1-84 |
 | 16.30-17.00 | Interim evaluation of participation and interaction   | Bas Heijmans | J1-84 |
