@@ -106,11 +106,12 @@ biological information and to form new hypotheses.
 
 | When        | What: post-GWAs functional follow up                 | Who | Where |
 |-------------|--------------------------------------------------|----------------|-------|
-| 9.00-10.00  | Self-study: Freedman et al. (2011) Principles for the post-GWAS functional characterization | Ingrid Meulenbelt | J1-83 |
+| 9.00-10.00  | Self-study: [Freedman et al. (2011) Principles for the post-GWAS functional characterization](postGWAS/Freedman_functional%20characterization.pdf) | Ingrid Meulenbelt | J1-83 |
 | 10.00-10.15 | **Coffee Break**                                                |                                |       |
-| 10.15-10.30 | Self-study: Freedman et al. continued                           | Self              | J1-83       |
-| 10.30-11.30 | Paper discussion: Freedman et al.                          | Ingrid Meulenbelt              | J1-83       |
-| 11.30-12.00 | Lecuture: Functional genomics                          | Ingrid Meulenbelt              | J1-83       |
+| 10.15-10.30 | Self-study: [Freedman et al. continued](postGWAS/Freedman_functional%20characterization.pdf)                           | Self              | J1-83       |
+| 10.30-11.30 | Paper discussion: [Freedman et al.](postGWAS/Freedman_functional%20characterization.pdf)                          | Ingrid Meulenbelt              | J1-83       |
+| 10.30-11.30 | Paper discussion: [Freedman et al.](postGWAS/Freedman_functional%20characterization.pdf)                          | Ingrid Meulenbelt              | J1-83       |
+| 11.30-12.00 | Lecuture: [Functional genomics](postGWAS/Functional Genomics in Osteoarthritis.pdf)                          | Ingrid Meulenbelt              | J1-83       |
 | 12.00-13.00 | **Lunch**                                                           |                                |       |
 | **When**        | **What: DNA Methylomics**                        | **Who** | **Where** |
 | 13.00-13.30 | Lecture: [Introduction to the epigenome](22jun17_0900_lecture_Heijmans_FOS_IntroEpigenetics.pdf) |                   Bas Heijmans and Roderick Slieker | J1-84 |
