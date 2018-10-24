@@ -22,15 +22,15 @@ output: github_document
 
 
 ##Introduction
-**A primary function of DNA methylation, a key component of the epigenome, is to control cell differentiation. In this practical, you will identify and annotate differential methylation between tissues using genome-wide data generated with Illumina 450k chips. The coming few hours you will replicate many of our group'\s findings which were published in 2013. Good luck and have fun!**
+**A primary function of DNA methylation, a key component of the epigenome, is to control cell differentiation. In this practical, you will identify and annotate differential methylation between tissues using genome-wide data generated with Illumina 450k chips. The coming few hours you will replicate many of our groups' findings which were published in 2013. Good luck and have fun!**
 
 ##Question 1
-**The data that you will use in this practical consists of genome-wide DNA methylation data (Illumina 450k methylation array) of tissues from autopsy samples. Load the file 'Tissue data subset.csv' in R. The file contains the DNA methylation data of a single CpG site with identifier number cg21507095.**
+**The data that you will use in this practical consists of genome-wide DNA methylation data (Illumina 450k methylation array) of tissues from autopsy samples. Read the file 'Tissue data subset.csv' in R. The file contains the DNA methylation data of a single CpG site with identifier number cg21507095.**
 
 ```{r packages, eval=FALSE}
 library(ggplot2)
 #Change this to the directory where you saved the files
-setwd("Z:/Roderick/Onderwijs/FOS/Epigenetics_practical")
+setwd("Z:/Roderick/011 Onderwijs/2018_FOS/Epigenetics_practical")
 TissueData <- read.table("Tissue data subset.csv", sep=";", header=T)
 ```
 
