@@ -187,7 +187,7 @@ biological information and to form new hypotheses.
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | **When**    | **What: Animal models on ageing**                                               | **Who**               | **Where** |
 | 13:00-13:30 | Lecture                                 | Vered Raz                              | J1-84 |
-| 13:30-16:00 | Self study on papers in groups                                 | Vered Raz                              | J1-84 |
+| 13:30-16:00 | [Self study on papers in groups](AnimalModels/)                                 | Vered Raz                              | J1-84 |
 | 15:00-15:15 | **Tea Break**                                     |                                        |       |
 | 16:00-17:00 | Presentation of papers by groups    | Vered Raz                              | J1-84 |
 
