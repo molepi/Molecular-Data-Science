@@ -126,7 +126,7 @@ biological information and to form new hypotheses.
 | 9.00-10.00  | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2018.md) cont'd      | Roderick Slieker | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                                                                                            |                           |       |
 | 10.15-11.30 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2018.md) cont'd   | Roderick Slieker| J1-84 |
-| 11.30-12.30 |   Lecture: DNA methylation signatures of prenatal famine exposure   | Bas Heijmans                       | J1-84   |
+| 11.30-12.30 |   Lecture: [DNA methylation signatures of prenatal famine exposure](26oct18_1130_lecture_Heijmans_FOS_HungerWinter.pdf)   | Bas Heijmans                       | J1-84   |
 | 12.30-13.30 | **Lunch**                                                                                                                   |                           |       |
 | **When**    | **What: Ageing biomarkers; clocks of chronological and biological age**                                                                                                | **Who**               | **Where** |
 | 13.30-15.30 | Lecture: Metabolomics as biomarkers                             | Eline Slagboom          | J1-84 |
