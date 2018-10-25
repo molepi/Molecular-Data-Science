@@ -84,8 +84,8 @@ biological information and to form new hypotheses.
 | 10.00-10.15 | **Coffee break**                                                                                                  |               |       |
 | 10.15-12.30 | Practicals: [Statistical analysis of RNA-seq data](RNAseq_practical/Practical_DEGs_FOS_2018.pdf): Normalization, differential expression and multiple testing  | Rodrigo C de Almeida and Yolande Ramos | J1-84 |
 | 12.30-13.30 | **Lunch**                                                                                                         |               |       |
-| 13.30-14.15 | Lecture: Finding functional relevant genes                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
-| 14.15-15.00 | Lecture: Finding genes in practice                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
+| 13.30-14.15 | Lecture: [Finding functional relevant genes](GenesInPractice/181023_Linkage_YFMRamos_final.pdf)                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
+| 14.15-15.00 | Lecture: [Finding genes in practice](GenesInPractice/181023_Linkage_YFMRamos_final.pdf)                                                                        | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                                                                     |               |       |
 | 15.15-17.00 | Practical: [Finding genes in practice cont'd](GenesInPractice/)                                                                             | Yolande Ramos and Rodrigo C de Almeida | J1-84 |
 
