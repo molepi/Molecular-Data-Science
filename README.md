@@ -93,7 +93,7 @@ biological information and to form new hypotheses.
 
 | When        | What: Genetics                  | Who | Where |
 |-------------|--------------------------------------------------|----------------|-------|
-| 9.00-10.00  | Lecture: Introduction to Genome-wide association | Marian Beekman | J1-84 |
+| 9.00-10.00  | Lecture: [Introduction to Genome-wide association](GWASday/GWAS_slides_2018_24102018.pdf) | Marian Beekman | J1-84 |
 | 10.00-10.15 |  **Coffee break**                                |                |       |
 | 10.15-12.00 | Lecture and Practical: [Genome-wide association](GWASday/GWAS_practical_2018_24102018.pdf)   | Marian Beekman | J1-84 |
 | 12.00-13.00 | **Lunch**                                        |                |       |
