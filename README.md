@@ -114,8 +114,8 @@ biological information and to form new hypotheses.
 | 11.30-12.00 | Lecuture: [Functional genomics](postGWAS/Functional%20Genomics%20in%20Osteoarthritis.pdf)                          | Ingrid Meulenbelt              | J1-83       |
 | 12.00-13.00 | **Lunch**                                                           |                                |       |
 | **When**        | **What: DNA Methylomics**                        | **Who** | **Where** |
-| 13.00-13.30 | Lecture: [Introduction to the epigenome](25oct18_1300_lecture_Heijmans_FOS_IntroductionEpigenetics.pdf) |                   Bas Heijmans and Roderick Slieker | J1-84 |
-| 13.30-15.15 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2018.md)                 | Roderick Slieker | J1-84 |
+| 13.00-14.00 | Lecture: [Introduction to the epigenome](25oct18_1300_lecture_Heijmans_FOS_IntroductionEpigenetics.pdf) |                   Bas Heijmans and Roderick Slieker | J1-84 |
+| 14.00-15.15 | Practical: [Tissues & 450K methylation chip data](Epigenetics_practical/FOS_2018.md)                 | Roderick Slieker | J1-84 |
 | 15.15-15.30 | **Tea Break**                                                           |                                |       |
 | 15.30-17.00 | Practical: [Tissues & 450K methylation chip data cont'd](Epigenetics_practical/FOS_2018.md)          | Roderick Slieker | J1-84 |
 
