@@ -180,7 +180,7 @@ table3f <- (table3e / 1805)*100
 round(table3f,1)
 ```
 
-**G Using the percentages to see where the changes occur is driven by the design of the technology. One can also express the overrepresentation of CpG sites in a specific feature as an odds ratio. What does the odss ratio reflect? What does an odds ratio below o1 mean? Calculate the odds ratio for proximal promoters, what do you conclude?
+**G Using the percentages to see where the changes occur is driven by the design of the technology. One can also express the overrepresentation of CpG sites in a specific feature as an odds ratio. What does the odss ratio reflect? What does an odds ratio below o1 mean? Calculate the odds ratio for proximal promoters, what do you conclude?**
 
 || Sign | Non-Sign | Total
 |-|-|-|-|
@@ -215,7 +215,7 @@ TissueData22signOrdered <- TissueData22sign[order(TissueData22sign$Pval),]
 head(TissueData22signOrdered)
 ```
 
-**B Go to the UCSC genome browser at http://genome.ucsc.edu/. Click on My Data at the top of the page and then Custom Tracks. Upload the significant probe.bed as a custom track (click Choose File and then Submit; like before, use assembly Feb 2009 (GRCh37/hg19)). Click go to genome browser. For clarity, display the track as 'dense'. A red dot denotes a differentially methylated CpG (accounting for multiple testing), a blue dot a CpG for which there is no statistical evidence for differential methylation.**
+**B Go to the UCSC genome browser at http://genome.ucsc.edu/. Click on My Data at the top of the page and then Custom Tracks. Upload the significant probe.bed as a custom track (click Choose File and then Submit; like before, use assembly Feb 2009 (GRCh37/hg19)). Click go to genome browser. For clarity, display the track as 'dense'. A red vertical line denotes a differentially methylated CpG (accounting for multiple testing), a blue vertical line is a CpG for which there is no statistical evidence for differential methylation.**
 
 **C Look up to the two top-hits (See 1E how to if you don't know how). In which gene centric / CGI centric feature are the top-hits? Also see/use question 2C.**
 
