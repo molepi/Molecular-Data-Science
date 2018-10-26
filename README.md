@@ -129,7 +129,7 @@ biological information and to form new hypotheses.
 | 11.30-12.30 |   Lecture: [DNA methylation signatures of prenatal famine exposure](26oct18_1130_lecture_Heijmans_FOS_HungerWinter.pdf)   | Bas Heijmans                       | J1-84   |
 | 12.30-13.30 | **Lunch**                                                                                                                   |                           |       |
 | **When**    | **What: Ageing biomarkers; clocks of chronological and biological age**                                                                                                | **Who**               | **Where** |
-| 13.30-15.30 | Lecture: Metabolomics as biomarkers                             | Eline Slagboom          | J1-84 |
+| 13.30-15.30 | Lecture: [Metabolomics as biomarkers](MetabolomicsBiomarkers/FOS2018MetabolomicsBiomarkersPractical.pdf)                             | Eline Slagboom          | J1-84 |
 |  | Self-study; Marioni et al. (2016) The epigenetic clock and telomere length are independently associated with chronological age and mortality.                                                                      | Self           | J1-84     |
 | 15.00-15.15 | **Coffee Break**                                                                 |                           |       |
 | 15.15-17.00 | Paper discussion: Marioni et al.                                                            | Eline Slagboom          | J1-84 |
