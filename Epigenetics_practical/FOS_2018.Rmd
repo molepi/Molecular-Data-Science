@@ -203,7 +203,6 @@ OR <- (a/b)/(c/d)
 #One can formally test the enrichment / depletion with a chi-squared test
 chisq.test(matrix(c(a,b,c,d), ncol=2, byrow = TRUE))
 ``` 
-**
 
 ##Question 4
 
