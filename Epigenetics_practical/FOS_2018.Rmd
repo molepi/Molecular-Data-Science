@@ -164,6 +164,11 @@ table(TissueData22$Pval_corrected)
 ```{r Q3E, eval=FALSE}
 TissueData22sign <- read.table("Tissue data chromosome 22 significant.csv", sep=";", header=T)
 head(TissueData22sign)
+
+
+table(TissueData22sign$Gene_centric)
+table(TissueData22sign$CGI_centric)
+
 table3e <- table(TissueData22sign$Gene_centric, TissueData22sign$CGI_centric)
 table3e
 ```
@@ -174,6 +179,31 @@ table3e
 table3f <- (table3e / 1805)*100
 round(table3f,1)
 ```
+
+**G Using the percentages to see where the changes occur is driven by the design of the technology. One can also express the overrepresentation of CpG sites in a specific feature as an odds ratio. What does the odss ratio reflect? What does an odds ratio below o1 mean? Calculate the odds ratio for proximal promoters, what do you conclude?
+
+|| Sign | Non-Sign | Total
+|-|-|-|-|
+Proximal Promoter | a | b| a+b |
+Elsewhere | c | d | c+d |
+Total | a+c | b+d |
+
+```{r, eval=FALSE}
+#Calculate a
+a <- table(TissueData22sign$Gene_centric)["Proximal promoter"]
+n.prox <- table(TissueData22$Gene_centric)["Proximal promoter"]
+#Calculate b
+b <- n.prox - a
+c <- 1805 - a
+d <- 8463 - a - b - c
+
+#Now calculate the odds ratio
+OR <- (a/b)/(c/d)
+
+#One can formally test the enrichment / depletion with a chi-squared test
+chisq.test(matrix(c(a,b,c,d), ncol=2, byrow = TRUE))
+``` 
+**
 
 ##Question 4
 
