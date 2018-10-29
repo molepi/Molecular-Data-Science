@@ -1,34 +1,22 @@
-Practical Course: Integrated analysis of multiple -omics data and Mendelian randomization
-================
-
--   [Introduction](#introduction)
--   [Load data](#load-data)
--   [PART 1](#part-1)
--   [Determine association between triglyceride levels and gene transcription](#determine-association-between-triglyceride-levels-and-gene-transcription)
--   [Bidirectional Mendelian randomization](#bidirectional-mendelian-randomization)
--   [Evaluate instrumental variable](#evaluate-instrumental-variable)
--   [Estimate an effect of triglyceride levels on gene transcription](#estimate-an-effect-of-triglyceride-levels-on-gene-transcription)
--   [Estimate an effect of gene transcription on triglyceride levels](#estimate-an-effect-of-gene-transcription-on-triglyceride-levels)
--   [PART 2](#part-2)
-
 Introduction
 ------------
 
 One of the issues with epigenome-wide and transcriptome-wide association studies, in contrast to genome-wide association studies, is interpreting what is cause and what is consequence. In this practical course you will use genetic variants to infer a causal relationship between variation in blood triglyceride levels, of which high levels are a risk factor for cardiovascular diseases, and gene transcription and DNA methylation of blood cells.
 
-We expect that everyone will be able to complete Part 1 on transcription (questions 1-25), Part 2 on DNA methylation is for fast students. Paste the answers to your questions in a Word document and mail them to <b.t.heijmans@lumc.nl> with your name both in the document AND in the file name.
+We expect that everyone will be able to complete Part 1 on transcription (questions 1-25), Part 2 on DNA methylation is for fast students. Paste the answers to your questions in a Rscript or Word document and mail them to <k.f.dekkers@lumc.nl>.
 
 Load data
 ---------
 
 ``` r
-load(url("https://raw.githubusercontent.com/molepi/FOS2017/master/integrative_omics/data.RData"))
+load(url("https://github.com/molepi/Molecular-Data-Science/blob/master/integrative_omics/data.RData?raw=true"))
 ```
 
 -   Use **ls()**, **str** and **summary** to explore the data.
+-   Tip: You can use **rm(list=ls())** to clear your environment.
 
 ``` r
-ls() # list of objects in environment
+ls() # list of objects in environment.
 ```
 
     ## [1] "cpg_snps"        "cpgs"            "tg"              "tg_snp"         
@@ -71,18 +59,18 @@ The data are already preprocessed to be suitable for linear regression:
 -   **tg** = log-transformed triglyceride levels (log mmol per L)
 -   **transcripts** = normalized and log-transformed gene transcript counts per million
 -   **cpgs** = normalized and M-transformed DNA methylation levels
--   **tg\_snp**, **transcript\_snps**, **cpg\_snps** = genotypes converted to dosages, i.e. if A and B were the possible alleles for genetic variant X, then the dosage of X would be 0 if AA, 1 if AB or BA and 2 if BB.
+-   **tg\_snp**, **transcript\_snps**, **cpg\_snps** = genotypes converted to dosages, i.e. if A and B were the possible alleles for genetic variant X, then the dosage of X would be 0 if AA, 1 if AB or BA and 2 if BB
 -   **tg**, **transcripts** and **cpgs** have been adjusted for age, gender and cell counts
 
 1.  How may genes and CpGs do the data contain?
 2.  How many individuals have been measured?
 3.  Use [Gene Cards](www.genecards.org) to look up the genes in **transcripts**, what is their reported function?
-4.  Use [USCS Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) to look up the CpGs in **cpgs**, what is their nearest gene?
+4.  Use [USCS Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) to look up the CpGs in **cpgs**, what is their nearest gene? Select Human Assembly GRCh37/hg19.
 5.  Determine the allele frequencies for **tg\_snp**, see [Allele frequency](https://en.wikipedia.org/w/index.php?title=Allele_frequency).
 
 ``` r
 prop <- prop.table(table(tg_snp)) # calculate genotype frequencies
-c(A=as.numeric(prop[1] + 0.5 * prop[2]), B=as.numeric(prop[3] + 0.5 * prop[2])) # calculate allele frequencies
+c(A = as.numeric(prop[1] + 0.5 * prop[2]), B = as.numeric(prop[3] + 0.5 * prop[2])) # calculate allele frequencies
 ```
 
     ##         A         B 
@@ -97,18 +85,18 @@ Determine association between triglyceride levels and gene transcription
 You will first identify if there is an association between triglyceride levels and transcription for these genes involved in lipid metabolism.
 
 -   Create a scatter plot with triglyceride levels in the x-axis and *ABCG1* transcription on the y-axis.
--   Use **lm** to fit a linear model with triglycerides as explanatory variable and *ABCG1* transcription as response variable and add this to the plot using **abline**.
 
 ``` r
-plot(tg, transcripts$abcg1)
-abline(lm(transcripts$abcg1 ~ tg))
+library(ggplot2)
+ggplot(data.frame(tg = tg, abcg1 = transcripts$abcg1), aes(x = tg, y = abcg1)) + geom_point() + 
+  geom_smooth(method = "lm", se = F, color = "black")
 ```
 
-![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+![](practicum_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-1.  Are higher triglyceride levels associated with higher or lower *ABCG1* transcription levels?
+1.  Are higher triglyceride levels correlated with higher or lower *ABCG1* transcription levels?
 
--   Use **summary** on the fitted model to obtain the model coefficients.
+-   Use linear regression to fit a model of triglyceride levels and *ABCG1* transcription levels
 
 ``` r
 summary(lm(transcripts$abcg1 ~ tg))
@@ -145,7 +133,7 @@ You could evaluate the association between triglyceride levels and transcription
 lm_transcripts_tg <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ tg) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   lm_transcripts_tg <- rbind(lm_transcripts_tg, coefficients) # append the results to data frame
 }
 rownames(lm_transcripts_tg) <- colnames(transcripts)
@@ -169,15 +157,17 @@ To infer cause and consequence you will use [bidirectional Mendelian randomizati
 Evaluate instrumental variable
 ------------------------------
 
-Mendelian randomization requires genetic variants associated with your explanatory variable. Object **tg\_snp** contains genotype dosages of a genetic variant associated with triglyceride levels obtain from a [GWAS on lipid levels](http://www.nature.com/ng/journal/v45/n11/full/ng.2797.html). You will first verify this association.
+Mendelian randomization requires genetic variants associated with your explanatory variable. Object **tg\_snp** contains genotype dosages of a genetic variant associated with triglyceride levels obtained from a [GWAS on lipid levels](http://www.nature.com/ng/journal/v45/n11/full/ng.2797.html). You will first verify this association.
 
 -   Create a boxplot of triglyceride levels grouped by **tg\_snp** dosage.
 
 ``` r
-boxplot(tg ~ tg_snp)
+ggplot(data.frame(tg = tg, tg_snp = factor(tg_snp)), aes(x = tg_snp, y = tg)) + geom_boxplot()
 ```
 
-![](practicum_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+    ## Warning: Removed 80 rows containing non-finite values (stat_boxplot).
+
+![](practicum_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 1.  What would be the risk allele, i.e. the allele associated with higher triglyceride levels, if AA is 0 and BB is 2?
 
@@ -212,7 +202,7 @@ summary(lm(tg ~ tg_snp))
 3.  Predict triglyceride levels (in mmol per L) for each dosage of the genetic variant.
 
 ``` r
-exp(0.43999 + c(AA=0, AB=1, BB=2) * -0.12823)
+exp(0.43999 + c(AA = 0, AB = 1, BB = 2) * -0.12823)
 ```
 
     ##       AA       AB       BB 
@@ -260,7 +250,7 @@ summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
 ivreg_transcripts_tg <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- ivreg(transcripts[, i] ~ tg | tg_snp) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   ivreg_transcripts_tg <- rbind(ivreg_transcripts_tg, coefficients) # append the results to data frame
 }
 rownames(ivreg_transcripts_tg) <- colnames(transcripts)
@@ -289,8 +279,8 @@ Estimate an effect of gene transcription on triglyceride levels
 lm_transcripts_snps <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ transcript_snps[, i]) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
-  coefficients <- data.frame(coefficients, R.squared=summary(fit)$adj.r.squared, F.statistic=summary(fit)$fstatistic[1]) # add adjusted R-squared and F-statistic
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared, F.statistic=summary(fit)$fstatistic[1]) # add adjusted R-squared and F-statistic
   lm_transcripts_snps <- rbind(lm_transcripts_snps, coefficients) # append the results to data frame
 }
 rownames(lm_transcripts_snps) <- colnames(transcripts)
@@ -317,7 +307,7 @@ Estimate an effect of gene transcription on triglyceride levels.
 ivreg_tg_transcripts <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- ivreg(tg ~ transcripts[, i] | transcript_snps[, i]) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   ivreg_tg_transcripts <- rbind(ivreg_tg_transcripts, coefficients) # append the results to data frame
 }
 rownames(ivreg_tg_transcripts) <- colnames(transcripts)
@@ -353,11 +343,11 @@ PART 2
 lm_transcripts_cpgs <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ cpgs[, i]) # fit model for every transcript and corresponding CpG
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
-  coefficients <- data.frame(coefficients, R.squared=summary(fit)$adj.r.squared) # add adjusted R-squared
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared) # add adjusted R-squared
   lm_transcripts_cpgs <- rbind(lm_transcripts_cpgs, coefficients) # append the results to data frame
 }
-rownames(lm_transcripts_cpgs) <- paste(colnames(transcripts), colnames(cpgs), sep="_")
+rownames(lm_transcripts_cpgs) <- paste(colnames(transcripts), colnames(cpgs), sep = "_")
 lm_transcripts_cpgs
 ```
 

@@ -1,15 +1,8 @@
 ---
-title: "Practical Course: Integrated analysis of multiple -omics data and Mendelian randomization"
-output:
-  html_document:
-    toc: true
-    toc_depth: 2
-  pdf_document:
-    toc: true
-    toc_depth: 2
-  github_document:
-    toc: true
-    toc_depth: 2
+title: "Integrated analysis of multiple -omics data and Mendelian randomization"
+output: 
+  md_document:
+    variant: markdown_github
 ---
 
 ## Introduction ##
@@ -24,24 +17,24 @@ transcription and DNA methylation of blood cells.
 
 We expect that everyone will be able to complete Part 1 on
 transcription (questions 1-25), Part 2 on DNA methylation is for fast
-students. Paste the answers to your questions in a Word document and
-mail them to b.t.heijmans@lumc.nl with your name both in the document
-AND in the file name.
+students. Paste the answers to your questions in a Rscript or Word document and
+mail them to k.f.dekkers@lumc.nl.
 
-## Load data ##
-
-```{r, echo=FALSE, include=FALSE}
+```{r echo=FALSE, include=FALSE}
 rm(list=ls())
 ```
 
+## Load data ##
+
 ```{r}
-load(url("https://raw.githubusercontent.com/molepi/FOS2017/master/integrative_omics/data.RData"))
+load(url("https://github.com/molepi/Molecular-Data-Science/blob/master/integrative_omics/data.RData?raw=true"))
 ```
 
 * Use __ls()__, __str__ and __summary__ to explore the data.
+* Tip: You can use __rm(list=ls())__ to clear your environment.
 
 ```{r}
-ls() # list of objects in environment
+ls() # list of objects in environment.
 str(tg) # structure of object tg
 summary(transcripts) # summary of object transcripts
 summary(cpgs)  # summary of object cpgs
@@ -57,7 +50,7 @@ regression:
 * __tg_snp__, __transcript_snps__, __cpg_snps__ = genotypes converted
   to dosages, i.e. if A and B were the possible alleles for genetic
   variant X, then the dosage of X would be 0 if AA, 1 if AB or BA and
-  2 if BB.
+  2 if BB
 * __tg__, __transcripts__ and __cpgs__ have been adjusted for age,
   gender and cell counts
 
@@ -67,13 +60,13 @@ regression:
    __transcripts__, what is their reported function?
 4. Use
    [USCS Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) to
-   look up the CpGs in __cpgs__, what is their nearest gene?
+   look up the CpGs in __cpgs__, what is their nearest gene? Select Human Assembly GRCh37/hg19.
 5. Determine the allele frequencies for __tg_snp__, see
    [Allele frequency](https://en.wikipedia.org/w/index.php?title=Allele_frequency).
 
 ```{r}
 prop <- prop.table(table(tg_snp)) # calculate genotype frequencies
-c(A=as.numeric(prop[1] + 0.5 * prop[2]), B=as.numeric(prop[3] + 0.5 * prop[2])) # calculate allele frequencies
+c(A = as.numeric(prop[1] + 0.5 * prop[2]), B = as.numeric(prop[3] + 0.5 * prop[2])) # calculate allele frequencies
 ```
 
 ## PART 1 ##
@@ -86,20 +79,17 @@ lipid metabolism.
 
 * Create a scatter plot with triglyceride levels in the x-axis and
   _ABCG1_ transcription on the y-axis.
-* Use __lm__ to fit a linear model with triglycerides as explanatory
-  variable and _ABCG1_ transcription as response variable and add this
-  to the plot using __abline__.
 
-```{r}
-plot(tg, transcripts$abcg1)
-abline(lm(transcripts$abcg1 ~ tg))
+```{r warning=FALSE}
+library(ggplot2)
+ggplot(data.frame(tg = tg, abcg1 = transcripts$abcg1), aes(x = tg, y = abcg1)) + geom_point() + 
+  geom_smooth(method = "lm", se = F, color = "black")
 ```
 
-6. Are higher triglyceride levels associated with higher or lower
+6. Are higher triglyceride levels correlated with higher or lower
    _ABCG1_ transcription levels?
 
-* Use __summary__ on the fitted model to obtain the model
-  coefficients.
+* Use linear regression to fit a model of triglyceride levels and _ABCG1_ transcription levels
 
 ```{r}
 summary(lm(transcripts$abcg1 ~ tg))
@@ -120,7 +110,7 @@ would be infeasible if we were to scale this up to all 30,000 genes.
 lm_transcripts_tg <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ tg) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   lm_transcripts_tg <- rbind(lm_transcripts_tg, coefficients) # append the results to data frame
 }
 rownames(lm_transcripts_tg) <- colnames(transcripts)
@@ -146,14 +136,14 @@ transcription on triglyceride levels.
 
 Mendelian randomization requires genetic variants associated with your
 explanatory variable. Object __tg_snp__ contains genotype dosages of a
-genetic variant associated with triglyceride levels obtain from a
+genetic variant associated with triglyceride levels obtained from a
 [GWAS on lipid levels](http://www.nature.com/ng/journal/v45/n11/full/ng.2797.html). You
 will first verify this association.
 
 * Create a boxplot of triglyceride levels grouped by __tg_snp__ dosage.
 
 ```{r}
-boxplot(tg ~ tg_snp)
+ggplot(data.frame(tg = tg, tg_snp = factor(tg_snp)), aes(x = tg_snp, y = tg)) + geom_boxplot()
 ```
 
 11. What would be the risk allele, i.e. the allele associated with
@@ -175,7 +165,7 @@ summary(lm(tg ~ tg_snp))
     genetic variant.
 
 ```{r}
-exp(0.43999 + c(AA=0, AB=1, BB=2) * -0.12823)
+exp(0.43999 + c(AA = 0, AB = 1, BB = 2) * -0.12823)
 ```
 
 ## Estimate an effect of triglyceride levels on gene transcription ##
@@ -189,7 +179,7 @@ transcription using the genetic variant as a causal anchor.
   response variable and the genetic variant as instrumental variable.
 * Use summary to obtain the model coefficients.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(AER)
 summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
 ```
@@ -209,7 +199,7 @@ summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
 ivreg_transcripts_tg <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- ivreg(transcripts[, i] ~ tg | tg_snp) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   ivreg_transcripts_tg <- rbind(ivreg_transcripts_tg, coefficients) # append the results to data frame
 }
 rownames(ivreg_transcripts_tg) <- colnames(transcripts)
@@ -239,8 +229,8 @@ involved in lipid metabolism obtained from a
 lm_transcripts_snps <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ transcript_snps[, i]) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
-  coefficients <- data.frame(coefficients, R.squared=summary(fit)$adj.r.squared, F.statistic=summary(fit)$fstatistic[1]) # add adjusted R-squared and F-statistic
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared, F.statistic=summary(fit)$fstatistic[1]) # add adjusted R-squared and F-statistic
   lm_transcripts_snps <- rbind(lm_transcripts_snps, coefficients) # append the results to data frame
 }
 rownames(lm_transcripts_snps) <- colnames(transcripts)
@@ -259,7 +249,7 @@ Estimate an effect of gene transcription on triglyceride levels.
 ivreg_tg_transcripts <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- ivreg(tg ~ transcripts[, i] | transcript_snps[, i]) # fit model for every transcript
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
   ivreg_tg_transcripts <- rbind(ivreg_tg_transcripts, coefficients) # append the results to data frame
 }
 rownames(ivreg_tg_transcripts) <- colnames(transcripts)
@@ -305,11 +295,11 @@ levels and DNA methylation.
 lm_transcripts_cpgs <- data.frame() # create new data frame
 for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
   fit <- lm(transcripts[, i] ~ cpgs[, i]) # fit model for every transcript and corresponding CpG
-  coefficients <- summary(fit)$coefficients[2, , drop=F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
-  coefficients <- data.frame(coefficients, R.squared=summary(fit)$adj.r.squared) # add adjusted R-squared
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared) # add adjusted R-squared
   lm_transcripts_cpgs <- rbind(lm_transcripts_cpgs, coefficients) # append the results to data frame
 }
-rownames(lm_transcripts_cpgs) <- paste(colnames(transcripts), colnames(cpgs), sep="_")
+rownames(lm_transcripts_cpgs) <- paste(colnames(transcripts), colnames(cpgs), sep = "_")
 lm_transcripts_cpgs
 ```
 
