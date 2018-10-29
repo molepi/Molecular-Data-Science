@@ -153,9 +153,9 @@ biological information and to form new hypotheses.
 
 | When        | What: Next generation sequencing                                   | Who               | Where |
 |-------------|-------------------------------------------------------------------|-------------------|-------|
-| 9.00-10.00  | Lecture: Next generation sequencing technology                    | Yavuz Ariyurek    | J1-84 |
-| 10.00-10.15 | **Coffee Break**                                                      |                   |       |
-| 10.15-11.15 | Lab tour Next generation sequencing technology | Yavuz Ariyurek | Building 2 |
+| 9.00-9.45  | Lecture: Next generation sequencing technology                    | Susan Kloet    | J1-84 |
+| 9.45-11.00 | Lab tour Next generation sequencing technology | Susan Kloet | Building 2 |
+| 11.00-11.15 | **Coffee Break**                                                      |                   |       |
 | 11.15-12.00 | Lecture: Medical sequencing (principles exome and WGA sequencing) | Ingrid Meulenbelt | J1-84 |
 | 12.00-13.00 | **Lunch**                                                             |                   |       |
 | 13.00-13.15 | Interim evaluation of participation and interaction                        | Bas Heijmans | J1-84 |
