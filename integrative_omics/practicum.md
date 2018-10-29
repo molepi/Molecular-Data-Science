@@ -62,8 +62,7 @@ The data are already preprocessed to be suitable for linear regression:
 -   **tg\_snp**, **transcript\_snps**, **cpg\_snps** = genotypes converted to dosages, i.e. if A and B were the possible alleles for genetic variant X, then the dosage of X would be 0 if AA, 1 if AB or BA and 2 if BB
 -   **tg**, **transcripts** and **cpgs** have been adjusted for age, gender and cell counts
 
-Question 1
-==========
+#### Question 1
 
 1.  How may genes and CpGs do the data contain?
 2.  How many individuals have been measured?
@@ -97,8 +96,7 @@ ggplot(data.frame(tg = tg, abcg1 = transcripts$abcg1), aes(x = tg, y = abcg1)) +
 
 ![](practicum_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-Question 2
-==========
+#### Question 2
 
 1.  Are higher triglyceride levels correlated with higher or lower *ABCG1* transcription levels?
 
@@ -128,8 +126,7 @@ summary(lm(transcripts$abcg1 ~ tg))
     ## Multiple R-squared:  0.1414, Adjusted R-squared:  0.1411 
     ## F-statistic: 480.7 on 1 and 2918 DF,  p-value: < 2.2e-16
 
-Question 3
-==========
+#### Question 3
 
 1.  Is this association statistically significant?
 2.  Should you use a multiple testing correction? If so, for how many test should you adjust?
@@ -155,8 +152,7 @@ lm_transcripts_tg
     ## srebf2  0.05557608 0.007737777   7.182434 8.653891e-13
     ## sqle    0.12144071 0.015648990   7.760291 1.163003e-14
 
-Question 4
-==========
+#### Question 4
 
 1.  Which genes are associated with triglyceride levels?
 2.  Based on these associations, can you infer whether blood triglycerides have an effect on transcription in blood cells or whether transcription of these genes has an effect on triglyceride levels? If not, what do you think is biologically more likely?
@@ -181,8 +177,7 @@ ggplot(data.frame(tg = tg, tg_snp = factor(tg_snp)), aes(x = tg_snp, y = tg)) + 
 
 ![](practicum_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-Question 5
-==========
+#### Question 5
 
 1.  What would be the risk allele, i.e. the allele associated with higher triglyceride levels, if AA is 0 and BB is 2?
 
@@ -212,8 +207,7 @@ summary(lm(tg ~ tg_snp))
     ## Multiple R-squared:  0.01712,    Adjusted R-squared:  0.01679 
     ## F-statistic: 50.83 on 1 and 2918 DF,  p-value: 1.263e-12
 
-Question 6
-==========
+#### Question 6
 
 1.  What percentage of variance in triglyceride levels are explained by the genetic variant (see Adjusted R-squared)?
 2.  An F-statistic &gt; 10 is considered a good instrumental variable, is the genetic variant a good instrumental variable for triglyceride levels?
@@ -259,8 +253,7 @@ summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
     ## Multiple R-Squared: 0.06655, Adjusted R-squared: 0.06623 
     ## Wald test:  22.6 on 1 and 2918 DF,  p-value: 2.096e-06
 
-Question 7
-==========
+#### Question 7
 
 1.  A P-value &lt; 0.05 of a two-stage least squares model is evidence of an effect, is there evidence of an effect of triglyceride levels on *ABCG1* gene transcription?
 2.  Compare the effect size estimate and standard error of the instrumental variable analysis with the earlier association estimate and standard error, what could be an explanation for the difference?
@@ -284,8 +277,7 @@ ivreg_transcripts_tg
     ## srebf2  0.1991457 0.06252502  3.185056 1.462514e-03
     ## sqle    0.4213258 0.12689577  3.320251 9.104248e-04
 
-Question 8
-==========
+#### Question 8
 
 1.  For which genes is there an effect of triglyceride levels on gene transcription?
 
@@ -322,8 +314,7 @@ lm_transcripts_snps
     ## srebf2    11.20135
     ## sqle      39.92605
 
-Question 9
-==========
+#### Question 9
 
 1.  Are the genetic variants good instrumental variables?
 2.  A single genetic variant often explains a small percentage of variance in the explanatory variable, what could you do to improve the amount of variance explained to increase the power of the analysis?
@@ -347,8 +338,7 @@ ivreg_tg_transcripts
     ## srebf2  0.36746763 0.71345203  0.5150558 0.6065530
     ## sqle    0.01625879 0.18534746  0.0877206 0.9301048
 
-Question 10
-===========
+#### Question 10
 
 1.  Is there evidence of an effect of gene expression on triglyceride levels?
 2.  Give an explanation for the lack of evidence for an effect of triglyceride levels on *SREBF1* and vice versa.
@@ -363,8 +353,7 @@ PART 2
 
 -   Replace **transcripts** with **cpgs** and **transcript\_snps** with **cpg\_snps** in the for-loops of Part 1.
 
-Question 11
-===========
+#### Question 11
 
 1.  Is there an association between triglyceride levels and DNA methylation for the 4 CpGs in **cpgs**?
 2.  Is there evidence of an effect of triglyceride levels on DNA methylation for the 4 CpGs in **cpgs**?
@@ -395,8 +384,7 @@ lm_transcripts_cpgs
     ## srebf2_cg16000331 0.02543250
     ## sqle_cg09984392   0.02905836
 
-Question 12
-===========
+#### Question 12
 
 1.  Can you infer whether DNA methylation affects gene expression or visa versa?
 2.  One of the assumptions of Mendelian randomization is that an instrument does not directly affect the response variable independent of its effect on the explanatory variable. Explain how this can be a problem when using genetic variants *in cis* with both CpG and gene.
