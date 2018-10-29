@@ -157,12 +157,12 @@ biological information and to form new hypotheses.
 | 10.00-10.15 | **Coffee Break**                                                      |                   |       |
 | 10.15-11.15 | Lab tour Next generation sequencing technology | Yavuz Ariyurek | Building 2 |
 | 11.15-12.00 | Lecture: Medical sequencing (principles exome and WGA sequencing) | Ingrid Meulenbelt | J1-84 |
-| 12.00-12.30 | Practical Exome sequencing early onset OA                         | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
-| 12.30-13.30 | **Lunch**                                                             |                   |       |
-| 13.30-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
+| 12.00-13.00 | **Lunch**                                                             |                   |       |
+| 13.00-13.15 | Interim evaluation of participation and interaction                        | Bas Heijmans | J1-84 |
+| 13.15-15.00 | Practical: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                         |                   |       |
-| 15.15-16.30 | Practical continued: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos| J1-84 |
-| 16.30-17.00 | Interim evaluation of participation and interaction                        | Bas Heijmans | J1-84 |
+| 15.15-17.00 | Practical continued: Exome sequencing early onset OA                        | Ingrid Meulenbelt and Yolande Ramos| J1-84 |
+
 
 # Wednesday October 31 (Location J1-84/building 1, LUMC) #
 
