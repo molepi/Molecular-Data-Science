@@ -144,7 +144,7 @@ biological information and to form new hypotheses.
 | 10.15-12.30 | Practical: [Metabolomics practical](Metabolomics_practical/FOS2017_06062017.md)       | Marian Beekman and Erik van den Akker| J1-84 |
 | 12.30-13.30 | **Lunch**
 | **When**    | **What: Integrative approaches** | **Who**  | **Where** |
-| 13.30-14.00 |  Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](23jun17_0900_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
+| 13.30-14.00 |  Lecture: [Integrated analysis of multiple –omics data and Mendelian randomization](29Oct18_1330_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
 | 14.00-15.00 | Practical: [Hands on Integration of –omics datasets;eQTL, mQTL, Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-84 |
 | 15.00-15.15 | **Tea Break**                           |      | J1-82 |
 | 15.15-17.00 | Practical: [Hands on Integration of –omics datasets;eQTL, mQTL, Mendelian Randomization](integrative_omics/practicum.md)  | Bas Heijmans and Koen Dekkers  | J1-84 |                                                                                      
