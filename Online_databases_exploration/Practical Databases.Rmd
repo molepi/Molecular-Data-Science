@@ -11,7 +11,7 @@ Over the past years, an enormous amount of omics data has become publically avai
 
 ## Load packages
 
-```{r, message=F, eval=FALSE}
+```{r setup, message=F, eval=FALSE}
 library(Biobase)
 library(GEOquery)
 library(ggplot2)
@@ -56,7 +56,7 @@ pheno.blood <- phenoData(eSet.blood)@data #Extract phenotype data for blood
 pheno.buccal <- phenoData(eSet.buccal)@data #Extract phenotype data for buccal
 ```
 
-**3. The DNA methylation data contains quite some loci. How many (code below)? Are the number of loci measured equal? If not, why do you think not? **
+**3. The DNA methylation data contains quite some loci. How many (code below)? Are the number of loci measured equal? If not, why do you think not?**
 
 ```{r, eval=FALSE}
 dim(exprs.blood) #Dimensions
@@ -139,7 +139,7 @@ getPlot <- function(CpG)
     scale_color_manual(values = c("#132B41","#F9A23F")) #CUstom colors
 }
 
-getPlot("cg16867657") #PLot for one
+getPlot("cg16867657") #Plot for one
 ```
 
 **7. Now we loop over all CpGs; otherwise we would have to many tests manually. Run the model for all CpGs. Look at the top results. What is the top locus for blood? Is it the same for buccal?**
