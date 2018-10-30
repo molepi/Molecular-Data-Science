@@ -156,7 +156,7 @@ biological information and to form new hypotheses.
 | 9.00-9.45  | Lecture: Next generation sequencing technology                    | Susan Kloet    | J1-84 |
 | 9.45-11.00 | Lab tour Next generation sequencing technology | Susan Kloet | Building 2 |
 | 11.00-11.15 | **Coffee Break**                                                      |                   |       |
-| 11.15-12.00 | Lecture: [Medical sequencing (principles exome and WGA sequencing)](ExomeSeq/) | Ingrid Meulenbelt | J1-84 |
+| 11.15-12.00 | Lecture: [Medical sequencing (principles exome and WGA sequencing)](ExomeSeq/Exome_sequencing_Meulenbelt_2018.pdf) | Ingrid Meulenbelt | J1-84 |
 | 12.00-13.00 | **Lunch**                                                             |                   |       |
 | 13.00-13.15 | Interim evaluation of participation and interaction                        | Bas Heijmans | J1-84 |
 | 13.15-15.00 | Practical: [Exome sequencing early onset OA](/ExomeSeq)                        | Ingrid Meulenbelt and Yolande Ramos | J1-84 |
