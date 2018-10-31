@@ -153,7 +153,7 @@ biological information and to form new hypotheses.
 
 | When        | What: Next generation sequencing                                   | Who               | Where |
 |-------------|-------------------------------------------------------------------|-------------------|-------|
-| 9.00-9.45  | Lecture: Next generation sequencing technology                    | Susan Kloet    | J1-84 |
+| 9.00-9.45  | Lecture: [Next generation sequencing technology](NGS/2018-10-30_FOS_NGS.pdf)                   | Susan Kloet    | J1-84 |
 | 9.45-11.00 | Lab tour Next generation sequencing technology | Susan Kloet | Building 2 |
 | 11.00-11.15 | **Coffee Break**                                                      |                   |       |
 | 11.15-12.00 | Lecture: [Medical sequencing (principles exome and WGA sequencing)](ExomeSeq/Exome_sequencing_Meulenbelt_2018.pdf) | Ingrid Meulenbelt | J1-84 |
@@ -168,14 +168,14 @@ biological information and to form new hypotheses.
 
 | When        | What: Single cell RNA-sequencing & clustering                                                      | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9.00-10.00  | Lecture: Single cell RNA-sequencing                           | Ahmed Mahfouz    | J1-84 |
+| 9.00-10.00  | Lecture: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf)                           | Ahmed Mahfouz    | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                                                               |                      |       |
 | 10.15-12.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf)   | Indu Khatri, Ahmed Mahfouz | J1-84 |
 | 12.00-13.00 | **Lunch**                                                                          |              |       |
 | **When**    | **What: Clustering analysis**                                                     | **Who**               | **Where** |
-| 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS_Clustering_2017.pdf)                                                                         | Marcel Reinders           | J1-84 |
+| 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOSClustering2018.pdf)                                                                         | Marcel Reinders           | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                        |                           |       |
-| 15.15-17.00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |  J1-84    |
+| 15.15-17.00 | Practical: [Clustering analysis transcriptomic data](Clustering/practicals/)                                                                      | Marcel Reinders           |  J1-84    |
 
 # Thursday November 1  (Location J1-84/building 1, LUMC)  #
 
