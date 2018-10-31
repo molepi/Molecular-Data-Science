@@ -168,7 +168,7 @@ biological information and to form new hypotheses.
 
 | When        | What: Single cell RNA-sequencing & clustering                                                      | Who                  | Where |
 |-------------|------------------------------------------------------------------------------------------------------------------|----------------------|-------|
-| 9.00-10.00  | Lecture: Single cell RNA-sequencing                           | Ahmed Mahfouz    | J1-84 |
+| 9.00-10.00  | Lecture: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf)                           | Ahmed Mahfouz    | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                                                               |                      |       |
 | 10.15-12.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf)   | Indu Khatri, Ahmed Mahfouz | J1-84 |
 | 12.00-13.00 | **Lunch**                                                                          |              |       |
