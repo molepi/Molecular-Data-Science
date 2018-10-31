@@ -181,9 +181,9 @@ biological information and to form new hypotheses.
 
 | When        | What: Databases reproducibility              | Who                                    | Where |
 |-------------|-----------------------------------------------|----------------------------------------|-------|
-| 9.00-9.45 | Lecture: Exploiting public data [GONL, BIOS, UK biobank, GTEX, reproducibility](PublicDatabases/1nov18_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
+| 9.00-9.45 | Lecture: [Exploiting public data](PublicDatabases/1nov18_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 9.45-10.00 | **Coffee Break**                                  |                                        |       |
-| 10.00-11.00 | Practical: [Exploiting public data](PublicDatabases/1nov18_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
+| 10.00-11.00 | Practical: [Exploiting public data in practice](PublicDatabases/1nov18_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 11.00 -12.00 | Practical: [Online databases exploration](Online_databases_exploration/Practical_Databases.md) | Roderick Slieker | J1-84 |
 | 12.00-13.00 | **Lunch**                                         |                                        |       |
 | **When**    | **What: Animal models on ageing**                                               | **Who**               | **Where** |
