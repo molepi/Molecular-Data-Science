@@ -175,7 +175,7 @@ biological information and to form new hypotheses.
 | **When**    | **What: Clustering analysis**                                                     | **Who**               | **Where** |
 | 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOSClustering2018.pdf)                                                                         | Marcel Reinders           | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                        |                           |       |
-| 15.15-17.00 | Practical: [Clustering analysis transcriptomic data](Clustering/practical)                                                                      | Marcel Reinders           |  J1-84    |
+| 15.15-17.00 | Practical: [Clustering analysis transcriptomic data](Clustering/practicals/)                                                                      | Marcel Reinders           |  J1-84    |
 
 # Thursday November 1  (Location J1-84/building 1, LUMC)  #
 
