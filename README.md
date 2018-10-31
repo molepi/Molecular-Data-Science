@@ -173,9 +173,9 @@ biological information and to form new hypotheses.
 | 10.15-12.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf)   | Indu Khatri, Ahmed Mahfouz | J1-84 |
 | 12.00-13.00 | **Lunch**                                                                          |              |       |
 | **When**    | **What: Clustering analysis**                                                     | **Who**               | **Where** |
-| 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOS Clustering (2018).pdf)                                                                         | Marcel Reinders           | J1-84 |
+| 13.00-15.00 | Lecture: [Clustering analysis transcriptomic data](Clustering/FOSClustering2018.pdf)                                                                         | Marcel Reinders           | J1-84 |
 | 15.00-15.15 | **Tea Break**                                                        |                           |       |
-| 15.15-17.00 | Practical: Clustering analysis transcriptomic data                                                                      | Marcel Reinders           |  J1-84    |
+| 15.15-17.00 | Practical: [Clustering analysis transcriptomic data](Clustering/practical)                                                                      | Marcel Reinders           |  J1-84    |
 
 # Thursday November 1  (Location J1-84/building 1, LUMC)  #
 
