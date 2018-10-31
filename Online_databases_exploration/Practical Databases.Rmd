@@ -29,7 +29,10 @@ There are different ways to get the data. One is GEO2R which allows direct parsi
 
 **2. In what ways is the data available? Which one would you use?**
 
-Now we download the data from GEO. We can do this  for both accession numbers. Note that this will take a few minutes to download and parse. 
+Now we download the data from GEO. We can do this  for both accession numbers. Note that this will take a few minutes to download and parse.
+
+NOTE: If this step is taking extremely long or R just crashes, you can  download the ready to use data from here (expires 19/11/2018):
+https://filesender.surf.nl/?s=download&token=28d91b5d-6525-7f38-749f-b8ad09f47306
 
 ```{r, eval=FALSE}
 gset.blood <- getGEO("GSE50660", GSEMatrix =TRUE, getGPL=FALSE)
