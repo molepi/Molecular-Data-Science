@@ -2,7 +2,7 @@
 title: "Hands on practical: Online databases exploration"
 author: "Roderick Slieker, Bas Heijmans"
 date: "12-10-2018"
-output: pdf_document
+output: md_document
 ---
 
 ## Investigate age-related changes across multiple tissues
