@@ -204,7 +204,7 @@ Students will work on developing a project proposal in duos. Generating pilot da
 
 | When        | What: Introduction to Developing Project Proposal                  | Who               | Where |
 |-------------|---------------------------------------------------------|-------------------|-------|
-| 9.00-10.00  | Project proposal: where does research start. Part 1     | Bas Heijmans/Ingrid Meulenbelt | J1-84 |
+| 9.00-10.00  | [Project proposal: where does research start. Part 1](/IntroductieLaatsteWeekProposal.pdf)     | Bas Heijmans/Ingrid Meulenbelt | J1-84 |
 | 10.00-10.15 | **Coffee Break**                                            |                   |       |
 | 10.15-11.00 | Project proposal: where does research start. Part 2     | Bas Heijmans/Ingrid Meulenbelt | J1-84 |
 | 11.00-12.00 | Work on the project proposal: formulation of hypothesis | Self              | J1-84 |
