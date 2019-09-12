@@ -67,7 +67,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 09.45-10.00 | *Break* | | |
 | 10.00-10.45 | Lecture: [Introduction to Molecular Epidemiology: Large Scale Datasets](FOS_introduction_2018.pdf) | Eline Slagboom | J1-84 |
 | 10.45-11.30 | Lecture: [Introduction to Large Scale Datasets: from SPSS to R](22oct18_1100_lecture_Heijmans_FOS_SPSSvsR.pdf) | Bas Heijmans | J1-84 |
-| 11.30-12.30 | Practical: [Introduction to R: Basic Functionality](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
+| 11.30-12.30 | Lecture: [Introduction to R: Basic Functionality](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
@@ -93,12 +93,12 @@ Students will gain knowledge of the different study designs used in investigatio
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
 | 09.00-10.00 | Lecture: [Introduction to Genome-wide Association](GWASday/GWAS_slides_2018_24102018.pdf) | Marian Beekman | J1-84 |
 | 10.00-10.15 |  *Break* | | |
-| 10.15-12.00 | Lecture and Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 10.15-12.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
 | 12.00-13.30 | *Lunch* | | |
-| 13.30-14.00 | Interim Evaluation of Participation and Interaction | Marian Beekman | J1-84 |
-| 14.00-15.00 | Lecture and Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 13.30-14.00 | Lecture: Interim Evaluation of Participation and Interaction | Marian Beekman | J1-84 |
+| 14.00-15.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Lecture and Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 15.15-17.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
 
 
 #### Thursday October 24 (Location J1-84/building 1, LUMC) ####
@@ -154,7 +154,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.00-10.15 | *Break* | | |
 | 10.15-12.30 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-14.30 | Lecture: [DNA Methylation Signatures of Prenatal Famine Exposure](26oct18_1130_lecture_Heijmans_FOS_HungerWinter.pdf) | Roderick Slieker | J1-84 |
+| 13.30-14.30 | Lecture: [DNA Methylation Signatures of Prenatal Famine Exposure](26oct18_1130_lecture_Heijmans_FOS_HungerWinter.pdf) | Bas Heijmans | J1-84 |
 | 14.30-15.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
 | 15.00-15.15 | *Break* | | |
 | 15.15-17.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
@@ -186,7 +186,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-15.00 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq) | Ingrid Meulenbelt | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/) | Yolande Ramos| J1-84 |
+| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/) | Ingrid Meulenbelt | J1-84 |
 
 
 #### Friday November 1 (Location J1-84/building 1, LUMC) ####
@@ -210,9 +210,9 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Single Cell RNA-Sequencing                                             | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Lecture: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
+| 09.00-10.00 | Practical: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Lecture: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
+| 10.15-12.30 | Practical: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-15.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf) | Indu Khatri | J1-84 |
 | 15.00-15.15 | *Break* | | |
@@ -238,9 +238,9 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Research Findings                                                      | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Lecture: Why most Research Findings are False | Bas Heijmans | J1-84 |
+| 09.00-10.00 | Self-study | Self | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Lecture: Why most Research Findings are False | Bas Heijmans | J1-84 |
+| 10.15-12.30 | Self-study | Self | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-15.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | J1-84 |
 | 15.00-15.15 | *Break* | | |
