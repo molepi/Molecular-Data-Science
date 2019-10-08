@@ -141,23 +141,23 @@ Students will gain knowledge of the different study designs used in investigatio
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: DNA Methylomics** | **Who** | **Where** |
 | 13.30-14.30 | Lecture: [Introduction to the Epigenome](25oct18_1300_lecture_Heijmans_FOS_IntroductionEpigenetics.pdf) | Roderick Slieker | J1-84 |
-| 14.30-15.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 14.30-15.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 15.15-17.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 
 
 #### Tuesday October 29 (Location J1-84/building 1, LUMC) ####
 
 | When        | What: DNA Methylomics                                                        | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 09.00-10.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 10.15-12.30 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-14.30 | Lecture: [DNA Methylation Signatures of Prenatal Famine Exposure](26oct18_1130_lecture_Heijmans_FOS_HungerWinter.pdf) | Bas Heijmans | J1-84 |
-| 14.30-15.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 14.30-15.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2018.md) | Roderick Slieker | J1-84 |
+| 15.15-17.00 | Practical: [Tissues & 450K Methylation Chip Data](Epigenetics_practical/FOS_2019.md) | Roderick Slieker | J1-84 |
 
 
 #### Wednesday October 30 (Location J1-84/building 1, LUMC) ####
