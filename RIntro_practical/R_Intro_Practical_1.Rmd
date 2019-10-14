@@ -5,7 +5,7 @@ output:
     variant: gfm
 ---
 
-These introductory practicals are designed to teach you the basics of R. At the end, we expect you to be able to follow along with the other practicals of this course. Save your R-script or paste your answers in a Word document and mail it to l.j.sinke@lumc.nl.  
+These introductory practicals are designed to teach you the basics of R. At the end, we expect you to be able to follow along with the other practicals of this course. Save your R-script or paste your answers in a document and mail it to l.j.sinke@lumc.nl.  
 
 ***
 
@@ -77,13 +77,13 @@ We will use this package later in the practical. After loading a package into R,
 
 Lastly, the **Help** tab can be used to view documentation on any loaded function. Find help on the function, `mean`.
 
-```{r}
+```
 ?mean
 ```
 
 *** 
 
-## Part 2: Data Types
+## Part 2: Vectors
 
 You can store multiple values in a vector using the concatenate function, `c()`.
 
@@ -100,6 +100,8 @@ y * 3
 y ^ 2
 ```
 
+***
+
 You can also sum the elements of a vector using `sum()`, view the maximum value using `max()`, or return the number of elements using `length()`. Additionally, vectors can be reversed using `rev()`.   
 
 ```{r}
@@ -108,6 +110,8 @@ max(y)
 length(y)
 rev(y)
 ```
+
+***
 
 You can select specific values from a vector using square brackets. A sequence of values can be defined with `:`. Values can also be added to currently defined vectors using `c()`.  
 
@@ -118,12 +122,16 @@ c(y, 8)     # Add an 8 as the last element of y
 y[-3]       # Return all except the third value of y
 ```
 
+***
+
 Some functions can help you explore the nature of stored variables.   
 
 ```{r}
 str(y)
 class(y)
 ```
+
+***
 
 In this case, `y` is a numeric class object. A vector can also contain character data, defined using quotation marks.
 
@@ -133,6 +141,8 @@ z
 c(z, "d")
 class(z)
 ```
+
+***
 
 In addition to the above methods, there are other ways to subset vectors in R.  
 
@@ -144,12 +154,18 @@ z[z != "a"]   # Return all values of z not equal to "a"
 y[y > 5]      # Return all values of y greater than 5
 ```
 
+***
+
 #### Question 1: Obtain the following vectors by adding, removing or subsetting vectors y or z. There are multiple ways to do this, but you only need to give one of them in your answers.
 
 * `7`
 * `"a", "c"`
 * `5, 7, 9`
 * `"c", "b", "a"`
+
+***
+
+## Part 3: Data Frames
 
 R also has a data frame class which you could compare to a spreadsheet.  
 
@@ -163,6 +179,8 @@ str(df)
 summary(df)
 ```
 
+***
+
 You can view the dimensions of a data frame.
 
 ```{r}
@@ -171,6 +189,8 @@ ncol(df)
 dim(df)
 ```
 
+***
+
 You can add row names and column names to a data frame.  
 
 ```{r}
@@ -178,6 +198,8 @@ rownames(df) <- c("row1", "row2", "row3")
 colnames(df) <- c("col1", "col2")
 df
 ```
+
+***
 
 You can subset data frames in a similar manner to vectors, or using the `$` operator.  
 
@@ -188,6 +210,8 @@ df[1, 1]          # Return the first value in the first column
 df$col1           # Return column 'col1'
 df[df$col1 > 5, ] # Return rows where column 'col1' is greater than 5
 ```
+
+***
 
 Extra columns can be added to a data frame using the `$` operator. This column is of the logical class, where `T` represents TRUE and `F` represents FALSE. These can also be used for subsetting as shown above.   
 
@@ -205,6 +229,8 @@ df3 <- rbind(df, df2)
 df3
 ```
 
+***
+
 #### Question 2:
 
 * Add a column with the name `col4` to data frame `df` with the values `1, 1, 1`.
@@ -214,7 +240,7 @@ df3
 
 ***
 
-## Part 3: Real Data
+## Part 4: Real Data
 
 We are now going to load a data set from the Framingham heart study [BioLINCC](https://biolincc.nhlbi.nih.gov/home/). This data is stored as a .csv file, so we read it into R using `read.csv()`.
 
@@ -232,6 +258,8 @@ head(fhs)
 
 From looking at the above, we can see that this data frame contains 4434 observations of 12 variables. The first 11 variables represent values measured at baseline (e.g. sex, age), and the last variable, MI, represents whether of not the individual had suffered a myocardial infarction at 24 years after baseline. 
 
+***
+
 There are 642 missing values in the data. While there are various methods to handle these, we will look only at complete cases in this instance by removing observations with missing values.
 
 ```{r}
@@ -240,6 +268,8 @@ fhs <- fhs[complete.cases(fhs), ]
 sum(is.na(fhs))
 ```
 
+***
+
 Formula class objects are used across multiple functions in R, including those for cross tabulation and regression. For example, we can define a model where `y` depends on `x` using the `~` and `+` operators.
 
 ```{r}
@@ -247,7 +277,9 @@ f <- y ~ x + z
 class(f)
 ```
 
-We can make use of this and create tables of variables in our data using `xtabs()` and `prop.table()`.  
+***
+
+We make use of this and create tables of variables in our data using `xtabs()` and `prop.table()`.  
 
 ```{r}
 xtabs(~ MI, fhs)              # Table of MI in FHS
@@ -255,6 +287,8 @@ prop.table(xtabs(~ MI, fhs))  # Proportion table of MI in FHS
 xtabs(~ MI + SEX, fhs)        # Table of MI by SEX
 xtabs(~ MI, fhs[fhs$AGE>50, ])# Table of MI in individuals over 50
 ```
+
+***
 
 #### Question 3:
 
@@ -265,7 +299,7 @@ xtabs(~ MI, fhs[fhs$AGE>50, ])# Table of MI in individuals over 50
 
 ***
 
-## Part 4: Visualisations of Distributions
+## Part 5: Visualisations of Distributions
 
 Packages like `ggplot2`, which we loaded into R earlier, can extend the functionality of R. This package is commonly used to produce visualisations of data. 
 
@@ -279,6 +313,8 @@ ggplot(fhs, aes(BMI)) + geom_density()
 
 This is not really a very pretty visualisation, however. One of the nice aspects of `ggplot2` is that you can iteratively build up graphics until they look as you want them to.  
 
+***
+
 Let's add some nicer colours and a title.
 
 ```{r}
@@ -286,6 +322,8 @@ ggplot(fhs, aes(BMI)) +
   geom_density(fill="#72B6C5", color="#ffffff00", alpha=0.6) +
   ggtitle("Distribution of BMI in the Framingham Heart Study")
 ```
+
+***
 
 We can also look at variable's distribution using a bar plot with `geom_bar` or a histogram with `geom_histogram`.
 
@@ -295,6 +333,8 @@ ggplot(fhs, aes(SEX)) +
   ggtitle("Bar plot of sex in the Framingham Heart Study")
 ```
 
+***
+
 Some themes are also available for use with `ggplot`.
 
 ```{r}
@@ -302,6 +342,8 @@ ggplot(fhs, aes(AGE)) +
   geom_histogram(binwidth = 1, color="grey90", alpha=0.6) + theme_bw() +
   ggtitle("Histogram of age in the Framingham Heart Study")
 ```
+
+***
 
 Maybe we want to view ages in males and females separately. For this, we can use `facet_grid`.
 
@@ -312,7 +354,9 @@ ggplot(fhs, aes(x=AGE, fill=SEX)) +
   facet_grid(SEX ~ .)
 ```
 
-You can see we can quickly build up attractive graphics in R. Subsetting can also be utilised within `ggplot2`.  
+***
+
+You can quickly build up attractive graphics in R. Subsetting can also be utilised within `ggplot2`.  
 
 Say, we want to visualise the distribution of age by sex only in overweight individuals.
 
@@ -322,6 +366,8 @@ ggplot(fhs[fhs$BMI > 30, ], aes(x=AGE, fill=SEX)) +
   ggtitle("Histogram of age by sex in the Framingham Heart Study") +
   facet_grid(SEX ~ .)
 ```
+
+***
 
 #### Question 4:
 
