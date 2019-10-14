@@ -1,0 +1,323 @@
+---
+title: "Integrated analysis of multiple -omics data and Mendelian randomization"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+## Introduction ##
+
+One of the issues with epigenome-wide and transcriptome-wide
+association studies, in contrast to genome-wide association studies,
+is interpreting what is cause and what is consequence. In this
+practical course you will use genetic variants to infer a causal
+relationship between variation in blood triglyceride levels, of which
+high levels are a risk factor for cardiovascular diseases, and gene
+transcription and DNA methylation of blood cells.
+
+We expect that everyone will be able to complete Part 1 on
+transcription (questions 1-10), Part 2 on DNA methylation is for fast
+students. Paste the answers to your questions in a Rscript or Word document and
+mail them to k.f.dekkers@lumc.nl.
+
+```{r echo=FALSE, include=FALSE}
+rm(list=ls())
+```
+
+## Load data ##
+
+```{r}
+load(url("https://github.com/molepi/Molecular-Data-Science/blob/master/integrative_omics/data.RData?raw=true"))
+```
+
+* Use __ls()__, __str__ and __summary__ to explore the data.
+* Tip: You can use __rm(list=ls())__ to clear your environment.
+
+```{r}
+ls() # list of objects in environment.
+str(tg) # structure of object tg
+summary(transcripts) # summary of object transcripts
+summary(cpgs)  # summary of object cpgs
+```
+
+The data are already preprocessed to be suitable for linear
+regression:
+
+* __tg__ = log-transformed triglyceride levels (log mmol per L)
+* __transcripts__ = normalized and log-transformed gene transcript
+  counts per million
+* __cpgs__ = normalized and M-transformed DNA methylation levels
+* __tg_snp__, __transcript_snps__, __cpg_snps__ = genotypes converted
+  to dosages, i.e. if A and B were the possible alleles for genetic
+  variant X, then the dosage of X would be 0 if AA, 1 if AB or BA and
+  2 if BB
+* __tg__, __transcripts__ and __cpgs__ have been adjusted for age,
+  gender and cell counts
+
+#### Question 1
+1. How may genes and CpGs do the data contain?
+2. How many individuals have been measured?
+3. Use [Gene Cards](https://www.genecards.org) to look up the genes in
+   __transcripts__, what is their reported function?
+4. Use
+   [USCS Genome Browser](https://genome.ucsc.edu/cgi-bin/hgGateway) to
+   look up the CpGs in __cpgs__, what is their nearest gene? Select Human Assembly GRCh37/hg19.
+5. Determine the allele frequencies for __tg_snp__, see
+   [Allele frequency](https://en.wikipedia.org/w/index.php?title=Allele_frequency).
+
+```{r}
+prop <- prop.table(table(tg_snp)) # calculate genotype frequencies
+c(A = as.numeric(prop[1] + 0.5 * prop[2]), B = as.numeric(prop[3] + 0.5 * prop[2])) # calculate allele frequencies
+```
+
+## PART 1 ##
+
+## Determine association between triglyceride levels and gene transcription ##
+
+You will first identify if there is an association between
+triglyceride levels and transcription for these genes involved in
+lipid metabolism.
+
+* Create a scatter plot with triglyceride levels in the x-axis and
+  _ABCG1_ transcription on the y-axis.
+
+```{r warning=FALSE}
+library(ggplot2)
+ggplot(data.frame(tg = tg, abcg1 = transcripts$abcg1), aes(x = tg, y = abcg1)) + geom_point() + 
+  geom_smooth(method = "lm", se = F, color = "black")
+```
+
+#### Question 2
+6. Are higher triglyceride levels correlated with higher or lower
+   _ABCG1_ transcription levels?
+
+* Use linear regression to fit a model of triglyceride levels and _ABCG1_ transcription levels
+
+```{r}
+summary(lm(transcripts$abcg1 ~ tg))
+```
+#### Question 3
+7. Is this association statistically significant?
+8. Should you use a multiple testing correction? If so, for how many
+   test should you adjust?
+
+You could evaluate the association between triglyceride levels and
+transcription for all 4 genes with the previous approach, however this
+would be infeasible if we were to scale this up to all 30,000 genes.
+
+* Use a for-loop that iterates over the transcripts and reports the
+  association coefficients for all genes in one output variable.
+
+```{r}
+lm_transcripts_tg <- data.frame() # create new data frame
+for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
+  fit <- lm(transcripts[, i] ~ tg) # fit model for every transcript
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  lm_transcripts_tg <- rbind(lm_transcripts_tg, coefficients) # append the results to data frame
+}
+rownames(lm_transcripts_tg) <- colnames(transcripts)
+lm_transcripts_tg
+```
+
+#### Question 4
+9. Which genes are associated with triglyceride levels?
+10. Based on these associations, can you infer whether blood
+    triglycerides have an effect on transcription in blood cells or
+    whether transcription of these genes has an effect on triglyceride
+    levels? If not, what do you think is biologically more likely?
+
+## Bidirectional Mendelian randomization ##
+
+To infer cause and consequence you will use
+[bidirectional Mendelian randomization](https://academic.oup.com/hmg/article-lookup/doi/10.1093/hmg/ddu328)
+using genetic variants as causal anchors. You will first estimate an
+effect of triglyceride levels on gene transcription for the
+triglyceride-associated genes and then you will estimate the effect of
+transcription on triglyceride levels.
+
+## Evaluate instrumental variable ##
+
+Mendelian randomization requires genetic variants associated with your
+explanatory variable. Object __tg_snp__ contains genotype dosages of a
+genetic variant associated with triglyceride levels obtained from a
+[GWAS on lipid levels](http://www.nature.com/ng/journal/v45/n11/full/ng.2797.html). You
+will first verify this association.
+
+* Create a boxplot of triglyceride levels grouped by __tg_snp__ dosage.
+
+```{r}
+ggplot(data.frame(tg = tg, tg_snp = factor(tg_snp)), aes(x = tg_snp, y = tg)) + geom_boxplot()
+```
+
+#### Question 5
+11. What would be the risk allele, i.e. the allele associated with
+    higher triglyceride levels, if AA is 0 and BB is 2?
+
+* Use __lm__ to fit a linear model with triglyceride levels as
+  explanatory variable and the genetic variant as response variable.
+
+```{r}
+summary(lm(tg ~ tg_snp))
+```
+
+#### Question 6
+12. What percentage of variance in triglyceride levels are explained
+    by the genetic variant (see Adjusted R-squared)?
+13. An F-statistic > 10 is considered a good instrumental variable, is
+    the genetic variant a good instrumental variable for triglyceride
+    levels?
+14. Predict triglyceride levels (in mmol per L) for each dosage of the
+    genetic variant.
+
+```{r}
+exp(0.43999 + c(AA = 0, AB = 1, BB = 2) * -0.12823)
+```
+
+## Estimate an effect of triglyceride levels on gene transcription ##
+
+You will now estimate the effect of triglyceride levels on gene
+transcription using the genetic variant as a causal anchor.
+
+* Load library __AER__.
+* Use __ivreg__ to fit a two-stage least-squares model with _ABCG1_
+  gene transcription as explanatory variable, triglyceride levels as
+  response variable and the genetic variant as instrumental variable.
+* Use summary to obtain the model coefficients.
+
+```{r warning=FALSE, message=FALSE}
+library(AER)
+summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
+```
+
+#### Question 7
+15. A P-value < 0.05 of a two-stage least squares model is evidence of
+    an effect, is there evidence of an effect of triglyceride levels
+    on _ABCG1_ gene transcription?
+16. Compare the effect size estimate and standard error of the
+    instrumental variable analysis with the earlier association
+    estimate and standard error, what could be an explanation for the
+    difference?
+
+* Use a modified version of the for-loop to obtain the coefficients
+  for the other genes.
+
+```{r}
+ivreg_transcripts_tg <- data.frame() # create new data frame
+for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
+  fit <- ivreg(transcripts[, i] ~ tg | tg_snp) # fit model for every transcript
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  ivreg_transcripts_tg <- rbind(ivreg_transcripts_tg, coefficients) # append the results to data frame
+}
+rownames(ivreg_transcripts_tg) <- colnames(transcripts)
+ivreg_transcripts_tg
+```
+
+#### Question 8
+17. For which genes is there an effect of triglyceride levels on gene
+    transcription?
+
+The second part of bidirectional Mendelian randomization evaluates the
+other direction, i.e. whether there is evidence for an effect of
+transcription on triglyceride levels.
+
+##  Estimate an effect of gene transcription on triglyceride levels  ##
+
+__transcript_snps__ contains genetic variants associated _in cis_,
+i.e. within 250kb of the gene center, with transcription of the genes
+involved in lipid metabolism obtained from a
+[GWAS on gene transcription](http://www.nature.com/ng/journal/v49/n1/full/ng.3737.html).
+
+* Verify the associations between transcript levels and genotypes
+  using a modified version of the previously used for-loop.
+* The order of genes in __transcripts__ corresponds to the order of
+  associated genetic variants in __transcript_snps__.
+
+```{r}
+lm_transcripts_snps <- data.frame() # create new data frame
+for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
+  fit <- lm(transcripts[, i] ~ transcript_snps[, i]) # fit model for every transcript
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared, F.statistic=summary(fit)$fstatistic[1]) # add adjusted R-squared and F-statistic
+  lm_transcripts_snps <- rbind(lm_transcripts_snps, coefficients) # append the results to data frame
+}
+rownames(lm_transcripts_snps) <- colnames(transcripts)
+lm_transcripts_snps
+```
+
+#### Question 9
+18. Are the genetic variants good instrumental variables?
+19. A single genetic variant often explains a small percentage of
+    variance in the explanatory variable, what could you do to improve
+    the amount of variance explained to increase the power of the
+    analysis?
+
+Estimate an effect of gene transcription on triglyceride levels.
+
+```{r}
+ivreg_tg_transcripts <- data.frame() # create new data frame
+for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
+  fit <- ivreg(tg ~ transcripts[, i] | transcript_snps[, i]) # fit model for every transcript
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  ivreg_tg_transcripts <- rbind(ivreg_tg_transcripts, coefficients) # append the results to data frame
+}
+rownames(ivreg_tg_transcripts) <- colnames(transcripts)
+ivreg_tg_transcripts
+```
+
+#### Question 10
+20. Is there evidence of an effect of gene expression on triglyceride
+    levels?
+21. Give an explanation for the lack of evidence for an effect of
+    triglyceride levels on _SREBF1_ and vice versa.
+22. Given that your transcription was measured in whole blood, how
+    would you determine if the effect of triglyceride levels on
+    transcription occurs only in blood or also in other tissues?
+23. And if it the effect is present only in blood, how would you
+    determine if the effect occurs in all blood cells or if it is
+    specific to a certain cell type, e.g. monocytes or T-cells?
+25. Google _pleiotropy_ and describe how this phenomenon can influence
+    your Mendelian randomization results.
+
+You have now identified several genes where triglyceride levels have
+an effect on transcription, potentially interesting targets in the
+etiology of cardiovascular diseases. In part 2 you will use Mendelian
+randomization to infer cause and consequence between triglyceride
+levels and DNA methylation.
+
+## PART 2 ##
+
+* Replace __transcripts__ with __cpgs__ and __transcript_snps__ with
+  __cpg_snps__ in the for-loops of Part 1.
+
+#### Question 11
+26. Is there an association between triglyceride levels and DNA
+    methylation for the 4 CpGs in __cpgs__?
+27. Is there evidence of an effect of triglyceride levels on DNA
+    methylation for the 4 CpGs in __cpgs__?
+28. Are the genetic variants in __cpg_snps__ good instruments for the
+    CpGs in __cpgs__?
+29. Is there evidence of an effect of DNA methylation on triglyceride
+    levels for the 4 CpGs in __cpgs__?
+30. Is there an association between DNA methylation for the 4 CpGs in
+    __cpgs__ and transcription for the 4 genes in __transcripts__?
+
+```{r}
+lm_transcripts_cpgs <- data.frame() # create new data frame
+for (i in 1:ncol(transcripts)) { # iterate over number of transcripts
+  fit <- lm(transcripts[, i] ~ cpgs[, i]) # fit model for every transcript and corresponding CpG
+  coefficients <- summary(fit)$coefficients[2, , drop = F] # grab the second row of the coefficients, the first row contains the coefficients for the intercept
+  coefficients <- data.frame(coefficients, R.squared = summary(fit)$adj.r.squared) # add adjusted R-squared
+  lm_transcripts_cpgs <- rbind(lm_transcripts_cpgs, coefficients) # append the results to data frame
+}
+rownames(lm_transcripts_cpgs) <- paste(colnames(transcripts), colnames(cpgs), sep = "_")
+lm_transcripts_cpgs
+```
+
+#### Question 12
+31. Can you infer whether DNA methylation affects gene expression or
+    visa versa?
+32. One of the assumptions of Mendelian randomization is that an
+    instrument does not directly affect the response variable
+    independent of its effect on the explanatory variable. Explain how
+    this can be a problem when using genetic variants _in cis_ with
+    both CpG and gene.

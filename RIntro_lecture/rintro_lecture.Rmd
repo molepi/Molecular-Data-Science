@@ -1,59 +1,95 @@
 ---
 title: "Introduction to R"
-author: "Maarten van Iterson & Koen Dekkers"
+author: "Lucy Sinke - l.j.sinke@lumc.nl"
 institute: "Biomedical Data Sciences"
-output: beamer_presentation
+output: 
+  beamer_presentation:
+    theme: "Pittsburgh"
+    colortheme: "crane"
+    fonttheme: "structurebold"
 ---
 
-# Statistical programming language
+# Course Overview
 
-- A language for data analysis and graphics
-- Ross Ihaka and Robert Gentleman (1993), based on the statistical programming language S (Chambers, 1976)
-- Currently maintained by a large groups of primarily statisticians all over the world
+- Two day course
+- One lecture and three half-day practicals  
 
-# Open source
+- Basic functionality - data classes and manipulation
+- Statistics - data exploration, visualisation, and regression
+- Genomic ranges - basic bioinformatics analysis
 
-- Supports various operating systems 
-- Command-line and many graphical user interface, i.e. RStudio
-- Easily extendable using `packages` available at CRAN
-- Computationally-intensive tasks can be written in C, C++ and Fortran code
-- Large and active community; R journal, Annual conference, specialist mailing list, etc.
+# What is R?
 
-# Many application domains
+- Language for statistical analysis and graphics
+- Developed by Ross Ihaka and Robert Gentlemen
+- Inspired by the programming language, S
+- Maintained by R Development Core Team
+- Large group of primarily statisticians
 
-- Econometrics, Genetics, Pharmacokinetics, Social Sciences, Bioinformatics, etc
-- Can handle almost any data format: .xlsx, .sav, html, xml, images, binary data formats, connect to databases, etc.
-- Can generate figures in any format: png, jpg, pdf, etc.
-- Can generate reports in any format: pdf, markdown, html, docx, etc.
-- Easy parallelization and efficient reading of large data
+# Free and open source
+
+- Compared to other software
+- No hidden costs
+- Source code can be viewed and modified by anyone
+- Actively maintained
+- Stable and reliable 
+
+# Platform support
+
+- Available for various hardware and software
+- Multiple operating systems
+- Ported to different hardware
+
+# Community and extendability
+
+- Large and active community
+- Happy to provide support and information on developments
+- Scripting language - write your own functions
+- Import other user written functions as packages
+- Incredibly versatile and stays up-to-date
+
+# Integrative
+
+- Widely used - econometrics to bioinformatics
+- Individuals extended R to combine with current workflows
+- Can read almost any data type - html, sav, databases
+- Implement other languages - C, Python, Java
+- Output many file formats - markdown, sav, pdfs
+
+# Computation
+
+- Intensive tasks can be written in lower level languages
+- Easy parallelization - meaning faster calculations
+- Optimized for vector operations 
+
+# Visualizations
+
+- Stunning graphics - especially using ggplot2
+- Used by Google, Twitter, and Facebook
+- Build interactive web applications with Shiny
+
+# Disadvantages
+
+- Not always intuitive syntax
+- Steep learning curve - command-line type user interface
+- Requires experience - multiple options for any problem
+- Continuously changing - need to stay up-to-date
+- No official support - sometimes poor documentation
 
 # Bioconductor
 
-- Repository specific for bioinformatic analysis 
-- Expression, DNA methylation, copy number, proteomics, metabolomics, genetics, etc.
-- Not only methods but annotation and data as well
-- $>1000$ interrelated packages
-- High quality software (reviewed), daily build system (guarantees that software works) and obligatory documentation
-- Mailing list, example worksflows, course material, etc. 
+- Software repository - over 1,500 bioinformatics packages
+- Analysis of high-throughput genomic data
+- Integration of annotations, such as GO
+- Obligatory vignettes - high quality documentation
+- Daily build system - guarantees software works
 
-# Some disadvantages
-
-- Syntax not always intuitive
-- Dynamic language; continuously changing (often more efficient and additional features)
-- Biannually new releases (incl. bug fixes) so keep uptodate
-- Many solutions for the same problem often one robust and most efficient (requires experience)
-- Many functions for problems (use Google to find them)
-
-# Some nice examples
+# Resources
 
 - R graph gallery: http://www.r-graph-gallery.com/
 - R web application: https://shiny.rstudio.com/gallery/
-- Bioconductor workflows: https://www.bioconductor.org/help/workflows
-
-# Learning R
-
-- Online course material, for example: https://www.datacamp.com/
-- Books 
-- R course LUMC
-- Practical (brief introduction)
+- Bioconductor: https://bioconductor.org/
+- Online courses: https://www.datacamp.com/
+- Books
+- R course at LUMC: https://barmsijs.lumc.nl/R_course/
 

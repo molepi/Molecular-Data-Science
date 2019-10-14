@@ -200,9 +200,9 @@ Students will gain knowledge of the different study designs used in investigatio
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Integrative approaches** | **Who**  | **Where** |
 | 13.30-14.15 | Lecture: [Integrated Analysis of Multiple -omics Data and MR](29Oct18_1330_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
-| 14.15-15.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/practicum.md) | Bas Heijmans | J1-84 |
+| 14.15-15.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/MR_Practical_2019.md) | Bas Heijmans | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/practicum.md) | Bas Heijmans | J1-84 |                                                          
+| 15.15-17.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/MR_Practical_2019.md) | Bas Heijmans | J1-84 |                                                          
 
 
 ### Week 3 ###
