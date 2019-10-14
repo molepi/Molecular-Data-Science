@@ -67,7 +67,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 09.45-10.00 | *Break* | | |
 | 10.00-10.45 | Lecture: [Introduction to Molecular Epidemiology: Large Scale Datasets](FOS_introduction_2018.pdf) | Eline Slagboom | J1-84 |
 | 10.45-11.30 | Lecture: [Introduction to Large Scale Datasets: from SPSS to R](22oct18_1100_lecture_Heijmans_FOS_SPSSvsR.pdf) | Bas Heijmans | J1-84 |
-| 11.30-12.30 | Lecture: [Introduction to R: Basic Functionality](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
+| 11.30-12.30 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
