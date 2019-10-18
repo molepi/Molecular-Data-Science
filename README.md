@@ -63,28 +63,28 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Introduction to Molecular Epidemiology & R                                              | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-09.45 | Lecture: [Introduction to FOS course](22oct18_0900_lecture_Heijmans_FOS_Introduction.pdf) | Bas Heijmans | J1-84 |
+| 09.00-09.45 | Lecture: [Introduction to FOS course](21oct19_0900_lecture_Heijmans_FOS_Introduction.pdf) | Bas Heijmans | J1-84 |
 | 09.45-10.00 | *Break* | | |
 | 10.00-10.45 | Lecture: [Introduction to Molecular Epidemiology: Large Scale Datasets](FOS_introduction_2018.pdf) | Eline Slagboom | J1-84 |
-| 10.45-11.30 | Lecture: [Introduction to Large Scale Datasets: from SPSS to R](22oct18_1100_lecture_Heijmans_FOS_SPSSvsR.pdf) | Bas Heijmans | J1-84 |
+| 10.45-11.30 | Lecture: [Introduction to Large Scale Datasets: from SPSS to R](21oct19_1145_lecture_Heijmans_FOS_SPSSvsR.pdf) | Bas Heijmans | J1-84 |
 | 11.30-12.30 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 15.15-17.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) | Lucy Sinke | J1-84 |
 
 
 #### Tuesday October 22 (Location J1-84/building 1, LUMC) ####
 
 | When        | What: Further Introduction to R                                              | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Practical: [Introduction to R: Regression and Multiple Testing](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 09.00-10.00 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) | Lucy Sinke | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Introduction to R: Regression and Multiple Testing](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 10.15-12.30 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Introduction to R: Genomic Ranges](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 13.30-15.00 | Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 |  Practical: [Introduction to R: Genomic Ranges](RIntro_practical/rintro_practical.md) | Lucy Sinke | J1-84 |
+| 15.15-17.00 |  Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) | Lucy Sinke | J1-84 |
 
 
 #### Wednesday October 23 (Location J1-84/building 1, LUMC) ####
@@ -182,11 +182,11 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.00-10.15 | *Break* | | |
 | 10.15-11.15 | Lab tour: Next Generation Sequencing Technology | Yavuz Ariyurek | J1-84 |
 | 11.15-12.00 | Lecture: [Medical Sequencing (Principles Exome and WGA Sequencing)](ExomeSeq/Exome_sequencing_Meulenbelt_2018.pdf) | Ingrid Meulenbelt | J1-84 |
-| 12.00-12.30 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq) | Yolande Ramos | J1-84 |
+| 12.00-12.30 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Yolande Ramos | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq) | Ingrid Meulenbelt | J1-84 |
+| 13.30-15.00 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/) | Ingrid Meulenbelt | J1-84 |
+| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
 
 
 #### Friday November 1 (Location J1-84/building 1, LUMC) ####
@@ -228,7 +228,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.15-12.30 | Practical: [Using Online Databases: Age and Methylation](PublicDatabases/1nov18_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Animal models on ageing** | **Who** | **Where** |
-| 13.30-14.00 | Lecture: Mouse model of Ageing | Vered Raz | J1-84 |
+| 13.30-14.00 | Lecture: [Mouse model of Ageing](AnimalModels/) | Vered Raz | J1-84 |
 | 14.00-15.15 | Self Study: [Mouse model of Ageing](AnimalModels/) | Vered Raz | J1-84 |
 | 15.15-15.30 | *Break* | | |
 | 15.30-17.00 | Mouse model of Ageing: Presentation and Discussion | Vered Raz | J1-84 |

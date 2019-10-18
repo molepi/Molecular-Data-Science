@@ -1,0 +1,217 @@
+---
+title: "Introduction to R: Basic Functionality"
+output: 
+  md_document:
+    variant: gfm
+---
+
+This final practical introduces Bioconductor and some basic analysis and annotations.
+
+***
+
+## Part 1: Bioconductor 
+
+[Bioconductor](https://www.bioconductor.org/) is a collection of more than 1,500 packages for analysing and annotating high-throughput genomic data.
+
+It is useful for a wide range of applications including bulk and single-cell RNA sequencing, copy number analysis, flow cytometry, and methylation microarray data.
+
+Unlike CRAN packages, Bioconductor packages are installed differently using `BiocManager`. You can check if the package you want to use is available:
+
+```{r}
+BiocManager::available("GenomicRanges")
+```
+
+This package imports an object class called `GenomicRanges`, which contains genomic data, such as SNPs, gene expression, or DNA methylation.
+
+All Bioconductor packages have obligatory documentation, called 'vignettes'. You can view these from within R using:
+
+```{r eval=FALSE}
+browseVignettes("GenomicRanges")
+```
+
+This takes you to a list of files that can help you when using this package in R. In addition to this, help is readily available on the [Bioconductor](https://support.bioconductor.org) forums.
+
+***
+
+## Part 2: Genomic Ranges
+
+Another type of package in R contains highly curated data, as resources for teaching and learning. `DMRcatedata` is one such package. We can load this package into R and import the data, which is an object of class `RangedSummarizedExperiment`
+
+```{r warning=FALSE, message=FALSE}
+library(DMRcatedata)
+data(dmrcatedata)
+```
+
+This loads in a series of objects into R, including several `GenomicRanges` class objects. tx.hg19 is a GRanges object containing simulated WGBS data.
+
+```{r}
+tx.hg19
+```
+
+For convenience, let's work only with the 'standard' autosomal chromosomes.
+
+```{r}
+tx.hg19 <- keepStandardChromosomes(tx.hg19, pruning.mode="coarse")
+```
+
+There are two parts to this type of object. 
+
+The first part is the `seqnames`, which must consist at least of the start and end coordinates along with the strand. Here, this part also shows the chromosome.
+
+The second part are additional elements, like `gene_name`, `gene_type`, and `gene_id`.
+
+Components can be accessed when needed:
+
+```{r}
+head(start(tx.hg19))
+head(width(tx.hg19))
+```
+
+***
+
+You can `subset()` these objects, for example if you want to focus on a particular set of chromosomes.
+
+```{r}
+subset(tx.hg19, seqnames %in% c("chr1", "chr2"))
+```
+
+***
+
+There are also packages on Bioconductor containing Annotation data, such as the TxDb.* family of packages. These contain information on the genomic coordinates of exons, genes, transcripts, and so on.
+
+```{r message=FALSE}
+library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+tx <- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene)
+tx
+```
+
+As above, we want to work only with autosomal chromosomes.
+
+```{r}
+tx <- keepStandardChromosomes(tx, pruning.mode="coarse")
+tx
+```
+
+***
+
+## Part 3: Finding Overlaps
+
+It is very useful to count overlaps in two distinct `GenomicRanges` objects. 
+
+```{r message=FALSE}
+olaps <- countOverlaps(tx, tx.hg19)
+xtabs( ~olaps)
+```
+
+You can add output from `countOverlaps()` into your object, coupling derived data with the original annotation.
+
+```{r}
+tx$Overlaps <- countOverlaps(tx, tx.hg19)
+tx
+```
+
+After this, you can perform co-ordinated actions, like subsetting for transcripts satisfying particular conditions.
+
+```{r}
+subset(tx, Overlaps > 10)
+```
+
+## Part 4: Summarized Experiments
+
+Another class of object often used by Bioconductor packages is the ``SummarizedExperiment`. This is used to store matrices of experimental results, commonly produced by sequencing and microarray experiments.
+
+Each object stores multiple samples along with meta-data, which describes features and phenotypes. The anatomy of a `SummarizedExperiment` object is shown here:
+
+![Figure 1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/summarizedexperiment.svg)
+
+Another Bioconductor package that contains teaching data is `airway`. Lets load it and then read in the data.
+
+```{r warning=FALSE, message=FALSE}
+library(airway)
+data(airway)
+airway
+```
+
+***
+
+Phenotype and feature information is stored in the `colData`, which is a data frame class object. For example, `cell` represents which cell line was used.
+
+```{r}
+colData(airway)
+```
+
+Inside these classes of objects, `GenomicRanges` store genomic information. These can be accessed using `rowRanges()`
+
+```{r}
+rowRanges(airway)
+```
+
+***
+
+Assay information can be accessed using `assay()`. FOr example, here we see a table of read counts for different exons in each sample.
+
+```{r}
+head(assay(airway))
+```
+
+***
+
+Subsetting a `SummarizedExperiment` object is quite simple. Suppose we want to look only at samples treated with dexamethasone.
+
+```{r}
+subset(airway, , dex=="trt")
+```
+
+***
+
+We can also extract interested summaries from these objects. For instance, we can calculate the total number of reads overlapping genes in each sample and store them in our `SummarizedExperiment` class object.
+
+```{r}
+airway$libSize <- colSums(assay(airway))
+airway$libSize
+```
+
+***
+
+## Part 5: Down-stream analysis
+
+It is important to look at how skills learned here translate to working with objects in Bioconductor packages.
+
+`DESeq2` is a package for analysing bulk RNAseq differential expression data. Load it into R.
+
+```{r warning=FALSE}
+library(DESeq2)
+```
+
+This package utilizes a class that combines `SummarizedExperiment` type count data with `formula` objects that describe the experimental design.
+
+We may want to include cell line as a covariate, and investigate the effect of dexamethasone treatment.
+
+```{r}
+dSeqData <- DESeqDataSet(airway, design = ~ cell + dex)
+dSeqData
+```
+
+This class of object can be manipulated in a very similar way to `SummarizedExperiment` objects. 
+
+The `DESeq` workflow is summarized by a single function call, which performs advanced statistical analysis on a `DESeqDataSet` class object.
+
+```{r}
+dSeqRes <- DESeq(dSeqData)
+```
+
+We can now extract a table of differential expression, which we can visualise or manipulate further.
+
+```{r}
+head(results(dSeqRes))
+```
+
+***
+
+## Feedback
+
+Hopefully, this 2 day R course was informative and helpful. Please send any questions or comments to l.j.sinke@lumc.nl. 
+
+Feedback is very much appreciated. :)
+
+***

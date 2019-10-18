@@ -10,8 +10,8 @@ blood cells.
 
 We expect that everyone will be able to complete Part 1 on transcription
 (questions 1-10), Part 2 on DNA methylation is for fast students. Paste
-the answers to your questions in a Rscript or Word document and mail
-them to <l.j.sinke@lumc.nl>.
+the answers to your questions in a Rscript or Word document and turn
+them in to the Blackboard.
 
 ## Load data
 

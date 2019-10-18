@@ -5,7 +5,7 @@ output:
     variant: gfm
 ---
 
-These introductory practicals are designed to teach you the basics of R. At the end, we expect you to be able to follow along with the other practicals of this course. Save your R-script or paste your answers in a document and mail it to l.j.sinke@lumc.nl.  
+These introductory practicals are designed to teach you the basics of R. At the end, we expect you to be able to follow along with the other practicals of this course. Save your R-script or paste your answers in a document turn it in on the blackboard.  
 
 ***
 
@@ -35,7 +35,7 @@ Copy the following equations in your *R-script*, place your cursor on the first 
 6 / 2         # division
 3 ^ 2         # exponentiation
 sqrt(9)       # square root
-abs(-5)       # modulus
+abs(-5)       # absolute value
 ```
 
 ***
@@ -67,19 +67,29 @@ In the *bottom right* section of RStudio, are some very useful tabs. **Files** w
 
 Any **Plots** that you create can also be viewed here, and you can browse through your plot history with the `Forward` and `Back` buttons. 
 
-A list of currently installed packages is shown in the **Packages** tab. The functions contained within these can be loaded into R with the `library()` function. Try loading the graphics packages mentioned in the lecture, ggplot2.  
+The `tidyverse` package is a collection of popular R packages that can be installed together. It contains packages like `ggplot2`, meantioned in the lecture, for creating graphics, and `dplyr`, which we will use today for data manipulation.
+
+A list of currently installed packages is shown in the **Packages** tab. The functions contained within these can be loaded into R with the `library()` function. 
+
+Let's load `tidyverse`, so that we have access to it later:
+
 
 ```{r warning=FALSE}
-library(ggplot2)
+library(tidyverse)
 ```
 
 We will use this package later in the practical. After loading a package into R, the functions become available for use.
 
-Lastly, the **Help** tab can be used to view documentation on any loaded function. Find help on the function, `mean`.
+Lastly, the **Help** tab can be used to view documentation on any loaded function. `Tab` can be used as autocomplete in R, but can also be used to browse options for completion. Find help on the function, `mean`.
 
 ```
 ?mean
 ```
+
+#### Question 1:
+
+* What does the `na.rm` option of the `mean` function do?
+* What classes of input are accepted by the `sqrt` function?
 
 *** 
 
@@ -144,11 +154,21 @@ class(z)
 
 ***
 
-In addition to the above methods, there are other ways to subset vectors in R.  
+Another class of data in R is the logical class, where `T` represents TRUE and `F` represents FALSE. 
+
+```{r}
+w <- c(T,T,F)
+w
+class(w)
+```
+
+***
+
+In addition to the above methods, there are other ways to subset vectors in R. These can either use numerical or logical vectors defined by `c()` or logical operators, such as `>`, `<=`, or `!=`.  
 
 ```{r}
 y[c(1, 3)]    # Return the first and third value of y
-z[c(T,T,F)]   # Return the first and second value of y
+z[w]          # Uses a logical vector to subset z
 y[y == 6]     # Return all values of y equal to 6
 z[z != "a"]   # Return all values of z not equal to "a"
 y[y > 5]      # Return all values of y greater than 5
@@ -156,7 +176,7 @@ y[y > 5]      # Return all values of y greater than 5
 
 ***
 
-#### Question 1: Obtain the following vectors by adding, removing or subsetting vectors y or z. There are multiple ways to do this, but you only need to give one of them in your answers.
+#### Question 2: Obtain the following vectors by adding, removing or subsetting vectors y or z. There are multiple ways to do this, but you only need to give one of them in your answers.
 
 * `7`
 * `"a", "c"`
@@ -167,7 +187,7 @@ y[y > 5]      # Return all values of y greater than 5
 
 ## Part 3: Data Frames
 
-R also has a data frame class which you could compare to a spreadsheet.  
+R also has a data frame class which is comparable to a spreadsheet.  
 
 You can click on a data frame in the **Environment** to view it. However, when the data frame is large it is better to use functions such as `str`, `summary`, `head` and `dim`.
 
@@ -213,7 +233,7 @@ df[df$col1 > 5, ] # Return rows where column 'col1' is greater than 5
 
 ***
 
-Extra columns can be added to a data frame using the `$` operator. This column is of the logical class, where `T` represents TRUE and `F` represents FALSE. These can also be used for subsetting as shown above.   
+Extra columns can be added to a data frame using the `$` operator.   
 
 ```{r}
 df$col3 <- c(T, T, F) 
@@ -231,7 +251,7 @@ df3
 
 ***
 
-#### Question 2:
+#### Question 3:
 
 * Add a column with the name `col4` to data frame `df` with the values `1, 1, 1`.
 * Make a new data frame `df4` which is a subset of data frame `df` but only contains columns `col1` and `col2`, and rows `row2` and `row3`.
@@ -248,10 +268,9 @@ We are now going to load a data set from the Framingham heart study [BioLINCC](h
 fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
 ```
 
-First, we will explore the data.  
+The first few lines of the data frame include:
 
 ```{r}
-str(fhs)
 summary(fhs)
 head(fhs)
 ```
@@ -270,7 +289,7 @@ sum(is.na(fhs))
 
 ***
 
-Formula class objects are used across multiple functions in R, including those for cross tabulation and regression. For example, we can define a model where `y` depends on `x` using the `~` and `+` operators.
+A very useful concept in R is the `formula`. This is specified as `lhs ~ rhs`, where the left-hand side is typically a dependent variable, and the right-hand side represents the independent variables, combined using `+`.
 
 ```{r}
 f <- y ~ x + z
@@ -279,7 +298,7 @@ class(f)
 
 ***
 
-We make use of this and create tables of variables in our data using `xtabs()` and `prop.table()`.  
+We make use of formulae and create tables of variables in our data using `xtabs()` and `prop.table()`.  
 
 ```{r}
 xtabs(~ MI, fhs)              # Table of MI in FHS
@@ -290,96 +309,157 @@ xtabs(~ MI, fhs[fhs$AGE>50, ])# Table of MI in individuals over 50
 
 ***
 
-#### Question 3:
+#### Question 4:
 
-* Make a table of CURSMOKE
-* Make a proportion table of BPMEDS
-* Make a table of EDUC for individuals who smoke
-* Cross tabulate SEX and DIABETES
+* Make a table of current smoking status
+* Make a proportion table of BP medication
+* Make a table showing the number of smokers for each education level
+* Cross tabulate sex and diabetes status
 
 ***
 
-## Part 5: Visualisations of Distributions
+## Part 5: Data Manipulation
 
-Packages like `ggplot2`, which we loaded into R earlier, can extend the functionality of R. This package is commonly used to produce visualisations of data. 
+As mentioned above, `dplyr` is a `tidyverse` package that is frequently used for data summary and transformation. `dplyr` code is often more intuitive to read and use that base R packages for data manipulation.
 
-The plots will appear in the **Plots** pane, you can save the plots using the Export button if you would like.
+This package contains a number of functions, which we will introduce one by one and then combine.
 
-The `ggplot` function works by adding `geom` elements. For example, `geom_density` can be used to investigate the distribution of a variable.
+***
+
+The `select()` function allows you to subset specific columns out of a dataset, similar to subsetting introduced above.
 
 ```{r}
-ggplot(fhs, aes(BMI)) + geom_density()
+fhsBP <- select(fhs, SYSBP, DIABP, BPMEDS)
+fhsBP
 ```
 
-This is not really a very pretty visualisation, however. One of the nice aspects of `ggplot2` is that you can iteratively build up graphics until they look as you want them to.  
-
-***
-
-Let's add some nicer colours and a title.
+You can also perform negative indexing, using the `-` operator.
 
 ```{r}
-ggplot(fhs, aes(BMI)) + 
-  geom_density(fill="#72B6C5", color="#ffffff00", alpha=0.6) +
-  ggtitle("Distribution of BMI in the Framingham Heart Study")
+fhsCOV <- select(fhs, -MI)
+fhsCOV
 ```
 
-***
-
-We can also look at variable's distribution using a bar plot with `geom_bar` or a histogram with `geom_histogram`.
+You can select a range of columns using the `:` operator, or use the `contains()` function to find all columns containing a specific word or combination of letters.
 
 ```{r}
-ggplot(fhs, aes(SEX)) + 
-  geom_bar(fill="#72B6C5", color="grey90", alpha=0.6) +
-  ggtitle("Bar plot of sex in the Framingham Heart Study")
+fhsBP <- select(fhs, contains("BP"))
+fhsBP
 ```
 
+This can come in very useful when subsetting data frames. Other useful functions include `starts_with()` and `ends_with()`, for column name prefixes and suffixes respectively.
+
 ***
 
-Some themes are also available for use with `ggplot`.
+In a similar manner to subsetting columns, `filter()` can be used to filter observations or rows.
 
 ```{r}
-ggplot(fhs, aes(AGE)) + 
-  geom_histogram(binwidth = 1, color="grey90", alpha=0.6) + theme_bw() +
-  ggtitle("Histogram of age in the Framingham Heart Study")
+fhsBMI40 <- filter(fhs, BMI >= 40)
+fhsBMI40
 ```
 
-***
-
-Maybe we want to view ages in males and females separately. For this, we can use `facet_grid`.
+Here, we can quickly see the 25 individuals who are obese in our data set. A `,` can be used as a logical AND between filters. Perhaps we are interested in girls who are current smokers.
 
 ```{r}
-ggplot(fhs, aes(x=AGE, fill=SEX)) + 
-  geom_histogram(binwidth = 5, color="grey90", alpha=0.6) +
-  ggtitle("Histogram of age by sex in the Framingham Heart Study") +
-  facet_grid(SEX ~ .)
+fhsSmokeF <- filter(fhs, SEX == 'Female', CURSMOKE == 'Yes')
+fhsSmokeF
 ```
 
 ***
 
-You can quickly build up attractive graphics in R. Subsetting can also be utilised within `ggplot2`.  
+The pipe operator `%>%` is commonly used by `dplyr` and pipes output from one function to another. Instead of nesting functions, which can be difficult to read at a glance, `dplyr` instead pipes them.
 
-Say, we want to visualise the distribution of age by sex only in overweight individuals.
+Here, we pipe our data frame to the `filter()` function, and then show the result using `head`:
 
 ```{r}
-ggplot(fhs[fhs$BMI > 30, ], aes(x=AGE, fill=SEX)) + 
-  geom_histogram(binwidth = 5, color="grey90", alpha=0.6) +
-  ggtitle("Histogram of age by sex in the Framingham Heart Study") +
-  facet_grid(SEX ~ .)
+fhs %>%
+  filter(CURSMOKE == 'Yes', BMI < 20) %>%
+  head
+```
+
+***
+
+To re-order rows by a particular columns values, you can use the `arrange()` function. Perhaps you want to have a look at the youngest individuals in your data frame.
+
+```{r}
+fhs %>%
+  arrange(AGE) %>%
+  head
+```
+
+You can look at the oldest observations by using the `desc()` function inside `arrange()`.
+
+```{r}
+fhs %>%
+  arrange(desc(AGE)) %>%
+  head
+```
+
+***
+
+Sometimes, you would like to create new columns as a function of the existing ones. In this instance, `mutate()` comes in handy.
+
+To create a column for pulse pressure, we use the difference between systolic and diastolic blood pressure.
+
+```{r}
+fhs %>%
+  mutate(PP = SYSBP - DIABP) %>%
+  select(PP, SYSBP, DIABP) %>%
+  arrange(desc(PP)) %>%
+  head
+```
+
+
+Combining `mutate()` with `ifelse()` can help create helpful categorical variables.
+
+```{r}
+fhs %>%
+  filter(DIABETES == 'Yes') %>%
+  mutate(HYPO = ifelse(GLUCOSE <= 70,1,0)) %>%
+  select(DIABETES, GLUCOSE, HYPO) %>%
+  head
+```
+
+Hopefully, you can start to see how using `dplyr` can help you get to know your data.
+
+***
+
+As well as manipulating data, you may also want to `summarise()` it. This can make exploring the distribution of variables very intuitive.
+
+```{r}
+fhs %>%
+  summarise(TC_AVG = mean(TOTCHOL),
+            TC_MIN = min(TOTCHOL),
+            TC_MAX = max(TOTCHOL),
+            TOTAL_N = n())
+```
+
+Multiple summary statistics are available, including `sd()`, `median()`, and `sum()`.
+
+It can be really useful to combine functions with `group_by()`, which splits the data frame, performs the function, and then  combines the output. Here, we show the above output grouped by eduction level.
+
+```{r}
+fhs %>%
+  group_by(EDUC) %>%
+    summarise(TC_AVG = mean(TOTCHOL),
+            TC_MIN = min(TOTCHOL),
+            TC_MAX = max(TOTCHOL),
+            TOTAL_N = n())
 ```
 
 ***
 
 #### Question 4:
 
-* Make a bar plot of MI
-* Make a histogram of TOTCHOL
-* Make a density plot of GLUCOSE for individuals with diabetes
-* Make a histogram of SYSBP by SEX for those who experienced MI
+* What is the sex and smoking status of the youngest diabetic?
+* What is the average systolic blood pressure smokers who currently take blood pressure medication? 
+* For diabetics who experienced MI, what is their mean age, BMI, and glucose level?
+* How many overweight smokers are in each education category? 
 
 ***
 
 ## See you tomorrow!
 
-Hopefully, this introduction to the basics of R was informative and helpful. Tomorrow, we will start by diving into variable comparison using more graphics and statistical tests.
+Hopefully, this introduction to the basics of R was informative and helpful. Tomorrow, we will start by diving into data visualisation and performing some statistical tests.
 
 ***

@@ -1,0 +1,291 @@
+---
+title: "Introduction to R: Basic Functionality"
+output: 
+  md_document:
+    variant: gfm
+---
+
+We continue from yesterday by exploring the relationship between variables, both with visualisations and statistical tests. Don't forget to turn your R scripts into the Blackboard.
+
+***
+
+## Part 1: Visualizing Distributions
+
+First, we must load in the dataset again.
+
+```{r}
+fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
+```
+
+We should also load in the `tidyverse` package, and remove missing values as we did yesterday.
+
+```{r warning=FALSE}
+library(tidyverse)
+fhs <- fhs[complete.cases(fhs), ]
+```
+
+The package `ggplot2` is commonly used to produce visualisations of data. The plots will appear in the **Plots** pane, you can save them  using the Export button if you would like.
+
+The `ggplot` function works by adding `geom` elements. For example, `geom_density` can be used to investigate the distribution of a variable.
+
+```{r}
+ggplot(fhs, aes(BMI)) + geom_density()
+```
+
+This is not really a very pretty visualisation, however. One of the nice aspects of `ggplot2` is that you can iteratively build up graphics until they look as you want them to.  
+
+***
+
+Let's add some nicer colours and a title.
+
+```{r}
+ggplot(fhs, aes(BMI)) + 
+  geom_density(fill="#72B6C5", color="#ffffff00", alpha=0.6) +
+  ggtitle("Distribution of BMI in the Framingham Heart Study")
+```
+
+***
+
+We can also look at variable's distribution using a bar plot with `geom_bar` or a histogram with `geom_histogram`.
+
+```{r}
+ggplot(fhs, aes(SEX)) + 
+  geom_bar(fill="#72B6C5", color="grey90", alpha=0.6) +
+  ggtitle("Bar plot of sex in the Framingham Heart Study")
+```
+
+***
+
+Some themes are also available for use with `ggplot`.
+
+```{r}
+ggplot(fhs, aes(AGE)) + 
+  geom_histogram(binwidth = 1, color="grey90", alpha=0.6) + theme_bw() +
+  ggtitle("Histogram of age in the Framingham Heart Study")
+```
+
+***
+
+Maybe we want to view ages in males and females separately. For this, we can use `facet_grid` with the `formula` class we looked at yesterday.
+
+```{r}
+ggplot(fhs, aes(x=AGE, fill=SEX)) + 
+  geom_histogram(binwidth = 5, color="grey90", alpha=0.6) +
+  ggtitle("Histogram of age by sex in the Framingham Heart Study") +
+  facet_grid(SEX ~ .)
+```
+
+***
+
+You can quickly build up attractive graphics in R. Subsetting with `dplyr` can also be utilised with `ggplot2`.  
+
+Say, we want to visualise the distribution of age by sex only in overweight individuals.
+
+```{r}
+fhs %>%
+  filter(BMI>30) %>%
+  ggplot(aes(x=AGE, fill=SEX)) + 
+  geom_histogram(binwidth = 5, color="grey90", alpha=0.6) +
+  ggtitle("Histogram of age by sex in overweight individuals") +
+  facet_grid(SEX ~ .)
+```
+
+***
+
+#### Question 1:
+
+* Make a bar plot of MI
+* Make a histogram of total cholesterol
+* Make a density plot of glucose levels for individuals with diabetes
+* Make a histogram of systolic blood pressure by sex for those who experienced MI
+* Make a histogram of pulse pressure for overweight and underweight individuals who do and do not smoke
+
+***
+
+## Part 2: Comparative Plots
+
+A scatter plot can be a good way to compare two continuous variables. In `ggplot` this is implemented using `geom_point()`.  
+
+```{r}
+ggplot(fhs) + 
+  geom_point(aes(x=SYSBP, y=DIABP), alpha=0.6) +
+  ggtitle("Scatter plot of BMI against glucose level")
+```
+
+If you would like to colour points by another variable, specify it with the `color` option. You can use this to try and identify clusters and patterns in your data.
+
+```{r}
+ggplot(fhs) + 
+  geom_point(aes(x=BMI, y=GLUCOSE, color=DIABETES), alpha=0.6) +
+  ggtitle("Scatter plot of BMI against glucose level") 
+```
+
+Sometimes, it can be useful to see if the relationship between two variables is different in various groups.
+
+```{r}
+ggplot(fhs) + 
+  geom_point(aes(x=BMI, y=GLUCOSE, color=DIABETES), alpha=0.6) +
+  facet_wrap(~SEX) +
+  ggtitle("Scatter plot of BMI against glucose level by sex")
+```
+
+
+You can also use the `cut()` function to create categorical variables, to help with visualisations.
+
+
+```{r}
+ggplot(fhs) +
+  geom_point(aes(x=SYSBP, y=DIABP, color=BPMEDS), alpha=0.6) +
+  ggtitle("Scatter plots of systolic against diastolic blood pressure for different age groups") +
+  facet_wrap(. ~ cut(AGE,c(30,40,50,60,70)))
+```
+
+To compare variables, you can also use box plots. These are specified using `geom_boxplot()`.
+
+```{r}
+ggplot(fhs) + 
+  geom_boxplot(aes(x = MI, y = AGE, fill=MI), alpha=0.6) +
+  ggtitle("Box plot of age by MI category")
+```
+
+***
+
+#### Question 2:
+
+* Make a scatter plot of BMI against total cholesterol
+* Make a box plot of MI and BMI for males over the age of 40
+* Make a scatter plot of total cholesterol against glucose for categories of BMI
+
+***
+
+## Part 3: Statistical Tests
+
+Next we will perform some statistical tests. Sometimes, it can be helpful to save tables so that they can be used in other functions.
+
+```{r}
+SMOKE_MI <- xtabs(~CURSMOKE+MI, fhs)
+SMOKE_MI
+```
+
+Then, we can use a Chi-Square test, to see if there is an association between smoking status and MI.
+
+```{r}
+chisq.test(SMOKE_MI)
+```
+
+Perhaps, the scatter plot above suggested a positive correlation between systolic and diastolic blood pressure, but we want to investigate this further.
+
+We can use `cor.test` to show the correlation between two variables.
+
+```{r}
+cor.test(~ SYSBP + DIABP, fhs) 
+```
+
+This shows that we have significant evidence from our data that systolic and diastolic blood pressure are strongly correlated (r=0.79, p<0.001). 
+
+***
+
+Visualizations can often inform future statistical investigations. The box plot shown above might suggest that older individuals are more likely to have experienced MI. 
+
+We can formally test this using a t-test:
+
+```{r}
+t.test(AGE ~ MI, fhs) 
+```
+
+This test concludes that we have sufficient evidence to suggest a difference in age between those who had and did not have MI (p<0.001).
+
+***
+
+```{r}
+fit <- glm(MI ~ AGE, fhs, family = "binomial") # is AGE associated with MI (logistic regression)
+summary(fit)
+```
+
+#### Question 5:
+
+* Is AGE correlated with TOTCHOL?
+* Is MI associated with GLUCOSE?
+* Is MI associated with GLUCOSE in individuals with diabetes?
+
+***
+
+## Part 9: Loops 
+
+One of the advantages of using R is to use loops to perform multiple analyses at once. As an example, the following loop calculates the association of MI with all the other variables and stores them in a data frame. 
+
+```{r}
+results <- data.frame()       # Create empty data frame
+for (i in colnames(fhs)[-ncol(fhs)]) { # Loop over all column names except MI
+  fit <- glm(MI ~ get(i), fhs, family = "binomial") # Fit a model for the i-th column
+  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) # rbind second row of coefficients to results, first row is intercept
+}
+rownames(results) <- colnames(fhs)[-ncol(fhs)] # Add row names
+results$OR <- exp(results$Estimate) # Add odds ratio
+results[order(results$"Pr(>|z|)"), ] # Order results by P-value
+```
+
+This is quite a complicated loop, but we can dissect the different parts to get an idea of what loops in R consist of.
+
+***
+
+An if-statement is only run if the condition is true.
+
+```{r}
+if (1 < 2) { # if 1 smaller then 2
+  print("1 is smaller than 2") # print "1 is smaller than 2"
+}
+```
+
+An else-statement is only run if the condition of the if-statement is false.
+
+```{r}
+if (1 > 2) {
+  print("1 is greater than 2")
+} else {
+  print("1 is not greater than 2")
+}
+```
+
+***
+
+With for-loops you assign a range of values (in the example values 1 to 10) to a variable (in the example variable i) and perform the actions in the loop for all these values in order (1 first, 10 last).
+
+```{r}
+for (i in 1:10) { # loop over values 1 to 10
+  if (i < 5) {
+    print(paste(i, "is smaller than 5"))
+  } else {
+    print(paste(i, "is not smaller than 5"))
+  }
+}
+```
+
+***
+
+You can also utilise loops and make your own functions in R.
+
+```{r}
+greater <- function(x, y) { # function requires arguments x and y
+  if (x > y) {
+    paste(x, "is greater than", y)
+  } else {
+    paste(x, "is not greater than", y)
+  }
+}
+greater(1, 2)
+greater(2, 1)
+```
+
+***
+
+#### Question 6:
+
+* Make a function that requires as arguments x, y and z and returns their product.
+* Make a loop that returns the association of all columns of data frame fhs with AGE, instead of using *glm* you can use *lm*.
+
+***
+
+This practical ends with you writing your own simple function, but hopefully you can see how complicated your functions can become. You can do so many things in R, and new functions are being written all the time, but if a function to do something doesn't exist, you can always try to create your own.
+
+***
