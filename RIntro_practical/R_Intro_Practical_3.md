@@ -13,6 +13,8 @@ It is useful for a wide range of applications including bulk and
 single-cell RNA sequencing, copy number analysis, flow cytometry, and
 methylation microarray data.
 
+-----
+
 Unlike CRAN packages, Bioconductor packages are installed differently
 using `BiocManager`. You can check if the package you want to use is
 available:
@@ -27,14 +29,14 @@ This package imports an object class called `GenomicRanges`, which
 contains genomic data, such as SNPs, gene expression, or DNA
 methylation.
 
+-----
+
 All Bioconductor packages have obligatory documentation, called
 ‘vignettes’. You can view these from within R using:
 
 ``` r
 browseVignettes("GenomicRanges")
 ```
-
-    ## starting httpd help server ... done
 
 This takes you to a list of files that can help you when using this
 package in R. In addition to this, help is readily available on the
@@ -105,14 +107,49 @@ tx.hg19
     ##   -------
     ##   seqinfo: 265 sequences from an unspecified genome; no seqlengths
 
+-----
+
 For convenience, let’s work only with the ‘standard’ autosomal
 chromosomes.
 
 ``` r
 tx.hg19 <- keepStandardChromosomes(tx.hg19, pruning.mode="coarse")
+tx.hg19
 ```
 
-There are two parts to this type of object.
+    ## GRanges object with 196317 ranges and 4 metadata columns:
+    ##                   seqnames              ranges strand |       gene_name
+    ##                      <Rle>           <IRanges>  <Rle> |     <character>
+    ##   ENST00000000233     chr7 127228399-127231759      + |            ARF5
+    ##   ENST00000000412    chr12     9092961-9102551      - |            M6PR
+    ##   ENST00000000442    chr11   64073050-64084210      + |           ESRRA
+    ##   ENST00000001008    chr12     2904119-2913124      + |           FKBP4
+    ##   ENST00000001146     chr2   72356367-72375167      - |         CYP26B1
+    ##               ...      ...                 ...    ... .             ...
+    ##   ENST00000610274     chr2 171197675-171207618      - |      AC012594.1
+    ##   ENST00000610276    chr21   33108045-33108720      + |      AP000255.6
+    ##   ENST00000610278    chr22   21335650-21336044      - | XXbac-B135H6.18
+    ##   ENST00000610279    chr10   69609283-69610504      + |    RP11-57G10.8
+    ##   ENST00000610280    chr11   58059298-58060237      - |         OR10Q2P
+    ##                        gene_type         gene_id             tx_name
+    ##                      <character>     <character>         <character>
+    ##   ENST00000000233 protein_coding ENSG00000004059            ARF5-001
+    ##   ENST00000000412 protein_coding ENSG00000003056            M6PR-001
+    ##   ENST00000000442 protein_coding ENSG00000173153           ESRRA-002
+    ##   ENST00000001008 protein_coding ENSG00000004478           FKBP4-001
+    ##   ENST00000001146 protein_coding ENSG00000003137         CYP26B1-001
+    ##               ...            ...             ...                 ...
+    ##   ENST00000610274      antisense ENSG00000231898      AC012594.1-029
+    ##   ENST00000610276        lincRNA ENSG00000273091      AP000255.6-001
+    ##   ENST00000610278        lincRNA ENSG00000272829 XXbac-B135H6.18-001
+    ##   ENST00000610279        lincRNA ENSG00000272892    RP11-57G10.8-001
+    ##   ENST00000610280     pseudogene ENSG00000272900         OR10Q2P-001
+    ##   -------
+    ##   seqinfo: 24 sequences from an unspecified genome; no seqlengths
+
+-----
+
+There are two parts to a `GenomicRanges` object.
 
 The first part is the `seqnames`, which must consist at least of the
 start and end coordinates along with the strand. Here, this part also
@@ -120,6 +157,8 @@ shows the chromosome.
 
 The second part are additional elements, like `gene_name`, `gene_type`,
 and `gene_id`.
+
+-----
 
 Components can be accessed when needed:
 
@@ -203,6 +242,8 @@ tx
     ##   -------
     ##   seqinfo: 93 sequences (1 circular) from hg19 genome
 
+-----
+
 As above, we want to work only with autosomal chromosomes.
 
 ``` r
@@ -253,8 +294,10 @@ xtabs( ~olaps)
     ##   80   82   89   92   96   98  103  104  107  111  116  119  127  132  207 
     ##    1   11    3    1    1    1    5    1    1    1    1    1    1    1    1
 
-You can add output from `countOverlaps()` into your object, coupling
-derived data with the original annotation.
+-----
+
+You can add output from `countOverlaps()` into your `GenomicRanges`,
+coupling derived data with the original annotation.
 
 ``` r
 tx$Overlaps <- countOverlaps(tx, tx.hg19)
@@ -277,6 +320,8 @@ tx
     ##   [78827]     chrM   15960-16024      - |     78827  uc022bqx.1         0
     ##   -------
     ##   seqinfo: 25 sequences (1 circular) from hg19 genome
+
+-----
 
 After this, you can perform co-ordinated actions, like subsetting for
 transcripts satisfying particular conditions.
@@ -328,6 +373,8 @@ describes features and phenotypes. The anatomy of a
 ![Figure
 1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/summarizedexperiment.svg)
 
+-----
+
 Another Bioconductor package that contains teaching data is `airway`.
 Lets load it and then read in the data.
 
@@ -377,6 +424,8 @@ colData(airway)
     ## SRR1039517  SRX384354 SRS508576 SAMN02422673
     ## SRR1039520  SRX384357 SRS508579 SAMN02422683
     ## SRR1039521  SRX384358 SRS508580 SAMN02422677
+
+-----
 
 Inside these classes of objects, `GenomicRanges` store genomic
 information. These can be accessed using `rowRanges()`
@@ -483,6 +532,8 @@ library(DESeq2)
 This package utilizes a class that combines `SummarizedExperiment` type
 count data with `formula` objects that describe the experimental design.
 
+-----
+
 We may want to include cell line as a covariate, and investigate the
 effect of dexamethasone treatment.
 
@@ -503,6 +554,8 @@ dSeqData
 This class of object can be manipulated in a very similar way to
 `SummarizedExperiment` objects.
 
+-----
+
 The `DESeq` workflow is summarized by a single function call, which
 performs advanced statistical analysis on a `DESeqDataSet` class object.
 
@@ -521,6 +574,8 @@ dSeqRes <- DESeq(dSeqData)
     ## final dispersion estimates
 
     ## fitting model and testing
+
+-----
 
 We can now extract a table of differential expression, which we can
 visualise or manipulate further.
@@ -556,6 +611,7 @@ head(results(dSeqRes))
 Hopefully, this 2 day R course was informative and helpful. Please send
 any questions or comments to <l.j.sinke@lumc.nl>.
 
-Feedback is very much appreciated. :)
+Feedback is very much appreciated. Enjoy the rest of this Molecular Data
+Science FOS course\! :)
 
 -----

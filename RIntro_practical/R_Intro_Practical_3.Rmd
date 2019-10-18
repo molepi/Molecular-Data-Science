@@ -15,6 +15,8 @@ This final practical introduces Bioconductor and some basic analysis and annotat
 
 It is useful for a wide range of applications including bulk and single-cell RNA sequencing, copy number analysis, flow cytometry, and methylation microarray data.
 
+***
+
 Unlike CRAN packages, Bioconductor packages are installed differently using `BiocManager`. You can check if the package you want to use is available:
 
 ```{r}
@@ -22,6 +24,8 @@ BiocManager::available("GenomicRanges")
 ```
 
 This package imports an object class called `GenomicRanges`, which contains genomic data, such as SNPs, gene expression, or DNA methylation.
+
+***
 
 All Bioconductor packages have obligatory documentation, called 'vignettes'. You can view these from within R using:
 
@@ -48,17 +52,24 @@ This loads in a series of objects into R, including several `GenomicRanges` clas
 tx.hg19
 ```
 
+***
+
 For convenience, let's work only with the 'standard' autosomal chromosomes.
 
 ```{r}
 tx.hg19 <- keepStandardChromosomes(tx.hg19, pruning.mode="coarse")
+tx.hg19
 ```
 
-There are two parts to this type of object. 
+***
+
+There are two parts to a `GenomicRanges` object. 
 
 The first part is the `seqnames`, which must consist at least of the start and end coordinates along with the strand. Here, this part also shows the chromosome.
 
 The second part are additional elements, like `gene_name`, `gene_type`, and `gene_id`.
+
+***
 
 Components can be accessed when needed:
 
@@ -85,6 +96,8 @@ tx <- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene)
 tx
 ```
 
+***
+
 As above, we want to work only with autosomal chromosomes.
 
 ```{r}
@@ -103,12 +116,16 @@ olaps <- countOverlaps(tx, tx.hg19)
 xtabs( ~olaps)
 ```
 
-You can add output from `countOverlaps()` into your object, coupling derived data with the original annotation.
+***
+
+You can add output from `countOverlaps()` into your `GenomicRanges`, coupling derived data with the original annotation.
 
 ```{r}
 tx$Overlaps <- countOverlaps(tx, tx.hg19)
 tx
 ```
+
+***
 
 After this, you can perform co-ordinated actions, like subsetting for transcripts satisfying particular conditions.
 
@@ -123,6 +140,8 @@ Another class of object often used by Bioconductor packages is the ``SummarizedE
 Each object stores multiple samples along with meta-data, which describes features and phenotypes. The anatomy of a `SummarizedExperiment` object is shown here:
 
 ![Figure 1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/summarizedexperiment.svg)
+
+***
 
 Another Bioconductor package that contains teaching data is `airway`. Lets load it and then read in the data.
 
@@ -139,6 +158,8 @@ Phenotype and feature information is stored in the `colData`, which is a data fr
 ```{r}
 colData(airway)
 ```
+
+***
 
 Inside these classes of objects, `GenomicRanges` store genomic information. These can be accessed using `rowRanges()`
 
@@ -185,6 +206,8 @@ library(DESeq2)
 
 This package utilizes a class that combines `SummarizedExperiment` type count data with `formula` objects that describe the experimental design.
 
+***
+
 We may want to include cell line as a covariate, and investigate the effect of dexamethasone treatment.
 
 ```{r}
@@ -194,11 +217,15 @@ dSeqData
 
 This class of object can be manipulated in a very similar way to `SummarizedExperiment` objects. 
 
+***
+
 The `DESeq` workflow is summarized by a single function call, which performs advanced statistical analysis on a `DESeqDataSet` class object.
 
 ```{r}
 dSeqRes <- DESeq(dSeqData)
 ```
+
+***
 
 We can now extract a table of differential expression, which we can visualise or manipulate further.
 
@@ -212,6 +239,6 @@ head(results(dSeqRes))
 
 Hopefully, this 2 day R course was informative and helpful. Please send any questions or comments to l.j.sinke@lumc.nl. 
 
-Feedback is very much appreciated. :)
+Feedback is very much appreciated. Enjoy the rest of this Molecular Data Science FOS course! :)
 
 ***

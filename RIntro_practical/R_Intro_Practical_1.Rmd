@@ -74,7 +74,7 @@ A list of currently installed packages is shown in the **Packages** tab. The fun
 Let's load `tidyverse`, so that we have access to it later:
 
 
-```{r warning=FALSE}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 ```
 
@@ -330,21 +330,21 @@ The `select()` function allows you to subset specific columns out of a dataset, 
 
 ```{r}
 fhsBP <- select(fhs, SYSBP, DIABP, BPMEDS)
-fhsBP
+head(fhsBP)
 ```
 
 You can also perform negative indexing, using the `-` operator.
 
 ```{r}
 fhsCOV <- select(fhs, -MI)
-fhsCOV
+head(fhsCOV)
 ```
 
 You can select a range of columns using the `:` operator, or use the `contains()` function to find all columns containing a specific word or combination of letters.
 
 ```{r}
 fhsBP <- select(fhs, contains("BP"))
-fhsBP
+head(fhsBP)
 ```
 
 This can come in very useful when subsetting data frames. Other useful functions include `starts_with()` and `ends_with()`, for column name prefixes and suffixes respectively.
@@ -355,14 +355,14 @@ In a similar manner to subsetting columns, `filter()` can be used to filter obse
 
 ```{r}
 fhsBMI40 <- filter(fhs, BMI >= 40)
-fhsBMI40
+head(fhsBMI40)
 ```
 
 Here, we can quickly see the 25 individuals who are obese in our data set. A `,` can be used as a logical AND between filters. Perhaps we are interested in girls who are current smokers.
 
 ```{r}
 fhsSmokeF <- filter(fhs, SEX == 'Female', CURSMOKE == 'Yes')
-fhsSmokeF
+head(fhsSmokeF)
 ```
 
 ***

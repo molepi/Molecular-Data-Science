@@ -17,20 +17,6 @@ values as we did yesterday.
 
 ``` r
 library(tidyverse)
-```
-
-    ## -- Attaching packages ------------------------------------ tidyverse 1.2.1 --
-
-    ## v ggplot2 3.2.1     v purrr   0.3.2
-    ## v tibble  2.1.3     v dplyr   0.8.3
-    ## v tidyr   1.0.0     v stringr 1.4.0
-    ## v readr   1.3.1     v forcats 0.4.0
-
-    ## -- Conflicts --------------------------------------- tidyverse_conflicts() --
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
-``` r
 fhs <- fhs[complete.cases(fhs), ]
 ```
 
@@ -132,7 +118,7 @@ fhs %>%
   - Make a histogram of systolic blood pressure by sex for those who
     experienced MI
   - Make a histogram of pulse pressure for overweight and underweight
-    individuals who do and do not smoke
+    individuals by smoking
 
 -----
 
@@ -173,6 +159,8 @@ ggplot(fhs) +
 
 ![](R_Intro_Practical_2_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
+-----
+
 You can also use the `cut()` function to create categorical variables,
 to help with visualisations.
 
@@ -184,6 +172,8 @@ ggplot(fhs) +
 ```
 
 ![](R_Intro_Practical_2_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+-----
 
 To compare variables, you can also use box plots. These are specified
 using `geom_boxplot()`.
@@ -222,6 +212,8 @@ SMOKE_MI
     ##      No  1671  291
     ##      Yes 1537  352
 
+-----
+
 Then, we can use a Chi-Square test, to see if there is an association
 between smoking status and MI.
 
@@ -235,6 +227,9 @@ chisq.test(SMOKE_MI)
     ## data:  SMOKE_MI
     ## X-squared = 9.7325, df = 1, p-value = 0.00181
 
+-----
+
+Visualizations can often inform future statistical investigations.
 Perhaps, the scatter plot above suggested a positive correlation between
 systolic and diastolic blood pressure, but we want to investigate this
 further.
@@ -262,8 +257,7 @@ and diastolic blood pressure are strongly correlated (r=0.79, p\<0.001).
 
 -----
 
-Visualizations can often inform future statistical investigations. The
-box plot shown above might suggest that older individuals are more
+The box plot shown above might suggest that older individuals are more
 likely to have experienced MI.
 
 We can formally test this using a t-test:
@@ -317,6 +311,8 @@ summary(fit)
     ## 
     ## Number of Fisher Scoring iterations: 4
 
+-----
+
 #### Question 5:
 
   - Is AGE correlated with TOTCHOL?
@@ -333,14 +329,14 @@ association of MI with all the other variables and stores them in a data
 frame.
 
 ``` r
-results <- data.frame()       # Create empty data frame
-for (i in colnames(fhs)[-ncol(fhs)]) { # Loop over all column names except MI
-  fit <- glm(MI ~ get(i), fhs, family = "binomial") # Fit a model for the i-th column
-  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) # rbind second row of coefficients to results, first row is intercept
+results <- data.frame()       
+for (i in colnames(fhs)[-ncol(fhs)]) {  
+  fit <- glm(MI ~ get(i), fhs, family = "binomial") 
+  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) 
 }
-rownames(results) <- colnames(fhs)[-ncol(fhs)] # Add row names
-results$OR <- exp(results$Estimate) # Add odds ratio
-results[order(results$"Pr(>|z|)"), ] # Order results by P-value
+rownames(results) <- colnames(fhs)[-ncol(fhs)] 
+results$OR <- exp(results$Estimate) 
+results[order(results$"Pr(>|z|)"), ] 
 ```
 
     ##              Estimate   Std. Error   z value     Pr(>|z|)        OR
@@ -370,6 +366,8 @@ if (1 < 2) { # if 1 smaller then 2
 ```
 
     ## [1] "1 is smaller than 2"
+
+-----
 
 An else-statement is only run if the condition of the if-statement is
 false.
@@ -445,10 +443,11 @@ greater(2, 1)
 
 -----
 
-This practical ends with you writing your own simple function, but
-hopefully you can see how complicated your functions can become. You can
-do so many things in R, and new functions are being written all the
-time, but if a function to do something doesn’t exist, you can always
-try to create your own.
+You have just written your own simple function, but hopefully you can
+see how complicated they could become. You can do so many things in R,
+and new functions are being written all the time, but if a function to
+do something doesn’t exist, you can always try to create your own.
+
+See you after lunch\!
 
 -----

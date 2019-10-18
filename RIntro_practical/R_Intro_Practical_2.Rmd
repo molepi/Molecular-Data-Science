@@ -19,7 +19,7 @@ fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Sci
 
 We should also load in the `tidyverse` package, and remove missing values as we did yesterday.
 
-```{r warning=FALSE}
+```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 fhs <- fhs[complete.cases(fhs), ]
 ```
@@ -98,7 +98,7 @@ fhs %>%
 * Make a histogram of total cholesterol
 * Make a density plot of glucose levels for individuals with diabetes
 * Make a histogram of systolic blood pressure by sex for those who experienced MI
-* Make a histogram of pulse pressure for overweight and underweight individuals who do and do not smoke
+* Make a histogram of pulse pressure for overweight and underweight individuals by smoking
 
 ***
 
@@ -129,6 +129,7 @@ ggplot(fhs) +
   ggtitle("Scatter plot of BMI against glucose level by sex")
 ```
 
+***
 
 You can also use the `cut()` function to create categorical variables, to help with visualisations.
 
@@ -139,6 +140,8 @@ ggplot(fhs) +
   ggtitle("Scatter plots of systolic against diastolic blood pressure for different age groups") +
   facet_wrap(. ~ cut(AGE,c(30,40,50,60,70)))
 ```
+
+***
 
 To compare variables, you can also use box plots. These are specified using `geom_boxplot()`.
 
@@ -167,13 +170,17 @@ SMOKE_MI <- xtabs(~CURSMOKE+MI, fhs)
 SMOKE_MI
 ```
 
+***
+
 Then, we can use a Chi-Square test, to see if there is an association between smoking status and MI.
 
 ```{r}
 chisq.test(SMOKE_MI)
 ```
 
-Perhaps, the scatter plot above suggested a positive correlation between systolic and diastolic blood pressure, but we want to investigate this further.
+***
+
+Visualizations can often inform future statistical investigations. Perhaps, the scatter plot above suggested a positive correlation between systolic and diastolic blood pressure, but we want to investigate this further.
 
 We can use `cor.test` to show the correlation between two variables.
 
@@ -185,7 +192,7 @@ This shows that we have significant evidence from our data that systolic and dia
 
 ***
 
-Visualizations can often inform future statistical investigations. The box plot shown above might suggest that older individuals are more likely to have experienced MI. 
+The box plot shown above might suggest that older individuals are more likely to have experienced MI. 
 
 We can formally test this using a t-test:
 
@@ -202,6 +209,8 @@ fit <- glm(MI ~ AGE, fhs, family = "binomial") # is AGE associated with MI (logi
 summary(fit)
 ```
 
+***
+
 #### Question 5:
 
 * Is AGE correlated with TOTCHOL?
@@ -215,14 +224,14 @@ summary(fit)
 One of the advantages of using R is to use loops to perform multiple analyses at once. As an example, the following loop calculates the association of MI with all the other variables and stores them in a data frame. 
 
 ```{r}
-results <- data.frame()       # Create empty data frame
-for (i in colnames(fhs)[-ncol(fhs)]) { # Loop over all column names except MI
-  fit <- glm(MI ~ get(i), fhs, family = "binomial") # Fit a model for the i-th column
-  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) # rbind second row of coefficients to results, first row is intercept
+results <- data.frame()       
+for (i in colnames(fhs)[-ncol(fhs)]) {  
+  fit <- glm(MI ~ get(i), fhs, family = "binomial") 
+  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) 
 }
-rownames(results) <- colnames(fhs)[-ncol(fhs)] # Add row names
-results$OR <- exp(results$Estimate) # Add odds ratio
-results[order(results$"Pr(>|z|)"), ] # Order results by P-value
+rownames(results) <- colnames(fhs)[-ncol(fhs)] 
+results$OR <- exp(results$Estimate) 
+results[order(results$"Pr(>|z|)"), ] 
 ```
 
 This is quite a complicated loop, but we can dissect the different parts to get an idea of what loops in R consist of.
@@ -236,6 +245,8 @@ if (1 < 2) { # if 1 smaller then 2
   print("1 is smaller than 2") # print "1 is smaller than 2"
 }
 ```
+
+***
 
 An else-statement is only run if the condition of the if-statement is false.
 
@@ -286,6 +297,8 @@ greater(2, 1)
 
 ***
 
-This practical ends with you writing your own simple function, but hopefully you can see how complicated your functions can become. You can do so many things in R, and new functions are being written all the time, but if a function to do something doesn't exist, you can always try to create your own.
+You have just written your own simple function, but hopefully you can see how complicated they could become. You can do so many things in R, and new functions are being written all the time, but if a function to do something doesn't exist, you can always try to create your own.
+
+See you after lunch!
 
 ***
