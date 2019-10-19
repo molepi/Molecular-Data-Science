@@ -1,11 +1,11 @@
 These introductory practicals are designed to teach you the basics of R.
 At the end, we expect you to be able to follow along with the other
-practicals of this course. Save your R-script or paste your answers in a
-document turn it in on the blackboard.
+practicals of this course. Please make sure that you turn your answers
+in to the blackboard at the end.
 
 -----
 
-## Part 1: Finding your way around RStudio
+## Part 1: RStudio and R Markdown
 
 Open RStudio
 
@@ -25,17 +25,68 @@ Console:
 
     ## [1] 2
 
+Using the `up arrow` and `down arrow` in the console, you can scroll
+through historical commands. These can also be viewed in the **History**
+tab of the *Environment* section (see Figure).
+
 -----
 
 You can also type your code in the *R-script* (see Figure) and run a
 line or a selection using `ctrl + enter`. This is preferable to typing
 in the *Console* directly, since you can save the scripts for later use
-or share them with collaborators. Additionally, scripts can be commented
-using `#` to improve their readability.
+or share them with collaborators.
 
-Copy the following equations in your *R-script*, place your cursor on
-the first line, and run the equations line-by-line. You can also select
-multiple lines and run them together.
+However, we advise you to use `R Markdown` documents during this course.
+These will not only let you save your script for later use, but also
+easily `knit` the results to a HTML and share those.
+
+-----
+
+Open an `R Markdown` document by clicking the new document icon in the
+top left, and selecting *R Markdown…* from the drop-down menu. Give your
+document a name and keep HTML as the default output.
+
+You will now see several different chunks, similar to this:
+
+![Figure
+1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/markdown.png)
+
+-----
+
+Save your `R Markdown` document to a directory that you would like to
+work in, using the *Save* button (red).
+
+The *Knit* button (blue) at the top can be used to render a HTML
+document of your work. Try it now.
+
+At the top of your document, between the `---` markers (yellow) is some
+information about your document. This includes the title you chose and
+the output type.
+
+Any plain text (orange) you write here can be used to describe or
+comment your code. You can specify different levels of header using `#`,
+bold with `**`, and italic with `*`.
+
+Code chunks (green) is initialized using three back quotes (top left of
+the keyboard), and you can specify the language you are using between
+curly brackets. Since we are going to write R code, we would therefore
+use `{r}`. If you want to run a single code chunk, you can do this using
+the Run Current Chunk button (pink).
+
+Delete all the chunks with the exception of the header (yellow). Write a
+brief description of what this document will contain along with a title.
+If you want to check how it will look, you can `Knit` your document at
+any time.
+
+`R Markdown` is a great way to ensure reproducibility in research, and
+using it is a good habit to pick up early.
+
+-----
+
+Copy the following equations in your `R Markdown` document in a code
+chunk, place your cursor on the first line, and run the equations
+line-by-line using `ctrl + enter`. You can also select multiple lines
+and run them together, or run the entire chunk.
 
     5 - 2         # subtraction
     2 * 2         # multiplication
@@ -45,10 +96,6 @@ multiple lines and run them together.
     abs(-5)       # absolute value
 
 -----
-
-Using the `up arrow` and `down arrow`, you can scroll through historical
-commands. These can also be viewed in the **History** tab of the
-*Environment* section (see Figure).
 
 In the **Environment** tab of the *Environment* section, you can view
 any stored variables available for use.
@@ -100,22 +147,37 @@ today for data manipulation.
 
 A list of currently installed packages is shown in the **Packages** tab.
 The functions contained within these can be loaded into R with the
-`library()` function.
+`library()` function, after you set your library path. When installing
+packages for this FOS course, we created a new library for R.
 
-Let’s load `tidyverse`, so that we have access to it later:
+Set your library path to this destination, and check that it worked:
+
+``` r
+.libPaths("C:/fos_2019/library")
+.libPaths()
+```
+
+You will have to set your library path at the start of each FOS
+practical in R.
+
+-----
+
+Now, let’s load `tidyverse`, so that we have access to it later:
 
 ``` r
 library(tidyverse)
 ```
 
 We will use this package later in the practical. After loading a package
-into R, the functions become available for use.
+into R, the functions inside become available for use.
 
 Lastly, the **Help** tab can be used to view documentation on any loaded
 function. `Tab` can be used as autocomplete in R, but can also be used
 to browse options for completion. Find help on the function, `mean`.
 
     ?mean
+
+-----
 
 #### Question 1:
 
@@ -544,6 +606,24 @@ head(fhs)
     ## 5    3  No
     ## 6    2 Yes
 
+``` r
+str(fhs)
+```
+
+    ## 'data.frame':    4434 obs. of  12 variables:
+    ##  $ SEX     : Factor w/ 2 levels "Female","Male": 2 1 2 1 1 1 1 1 2 2 ...
+    ##  $ TOTCHOL : int  195 250 245 225 285 228 205 313 260 225 ...
+    ##  $ AGE     : int  39 46 48 61 46 43 63 45 52 43 ...
+    ##  $ SYSBP   : num  106 121 128 150 130 ...
+    ##  $ DIABP   : num  70 81 80 95 84 110 71 71 89 107 ...
+    ##  $ CURSMOKE: Factor w/ 2 levels "No","Yes": 1 1 2 2 2 1 1 2 1 2 ...
+    ##  $ BMI     : num  27 28.7 25.3 28.6 23.1 ...
+    ##  $ DIABETES: Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ BPMEDS  : Factor w/ 2 levels "No","Yes": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ GLUCOSE : int  77 76 70 103 85 99 85 78 79 88 ...
+    ##  $ EDUC    : int  4 2 1 3 3 2 1 2 1 1 ...
+    ##  $ MI      : Factor w/ 2 levels "No","Yes": 2 1 1 1 1 2 1 1 1 1 ...
+
 From looking at the above, we can see that this data frame contains 4434
 observations of 12 variables. The first 11 variables represent values
 measured at baseline (e.g. sex, age), and the last variable, MI,
@@ -727,8 +807,8 @@ head(fhsBMI40)
     ## 5    1  No
     ## 6    1  No
 
-Here, we can quickly see the 25 individuals who are obese in our data
-set. A `,` can be used as a logical AND between filters. Perhaps we are
+Here, we can quickly see the individuals who are obese in our data set.
+A `,` can be used as a logical AND between filters. Perhaps we are
 interested in girls who are current smokers.
 
 ``` r

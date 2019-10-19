@@ -15,8 +15,8 @@ output:
 - One lecture and three half-day practicals  
 
 - Basic functionality - data classes and manipulation
-- Statistics - data exploration, visualisation, and regression
-- Genomic ranges - basic bioinformatics analysis
+- Statistics - data visualisation and regression
+- Bioconductor - genomic ranges and basic analysis
 
 # What is R?
 
@@ -36,7 +36,6 @@ output:
 
 # Platform support
 
-- Available for various hardware and software
 - Multiple operating systems
 - Ported to different hardware
 
@@ -52,7 +51,7 @@ output:
 
 - Widely used - econometrics to bioinformatics
 - Individuals extended R to combine with current workflows
-- Can read almost any data type - html, sav, databases
+- Can read in multiple data types - html, sav, databases
 - Implement other languages - C, Python, Java
 - Output many file formats - markdown, sav, pdfs
 
@@ -60,7 +59,7 @@ output:
 
 - Intensive tasks can be written in lower level languages
 - Easy parallelization - meaning faster calculations
-- Optimized for vector operations 
+- Optimized for vector operations - better than loops 
 
 # Visualizations
 
