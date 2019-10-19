@@ -40,11 +40,11 @@ However, we advise you to use `R Markdown` documents during this course.
 These will not only let you save your script for later use, but also
 easily `knit` the results to a HTML and share those.
 
------
-
 Open an `R Markdown` document by clicking the new document icon in the
 top left, and selecting *R Markdown…* from the drop-down menu. Give your
 document a name and keep HTML as the default output.
+
+-----
 
 You will now see several different chunks, similar to this:
 
@@ -54,9 +54,9 @@ You will now see several different chunks, similar to this:
 -----
 
 Save your `R Markdown` document to a directory that you would like to
-work in, using the *Save* button (red).
+work in, using the **Save** button (red).
 
-The *Knit* button (blue) at the top can be used to render a HTML
+The **Knit** button (blue) at the top can be used to render a HTML
 document of your work. Try it now.
 
 At the top of your document, between the `---` markers (yellow) is some
@@ -67,21 +67,22 @@ Any plain text (orange) you write here can be used to describe or
 comment your code. You can specify different levels of header using `#`,
 bold with `**`, and italic with `*`.
 
-Code chunks (green) is initialized using three back quotes (top left of
-the keyboard), and you can specify the language you are using between
-curly brackets. Since we are going to write R code, we would therefore
-use `{r}`. If you want to run a single code chunk, you can do this using
-the Run Current Chunk button (pink).
+**Code chunks** (green) are initialized using the Insert drop down menu
+(top right) and selecting R.
 
-Delete all the chunks with the exception of the header (yellow). Write a
-brief description of what this document will contain along with a title.
-If you want to check how it will look, you can `Knit` your document at
-any time.
+If you want to run a single code chunk, you can do this using the **Run
+Current Chunk** button (pink).
+
+-----
+
+Delete all the chunks **with the exception of the header** (yellow).
+
+Write a brief description of what this document will contain along with
+a title. If you want to check how it will look, you can `Knit` your
+document at any time.
 
 `R Markdown` is a great way to ensure reproducibility in research, and
 using it is a good habit to pick up early.
-
------
 
 Copy the following equations in your `R Markdown` document in a code
 chunk, place your cursor on the first line, and run the equations
@@ -162,7 +163,7 @@ practical in R.
 
 -----
 
-Now, let’s load `tidyverse`, so that we have access to it later:
+Now, let’s load `tidyverse`:
 
 ``` r
 library(tidyverse)
@@ -392,8 +393,10 @@ You can click on a data frame in the **Environment** to view it.
 However, when the data frame is large it is better to use functions such
 as `str`, `summary`, `head` and `dim`.
 
+Create a data frame, using the `data.frame()` function.
+
 ``` r
-df <- data.frame(y, z)  # Create a data frame from vectors y and z
+df <- data.frame(y, z)  
 df
 ```
 
@@ -452,7 +455,8 @@ dim(df)
 
 -----
 
-You can add row names and column names to a data frame.
+You can add row names and column names to a data frame using
+`rownames()` and `colnames()`.
 
 ``` r
 rownames(df) <- c("row1", "row2", "row3")
@@ -556,7 +560,7 @@ a .csv file, so we read it into R using `read.csv()`.
 fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
 ```
 
-The first few lines of the data frame include:
+First, we want to explore the data.
 
 ``` r
 summary(fhs)
@@ -716,7 +720,7 @@ xtabs(~ MI, fhs[fhs$AGE>50, ])# Table of MI in individuals over 50
 
 As mentioned above, `dplyr` is a `tidyverse` package that is frequently
 used for data summary and transformation. `dplyr` code is often more
-intuitive to read and use that base R packages for data manipulation.
+intuitive to read and use than base R packages for data manipulation.
 
 This package contains a number of functions, which we will introduce one
 by one and then combine.
@@ -1007,7 +1011,10 @@ fhs %>%
     take blood pressure medication?
   - For diabetics who experienced MI, what is their mean age, BMI, and
     glucose level?
-  - How many overweight smokers are in each education category?
+  - How many overweight smokers are in each education category? Do you
+    notice a trend?
+  - Now summarise the total in each education category, and look at the
+    proportion that are overweight smokers. Is this trend still there?
 
 -----
 
