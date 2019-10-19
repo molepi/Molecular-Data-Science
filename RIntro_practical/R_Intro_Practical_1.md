@@ -49,7 +49,7 @@ document a name and keep HTML as the default output.
 You will now see several different chunks, similar to this:
 
 ![Figure
-1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/markdown.png)
+1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/markdown.PNG)
 
 -----
 
