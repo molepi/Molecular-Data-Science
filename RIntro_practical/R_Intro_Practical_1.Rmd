@@ -220,7 +220,7 @@ y[y > 5]      # Return all values of y greater than 5
 
 ***
 
-#### Question 2: Obtain the following vectors by adding, removing or subsetting vectors y or z. There are multiple ways to do this, but you only need to give one of them in your answers.
+#### Question 2: Obtain the following vectors using the variables you have created. There are multiple ways to do this, but you only need to give one of them in your answers.
 
 * `7`
 * `"a", "c"`
@@ -361,7 +361,6 @@ xtabs(~ MI, fhs[fhs$AGE>50, ])# Table of MI in individuals over 50
 * Make a table of current smoking status
 * Make a proportion table of BP medication
 * Make a table showing the number of smokers for each education level
-* Cross tabulate sex and diabetes status
 
 ***
 
@@ -496,7 +495,7 @@ fhs %>%
 
 ***
 
-#### Question 4:
+#### Question 5:
 
 * What is the sex and smoking status of the youngest diabetic?
 * What is the average systolic blood pressure smokers who currently take blood pressure medication? 
