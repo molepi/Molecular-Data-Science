@@ -445,7 +445,7 @@ significant difference in age between those who had and did not have MI
 -----
 
 To run logistic regression in R, you use the `glm()` function,
-specifying the `family` as binomial. So explore the fit, use the
+specifying the `family` as binomial. To explore the fit, use the
 `summary()` function.
 
 ``` r
@@ -561,7 +561,7 @@ Only one set of functions will be executed, so once a condition is met,
 the data escapes from the conditional ladder.
 
 In the example below, `x` meets the second condition (i.e. it is greater
-than 0), meaning that is escapes at the second rung, and the associated
+than 0), meaning that it escapes at the second rung, and the associated
 statement is executed.
 
 ``` r
