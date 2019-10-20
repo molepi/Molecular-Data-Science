@@ -503,94 +503,145 @@ for females, after adjusting for BMI and age.
 
 ## Part 4: Loops
 
-One of the advantages of using R is to use loops to perform multiple
-analyses at once. As an example, the following loop calculates the
-association of MI with all the other variables and stores them in a data
-frame.
+Although R uses vectorized operations, it can sometimes still be useful
+to utilise loops and conditional statements. This is particularly the
+case inside functions, where different instructions need to be carried
+out depending on the input.
+
+Previously, we used the `ifelse()` function to create a binary variable
+alongside `mutate()`.
+
+This command takes the format `ifelse`(`condition`, `value if TRUE`,
+`value if FALSE`), and is a very simple form of conditional statement.
+
+The following code demonstrates how this can be implemented to create an
+indicator for individuals being underweight.
 
 ``` r
-results <- data.frame()       
-for (i in colnames(fhs)[-ncol(fhs)]) {  
-  fit <- glm(MI ~ get(i), fhs, family = "binomial") 
-  results <- rbind(results, summary(fit)$coefficients[2, , drop = FALSE]) 
-}
-rownames(results) <- colnames(fhs)[-ncol(fhs)] 
-results$OR <- exp(results$Estimate) 
-results[order(results$"Pr(>|z|)"), ] 
+fhs %>%
+  mutate(UNDER = ifelse(BMI <= 20, 1, 0)) %>%
+  select(UNDER, BMI, SEX, AGE) %>%
+  arrange(AGE) %>%
+  head
 ```
 
-    ##              Estimate   Std. Error   z value     Pr(>|z|)        OR
-    ## SEX       1.153381422 0.0921407197 12.517608 5.981047e-36 3.1688902
-    ## SYSBP     0.018909221 0.0017797581 10.624602 2.289869e-26 1.0190891
-    ## AGE       0.044548141 0.0050507477  8.820108 1.143491e-18 1.0455553
-    ## TOTCHOL   0.008106879 0.0009512993  8.521902 1.569545e-17 1.0081398
-    ## DIABP     0.028722602 0.0034015327  8.444018 3.066132e-17 1.0291391
-    ## DIABETES  1.307439829 0.1995849643  6.550793 5.723227e-11 3.6966974
-    ## BMI       0.065226891 0.0099964058  6.525034 6.798595e-11 1.0674012
-    ## GLUCOSE   0.008529646 0.0014836425  5.749125 8.970668e-09 1.0085661
-    ## BPMEDS    0.782504278 0.1961813118  3.988679 6.644226e-05 2.1869421
-    ## CURSMOKE  0.273897693 0.0867548074  3.157147 1.593209e-03 1.3150803
-    ## EDUC     -0.059809137 0.0427093732 -1.400375 1.614011e-01 0.9419443
-
-This is quite a complicated loop, but we can dissect the different parts
-to get an idea of what loops in R consist of.
+    ##   UNDER   BMI    SEX AGE
+    ## 1     0 29.84 Female  32
+    ## 2     0 21.61 Female  33
+    ## 3     1 19.84 Female  33
+    ## 4     0 26.74   Male  33
+    ## 5     0 23.80 Female  33
+    ## 6     0 24.95   Male  33
 
 -----
 
-An `if` statement is only run if the condition is true.
+You can also input vectors into these `ifelse()` conditional statements
 
 ``` r
-if (1 < 2) { 
-  print("1 is smaller than 2") 
-}
+x <- c(2,9,13,4)
+ifelse(x %% 2 == 0, paste(x, "is even"), paste(x, "is odd"))
 ```
 
-    ## [1] "1 is smaller than 2"
+    ## [1] "2 is even" "9 is odd"  "13 is odd" "4 is even"
 
 -----
 
-An `else` statement is only run if the condition of the if-statement is
-false.
+More complicated conditional statements can be built with ladders of
+`if`, `else if`, and `else` statements.
+
+At each rung of the ladder, the condition is tested and, if found to be
+true, the functions inside the curly brackets are carried out.
+
+Only one set of functions will be executed, so once a condition is met,
+the data escapes from the conditional ladder.
+
+In the example below, `x` meets the second condition (i.e. it is greater
+than 0), meaning that is escapes at the second rung, and the associated
+statement is executed.
 
 ``` r
-if (1 > 2) {
-  print("1 is greater than 2")
-} else {
-  print("1 is not greater than 2")
-}
+x <- 1
+if (x < 0) {
+  paste(x, "is a negative number")
+} else if (x > 0) {
+  paste(x, "is a positive number")
+} else
+  paste(x, "is zero")
 ```
 
-    ## [1] "1 is not greater than 2"
+    ## [1] "1 is a positive number"
+
+If you want to force an escape for a specific condition, you can put a
+`break` inside the conditional statement.
 
 -----
 
-With `for` loops you assign a range of values to a variable and perform
-the actions in the loop for all these values in order.
+Loops can be used to repeat a specific block of code multiple times.
+They are often used in conjunction with conditional statements.
 
 ``` r
-for (i in 1:10) { # loop over values 1 to 10
-  if (i < 5) {
-    print(paste(i, "is smaller than 5"))
-  } else {
-    print(paste(i, "is not smaller than 5"))
+x <- c(4,6,13,2,19,7,1)
+count <- 0
+for (i in x) {
+  if(i %% 2 == 0) {
+    count <- count + 1
   }
 }
+paste("There are", count, "even numbers in this vector")
 ```
 
-    ## [1] "1 is smaller than 5"
-    ## [1] "2 is smaller than 5"
-    ## [1] "3 is smaller than 5"
-    ## [1] "4 is smaller than 5"
-    ## [1] "5 is not smaller than 5"
-    ## [1] "6 is not smaller than 5"
-    ## [1] "7 is not smaller than 5"
-    ## [1] "8 is not smaller than 5"
-    ## [1] "9 is not smaller than 5"
-    ## [1] "10 is not smaller than 5"
+    ## [1] "There are 3 even numbers in this vector"
 
 -----
 
-You can also utilise loops and make your own functions in R.
+While loops repeatedly execute while the conditional statement is true.
+It is important to modify the variable in the conditional statement
+within the loop, otherwise you may end up creating an infinite loop.
+
+``` r
+x <- 2
+while(x < 5) {
+  print(x)
+  x <- x + 1
+}
+```
+
+    ## [1] 2
+    ## [1] 3
+    ## [1] 4
+
+-----
+
+#### Question 4: Write the following:
+
+  - A loop that returns the square of the first 3 elements in a vector
+  - A loop that prints each column of the FHS dataset, alongside the
+    number of characters in the name
+  - A loop that tells you at what integer the product of all previous
+    positive integers is over 5 million
+
+-----
+
+## Part 5: Writing your own functions
+
+There are many instances in which you may want to write your own
+function in R. If you continuously use the same chunk of code, it can be
+easier to implement in a function for use later.
+
+Additionally, it can sometimes be that a specific method you want to use
+is not yet available in R, or perhaps you would like to execute it in a
+more lightweight or efficient way.
+
+Getting comfortable writing your own functions is key to making the most
+of R.
+
+-----
+
+Many functions in R include conditional statements and loops like the
+ones seen above.
+
+As an example, the following function takes two inputs and returns a
+statement about their relative size.
 
 ``` r
 greater <- function(x, y) { 
@@ -600,6 +651,12 @@ greater <- function(x, y) {
     paste(x, "is not greater than", y)
   }
 }
+```
+
+We can call this function using the specified function name. In this
+case, we called the function `greater`.
+
+``` r
 greater(1, 2)
 ```
 
@@ -613,34 +670,94 @@ greater(2, 1)
 
 -----
 
+You can also use `return()` at the end of your function to print a
+particular variable created inside the code.
+
 ``` r
-greater <- function(x, y, z) { 
-  paste(x*y*z)
+printSign <- function(x) {
+  if (x > 0) {
+    result <- "Input is positive"
+  } else if (x < 0) {
+    result <- "Input is negative"
+  } else {
+    result <- "Input is zero"
+  }
+  return(result)
 }
-greater(1, 2, 3)
+
+printSign(1)
 ```
 
-    ## [1] "6"
+    ## [1] "Input is positive"
 
 ``` r
-greater(2, 1, 4)
+printSign(0)
 ```
 
-    ## [1] "8"
+    ## [1] "Input is zero"
 
-#### Question 6:
+``` r
+printSign(-19)
+```
 
-  - Make a function that requires as arguments x, y and z and returns
-    their product.
-  - Make a loop that returns the association of all columns of data
-    frame fhs with age.
+    ## [1] "Input is negative"
 
 -----
 
-You have just written your own simple function, but hopefully you can
-see how complicated they could become. You can do so many things in R,
-and new functions are being written all the time, but if a function to
-do something doesn’t exist, you can always try to create your own.
+Functions can get increasingly complicated. The following function
+performs logistic regression for all the variables except MI in a
+dataset and returns the results in order of significance.
+
+``` r
+logisticAllMI <- function(x) {
+  results <- data.frame()
+  fhsCov <- select(fhs, -MI)
+  
+  for (i in colnames(fhsCov)) {
+    fit <- glm(MI ~ get(i), fhs, family = "binomial")
+    results <- rbind(results, summary(fit)$coefficients[2, , drop=F])
+  }
+  
+  results <- cbind(Covarite = colnames(fhsCov), results)
+  
+  results %>%
+    mutate(OR = exp(results$Estimate)) %>%
+    arrange(`Pr(>|z|)`) %>%
+    head
+}
+```
+
+Let’s test it out on our FHS data.
+
+``` r
+logisticAllMI(fhs)
+```
+
+    ##   Covarite    Estimate   Std. Error   z value     Pr(>|z|)       OR
+    ## 1      SEX 1.153381422 0.0921407197 12.517608 5.981047e-36 3.168890
+    ## 2    SYSBP 0.018909221 0.0017797581 10.624602 2.289869e-26 1.019089
+    ## 3      AGE 0.044548141 0.0050507477  8.820108 1.143491e-18 1.045555
+    ## 4  TOTCHOL 0.008106879 0.0009512993  8.521902 1.569545e-17 1.008140
+    ## 5    DIABP 0.028722602 0.0034015327  8.444018 3.066132e-17 1.029139
+    ## 6 DIABETES 1.307439829 0.1995849643  6.550793 5.723227e-11 3.696697
+
+-----
+
+#### Question 5:
+
+  - Make a function that requires as arguments x, y and z and returns
+    their product.
+  - Make a loop that returns the correlation of all columns of data
+    frame fhs with BMI.
+  - Make a loop that associates all variables in the FHS data with age
+    (hint: use `lm` instead of `glm`)
+
+-----
+
+You have just written a few simple functions, but hopefully you can see
+how complicated they could become. You can do so many things in R, and
+new functions are being written all the time, but you can always also
+create your own.
 
 See you after lunch\!
 

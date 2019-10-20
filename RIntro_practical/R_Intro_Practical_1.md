@@ -142,9 +142,9 @@ Any **Plots** that you create can also be viewed here, and you can
 browse through your plot history with the `Forward` and `Back` buttons.
 
 The `tidyverse` package is a collection of popular R packages that can
-be installed together. It contains packages like `ggplot2`, meantioned
-in the lecture, for creating graphics, and `dplyr`, which we will use
-today for data manipulation.
+be installed together. It contains packages like `ggplot2`, mentioned in
+the lecture, for creating graphics, and `dplyr`, which we will use today
+for data manipulation.
 
 A list of currently installed packages is shown in the **Packages** tab.
 The functions contained within these can be loaded into R with the
@@ -1006,7 +1006,7 @@ fhs %>%
 #### Question 5:
 
   - What is the sex and smoking status of the youngest diabetic?
-  - What is the average systolic blood pressure smokers who currently
+  - What is the average systolic blood pressure of smokers who currently
     take blood pressure medication?
   - For diabetics who experienced MI, what is their mean age, BMI, and
     glucose level?

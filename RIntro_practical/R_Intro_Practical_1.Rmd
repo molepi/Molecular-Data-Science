@@ -99,7 +99,7 @@ In the *bottom right* section of RStudio, are some very useful tabs. **Files** w
 
 Any **Plots** that you create can also be viewed here, and you can browse through your plot history with the `Forward` and `Back` buttons. 
 
-The `tidyverse` package is a collection of popular R packages that can be installed together. It contains packages like `ggplot2`, meantioned in the lecture, for creating graphics, and `dplyr`, which we will use today for data manipulation.
+The `tidyverse` package is a collection of popular R packages that can be installed together. It contains packages like `ggplot2`, mentioned in the lecture, for creating graphics, and `dplyr`, which we will use today for data manipulation.
 
 A list of currently installed packages is shown in the **Packages** tab. The functions contained within these can be loaded into R with the `library()` function, after you set your library path. When installing packages for this FOS course, we created a new library for R. 
 
@@ -498,7 +498,7 @@ fhs %>%
 #### Question 5:
 
 * What is the sex and smoking status of the youngest diabetic?
-* What is the average systolic blood pressure smokers who currently take blood pressure medication? 
+* What is the average systolic blood pressure of smokers who currently take blood pressure medication? 
 * For diabetics who experienced MI, what is their mean age, BMI, and glucose level?
 * How many overweight smokers are in each education category? Do you notice a trend?
 * Now summarise the total in each education category, and look at the proportion that are overweight smokers. Is this trend still there?
