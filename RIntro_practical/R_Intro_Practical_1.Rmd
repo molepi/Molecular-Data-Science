@@ -410,7 +410,7 @@ fhsBMI40 <- filter(fhs, BMI >= 40)
 head(fhsBMI40)
 ```
 
-Here, we can quickly see the individuals who are obese in our data set. A `,` can be used as a logical AND between filters. Perhaps we are interested in girls who are current smokers.
+Here, we can quickly see the individuals who are morbidly obese in our data set. A `,` can be used as a logical AND between filters. Perhaps we are interested in girls who are current smokers.
 
 ```{r}
 fhsSmokeF <- filter(fhs, SEX == 'Female', CURSMOKE == 'Yes')
