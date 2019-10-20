@@ -620,8 +620,8 @@ while(x < 5) {
 #### Question 4: Write the following:
 
   - A loop that returns the square of the first 3 elements in a vector
-  - A loop that prints each column of the FHS dataset, alongside the
-    number of characters in the name
+  - A loop that prints each column name from the FHS dataset, alongside
+    the number of characters in that name
   - A loop that tells you at what integer the product of all previous
     positive integers is over 5 million
 
@@ -716,10 +716,10 @@ dataset and returns the results in order of significance.
 ``` r
 logisticAllMI <- function(x) {
   results <- data.frame()
-  fhsCov <- select(fhs, -MI)
+  fhsCov <- select(x, -MI)
   
   for (i in colnames(fhsCov)) {
-    fit <- glm(MI ~ get(i), fhs, family = "binomial")
+    fit <- glm(MI ~ get(i), x, family = "binomial")
     results <- rbind(results, summary(fit)$coefficients[2, , drop=F])
   }
   
@@ -728,7 +728,7 @@ logisticAllMI <- function(x) {
   results %>%
     mutate(OR = exp(results$Estimate)) %>%
     arrange(`Pr(>|z|)`) %>%
-    head
+    print
 }
 ```
 
@@ -738,13 +738,18 @@ Let’s test it out on our FHS data.
 logisticAllMI(fhs)
 ```
 
-    ##   Covarite    Estimate   Std. Error   z value     Pr(>|z|)       OR
-    ## 1      SEX 1.153381422 0.0921407197 12.517608 5.981047e-36 3.168890
-    ## 2    SYSBP 0.018909221 0.0017797581 10.624602 2.289869e-26 1.019089
-    ## 3      AGE 0.044548141 0.0050507477  8.820108 1.143491e-18 1.045555
-    ## 4  TOTCHOL 0.008106879 0.0009512993  8.521902 1.569545e-17 1.008140
-    ## 5    DIABP 0.028722602 0.0034015327  8.444018 3.066132e-17 1.029139
-    ## 6 DIABETES 1.307439829 0.1995849643  6.550793 5.723227e-11 3.696697
+    ##    Covarite     Estimate   Std. Error   z value     Pr(>|z|)        OR
+    ## 1       SEX  1.153381422 0.0921407197 12.517608 5.981047e-36 3.1688902
+    ## 2     SYSBP  0.018909221 0.0017797581 10.624602 2.289869e-26 1.0190891
+    ## 3       AGE  0.044548141 0.0050507477  8.820108 1.143491e-18 1.0455553
+    ## 4   TOTCHOL  0.008106879 0.0009512993  8.521902 1.569545e-17 1.0081398
+    ## 5     DIABP  0.028722602 0.0034015327  8.444018 3.066132e-17 1.0291391
+    ## 6  DIABETES  1.307439829 0.1995849643  6.550793 5.723227e-11 3.6966974
+    ## 7       BMI  0.065226891 0.0099964058  6.525034 6.798595e-11 1.0674012
+    ## 8   GLUCOSE  0.008529646 0.0014836425  5.749125 8.970668e-09 1.0085661
+    ## 9    BPMEDS  0.782504278 0.1961813118  3.988679 6.644226e-05 2.1869421
+    ## 10 CURSMOKE  0.273897693 0.0867548074  3.157147 1.593209e-03 1.3150803
+    ## 11     EDUC -0.059809137 0.0427093732 -1.400375 1.614011e-01 0.9419443
 
 -----
 
@@ -752,8 +757,8 @@ logisticAllMI(fhs)
 
   - A function that takes x, y and z as arguments and returns their
     product.
-  - A function that returns the correlation of all columns of FHS data
-    with BMI.
+  - A function that returns the correlation of all variables in the FHS
+    data with BMI.
   - A function that associates all variables in the FHS data with age
     (hint: use `lm` instead of `glm`)
 

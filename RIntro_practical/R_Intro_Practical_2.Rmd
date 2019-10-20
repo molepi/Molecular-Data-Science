@@ -428,7 +428,7 @@ while(x < 5) {
 #### Question 4: Write the following:
 
 * A loop that returns the square of the first 3 elements in a vector
-* A loop that prints each column of the FHS dataset, alongside the number of characters in the name
+* A loop that prints each column name from the FHS dataset, alongside the number of characters in that name
 * A loop that tells you at what integer the product of all previous positive integers is over 5 million
 
 ***
@@ -492,10 +492,10 @@ Functions can get increasingly complicated. The following function performs logi
 ```{r}
 logisticAllMI <- function(x) {
   results <- data.frame()
-  fhsCov <- select(fhs, -MI)
+  fhsCov <- select(x, -MI)
   
   for (i in colnames(fhsCov)) {
-    fit <- glm(MI ~ get(i), fhs, family = "binomial")
+    fit <- glm(MI ~ get(i), x, family = "binomial")
     results <- rbind(results, summary(fit)$coefficients[2, , drop=F])
   }
   
@@ -504,7 +504,7 @@ logisticAllMI <- function(x) {
   results %>%
     mutate(OR = exp(results$Estimate)) %>%
     arrange(`Pr(>|z|)`) %>%
-    head
+    print
 }
 ```
 
@@ -519,7 +519,7 @@ logisticAllMI(fhs)
 #### Question 5: Make the following:
 
 * A function that takes x, y and z as arguments and returns their product.
-* A function that returns the correlation of all columns of FHS data with BMI.
+* A function that returns the correlation of all variables in the FHS data with BMI.
 * A function that associates all variables in the FHS data with age (hint: use `lm` instead of `glm`)
 
 ***
