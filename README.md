@@ -110,9 +110,9 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.15-12.30 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | 13.30-14.00 | Lecture: [Introduction to Transcriptomics](RNASeq_lecture/Transcriptomics_FOS2019.pdf) | Rodrigo C de Almeida | J1-84 |
-| 14.00-15.00 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2018.pdf) | Rodrigo C de Almeida | J1-84 |
+| 14.00-15.00 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2019.pdf) | Rodrigo C de Almeida | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2018.pdf) | Rodrigo C de Almeida | J1-84 |
+| 15.15-17.00 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2019.pdf) | Rodrigo C de Almeida | J1-84 |
 
 
 #### Friday October 25 (Location J1-84/building 1, LUMC) ####
