@@ -342,7 +342,7 @@ Here, we can see that the odds of MI for males is 3.3 times higher than for fema
 #### Question 3:
 
 * Is age correlated with total cholesterol?
-* Do diabetes have significantly different glucose levels compared to non-diabetics?
+* Do diabetics have significantly different glucose levels compared to non-diabetics?
 * Is MI associated with total cholesterol in individuals over 50?
 
 ***

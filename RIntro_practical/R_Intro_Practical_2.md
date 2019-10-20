@@ -500,7 +500,7 @@ for females, after adjusting for BMI and age.
 #### Question 3:
 
   - Is age correlated with total cholesterol?
-  - Do diabetes have significantly different glucose levels compared to
+  - Do diabetics have significantly different glucose levels compared to
     non-diabetics?
   - Is MI associated with total cholesterol in individuals over 50?
 
