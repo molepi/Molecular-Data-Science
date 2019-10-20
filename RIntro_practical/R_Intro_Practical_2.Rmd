@@ -516,11 +516,11 @@ logisticAllMI(fhs)
 
 ***
 
-#### Question 5:
+#### Question 5: Make the following:
 
-* Make a function that requires as arguments x, y and z and returns their product.
-* Make a loop that returns the correlation of all columns of data frame fhs with BMI.
-* Make a loop that associates all variables in the FHS data with age (hint: use `lm` instead of `glm`)
+* A function that takes x, y and z as arguments and returns their product.
+* A function that returns the correlation of all columns of FHS data with BMI.
+* A function that associates all variables in the FHS data with age (hint: use `lm` instead of `glm`)
 
 ***
 
