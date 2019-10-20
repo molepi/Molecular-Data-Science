@@ -320,6 +320,15 @@ class(z)
 
     ## [1] "character"
 
+For character class objects, `nchar()` can be used to count the number
+of letters.
+
+``` r
+nchar("apple")
+```
+
+    ## [1] 5
+
 -----
 
 Another class of data in R is the logical class, where `T` represents
@@ -512,7 +521,7 @@ df[df$col1 > 5, ] # Return rows where column 'col1' is greater than 5
 Extra columns can be added to a data frame using the `$` operator.
 
 ``` r
-df$col3 <- c(T, T, F) 
+df$col3 <- w
 df
 ```
 
@@ -525,8 +534,7 @@ Adding extra rows requires the `rbind()` function, and for values of the
 new row to be of the correct class.
 
 ``` r
-df2 <- data.frame(col1 = 8, col2 = "d", col3 = F) 
-rownames(df2) <- "row4" 
+df2 <- data.frame(col1 = 8, col2 = "d", col3 = F, row.names="row4") 
 df3 <- rbind(df, df2) 
 df3
 ```
@@ -543,8 +551,9 @@ df3
 
   - Add a column with the name `col4` to data frame `df` with the values
     `1, 1, 1`.
-  - Make a new data frame `df4` which is a subset of data frame `df` but
-    only contains columns `col1` and `col2`, and rows `row2` and `row3`.
+  - Make a new data frame `df4`, which is a subset of data frame `df`
+    but only contains columns `col1` and `col2`, and rows `row2` and
+    `row3`.
   - Calculate the sum of `col1` of data frame `df3`.
   - Change the row names of data frame `df4` to `rowX` and `rowY`.
 
@@ -1017,11 +1026,11 @@ fhs %>%
     take blood pressure medication?
   - For diabetics who experienced MI, what is their mean age, BMI, and
     glucose level?
-  - How many overweight smokers are in each education category? Do you
-    notice a trend?
+  - How many obese smokers are in each education category? Do you notice
+    a trend?
   - Now look at the total number of people in each education category
-    alongside the percentage who are overweight smokers. Is there a
-    trend now?
+    alongside the percentage who are obese smokers. Is there a trend
+    now?
 
 -----
 

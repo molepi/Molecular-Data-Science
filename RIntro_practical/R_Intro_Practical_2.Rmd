@@ -73,7 +73,7 @@ Bars can be coloured by other variables to see the distribution of one category 
 ```{r}
 fhs %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30') +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30') +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -86,7 +86,7 @@ Subsetting, as shown yesterday with `dplyr` can also be piped into `ggplot()`. W
 fhs %>%
   filter(MI == 'Yes') %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30') +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30') +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -99,7 +99,7 @@ To view bars side-by-side instead of stacked, set `position` to `dodge`.
 fhs %>%
   filter(MI == 'Yes') %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30', position="dodge") +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30', position="dodge") +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -197,7 +197,7 @@ Reference lines can be added to plots using `geom_vline()`, `geom_hline()`, and 
 fhs %>%
   ggplot() +
   geom_point(aes(SYSBP, DIABP), alpha=0.7) +
-  geom_vline(aes(xintercept=160), color='red', size=1.5, alpha=0.7) +
+  geom_vline(aes(xintercept=160), colour='red', size=1.5, alpha=0.7) +
   ggtitle("Scatter plot of Systolic BP against Diastolic BP") +
   xlab("Systolic BP (mmHg)") +
   ylab("Diastolic BP (mmHg)")
@@ -212,7 +212,7 @@ You can also use the `cut()` function alongside `seq()` to create categorical va
 fhs %>%
   ggplot() +
   geom_point(aes(SYSBP, DIABP), alpha=0.7) +
-  geom_vline(aes(xintercept=160), color='red', size=1.5, alpha=0.7) +
+  geom_vline(aes(xintercept=160), colour='red', size=1.5, alpha=0.7) +
   ggtitle("Scatter plot of Systolic BP against Diastolic BP") +
   xlab("Systolic BP (mmHg)") +
   ylab("Diastolic BP (mmHg)") +
@@ -226,7 +226,7 @@ To show the distribution of a continuous variable across categories, you can use
 ```{r}
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI), color='grey30', fill='cadetblue2') +
+  geom_boxplot(aes(CURSMOKE, BMI), colour='grey30', fill='cadetblue2') +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
   ylab("BMI (kg/m^2)")
@@ -239,7 +239,7 @@ If you want to view a horizontal boxplot, you can use `coord_fip()`. Outliers ca
 ```{r}
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI), color='grey30', fill='cadetblue2', outlier.color='palegreen3', outlier.shape=1) + 
+  geom_boxplot(aes(CURSMOKE, BMI), colour='grey30', fill='cadetblue2', outlier.color='palegreen3', outlier.shape=1) + 
   coord_flip() +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
@@ -253,7 +253,7 @@ Finally, box plots can also be split by a further category using the `fill` or `
 ```{r}
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI, fill=SEX), color='grey30', outlier.color='palegreen3', outlier.shape=1) + 
+  geom_boxplot(aes(CURSMOKE, BMI, fill=SEX), colour='grey30', outlier.colour='palegreen3', outlier.shape=1) + 
   coord_flip() +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
@@ -265,7 +265,7 @@ fhs %>%
 #### Question 2: Make the following:
 
 * A scatter plot of glucose levels against BMI, coloured by diabetes status.
-* A horizontal box plot of systolic BP by sex for people over the age of 60
+* A horizontal box plot of sex by systolic BP for people over the age of 60
 * A scatter plot of total cholesterol against glucose for categories of BMI
 
 ***
@@ -288,7 +288,7 @@ chisq <- chisq.test(SMOKE_MI)
 chisq
 ```
 
-In this instance, we have sufficient evidence (X2=9.73, p=0.002) that smoking and MI are significantly associated. Pearson residuals can be inspected to explore which groups are contributing to this evidence.
+In this instance, we have sufficient evidence (X2=9.73, p=0.002) that smoking and MI are significantly associated. Pearson residuals can be inspected to explore which groups are contributing most to this evidence.
 
 ```{r}
 round(chisq$residuals, 3)
@@ -342,8 +342,8 @@ Here, we can see that the odds of MI for males is 3.3 times higher than for fema
 #### Question 3:
 
 * Is age correlated with total cholesterol?
-* Is MI associated with glucose levels?
-* Is MI associated with glucose levels in individuals with diabetes?
+* Do diabetes have significantly different glucose levels compared to non-diabetics?
+* Is MI associated with total cholesterol in individuals over 50?
 
 ***
 

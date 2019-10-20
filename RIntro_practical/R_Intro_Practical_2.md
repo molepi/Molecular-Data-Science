@@ -92,7 +92,7 @@ the `aes()` function and specifying a categorical variable.
 ``` r
 fhs %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30') +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30') +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -109,7 +109,7 @@ MI, for example.
 fhs %>%
   filter(MI == 'Yes') %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30') +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30') +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -124,7 +124,7 @@ To view bars side-by-side instead of stacked, set `position` to `dodge`.
 fhs %>%
   filter(MI == 'Yes') %>%
   ggplot() +
-  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, color='grey30', position="dodge") +
+  geom_bar(aes(EDUC, fill=SEX), alpha=0.7, colour='grey30', position="dodge") +
   ggtitle("Bar plot of sex within Education levels") + 
   xlab("Education level") 
 ```
@@ -247,7 +247,7 @@ annotating plots.
 fhs %>%
   ggplot() +
   geom_point(aes(SYSBP, DIABP), alpha=0.7) +
-  geom_vline(aes(xintercept=160), color='red', size=1.5, alpha=0.7) +
+  geom_vline(aes(xintercept=160), colour='red', size=1.5, alpha=0.7) +
   ggtitle("Scatter plot of Systolic BP against Diastolic BP") +
   xlab("Systolic BP (mmHg)") +
   ylab("Diastolic BP (mmHg)")
@@ -267,7 +267,7 @@ the vector `(30, 40, 50, 60, 70)`.
 fhs %>%
   ggplot() +
   geom_point(aes(SYSBP, DIABP), alpha=0.7) +
-  geom_vline(aes(xintercept=160), color='red', size=1.5, alpha=0.7) +
+  geom_vline(aes(xintercept=160), colour='red', size=1.5, alpha=0.7) +
   ggtitle("Scatter plot of Systolic BP against Diastolic BP") +
   xlab("Systolic BP (mmHg)") +
   ylab("Diastolic BP (mmHg)") +
@@ -286,7 +286,7 @@ points are shown individually.
 ``` r
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI), color='grey30', fill='cadetblue2') +
+  geom_boxplot(aes(CURSMOKE, BMI), colour='grey30', fill='cadetblue2') +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
   ylab("BMI (kg/m^2)")
@@ -302,7 +302,7 @@ Outliers can also be highlighted by changing their colour and shape.
 ``` r
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI), color='grey30', fill='cadetblue2', outlier.color='palegreen3', outlier.shape=1) + 
+  geom_boxplot(aes(CURSMOKE, BMI), colour='grey30', fill='cadetblue2', outlier.color='palegreen3', outlier.shape=1) + 
   coord_flip() +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
@@ -319,7 +319,7 @@ Finally, box plots can also be split by a further category using the
 ``` r
 fhs %>%
   ggplot() +
-  geom_boxplot(aes(CURSMOKE, BMI, fill=SEX), color='grey30', outlier.color='palegreen3', outlier.shape=1) + 
+  geom_boxplot(aes(CURSMOKE, BMI, fill=SEX), colour='grey30', outlier.colour='palegreen3', outlier.shape=1) + 
   coord_flip() +
   ggtitle("Distribution of BMI within smoking status") +
   xlab("Current smoking status") +
@@ -334,7 +334,7 @@ fhs %>%
 
   - A scatter plot of glucose levels against BMI, coloured by diabetes
     status.
-  - A horizontal box plot of systolic BP by sex for people over the age
+  - A horizontal box plot of sex by systolic BP for people over the age
     of 60
   - A scatter plot of total cholesterol against glucose for categories
     of BMI
@@ -374,7 +374,8 @@ chisq
 
 In this instance, we have sufficient evidence (X2=9.73, p=0.002) that
 smoking and MI are significantly associated. Pearson residuals can be
-inspected to explore which groups are contributing to this evidence.
+inspected to explore which groups are contributing most to this
+evidence.
 
 ``` r
 round(chisq$residuals, 3)
@@ -499,8 +500,9 @@ for females, after adjusting for BMI and age.
 #### Question 3:
 
   - Is age correlated with total cholesterol?
-  - Is MI associated with glucose levels?
-  - Is MI associated with glucose levels in individuals with diabetes?
+  - Do diabetes have significantly different glucose levels compared to
+    non-diabetics?
+  - Is MI associated with total cholesterol in individuals over 50?
 
 -----
 
