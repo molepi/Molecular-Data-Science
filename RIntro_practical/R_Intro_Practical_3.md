@@ -20,306 +20,350 @@ using `BiocManager`. You can check if the package you want to use is
 available:
 
 ``` r
-BiocManager::available("GenomicRanges")
+BiocManager::available("IRanges")
 ```
 
-    ## [1] "GenomicRanges"
-
-This package imports an object class called `GenomicRanges`, which
-contains genomic data, such as SNPs, gene expression, or DNA
-methylation.
-
------
+    ## [1] "IRanges"
 
 All Bioconductor packages have obligatory documentation, called
 ‘vignettes’. You can view these from within R using:
 
 ``` r
-browseVignettes("GenomicRanges")
+browseVignettes("IRanges")
 ```
 
 This takes you to a list of files that can help you when using this
 package in R. In addition to this, help is readily available on the
 [Bioconductor](https://support.bioconductor.org) forums.
 
+Before moving on, make sure to set your library path and load in the
+`IRanges` package.
+
+``` r
+.libPaths("C:/fos_2019/library")
+```
+
+``` r
+library(IRanges)
+```
+
 -----
 
-## Part 2: Genomic Ranges
+## Part 2: IRanges
 
-Another type of package in R contains highly curated data, as resources
-for teaching and learning. `DMRcatedata` is one such package. We can
-load this package into R and import the data, which is an object of
-class `RangedSummarizedExperiment`
+This package provides efficient low-level and highly reusable classes
+for storing and manipulating **annotated ranges of integers**. It also
+contains useful functions, such as to identify overlaps.
 
-``` r
-library(DMRcatedata)
-data(dmrcatedata)
-```
+You can imagine how this kind of functionality would be useful when
+handling sequences. `IRanges` forms the basis for one of the most
+important packages handling genomic data, `GenomicRanges`, which we will
+explore later.
 
-This loads in a series of objects into R, including several
-`GenomicRanges` class objects. tx.hg19 is a GRanges object containing
-simulated WGBS data.
+`IRanges` objects can be created by specifying an integer range.
 
 ``` r
-tx.hg19
+ir <- IRanges(5,10)
+ir
 ```
 
-    ## GRanges object with 215170 ranges and 4 metadata columns:
-    ##                                   seqnames              ranges strand |
-    ##                                      <Rle>           <IRanges>  <Rle> |
-    ##   ENST00000000233                     chr7 127228399-127231759      + |
-    ##   ENST00000000412                    chr12     9092961-9102551      - |
-    ##   ENST00000000442                    chr11   64073050-64084210      + |
-    ##   ENST00000001008                    chr12     2904119-2913124      + |
-    ##   ENST00000001146                     chr2   72356367-72375167      - |
-    ##               ...                      ...                 ...    ... .
-    ##   ENST00000610276                    chr21   33108045-33108720      + |
-    ##   ENST00000610277 chrHSCHR19LRC_LRC_I_CTG1   54677109-54693666      - |
-    ##   ENST00000610278                    chr22   21335650-21336044      - |
-    ##   ENST00000610279                    chr10   69609283-69610504      + |
-    ##   ENST00000610280                    chr11   58059298-58060237      - |
-    ##                         gene_name      gene_type         gene_id
-    ##                       <character>    <character>     <character>
-    ##   ENST00000000233            ARF5 protein_coding ENSG00000004059
-    ##   ENST00000000412            M6PR protein_coding ENSG00000003056
-    ##   ENST00000000442           ESRRA protein_coding ENSG00000173153
-    ##   ENST00000001008           FKBP4 protein_coding ENSG00000004478
-    ##   ENST00000001146         CYP26B1 protein_coding ENSG00000003137
-    ##               ...             ...            ...             ...
-    ##   ENST00000610276      AP000255.6        lincRNA ENSG00000273091
-    ##   ENST00000610277          MBOAT7 protein_coding ENSG00000273130
-    ##   ENST00000610278 XXbac-B135H6.18        lincRNA ENSG00000272829
-    ##   ENST00000610279    RP11-57G10.8        lincRNA ENSG00000272892
-    ##   ENST00000610280         OR10Q2P     pseudogene ENSG00000272900
-    ##                               tx_name
-    ##                           <character>
-    ##   ENST00000000233            ARF5-001
-    ##   ENST00000000412            M6PR-001
-    ##   ENST00000000442           ESRRA-002
-    ##   ENST00000001008           FKBP4-001
-    ##   ENST00000001146         CYP26B1-001
-    ##               ...                 ...
-    ##   ENST00000610276      AP000255.6-001
-    ##   ENST00000610277          MBOAT7-001
-    ##   ENST00000610278 XXbac-B135H6.18-001
-    ##   ENST00000610279    RP11-57G10.8-001
-    ##   ENST00000610280         OR10Q2P-001
+    ## IRanges object with 1 range and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         5        10         6
+
+We have created an integer range from 5 to 10, and the width is listed
+as 6 since both the start and end integer contribute to the width of an
+`IRanges` object.
+
+We can access this information using the `start()`, `end()`, and
+`width()` functions.
+
+``` r
+start(ir)
+```
+
+    ## [1] 5
+
+``` r
+end(ir)
+```
+
+    ## [1] 10
+
+``` r
+width(ir)
+```
+
+    ## [1] 6
+
+-----
+
+`IRanges` can be shifted or resized. Here, `shift()` performs an intra
+range transformation and reduces the start and end integer by 2, keeping
+the width the same.
+
+``` r
+shift(ir, -2)
+```
+
+    ## IRanges object with 1 range and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         3         8         6
+
+The `resize()` function adjusts the width to a new specified value. Its
+default behaviour is to keep the `start` the same, and adjust the width
+using the `end` integer.
+
+``` r
+resize(ir, 3)
+```
+
+    ## IRanges object with 1 range and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         5         7         3
+
+-----
+
+You can input multiple ranges at once using vectors to create a
+multi-range object.
+
+``` r
+ir <- IRanges(c(4, 5, 8, 15, 19, 28, 40), width=c(15, 6, 7, 12, 9, 3, 6))
+ir
+```
+
+    ## IRanges object with 7 ranges and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         4        18        15
+    ##   [2]         5        10         6
+    ##   [3]         8        14         7
+    ##   [4]        15        26        12
+    ##   [5]        19        27         9
+    ##   [6]        28        30         3
+    ##   [7]        40        45         6
+
+These can also be resized or shifted, and this will be performed on each
+range individually.
+
+``` r
+shift(ir,1)
+```
+
+    ## IRanges object with 7 ranges and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         5        19        15
+    ##   [2]         6        11         6
+    ##   [3]         9        15         7
+    ##   [4]        16        27        12
+    ##   [5]        20        28         9
+    ##   [6]        29        31         3
+    ##   [7]        41        46         6
+
+-----
+
+The `reduce()` function will merge any overlapping regions and create an
+`IRanges` object of only distinct ranges. Here, there was a lot of
+overlap, with the only gap between 30 and 40.
+
+``` r
+reduce(ir)
+```
+
+    ## IRanges object with 2 ranges and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]         4        30        27
+    ##   [2]        40        45         6
+
+Any gaps can also be displayed easily. None of our `IRanges` object
+overlapped with integers 31 to 39.
+
+``` r
+gaps(ir)
+```
+
+    ## IRanges object with 1 range and 0 metadata columns:
+    ##           start       end     width
+    ##       <integer> <integer> <integer>
+    ##   [1]        31        39         9
+
+-----
+
+Each row in an `IRanges` object can be given a name, and they can be
+subsetted similarly to vectors or data frames.
+
+``` r
+names(ir) = letters[1:7]
+ir[c("b", "d", "e")]
+```
+
+    ## IRanges object with 3 ranges and 0 metadata columns:
+    ##         start       end     width
+    ##     <integer> <integer> <integer>
+    ##   b         5        10         6
+    ##   d        15        26        12
+    ##   e        19        27         9
+
+Associating each range with a collection of attributes is very useful
+for genomic annotation. This metadata is assigned using the `mcols()`
+function.
+
+R has some standard built-in data sets. One, called `mtcars` is used
+here to demonstrate annotation.
+
+``` r
+mcols(ir) <- mtcars[1:7, 1:3]
+ir
+```
+
+    ## IRanges object with 7 ranges and 3 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   a         4        18        15 |        21         6       160
+    ##   b         5        10         6 |        21         6       160
+    ##   c         8        14         7 |      22.8         4       108
+    ##   d        15        26        12 |      21.4         6       258
+    ##   e        19        27         9 |      18.7         8       360
+    ##   f        28        30         3 |      18.1         6       225
+    ##   g        40        45         6 |      14.3         8       360
+
+This annotation will remain the same through any `shift()` or `resize()`
+commands. Specific `mcol` variables can be accessed using the `$`
+operator, similar to in data frames.
+
+There are over 300 functions that can be used to manipulate `IRanges`
+objects. In the next section, their role in genome-scale analysis will
+become clearer.
+
+-----
+
+#### Question 1: Using the above created `IRanges` object:
+
+  - What is the mean `disp` for ranges whose `start` is less than 20?
+  - What is the maximum `width` for ranges whose `cyl` is 6?
+
+-----
+
+## Part 2: Finding Overlaps
+
+It is very useful to count overlaps in two distinct `IRanges` objects.
+We can subset the `ir` object above to create two new `IRanges` objects.
+
+``` r
+ir1 <- ir[c(2,5,7)]
+ir2 <- ir[-c(2,5,7)]
+ir1
+```
+
+    ## IRanges object with 3 ranges and 3 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   b         5        10         6 |        21         6       160
+    ##   e        19        27         9 |      18.7         8       360
+    ##   g        40        45         6 |      14.3         8       360
+
+``` r
+ir2
+```
+
+    ## IRanges object with 4 ranges and 3 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   a         4        18        15 |        21         6       160
+    ##   c         8        14         7 |      22.8         4       108
+    ##   d        15        26        12 |      21.4         6       258
+    ##   f        28        30         3 |      18.1         6       225
+
+-----
+
+We can then use `findOverlaps()` to identify overlapping ranges in the
+`query` (first argument) and `subject` (second argument) objects.
+
+``` r
+olaps <- findOverlaps(ir1, ir2)
+olaps
+```
+
+    ## Hits object with 3 hits and 0 metadata columns:
+    ##       queryHits subjectHits
+    ##       <integer>   <integer>
+    ##   [1]         1           1
+    ##   [2]         1           2
+    ##   [3]         2           3
     ##   -------
-    ##   seqinfo: 265 sequences from an unspecified genome; no seqlengths
+    ##   queryLength: 3 / subjectLength: 4
+
+The interpretation of the `findOverlaps()` output is as follows: \* The
+1st range from `ir1` overlaps with the 1st range in `ir2` - \[5,10\]
+overlaps with \[4,18\] \* The 1st range from `ir1` overlaps with the 2nd
+range in `ir2` - \[5,10\] overlaps with \[8,14\] \* The 2nd range from
+`ir1` overlaps with the 3rd range in `ir2` - \[19,27\] overlaps with
+\[15,26\]
 
 -----
 
-For convenience, let’s work only with the ‘standard’ autosomal
-chromosomes.
+You can list the ranges with overlaps in a particular `IRanges` object
+after using `findOverlaps()` by utilising subsetting and
+`subjectHits()`.
+
+So, we can show the ranges within `ir2` that overlap with ranges in
+`ir1`:
 
 ``` r
-tx.hg19 <- keepStandardChromosomes(tx.hg19, pruning.mode="coarse")
-tx.hg19
+ir2[subjectHits(olaps)]
 ```
 
-    ## GRanges object with 196317 ranges and 4 metadata columns:
-    ##                   seqnames              ranges strand |       gene_name
-    ##                      <Rle>           <IRanges>  <Rle> |     <character>
-    ##   ENST00000000233     chr7 127228399-127231759      + |            ARF5
-    ##   ENST00000000412    chr12     9092961-9102551      - |            M6PR
-    ##   ENST00000000442    chr11   64073050-64084210      + |           ESRRA
-    ##   ENST00000001008    chr12     2904119-2913124      + |           FKBP4
-    ##   ENST00000001146     chr2   72356367-72375167      - |         CYP26B1
-    ##               ...      ...                 ...    ... .             ...
-    ##   ENST00000610274     chr2 171197675-171207618      - |      AC012594.1
-    ##   ENST00000610276    chr21   33108045-33108720      + |      AP000255.6
-    ##   ENST00000610278    chr22   21335650-21336044      - | XXbac-B135H6.18
-    ##   ENST00000610279    chr10   69609283-69610504      + |    RP11-57G10.8
-    ##   ENST00000610280    chr11   58059298-58060237      - |         OR10Q2P
-    ##                        gene_type         gene_id             tx_name
-    ##                      <character>     <character>         <character>
-    ##   ENST00000000233 protein_coding ENSG00000004059            ARF5-001
-    ##   ENST00000000412 protein_coding ENSG00000003056            M6PR-001
-    ##   ENST00000000442 protein_coding ENSG00000173153           ESRRA-002
-    ##   ENST00000001008 protein_coding ENSG00000004478           FKBP4-001
-    ##   ENST00000001146 protein_coding ENSG00000003137         CYP26B1-001
-    ##               ...            ...             ...                 ...
-    ##   ENST00000610274      antisense ENSG00000231898      AC012594.1-029
-    ##   ENST00000610276        lincRNA ENSG00000273091      AP000255.6-001
-    ##   ENST00000610278        lincRNA ENSG00000272829 XXbac-B135H6.18-001
-    ##   ENST00000610279        lincRNA ENSG00000272892    RP11-57G10.8-001
-    ##   ENST00000610280     pseudogene ENSG00000272900         OR10Q2P-001
-    ##   -------
-    ##   seqinfo: 24 sequences from an unspecified genome; no seqlengths
+    ## IRanges object with 3 ranges and 3 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   a         4        18        15 |        21         6       160
+    ##   c         8        14         7 |      22.8         4       108
+    ##   d        15        26        12 |      21.4         6       258
 
 -----
 
-There are two parts to a `GenomicRanges` object.
+You can also `countOverlaps()`.
 
-The first part is the `seqnames`, which must consist at least of the
-start and end coordinates along with the strand. Here, this part also
-shows the chromosome.
+``` r
+nolaps <- countOverlaps(ir2, ir1)
+nolaps
+```
 
-The second part are additional elements, like `gene_name`, `gene_type`,
-and `gene_id`.
+    ## a c d f 
+    ## 1 1 1 0
+
+So, here we see that `a`, `c`, and `d` ranges in `ir2` overlap with
+ranges in `ir1` once each, and `f` does not overlap with any ranges in
+`ir1`.
 
 -----
 
-Components can be accessed when needed:
+You can add output from `countOverlaps()` into your `IRanges`, coupling
+derived data with the original annotation.
 
 ``` r
-head(start(tx.hg19))
+mcols(ir2)$Overlaps <- countOverlaps(ir2, ir1)
+ir2
 ```
 
-    ## [1] 127228399   9092961  64073050   2904119  72356367  37458809
-
-``` r
-head(width(tx.hg19))
-```
-
-    ## [1]  3361  9591 11161  9006 18801 17495
-
------
-
-You can `subset()` these objects, for example if you want to focus on a
-particular set of chromosomes.
-
-``` r
-subset(tx.hg19, seqnames %in% c("chr1", "chr2"))
-```
-
-    ## GRanges object with 31510 ranges and 4 metadata columns:
-    ##                   seqnames              ranges strand |     gene_name
-    ##                      <Rle>           <IRanges>  <Rle> |   <character>
-    ##   ENST00000001146     chr2   72356367-72375167      - |       CYP26B1
-    ##   ENST00000002125     chr2   37458809-37476303      + |       NDUFAF7
-    ##   ENST00000003583     chr1   24683495-24740215      - |         STPG1
-    ##   ENST00000003912     chr1   24742293-24799466      + |        NIPAL3
-    ##   ENST00000005756     chr2 158958382-158992478      + |          UPP2
-    ##               ...      ...                 ...    ... .           ...
-    ##   ENST00000610254     chr2 162102956-162111141      - |    AC009299.2
-    ##   ENST00000610262     chr2   86422713-86423172      + | RP11-301O19.1
-    ##   ENST00000610265     chr2 145276024-145277950      + |      ZEB2-AS1
-    ##   ENST00000610272     chr1 179850742-179851730      - | RP11-533E19.7
-    ##   ENST00000610274     chr2 171197675-171207618      - |    AC012594.1
-    ##                        gene_type         gene_id           tx_name
-    ##                      <character>     <character>       <character>
-    ##   ENST00000001146 protein_coding ENSG00000003137       CYP26B1-001
-    ##   ENST00000002125 protein_coding ENSG00000003509       NDUFAF7-001
-    ##   ENST00000003583 protein_coding ENSG00000001460         STPG1-001
-    ##   ENST00000003912 protein_coding ENSG00000001461        NIPAL3-001
-    ##   ENST00000005756 protein_coding ENSG00000007001          UPP2-001
-    ##               ...            ...             ...               ...
-    ##   ENST00000610254      antisense ENSG00000235724    AC009299.2-005
-    ##   ENST00000610262      antisense ENSG00000273080 RP11-301O19.1-001
-    ##   ENST00000610265      antisense ENSG00000238057      ZEB2-AS1-010
-    ##   ENST00000610272        lincRNA ENSG00000272906 RP11-533E19.7-001
-    ##   ENST00000610274      antisense ENSG00000231898    AC012594.1-029
-    ##   -------
-    ##   seqinfo: 24 sequences from an unspecified genome; no seqlengths
-
------
-
-There are also packages on Bioconductor containing Annotation data, such
-as the TxDb.\* family of packages. These contain information on the
-genomic coordinates of exons, genes, transcripts, and so on.
-
-``` r
-library("TxDb.Hsapiens.UCSC.hg19.knownGene")
-tx <- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene)
-tx
-```
-
-    ## GRanges object with 82960 ranges and 2 metadata columns:
-    ##                 seqnames        ranges strand |     tx_id     tx_name
-    ##                    <Rle>     <IRanges>  <Rle> | <integer> <character>
-    ##       [1]           chr1   11874-14409      + |         1  uc001aaa.3
-    ##       [2]           chr1   11874-14409      + |         2  uc010nxq.1
-    ##       [3]           chr1   11874-14409      + |         3  uc010nxr.1
-    ##       [4]           chr1   69091-70008      + |         4  uc001aal.1
-    ##       [5]           chr1 321084-321115      + |         5  uc001aaq.2
-    ##       ...            ...           ...    ... .       ...         ...
-    ##   [82956] chrUn_gl000237        1-2686      - |     82956  uc011mgu.1
-    ##   [82957] chrUn_gl000241   20433-36875      - |     82957  uc011mgv.2
-    ##   [82958] chrUn_gl000243   11501-11530      + |     82958  uc011mgw.1
-    ##   [82959] chrUn_gl000243   13608-13637      + |     82959  uc022brq.1
-    ##   [82960] chrUn_gl000247     5787-5816      - |     82960  uc022brr.1
-    ##   -------
-    ##   seqinfo: 93 sequences (1 circular) from hg19 genome
-
------
-
-As above, we want to work only with autosomal chromosomes.
-
-``` r
-tx <- keepStandardChromosomes(tx, pruning.mode="coarse")
-tx
-```
-
-    ## GRanges object with 78827 ranges and 2 metadata columns:
-    ##           seqnames        ranges strand |     tx_id     tx_name
-    ##              <Rle>     <IRanges>  <Rle> | <integer> <character>
-    ##       [1]     chr1   11874-14409      + |         1  uc001aaa.3
-    ##       [2]     chr1   11874-14409      + |         2  uc010nxq.1
-    ##       [3]     chr1   11874-14409      + |         3  uc010nxr.1
-    ##       [4]     chr1   69091-70008      + |         4  uc001aal.1
-    ##       [5]     chr1 321084-321115      + |         5  uc001aaq.2
-    ##       ...      ...           ...    ... .       ...         ...
-    ##   [78823]     chrM    7587-15888      - |     78823  uc022bqs.1
-    ##   [78824]     chrM    8367-14149      - |     78824  uc022bqt.1
-    ##   [78825]     chrM   10761-14149      - |     78825  uc031tgb.1
-    ##   [78826]     chrM   14675-14698      - |     78826  uc022bqv.1
-    ##   [78827]     chrM   15960-16024      - |     78827  uc022bqx.1
-    ##   -------
-    ##   seqinfo: 25 sequences (1 circular) from hg19 genome
-
------
-
-## Part 3: Finding Overlaps
-
-It is very useful to count overlaps in two distinct `GenomicRanges`
-objects.
-
-``` r
-olaps <- countOverlaps(tx, tx.hg19)
-xtabs( ~olaps)
-```
-
-    ## olaps
-    ##    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14 
-    ## 3099 5925 4878 4867 5055 5065 5018 4860 4383 4231 3943 3377 3124 2603 2390 
-    ##   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29 
-    ## 2003 1714 1535 1298 1152 1093 1057  772  676  551  532  396  471  319  270 
-    ##   30   31   32   33   34   35   36   37   38   39   40   41   42   43   44 
-    ##  281  264  205  173  170   84  100   54   81   78   78   73   57   68   35 
-    ##   45   46   47   48   49   50   51   52   53   54   55   56   57   58   59 
-    ##   15   16   49   60   34   10    3    7   18    5   17    6   16    3    7 
-    ##   60   61   62   63   64   65   66   67   68   69   71   74   77   78   79 
-    ##   12    4    3    2    3    2    9    1    8    7    1    1    1   14    4 
-    ##   80   82   89   92   96   98  103  104  107  111  116  119  127  132  207 
-    ##    1   11    3    1    1    1    5    1    1    1    1    1    1    1    1
-
------
-
-You can add output from `countOverlaps()` into your `GenomicRanges`,
-coupling derived data with the original annotation.
-
-``` r
-tx$Overlaps <- countOverlaps(tx, tx.hg19)
-tx
-```
-
-    ## GRanges object with 78827 ranges and 3 metadata columns:
-    ##           seqnames        ranges strand |     tx_id     tx_name  Overlaps
-    ##              <Rle>     <IRanges>  <Rle> | <integer> <character> <integer>
-    ##       [1]     chr1   11874-14409      + |         1  uc001aaa.3         4
-    ##       [2]     chr1   11874-14409      + |         2  uc010nxq.1         4
-    ##       [3]     chr1   11874-14409      + |         3  uc010nxr.1         4
-    ##       [4]     chr1   69091-70008      + |         4  uc001aal.1         1
-    ##       [5]     chr1 321084-321115      + |         5  uc001aaq.2         4
-    ##       ...      ...           ...    ... .       ...         ...       ...
-    ##   [78823]     chrM    7587-15888      - |     78823  uc022bqs.1         0
-    ##   [78824]     chrM    8367-14149      - |     78824  uc022bqt.1         0
-    ##   [78825]     chrM   10761-14149      - |     78825  uc031tgb.1         0
-    ##   [78826]     chrM   14675-14698      - |     78826  uc022bqv.1         0
-    ##   [78827]     chrM   15960-16024      - |     78827  uc022bqx.1         0
-    ##   -------
-    ##   seqinfo: 25 sequences (1 circular) from hg19 genome
+    ## IRanges object with 4 ranges and 4 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   a         4        18        15 |        21         6       160
+    ##   c         8        14         7 |      22.8         4       108
+    ##   d        15        26        12 |      21.4         6       258
+    ##   f        28        30         3 |      18.1         6       225
+    ##      Overlaps
+    ##     <integer>
+    ##   a         1
+    ##   c         1
+    ##   d         1
+    ##   f         0
 
 -----
 
@@ -327,282 +371,359 @@ After this, you can perform co-ordinated actions, like subsetting for
 transcripts satisfying particular conditions.
 
 ``` r
-subset(tx, Overlaps > 10)
+subset(ir2, Overlaps > 0)
 ```
 
-    ## GRanges object with 27503 ranges and 3 metadata columns:
-    ##           seqnames            ranges strand |     tx_id     tx_name
-    ##              <Rle>         <IRanges>  <Rle> | <integer> <character>
-    ##       [1]     chr1     762971-794826      + |        15  uc001abp.2
-    ##       [2]     chr1     762971-794826      + |        16  uc009vjn.2
-    ##       [3]     chr1     762971-794826      + |        17  uc009vjo.2
-    ##       [4]     chr1     762971-794826      + |        18  uc021oem.2
-    ##       [5]     chr1     763178-794826      + |        19  uc031pjk.1
-    ##       ...      ...               ...    ... .       ...         ...
-    ##   [27499]     chrY 15434982-15592550      - |     78731  uc022cny.1
-    ##   [27500]     chrY 15435435-15592550      - |     78732  uc022cnz.1
-    ##   [27501]     chrY 15447443-15592550      - |     78733  uc022coa.1
-    ##   [27502]     chrY 24026223-24329089      - |     78764  uc010nxc.1
-    ##   [27503]     chrY 24049765-24329089      - |     78769  uc011nbg.2
-    ##            Overlaps
-    ##           <integer>
-    ##       [1]        11
-    ##       [2]        11
-    ##       [3]        11
-    ##       [4]        11
-    ##       [5]        11
-    ##       ...       ...
-    ##   [27499]        12
-    ##   [27500]        12
-    ##   [27501]        12
-    ##   [27502]        19
-    ##   [27503]        15
+    ## IRanges object with 3 ranges and 4 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   a         4        18        15 |        21         6       160
+    ##   c         8        14         7 |      22.8         4       108
+    ##   d        15        26        12 |      21.4         6       258
+    ##      Overlaps
+    ##     <integer>
+    ##   a         1
+    ##   c         1
+    ##   d         1
+
+-----
+
+#### Question 2: Load the example `IRanges` into R using the following command:
+
+`load(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/practical3_data_iranges.RData"))`
+
+  - How many overlaps are there between `ir1` and `ir2`?
+  - What is the name of the range in `ir2` with the most overlaps with
+    `ir1`?
+  - Subset `ir2` to show only ranges that have more than 2 overlaps with
+    `ir1`
+
+-----
+
+## Part 4: Genomic Ranges
+
+As an extension to `IRanges`, `GenomicRanges` objects contain obligatory
+metadata called `seqnames`. This gives the chromosome occupied by the
+sequence whose `start` and `end` position are modelled by the associated
+`IRanges`.
+
+The package `Homo.sapiens` is an annotation package from Bioconductor.
+It contains information on genes in the human genome that can be
+accessed using the `genes()` function.
+
+``` r
+library(Homo.sapiens)
+hg <- genes(Homo.sapiens)
+hg
+```
+
+    ## GRanges object with 23056 ranges and 1 metadata column:
+    ##         seqnames              ranges strand |       GENEID
+    ##            <Rle>           <IRanges>  <Rle> | <FactorList>
+    ##       1    chr19   58858172-58874214      - |            1
+    ##      10     chr8   18248755-18258723      + |           10
+    ##     100    chr20   43248163-43280376      - |          100
+    ##    1000    chr18   25530930-25757445      - |         1000
+    ##   10000     chr1 243651535-244006886      - |        10000
+    ##     ...      ...                 ...    ... .          ...
+    ##    9991     chr9 114979995-115095944      - |         9991
+    ##    9992    chr21   35736323-35743440      + |         9992
+    ##    9993    chr22   19023795-19109967      - |         9993
+    ##    9994     chr6   90539619-90584155      + |         9994
+    ##    9997    chr22   50961997-50964905      - |         9997
+    ##   -------
+    ##   seqinfo: 93 sequences (1 circular) from hg19 genome
+
+This `GenomicRanges` object functions similarly to an `IRanges` object.
+You can explore `start()`, `end()`, and `width()` in the same way, and
+`subset()` it as before.
+
+There are two parts to a `GenomicRanges` object. The first part is the
+`seqnames`, which must consist at least of the start and end coordinates
+along with the strand. The second part are additional elements or
+meta-data, like `GENEID`.
+
+-----
+
+You can order a `GenomicRanges` object to make exploring it more
+intuitive. Here, we sort the ranges by chromosome using `seqnames()`.
+
+``` r
+hg[order(seqnames(hg))]
+```
+
+    ## GRanges object with 23056 ranges and 1 metadata column:
+    ##                   seqnames              ranges strand |       GENEID
+    ##                      <Rle>           <IRanges>  <Rle> | <FactorList>
+    ##       10000           chr1 243651535-244006886      - |        10000
+    ##   100126331           chr1 117637265-117637350      + |    100126331
+    ##   100126346           chr1 154166141-154166219      - |    100126346
+    ##   100126348           chr1   94312388-94312467      + |    100126348
+    ##   100126349           chr1 166123980-166124035      - |    100126349
+    ##         ...            ...                 ...    ... .          ...
+    ##      283788 chrUn_gl000219         53809-99642      - |       283788
+    ##   100507412 chrUn_gl000220        97129-126696      + |    100507412
+    ##   100288687 chrUn_gl000228       112605-124171      + |    100288687
+    ##   100653046 chrUn_gl000228         86060-90745      + |    100653046
+    ##      728410 chrUn_gl000228        79448-113887      + |       728410
+    ##   -------
+    ##   seqinfo: 93 sequences (1 circular) from hg19 genome
+
+-----
+
+An important component of `GenomicRanges`is `seqinfo()`. This shows how
+many base pairs are in each chromosome as `seqlengths` and which genome
+they from.
+
+``` r
+seqinfo(hg)
+```
+
+    ## Seqinfo object with 93 sequences (1 circular) from hg19 genome:
+    ##   seqnames       seqlengths isCircular genome
+    ##   chr1            249250621       <NA>   hg19
+    ##   chr2            243199373       <NA>   hg19
+    ##   chr3            198022430       <NA>   hg19
+    ##   chr4            191154276       <NA>   hg19
+    ##   chr5            180915260       <NA>   hg19
+    ##   ...                   ...        ...    ...
+    ##   chrUn_gl000245      36651       <NA>   hg19
+    ##   chrUn_gl000246      38154       <NA>   hg19
+    ##   chrUn_gl000247      36422       <NA>   hg19
+    ##   chrUn_gl000248      39786       <NA>   hg19
+    ##   chrUn_gl000249      38502       <NA>   hg19
+
+-----
+
+You can inspect `seqinfo()` for a specific chromosome. The human X
+chromosome spans more than 155 million base pairs.
+
+``` r
+seqinfo(hg)["chrX"]
+```
+
+    ## Seqinfo object with 1 sequence from hg19 genome:
+    ##   seqnames seqlengths isCircular genome
+    ##   chrX      155270560         NA   hg19
+
+-----
+
+You can `subset()` a `GenomicRanges` object to return only ranges in a
+specific chromosome, `seqnames()` alongside the `%in%` operator. Here,
+we see there are 296 genes on chromosome 21.
+
+``` r
+subset(hg, seqnames %in% "chr21")
+```
+
+    ## GRanges object with 296 ranges and 1 metadata column:
+    ##             seqnames            ranges strand |       GENEID
+    ##                <Rle>         <IRanges>  <Rle> | <FactorList>
+    ##   100129027    chr21 47247755-47256333      - |    100129027
+    ##   100131902    chr21 31661463-31661832      - |    100131902
+    ##   100132288    chr21   9907189-9968593      - |    100132288
+    ##   100133286    chr21 37441940-37498938      - |    100133286
+    ##   100151643    chr21 31992946-31993169      + |    100151643
+    ##         ...      ...               ...    ... .          ...
+    ##        9619    chr21 43619799-43717354      + |         9619
+    ##        9875    chr21 33683330-33765312      - |         9875
+    ##        9946    chr21 34961648-35014160      - |         9946
+    ##        9980    chr21 37536839-37666572      + |         9980
+    ##        9992    chr21 35736323-35743440      + |         9992
+    ##   -------
+    ##   seqinfo: 93 sequences (1 circular) from hg19 genome
+
+-----
+
+A useful function for `GenomicRanges` is the `keepStandardChromosomes()`
+function. This removes unmapped or non-standard chromosomes for the
+species of interest from the object.
+
+``` r
+hg <- keepStandardChromosomes(hg, pruning.mode="coarse")
+hg[order(seqnames(hg))]
+```
+
+    ## GRanges object with 23033 ranges and 1 metadata column:
+    ##             seqnames              ranges strand |       GENEID
+    ##                <Rle>           <IRanges>  <Rle> | <FactorList>
+    ##       10000     chr1 243651535-244006886      - |        10000
+    ##   100126331     chr1 117637265-117637350      + |    100126331
+    ##   100126346     chr1 154166141-154166219      - |    100126346
+    ##   100126348     chr1   94312388-94312467      + |    100126348
+    ##   100126349     chr1 166123980-166124035      - |    100126349
+    ##         ...      ...                 ...    ... .          ...
+    ##       90655     chrY     3447126-3448082      + |        90655
+    ##       90665     chrY     6778727-6959724      + |        90665
+    ##        9081     chrY   24636544-24660784      + |         9081
+    ##        9086     chrY   22737611-22755040      + |         9086
+    ##        9087     chrY   15815447-15817902      + |         9087
     ##   -------
     ##   seqinfo: 25 sequences (1 circular) from hg19 genome
 
-## Part 4: Summarized Experiments
-
-Another class of object often used by Bioconductor packages is the
-\``SummarizedExperiment`. This is used to store matrices of experimental
-results, commonly produced by sequencing and microarray experiments.
-
-Each object stores multiple samples along with meta-data, which
-describes features and phenotypes. The anatomy of a
-`SummarizedExperiment` object is shown here:
-
-![Figure
-1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/summarizedexperiment.svg)
+If you compare this with the above output, you can see that ranges from
+chromosomes like `chrUn_gl000228` have been removed.
 
 -----
 
-Another Bioconductor package that contains teaching data is `airway`.
-Lets load it and then read in the data.
+#### Question 3:
 
-``` r
-library(airway)
-data(airway)
-airway
-```
-
-    ## class: RangedSummarizedExperiment 
-    ## dim: 64102 8 
-    ## metadata(1): ''
-    ## assays(1): counts
-    ## rownames(64102): ENSG00000000003 ENSG00000000005 ... LRG_98 LRG_99
-    ## rowData names(0):
-    ## colnames(8): SRR1039508 SRR1039509 ... SRR1039520 SRR1039521
-    ## colData names(9): SampleName cell ... Sample BioSample
+  - How many base pairs does chromosome 15 span?
+  - Can you make a `table()` of the number of genes in all of the
+    standard human chromosomes?
 
 -----
 
-Phenotype and feature information is stored in the `colData`, which is a
-data frame class object. For example, `cell` represents which cell line
-was used.
+## Part 5: Overlaps with GWAS Hits
+
+Genome-wide association studies (GWAS) are systematically represented in
+the EMBL-EBI GWAS catalog. The `gwascat` Bioconductor package allows us
+to retrieve a version of this.
 
 ``` r
-colData(airway)
+library(gwascat)
 ```
 
-    ## DataFrame with 8 rows and 9 columns
-    ##            SampleName     cell      dex    albut        Run avgLength
-    ##              <factor> <factor> <factor> <factor>   <factor> <integer>
-    ## SRR1039508 GSM1275862   N61311    untrt    untrt SRR1039508       126
-    ## SRR1039509 GSM1275863   N61311      trt    untrt SRR1039509       126
-    ## SRR1039512 GSM1275866  N052611    untrt    untrt SRR1039512       126
-    ## SRR1039513 GSM1275867  N052611      trt    untrt SRR1039513        87
-    ## SRR1039516 GSM1275870  N080611    untrt    untrt SRR1039516       120
-    ## SRR1039517 GSM1275871  N080611      trt    untrt SRR1039517       126
-    ## SRR1039520 GSM1275874  N061011    untrt    untrt SRR1039520       101
-    ## SRR1039521 GSM1275875  N061011      trt    untrt SRR1039521        98
-    ##            Experiment    Sample    BioSample
-    ##              <factor>  <factor>     <factor>
-    ## SRR1039508  SRX384345 SRS508568 SAMN02422669
-    ## SRR1039509  SRX384346 SRS508567 SAMN02422675
-    ## SRR1039512  SRX384349 SRS508571 SAMN02422678
-    ## SRR1039513  SRX384350 SRS508572 SAMN02422670
-    ## SRR1039516  SRX384353 SRS508575 SAMN02422682
-    ## SRR1039517  SRX384354 SRS508576 SAMN02422673
-    ## SRR1039520  SRX384357 SRS508579 SAMN02422683
-    ## SRR1039521  SRX384358 SRS508580 SAMN02422677
+    ## gwascat loaded.  Use data(ebicat38) for hg38 coordinates;
+
+    ##  data(ebicat37) for hg19 coordinates.
+
+``` r
+data(ebicat37)
+ebicat37
+```
+
+    ## gwasloc instance with 22688 records and 36 attributes per record.
+    ## Extracted:  2016-01-18 
+    ## Genome:  GRCh37 
+    ## Excerpt:
+    ## GRanges object with 5 ranges and 3 metadata columns:
+    ##       seqnames    ranges strand |                  DISEASE/TRAIT
+    ##          <Rle> <IRanges>  <Rle> |                    <character>
+    ##   [1]    chr11  41820450      * | Post-traumatic stress disorder
+    ##   [2]    chr15  35060463      * | Post-traumatic stress disorder
+    ##   [3]     chr8  97512977      * | Post-traumatic stress disorder
+    ##   [4]     chr9 100983826      * | Post-traumatic stress disorder
+    ##   [5]    chr15  54715642      * | Post-traumatic stress disorder
+    ##              SNPS   P-VALUE
+    ##       <character> <numeric>
+    ##   [1]  rs10768747     5e-06
+    ##   [2]  rs12232346     2e-06
+    ##   [3]   rs2437772     6e-06
+    ##   [4]   rs7866350     1e-06
+    ##   [5]  rs73419609     6e-06
+    ##   -------
+    ##   seqinfo: 23 sequences from GRCh37 genome
+
+Per GWAS finding, there is one range, and each corresponds to a SNP that
+has beem replicated as significantly associated with the given
+phenotype.
+
+The genome here is listed as `GRCh37`, which is very similar to `hg19`.
+To avoid an error, we need to rename it.
+
+``` r
+genome(ebicat37) <- "hg19"
+```
 
 -----
 
-Inside these classes of objects, `GenomicRanges` store genomic
-information. These can be accessed using `rowRanges()`
+You can view the top traits in the catalog using `topTraits()`.
 
 ``` r
-rowRanges(airway)
+topTraits(ebicat37)
 ```
 
-    ## GRangesList object of length 64102:
-    ## $ENSG00000000003 
-    ## GRanges object with 17 ranges and 2 metadata columns:
-    ##        seqnames            ranges strand |   exon_id       exon_name
-    ##           <Rle>         <IRanges>  <Rle> | <integer>     <character>
-    ##    [1]        X 99883667-99884983      - |    667145 ENSE00001459322
-    ##    [2]        X 99885756-99885863      - |    667146 ENSE00000868868
-    ##    [3]        X 99887482-99887565      - |    667147 ENSE00000401072
-    ##    [4]        X 99887538-99887565      - |    667148 ENSE00001849132
-    ##    [5]        X 99888402-99888536      - |    667149 ENSE00003554016
-    ##    ...      ...               ...    ... .       ...             ...
-    ##   [13]        X 99890555-99890743      - |    667156 ENSE00003512331
-    ##   [14]        X 99891188-99891686      - |    667158 ENSE00001886883
-    ##   [15]        X 99891605-99891803      - |    667159 ENSE00001855382
-    ##   [16]        X 99891790-99892101      - |    667160 ENSE00001863395
-    ##   [17]        X 99894942-99894988      - |    667161 ENSE00001828996
     ## 
-    ## ...
-    ## <64101 more elements>
-    ## -------
-    ## seqinfo: 722 sequences (1 circular) from an unspecified genome
+    ##  Obesity-related traits                  Height       IgG glycosylation 
+    ##                     957                     822                     699 
+    ##         Type 2 diabetes    Rheumatoid arthritis         Crohn's disease 
+    ##                     340                     294                     249 
+    ##           Schizophrenia Blood metabolite levels         HDL cholesterol 
+    ##                     248                     245                     220 
+    ##           Breast cancer 
+    ##                     199
+
+If we are interested in a specific trait, like LDL cholesterol, we can
+`subsetByTraits()`.
+
+``` r
+subsetByTraits(ebicat37, tr="LDL cholesterol")
+```
+
+    ## gwasloc instance with 184 records and 36 attributes per record.
+    ## Extracted:  2016-01-18 
+    ## Genome:  hg19 
+    ## Excerpt:
+    ## GRanges object with 5 ranges and 3 metadata columns:
+    ##       seqnames    ranges strand |   DISEASE/TRAIT        SNPS   P-VALUE
+    ##          <Rle> <IRanges>  <Rle> |     <character> <character> <numeric>
+    ##   [1]     chr2  44072576      * | LDL cholesterol   rs4299376     4e-72
+    ##   [2]     chr1 150958836      * | LDL cholesterol    rs267733     5e-09
+    ##   [3]     chr2  21263900      * | LDL cholesterol   rs1367117    1e-182
+    ##   [4]    chr19  45422946      * | LDL cholesterol   rs4420638    2e-178
+    ##   [5]    chr17  64210580      * | LDL cholesterol   rs1801689     1e-11
+    ##   -------
+    ##   seqinfo: 23 sequences from hg19 genome
 
 -----
 
-Assay information can be accessed using `assay()`. FOr example, here we
-see a table of read counts for different exons in each sample.
+We can use `findOverlaps()` as above to determine which genes have
+annotated intervals that overlap GWAS hits.
 
 ``` r
-head(assay(airway))
+goh <- findOverlaps(hg, ebicat37)
+goh
 ```
 
-    ##                 SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516
-    ## ENSG00000000003        679        448        873        408       1138
-    ## ENSG00000000005          0          0          0          0          0
-    ## ENSG00000000419        467        515        621        365        587
-    ## ENSG00000000457        260        211        263        164        245
-    ## ENSG00000000460         60         55         40         35         78
-    ## ENSG00000000938          0          0          2          0          1
-    ##                 SRR1039517 SRR1039520 SRR1039521
-    ## ENSG00000000003       1047        770        572
-    ## ENSG00000000005          0          0          0
-    ## ENSG00000000419        799        417        508
-    ## ENSG00000000457        331        233        229
-    ## ENSG00000000460         63         76         60
-    ## ENSG00000000938          0          0          0
+    ## Hits object with 12934 hits and 0 metadata columns:
+    ##           queryHits subjectHits
+    ##           <integer>   <integer>
+    ##       [1]         2         140
+    ##       [2]         4       10865
+    ##       [3]         4       16003
+    ##       [4]         5        6746
+    ##       [5]         5        7962
+    ##       ...       ...         ...
+    ##   [12930]     23013       11148
+    ##   [12931]     23013       11149
+    ##   [12932]     23013       22003
+    ##   [12933]     23025       19309
+    ##   [12934]     23027       21478
+    ##   -------
+    ##   queryLength: 23033 / subjectLength: 22688
+
+To make more sense of this, we can count the number of genes that
+overlap with one or more GWAS hits using `length()` coupled with
+`unique()`.
+
+``` r
+length(unique(queryHits(goh)))
+```
+
+    ## [1] 4720
 
 -----
 
-Subsetting a `SummarizedExperiment` object is quite simple. Suppose we
-want to look only at samples treated with dexamethasone.
+Lastly, implementing the `reduce()` function, we can estimate the
+proportion of GWAS SNPs that lie within gene regions or, more
+specifically, exons.
 
 ``` r
-subset(airway, , dex=="trt")
+mean(reduce(ebicat37) %over% hg)
 ```
 
-    ## class: RangedSummarizedExperiment 
-    ## dim: 64102 4 
-    ## metadata(1): ''
-    ## assays(1): counts
-    ## rownames(64102): ENSG00000000003 ENSG00000000005 ... LRG_98 LRG_99
-    ## rowData names(0):
-    ## colnames(4): SRR1039509 SRR1039513 SRR1039517 SRR1039521
-    ## colData names(9): SampleName cell ... Sample BioSample
-
------
-
-We can also extract interested summaries from these objects. For
-instance, we can calculate the total number of reads overlapping genes
-in each sample and store them in our `SummarizedExperiment` class
-object.
+    ## [1] 0.511465
 
 ``` r
-airway$libSize <- colSums(assay(airway))
-airway$libSize
+mean(reduce(ebicat37) %over% exons(Homo.sapiens))
 ```
 
-    ## SRR1039508 SRR1039509 SRR1039512 SRR1039513 SRR1039516 SRR1039517 
-    ##   20637971   18809481   25348649   15163415   24448408   30818215 
-    ## SRR1039520 SRR1039521 
-    ##   19126151   21164133
+    ## [1] 0.07059754
 
------
-
-## Part 5: Down-stream analysis
-
-It is important to look at how skills learned here translate to working
-with objects in Bioconductor packages.
-
-`DESeq2` is a package for analysing bulk RNAseq differential expression
-data. Load it into R.
-
-``` r
-library(DESeq2)
-```
-
-This package utilizes a class that combines `SummarizedExperiment` type
-count data with `formula` objects that describe the experimental design.
-
------
-
-We may want to include cell line as a covariate, and investigate the
-effect of dexamethasone treatment.
-
-``` r
-dSeqData <- DESeqDataSet(airway, design = ~ cell + dex)
-dSeqData
-```
-
-    ## class: DESeqDataSet 
-    ## dim: 64102 8 
-    ## metadata(2): '' version
-    ## assays(1): counts
-    ## rownames(64102): ENSG00000000003 ENSG00000000005 ... LRG_98 LRG_99
-    ## rowData names(0):
-    ## colnames(8): SRR1039508 SRR1039509 ... SRR1039520 SRR1039521
-    ## colData names(10): SampleName cell ... BioSample libSize
-
-This class of object can be manipulated in a very similar way to
-`SummarizedExperiment` objects.
-
------
-
-The `DESeq` workflow is summarized by a single function call, which
-performs advanced statistical analysis on a `DESeqDataSet` class object.
-
-``` r
-dSeqRes <- DESeq(dSeqData)
-```
-
-    ## estimating size factors
-
-    ## estimating dispersions
-
-    ## gene-wise dispersion estimates
-
-    ## mean-dispersion relationship
-
-    ## final dispersion estimates
-
-    ## fitting model and testing
-
------
-
-We can now extract a table of differential expression, which we can
-visualise or manipulate further.
-
-``` r
-head(results(dSeqRes))
-```
-
-    ## log2 fold change (MLE): dex untrt vs trt 
-    ## Wald test p-value: dex untrt vs trt 
-    ## DataFrame with 6 rows and 6 columns
-    ##                          baseMean      log2FoldChange             lfcSE
-    ##                         <numeric>           <numeric>         <numeric>
-    ## ENSG00000000003  708.602169691234   0.381253982523046 0.100654411867397
-    ## ENSG00000000005                 0                  NA                NA
-    ## ENSG00000000419  520.297900552084  -0.206812601085046  0.11221864650836
-    ## ENSG00000000457  237.163036796015 -0.0379204312050866  0.14344465493375
-    ## ENSG00000000460  57.9326331250967  0.0881681758708956 0.287141822933389
-    ## ENSG00000000938 0.318098378392895    1.37822703433214  3.49987280259267
-    ##                              stat               pvalue                padj
-    ##                         <numeric>            <numeric>           <numeric>
-    ## ENSG00000000003  3.78775232451127 0.000152016273081236 0.00128362968201804
-    ## ENSG00000000005                NA                   NA                  NA
-    ## ENSG00000000419 -1.84294328545158   0.0653372915124159   0.196546085664247
-    ## ENSG00000000457 -0.26435583272587     0.79150574160785   0.911459479590442
-    ## ENSG00000000460 0.307054454729672    0.758801923977344   0.895032784968828
-    ## ENSG00000000938 0.393793463954221    0.693733530342183                  NA
+We can see that the vast majority of GWAS hits lie in intergenic
+regions. This is the focus of a lot of research, since the regulatory
+mechanisms of non-coding regions is considerably complex and elusive.
 
 -----
 

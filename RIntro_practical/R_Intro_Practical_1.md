@@ -939,8 +939,15 @@ fhs %>%
     ## 5 120   244   124
     ## 6 120   230   110
 
-Combining `mutate()` with `ifelse()` can help create helpful categorical
+Combining `mutate()` with `ifelse()` can help create helpful binary
 variables.
+
+The syntax of the `ifelse()` statement is `ifelse` (`condition`, `value
+if TRUE`, `value if FALSE`). So, below we create a new variable `HYPO`
+that takes the value `1` if `GLUCOSE` is 70 or less, and `0` otherwise.
+
+If you want to use multiple conditions within `ifelse()`, you can use
+the `&` and `|` operators.
 
 ``` r
 fhs %>%
@@ -1012,8 +1019,9 @@ fhs %>%
     glucose level?
   - How many overweight smokers are in each education category? Do you
     notice a trend?
-  - Now summarise the total in each education category, and look at the
-    proportion that are overweight smokers. Is this trend still there?
+  - Now look at the total number of people in each education category
+    alongside the percentage who are overweight smokers. Is there a
+    trend now?
 
 -----
 

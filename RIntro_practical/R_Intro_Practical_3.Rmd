@@ -1,5 +1,5 @@
 ---
-title: "Introduction to R: Basic Functionality"
+title: "Introduction to R: Bioconductor"
 output: 
   md_document:
     variant: gfm
@@ -9,7 +9,7 @@ This final practical introduces Bioconductor and some basic analysis and annotat
 
 ***
 
-## Part 1: Bioconductor 
+## Part 1: Bioconductor
 
 [Bioconductor](https://www.bioconductor.org/) is a collection of more than 1,500 packages for analysing and annotating high-throughput genomic data.
 
@@ -20,109 +20,178 @@ It is useful for a wide range of applications including bulk and single-cell RNA
 Unlike CRAN packages, Bioconductor packages are installed differently using `BiocManager`. You can check if the package you want to use is available:
 
 ```{r}
-BiocManager::available("GenomicRanges")
+BiocManager::available("IRanges")
 ```
-
-This package imports an object class called `GenomicRanges`, which contains genomic data, such as SNPs, gene expression, or DNA methylation.
-
-***
 
 All Bioconductor packages have obligatory documentation, called 'vignettes'. You can view these from within R using:
 
 ```{r eval=FALSE}
-browseVignettes("GenomicRanges")
+browseVignettes("IRanges")
 ```
 
 This takes you to a list of files that can help you when using this package in R. In addition to this, help is readily available on the [Bioconductor](https://support.bioconductor.org) forums.
 
-***
+Before moving on, make sure to set your library path and load in the `IRanges` package.
 
-## Part 2: Genomic Ranges
-
-Another type of package in R contains highly curated data, as resources for teaching and learning. `DMRcatedata` is one such package. We can load this package into R and import the data, which is an object of class `RangedSummarizedExperiment`
-
+```{r eval=FALSE}
+.libPaths("C:/fos_2019/library")
+```
 ```{r warning=FALSE, message=FALSE}
-library(DMRcatedata)
-data(dmrcatedata)
+library(IRanges)
 ```
 
-This loads in a series of objects into R, including several `GenomicRanges` class objects. tx.hg19 is a GRanges object containing simulated WGBS data.
+***
+
+## Part 2: IRanges
+
+This package provides efficient low-level and highly reusable classes for storing and manipulating **annotated ranges of integers**. It also contains useful functions, such as to identify overlaps.
+
+You can imagine how this kind of functionality would be useful when handling sequences. `IRanges` forms the basis for one of the most important packages handling genomic data, `GenomicRanges`, which we will explore later.
+
+`IRanges` objects can be created by specifying an integer range.
 
 ```{r}
-tx.hg19
+ir <- IRanges(5,10)
+ir
 ```
 
-***
+We have created an integer range from 5 to 10, and the width is listed as 6 since both the start and end integer contribute to the width of an `IRanges` object.
 
-For convenience, let's work only with the 'standard' autosomal chromosomes.
+We can access this information using the `start()`, `end()`, and `width()` functions.
 
 ```{r}
-tx.hg19 <- keepStandardChromosomes(tx.hg19, pruning.mode="coarse")
-tx.hg19
+start(ir)
+end(ir)
+width(ir)
 ```
 
 ***
 
-There are two parts to a `GenomicRanges` object. 
-
-The first part is the `seqnames`, which must consist at least of the start and end coordinates along with the strand. Here, this part also shows the chromosome.
-
-The second part are additional elements, like `gene_name`, `gene_type`, and `gene_id`.
-
-***
-
-Components can be accessed when needed:
+`IRanges` can be shifted or resized. Here, `shift()` performs an intra range transformation and reduces the start and end integer by 2, keeping the width the same.
 
 ```{r}
-head(start(tx.hg19))
-head(width(tx.hg19))
+shift(ir, -2)
 ```
 
-***
-
-You can `subset()` these objects, for example if you want to focus on a particular set of chromosomes.
+The `resize()` function adjusts the width to a new specified value. Its default behaviour is to keep the `start` the same, and adjust the width using the `end` integer. 
 
 ```{r}
-subset(tx.hg19, seqnames %in% c("chr1", "chr2"))
+resize(ir, 3)
 ```
 
 ***
 
-There are also packages on Bioconductor containing Annotation data, such as the TxDb.* family of packages. These contain information on the genomic coordinates of exons, genes, transcripts, and so on.
+You can input multiple ranges at once using vectors to create a multi-range object.
+
+```{r}
+ir <- IRanges(c(4, 5, 8, 15, 19, 28, 40), width=c(15, 6, 7, 12, 9, 3, 6))
+ir
+```
+
+These can also be resized or shifted, and this will be performed on each range individually.
+
+```{r}
+shift(ir,1)
+```
+
+***
+
+The `reduce()` function will merge any overlapping regions and create an `IRanges` object of only distinct ranges. Here, there was a lot of overlap, with the only gap between 30 and 40.
+
+```{r}
+reduce(ir)
+```
+
+Any gaps can also be displayed easily. None of our `IRanges` object overlapped with integers 31 to 39.
+
+```{r}
+gaps(ir)
+```
+
+***
+
+Each row in an `IRanges` object can be given a name, and they can be subsetted similarly to vectors or data frames.
+
+```{r}
+names(ir) = letters[1:7]
+ir[c("b", "d", "e")]
+```
+
+Associating each range with a collection of attributes is very useful for genomic annotation. This metadata is assigned using the `mcols()`  function. 
+
+R has some standard built-in data sets. One, called `mtcars` is used here to demonstrate annotation.
+
+```{r}
+mcols(ir) <- mtcars[1:7, 1:3]
+ir
+```
+
+This annotation will remain the same through any `shift()` or `resize()` commands. Specific `mcol` variables can be accessed using the `$` operator, similar to in data frames.
+
+There are over 300 functions that can be used to manipulate `IRanges` objects. In the next section, their role in genome-scale analysis will become clearer.
+
+***
+
+#### Question 1: Using the above created `IRanges` object:
+
+* What is the mean `disp` for ranges whose `start` is less than 20?
+* What is the maximum `width` for ranges whose `cyl` is 6?
+
+***
+
+## Part 2: Finding Overlaps
+
+It is very useful to count overlaps in two distinct `IRanges` objects. We can subset the `ir` object above to create two new `IRanges` objects.
+
+```{r}
+ir1 <- ir[c(2,5,7)]
+ir2 <- ir[-c(2,5,7)]
+ir1
+ir2
+```
+
+***
+
+We can then use `findOverlaps()` to identify overlapping ranges in the `query` (first argument) and `subject` (second argument) objects.
+
+```{r}
+olaps <- findOverlaps(ir1, ir2)
+olaps
+```
+
+The interpretation of the `findOverlaps()` output is as follows:
+* The 1st range from `ir1` overlaps with the 1st range in `ir2` - [5,10] overlaps with [4,18]
+* The 1st range from `ir1` overlaps with the 2nd range in `ir2` - [5,10] overlaps with [8,14]
+* The 2nd range from `ir1` overlaps with the 3rd range in `ir2` - [19,27] overlaps with [15,26]
+
+***
+
+You can list the ranges with overlaps in a particular `IRanges` object after using `findOverlaps()` by utilising subsetting and `subjectHits()`.
+
+So, we can show the ranges within `ir2` that overlap with ranges in `ir1`:
+
+```{r}
+ir2[subjectHits(olaps)]
+```
+
+***
+
+You can also `countOverlaps()`.
 
 ```{r message=FALSE}
-library("TxDb.Hsapiens.UCSC.hg19.knownGene")
-tx <- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene)
-tx
+nolaps <- countOverlaps(ir2, ir1)
+nolaps
 ```
+
+So, here we see that `a`, `c`, and `d` ranges in `ir2` overlap with ranges in `ir1` once each, and `f` does not overlap with any ranges in `ir1`.
 
 ***
 
-As above, we want to work only with autosomal chromosomes.
+You can add output from `countOverlaps()` into your `IRanges`, coupling derived data with the original annotation.
 
 ```{r}
-tx <- keepStandardChromosomes(tx, pruning.mode="coarse")
-tx
-```
-
-***
-
-## Part 3: Finding Overlaps
-
-It is very useful to count overlaps in two distinct `GenomicRanges` objects. 
-
-```{r message=FALSE}
-olaps <- countOverlaps(tx, tx.hg19)
-xtabs( ~olaps)
-```
-
-***
-
-You can add output from `countOverlaps()` into your `GenomicRanges`, coupling derived data with the original annotation.
-
-```{r}
-tx$Overlaps <- countOverlaps(tx, tx.hg19)
-tx
+mcols(ir2)$Overlaps <- countOverlaps(ir2, ir1)
+ir2
 ```
 
 ***
@@ -130,108 +199,146 @@ tx
 After this, you can perform co-ordinated actions, like subsetting for transcripts satisfying particular conditions.
 
 ```{r}
-subset(tx, Overlaps > 10)
+subset(ir2, Overlaps > 0)
 ```
-
-## Part 4: Summarized Experiments
-
-Another class of object often used by Bioconductor packages is the ``SummarizedExperiment`. This is used to store matrices of experimental results, commonly produced by sequencing and microarray experiments.
-
-Each object stores multiple samples along with meta-data, which describes features and phenotypes. The anatomy of a `SummarizedExperiment` object is shown here:
-
-![Figure 1](https://github.com/molepi/Molecular-Data-Science/blob/master/RIntro_practical/summarizedexperiment.svg)
 
 ***
 
-Another Bioconductor package that contains teaching data is `airway`. Lets load it and then read in the data.
+#### Question 2: Load the example `IRanges` into R using the following command:
+
+`load(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/practical3_data_iranges.RData"))`
+
+* How many overlaps are there between `ir1` and `ir2`?
+* What is the name of the range in `ir2` with the most overlaps with `ir1`?
+* Subset `ir2` to show only ranges that have more than 2 overlaps with `ir1`
+
+***
+
+## Part 4: Genomic Ranges
+
+As an extension to `IRanges`, `GenomicRanges` objects contain obligatory metadata called `seqnames`. This gives the chromosome occupied by the sequence whose `start` and `end` position are modelled by the associated `IRanges`.
+
+The package `Homo.sapiens` is an annotation package from Bioconductor. It contains information on genes in the human genome that can be accessed using the `genes()` function.
 
 ```{r warning=FALSE, message=FALSE}
-library(airway)
-data(airway)
-airway
+library(Homo.sapiens)
+hg <- genes(Homo.sapiens)
+hg
 ```
+
+This `GenomicRanges` object functions similarly to an `IRanges` object. You can explore `start()`, `end()`, and `width()` in the same way, and `subset()` it as before.
+
+There are two parts to a `GenomicRanges` object. The first part is the `seqnames`, which must consist at least of the start and end coordinates along with the strand. The second part are additional elements or meta-data, like `GENEID`.
 
 ***
 
-Phenotype and feature information is stored in the `colData`, which is a data frame class object. For example, `cell` represents which cell line was used.
+You can order a `GenomicRanges` object to make exploring it more intuitive. Here, we sort the ranges by chromosome using `seqnames()`.
 
 ```{r}
-colData(airway)
+hg[order(seqnames(hg))]
 ```
 
 ***
 
-Inside these classes of objects, `GenomicRanges` store genomic information. These can be accessed using `rowRanges()`
+An important component of `GenomicRanges`is `seqinfo()`. This shows how many base pairs are in each chromosome as `seqlengths` and which genome they from.
 
 ```{r}
-rowRanges(airway)
+seqinfo(hg)
 ```
 
 ***
 
-Assay information can be accessed using `assay()`. FOr example, here we see a table of read counts for different exons in each sample.
+You can inspect `seqinfo()` for a specific chromosome. The human X chromosome spans more than 155 million base pairs.
 
 ```{r}
-head(assay(airway))
+seqinfo(hg)["chrX"]
 ```
 
 ***
 
-Subsetting a `SummarizedExperiment` object is quite simple. Suppose we want to look only at samples treated with dexamethasone.
+You can `subset()` a `GenomicRanges` object to return only ranges in a specific chromosome, `seqnames()` alongside the `%in%` operator. Here, we see there are 296 genes on chromosome 21.
 
 ```{r}
-subset(airway, , dex=="trt")
+subset(hg, seqnames %in% "chr21")
 ```
 
 ***
 
-We can also extract interested summaries from these objects. For instance, we can calculate the total number of reads overlapping genes in each sample and store them in our `SummarizedExperiment` class object.
+A useful function for `GenomicRanges` is the `keepStandardChromosomes()` function. This removes unmapped or non-standard chromosomes for the species of interest from the object.
 
 ```{r}
-airway$libSize <- colSums(assay(airway))
-airway$libSize
+hg <- keepStandardChromosomes(hg, pruning.mode="coarse")
+hg[order(seqnames(hg))]
 ```
+
+If you compare this with the above output, you can see that ranges from chromosomes like `chrUn_gl000228` have been removed.
 
 ***
 
-## Part 5: Down-stream analysis
+#### Question 3:
 
-It is important to look at how skills learned here translate to working with objects in Bioconductor packages.
-
-`DESeq2` is a package for analysing bulk RNAseq differential expression data. Load it into R.
-
-```{r warning=FALSE}
-library(DESeq2)
-```
-
-This package utilizes a class that combines `SummarizedExperiment` type count data with `formula` objects that describe the experimental design.
+* How many base pairs does chromosome 15 span?
+* Can you make a `table()` of the number of genes in all of the standard human chromosomes?
 
 ***
 
-We may want to include cell line as a covariate, and investigate the effect of dexamethasone treatment.
+## Part 5: Overlaps with GWAS Hits
+
+Genome-wide association studies (GWAS) are systematically represented in the EMBL-EBI GWAS catalog. The `gwascat` Bioconductor package allows us to retrieve a version of this.
 
 ```{r}
-dSeqData <- DESeqDataSet(airway, design = ~ cell + dex)
-dSeqData
+library(gwascat)
+data(ebicat37)
+ebicat37
 ```
 
-This class of object can be manipulated in a very similar way to `SummarizedExperiment` objects. 
+Per GWAS finding, there is one range, and each corresponds to a SNP that has beem replicated as significantly associated with the given phenotype.
+
+The genome here is listed as `GRCh37`, which is very similar to `hg19`. To avoid an error, we need to rename it.
+
+```{r}
+genome(ebicat37) <- "hg19"
+```
 
 ***
 
-The `DESeq` workflow is summarized by a single function call, which performs advanced statistical analysis on a `DESeqDataSet` class object.
+You can view the top traits in the catalog using `topTraits()`.
 
 ```{r}
-dSeqRes <- DESeq(dSeqData)
+topTraits(ebicat37)
+```
+
+If we are interested in a specific trait, like LDL cholesterol, we can `subsetByTraits()`. 
+
+```{r}
+subsetByTraits(ebicat37, tr="LDL cholesterol")
 ```
 
 ***
 
-We can now extract a table of differential expression, which we can visualise or manipulate further.
+We can use `findOverlaps()` as above to determine which genes have annotated intervals that overlap GWAS hits.
 
 ```{r}
-head(results(dSeqRes))
+goh <- findOverlaps(hg, ebicat37)
+goh
 ```
+
+To make more sense of this, we can count the number of genes that overlap with one or more GWAS hits using `length()` coupled with `unique()`.
+
+```{r}
+length(unique(queryHits(goh)))
+```
+
+***
+
+Lastly, implementing the `reduce()` function, we can estimate the proportion of GWAS SNPs that lie within gene regions or, more specifically, exons.
+
+```{r}
+mean(reduce(ebicat37) %over% hg)
+mean(reduce(ebicat37) %over% exons(Homo.sapiens))
+```
+
+We can see that the vast majority of GWAS hits lie in intergenic regions. This is the focus of a lot of research, since the regulatory mechanisms of non-coding regions is considerably complex and elusive.
 
 ***
 
