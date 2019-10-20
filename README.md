@@ -119,7 +119,7 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Transcriptomics                                                        | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.15 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2018.pdf) | Rodrigo C de Almeida | J1-84 |
+| 09.00-10.15 | Practical: [Statistical Analysis of Expression Data](RNAseq_practical/Practical_DEGs_FOS_2019.pdf) | Rodrigo C de Almeida | J1-84 |
 | 10.15-10.30 |  *Break* | | |
 | 10.30-11.15 | Lecture: [Finding Functional Relevant Genes](GenesInPractice/181023_Linkage_YFMRamos_final.pdf) | Yolande Ramos | J1-84 |
 | 11.15-12.30 | Practical: [Finding Genes in Practice](GenesInPractice/181023_Linkage_YFMRamos_final.pdf) | Yolande Ramos | J1-84 |
