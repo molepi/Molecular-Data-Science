@@ -36,22 +36,6 @@ library entrance.
 
 Overall the evaluation will be a score between 0-10 composed of a weighted average of the different modules.
 
-#### Evaluation ####
-
-For individual evaluation of students, the module coordinators of the
-first 2 weeks will judge the following: 
-
-- participation in the (paper) discussions 
-- answers to the questions in the practicals
-
-The module coordinators of the third week will judge the following:
-
-- written project proposal 
-- oral project defense
-
-Overall the evaluation will be a score between 0-10 composed of a
-weighted average of the different modules.
-
 ***
 
 ## Part 1: Acquiring Knowledge and Skills ##
