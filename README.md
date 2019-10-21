@@ -194,13 +194,13 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Single Cell RNA-Sequencing                                             | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Practical: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
+| 09.00-10.00 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partA.pdf) | Ahmed Mahfouz | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Single cell RNA-sequencing](SingleCells/SingleCellRNASequencing.pdf) | Ahmed Mahfouz | J1-84 |
+| 10.15-12.30 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partB.pdf) | Ahmed Mahfouz | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf) | Indu Khatri | J1-84 |
+| 13.30-15.00 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partC.pdf) | Indu Khatri | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Single cell RNA-sequencing](SingleCells/SIngle-Cell-and-Pseudo.pdf) | Indu Khatri | J1-84 |
+| 15.15-17.00 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partC.pdf) | Indu Khatri | J1-84 |
 
 
 #### Tuesday November 5  (Location J1-84/building 1, LUMC) ####
