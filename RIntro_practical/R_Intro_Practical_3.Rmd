@@ -142,7 +142,7 @@ There are over 300 functions that can be used to manipulate `IRanges` objects. I
 
 ***
 
-## Part 2: Finding Overlaps
+## Part 3: Finding Overlaps
 
 It is very useful to count overlaps in two distinct `IRanges` objects. We can subset the `ir` object above to create two new `IRanges` objects.
 
@@ -244,7 +244,7 @@ hg[order(seqnames(hg))]
 
 ***
 
-An important component of `GenomicRanges`is `seqinfo()`. This shows how many base pairs are in each chromosome as `seqlengths` and which genome they from.
+An important component of `GenomicRanges`is `seqinfo()`. This shows how many base pairs are in each chromosome as `seqlengths` and which genome they are from.
 
 ```{r}
 seqinfo(hg)
@@ -290,7 +290,7 @@ If you compare this with the above output, you can see that ranges from chromoso
 
 Genome-wide association studies (GWAS) are systematically represented in the EMBL-EBI GWAS catalog. The `gwascat` Bioconductor package allows us to retrieve a version of this.
 
-```{r}
+```{r warning=F, message=F}
 library(gwascat)
 data(ebicat37)
 ebicat37

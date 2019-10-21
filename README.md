@@ -53,9 +53,9 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.45-11.30 | Lecture: [Introduction to Large Scale Datasets: from SPSS to R](21oct19_1145_lecture_Heijmans_FOS_SPSSvsR.PDF) | Bas Heijmans | J1-84 |
 | 11.30-12.30 | Lecture: [Introduction to R](RIntro_lecture/rintro_lecture.pdf) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) | Lucy Sinke | J1-84 |
+| 13.30-15.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) [(Answers)](RIntro_practical/R_Practical_1_Answers.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) | Lucy Sinke | J1-84 |
+| 15.15-17.00 | Practical: [Introduction to R: Basic Functionality](RIntro_practical/R_Intro_Practical_1.md) [(Answers)](RIntro_practical/R_Practical_1_Answers.md)| Lucy Sinke | J1-84 |
 
 
 #### Tuesday October 22 (Location J1-84/building 1, LUMC) ####

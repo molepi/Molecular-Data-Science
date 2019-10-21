@@ -250,7 +250,7 @@ become clearer.
 
 -----
 
-## Part 2: Finding Overlaps
+## Part 3: Finding Overlaps
 
 It is very useful to count overlaps in two distinct `IRanges` objects.
 We can subset the `ir` object above to create two new `IRanges` objects.
@@ -476,7 +476,7 @@ hg[order(seqnames(hg))]
 
 An important component of `GenomicRanges`is `seqinfo()`. This shows how
 many base pairs are in each chromosome as `seqlengths` and which genome
-they from.
+they are from.
 
 ``` r
 seqinfo(hg)
@@ -585,13 +585,6 @@ to retrieve a version of this.
 
 ``` r
 library(gwascat)
-```
-
-    ## gwascat loaded.  Use data(ebicat38) for hg38 coordinates;
-
-    ##  data(ebicat37) for hg19 coordinates.
-
-``` r
 data(ebicat37)
 ebicat37
 ```
