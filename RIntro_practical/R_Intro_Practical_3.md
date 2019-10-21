@@ -13,6 +13,12 @@ It is useful for a wide range of applications including bulk and
 single-cell RNA sequencing, copy number analysis, flow cytometry, and
 methylation microarray data.
 
+Before moving on, make sure to set your library path.
+
+``` r
+.libPaths("C:/fos_2019/library")
+```
+
 -----
 
 Unlike CRAN packages, Bioconductor packages are installed differently
@@ -36,12 +42,7 @@ This takes you to a list of files that can help you when using this
 package in R. In addition to this, help is readily available on the
 [Bioconductor](https://support.bioconductor.org) forums.
 
-Before moving on, make sure to set your library path and load in the
-`IRanges` package.
-
-``` r
-.libPaths("C:/fos_2019/library")
-```
+Now load in the `IRanges` package.
 
 ``` r
 library(IRanges)
