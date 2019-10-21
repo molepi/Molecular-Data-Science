@@ -298,12 +298,14 @@ olaps
     ##   -------
     ##   queryLength: 3 / subjectLength: 4
 
-The interpretation of the `findOverlaps()` output is as follows: \* The
-1st range from `ir1` overlaps with the 1st range in `ir2` - \[5,10\]
-overlaps with \[4,18\] \* The 1st range from `ir1` overlaps with the 2nd
-range in `ir2` - \[5,10\] overlaps with \[8,14\] \* The 2nd range from
-`ir1` overlaps with the 3rd range in `ir2` - \[19,27\] overlaps with
-\[15,26\]
+The interpretation of the `findOverlaps()` output is as follows:
+
+  - The 1st range from `ir1` overlaps with the 1st range in `ir2` -
+    \[5,10\] overlaps with \[4,18\]
+  - The 1st range from `ir1` overlaps with the 2nd range in `ir2` -
+    \[5,10\] overlaps with \[8,14\]
+  - The 2nd range from `ir1` overlaps with the 3rd range in `ir2` -
+    \[19,27\] overlaps with \[15,26\]
 
 -----
 

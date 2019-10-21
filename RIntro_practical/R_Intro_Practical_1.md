@@ -36,9 +36,23 @@ line or a selection using `ctrl + enter`. This is preferable to typing
 in the *Console* directly, since you can save the scripts for later use
 or share them with collaborators.
 
-However, we advise you to use `R Markdown` documents during this course.
-These will not only let you save your script for later use, but also
-easily `knit` the results to a HTML and share those.
+When installing packages for this FOS course, we created a new library
+for R.
+
+Set your library path to this destination by typing the following code
+and running it, and check that it worked. You will need to do this at
+the start of all FOS practicals in R.
+
+``` r
+.libPaths("C:/fos_2019/library")
+.libPaths()
+```
+
+-----
+
+We advise you to use `R Markdown` documents during this course. These
+will not only let you save your script for later use, but also easily
+`knit` the results to a HTML and share those.
 
 Open an `R Markdown` document by clicking the new document icon in the
 top left, and selecting *R Markdown…* from the drop-down menu. Give your
@@ -148,18 +162,7 @@ for data manipulation.
 
 A list of currently installed packages is shown in the **Packages** tab.
 The functions contained within these can be loaded into R with the
-`library()` function, after you set your library path. When installing
-packages for this FOS course, we created a new library for R.
-
-Set your library path to this destination, and check that it worked:
-
-``` r
-.libPaths("C:/fos_2019/library")
-.libPaths()
-```
-
-You will have to set your library path at the start of each FOS
-practical in R.
+`library()` function.
 
 -----
 
