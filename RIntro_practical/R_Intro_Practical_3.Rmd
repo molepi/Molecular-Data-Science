@@ -122,7 +122,7 @@ ir[c("b", "d", "e")]
 
 Associating each range with a collection of attributes is very useful for genomic annotation. This metadata is assigned using the `mcols()`  function. 
 
-R has some standard built-in data sets. One, called `mtcars` is used here to demonstrate annotation.
+R has some standard built-in data sets. One, called `mtcars`, is used here to demonstrate annotation.
 
 ```{r}
 mcols(ir) <- mtcars[1:7, 1:3]
@@ -170,11 +170,12 @@ The interpretation of the `findOverlaps()` output is as follows:
 
 ***
 
-You can list the ranges with overlaps in a particular `IRanges` object after using `findOverlaps()` by utilising subsetting and `subjectHits()`.
+You can list the ranges with overlaps in a particular `IRanges` object after using `findOverlaps()` by utilising subsetting and `queryHits()` or `subjectHits()`.
 
 So, we can show the ranges within `ir2` that overlap with ranges in `ir1`:
 
 ```{r}
+ir1[queryHits(olaps)]
 ir2[subjectHits(olaps)]
 ```
 
@@ -183,18 +184,26 @@ ir2[subjectHits(olaps)]
 You can also `countOverlaps()`.
 
 ```{r message=FALSE}
-nolaps <- countOverlaps(ir2, ir1)
-nolaps
+nolapsir1 <- countOverlaps(ir1, ir2)
+nolapsir1
+
+nolapsir2 <- countOverlaps(ir2, ir1)
+nolapsir2
 ```
 
-So, here we see that `a`, `c`, and `d` ranges in `ir2` overlap with ranges in `ir1` once each, and `f` does not overlap with any ranges in `ir1`.
+So, here we see that in `ir1`, `b` overlaps with two ranges in `ir2`, `e` with one, and `g` with none.
+
+Also, in `ir2`, `a`, `c`, and `d` ranges in `ir2` overlap with ranges in `ir1` once each, and `f` does not overlap with any ranges in `ir1`.
 
 ***
 
 You can add output from `countOverlaps()` into your `IRanges`, coupling derived data with the original annotation.
 
 ```{r}
-mcols(ir2)$Overlaps <- countOverlaps(ir2, ir1)
+mcols(ir1)$Overlaps <- nolapsir1
+ir1
+
+mcols(ir2)$Overlaps <- nolapsir2
 ir2
 ```
 
@@ -342,13 +351,15 @@ mean(reduce(ebicat37) %over% hg)
 mean(reduce(ebicat37) %over% exons(Homo.sapiens))
 ```
 
-We can see that the vast majority of GWAS hits lie in intergenic regions. This is the focus of a lot of research, since the regulatory mechanisms of non-coding regions is considerably complex and elusive.
+We can see that the vast majority of GWAS hits lie in non-coding regions and almost half are intergenic. This is the focus of a lot of research, since the regulatory mechanisms of non-coding regions is considerably complex and elusive.
 
 ***
 
 ## Feedback
 
 Hopefully, this 2 day R course was informative and helpful. Please send any questions or comments to l.j.sinke@lumc.nl. 
+
+It is obligatory to hand in to the Blackboard one file, but if you have several please turn in one and e-mail me the others. Thank you.
 
 Feedback is very much appreciated. Enjoy the rest of this Molecular Data Science FOS course! :)
 

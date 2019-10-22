@@ -214,7 +214,7 @@ Associating each range with a collection of attributes is very useful
 for genomic annotation. This metadata is assigned using the `mcols()`
 function.
 
-R has some standard built-in data sets. One, called `mtcars` is used
+R has some standard built-in data sets. One, called `mtcars`, is used
 here to demonstrate annotation.
 
 ``` r
@@ -311,11 +311,22 @@ The interpretation of the `findOverlaps()` output is as follows:
 -----
 
 You can list the ranges with overlaps in a particular `IRanges` object
-after using `findOverlaps()` by utilising subsetting and
-`subjectHits()`.
+after using `findOverlaps()` by utilising subsetting and `queryHits()`
+or `subjectHits()`.
 
 So, we can show the ranges within `ir2` that overlap with ranges in
 `ir1`:
+
+``` r
+ir1[queryHits(olaps)]
+```
+
+    ## IRanges object with 3 ranges and 3 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   b         5        10         6 |        21         6       160
+    ##   b         5        10         6 |        21         6       160
+    ##   e        19        27         9 |      18.7         8       360
 
 ``` r
 ir2[subjectHits(olaps)]
@@ -333,16 +344,26 @@ ir2[subjectHits(olaps)]
 You can also `countOverlaps()`.
 
 ``` r
-nolaps <- countOverlaps(ir2, ir1)
-nolaps
+nolapsir1 <- countOverlaps(ir1, ir2)
+nolapsir1
+```
+
+    ## b e g 
+    ## 2 1 0
+
+``` r
+nolapsir2 <- countOverlaps(ir2, ir1)
+nolapsir2
 ```
 
     ## a c d f 
     ## 1 1 1 0
 
-So, here we see that `a`, `c`, and `d` ranges in `ir2` overlap with
-ranges in `ir1` once each, and `f` does not overlap with any ranges in
-`ir1`.
+So, here we see that in `ir1`, `b` overlaps with two ranges in `ir2`,
+`e` with one, and `g` with none.
+
+Also, in `ir2`, `a`, `c`, and `d` ranges in `ir2` overlap with ranges in
+`ir1` once each, and `f` does not overlap with any ranges in `ir1`.
 
 -----
 
@@ -350,7 +371,24 @@ You can add output from `countOverlaps()` into your `IRanges`, coupling
 derived data with the original annotation.
 
 ``` r
-mcols(ir2)$Overlaps <- countOverlaps(ir2, ir1)
+mcols(ir1)$Overlaps <- nolapsir1
+ir1
+```
+
+    ## IRanges object with 3 ranges and 4 metadata columns:
+    ##         start       end     width |       mpg       cyl      disp
+    ##     <integer> <integer> <integer> | <numeric> <numeric> <numeric>
+    ##   b         5        10         6 |        21         6       160
+    ##   e        19        27         9 |      18.7         8       360
+    ##   g        40        45         6 |      14.3         8       360
+    ##      Overlaps
+    ##     <integer>
+    ##   b         2
+    ##   e         1
+    ##   g         0
+
+``` r
+mcols(ir2)$Overlaps <- nolapsir2
 ir2
 ```
 
@@ -717,9 +755,10 @@ mean(reduce(ebicat37) %over% exons(Homo.sapiens))
 
     ## [1] 0.07059754
 
-We can see that the vast majority of GWAS hits lie in intergenic
-regions. This is the focus of a lot of research, since the regulatory
-mechanisms of non-coding regions is considerably complex and elusive.
+We can see that the vast majority of GWAS hits lie in non-coding regions
+and almost half are intergenic. This is the focus of a lot of research,
+since the regulatory mechanisms of non-coding regions is considerably
+complex and elusive.
 
 -----
 
@@ -727,6 +766,9 @@ mechanisms of non-coding regions is considerably complex and elusive.
 
 Hopefully, this 2 day R course was informative and helpful. Please send
 any questions or comments to <l.j.sinke@lumc.nl>.
+
+It is obligatory to hand in to the Blackboard one file, but if you have
+several please turn in one and e-mail me the others. Thank you.
 
 Feedback is very much appreciated. Enjoy the rest of this Molecular Data
 Science FOS course\! :)
