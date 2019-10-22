@@ -75,14 +75,14 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Genetics                                                               | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Lecture: [Introduction to Genome-wide Association](GWASday/GWAS_slides_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 09.00-10.00 | Lecture: [Introduction to Genome-wide Association](GWASday/FOSMDS_GWASslides_20191023_def.pdf) | Marian Beekman | J1-84 |
 | 10.00-10.15 |  *Break* | | |
-| 10.15-12.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 10.15-12.00 | Practical: [Genome-wide Association](GWASday/FOSMDS_GWASpractical_20191023_def.pdf) | Marian Beekman | J1-84 |
 | 12.00-13.30 | *Lunch* | | |
 | 13.30-14.00 | Lecture: Interim Evaluation of Participation and Interaction | Marian Beekman | J1-84 |
-| 14.00-15.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 14.00-15.00 | Practical: [Genome-wide Association](GWASday/FOSMDS_GWASpractical_20191023_def.pdf) | Marian Beekman | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Genome-wide Association](GWASday/GWAS_practical_2018_24102018.pdf) | Marian Beekman | J1-84 |
+| 15.15-17.00 | Practical: [Genome-wide Association](GWASday/FOSMDS_GWASpractical_20191023_def.pdf) | Marian Beekman | J1-84 |
 
 
 #### Thursday October 24 (Location J1-84/building 1, LUMC) ####
