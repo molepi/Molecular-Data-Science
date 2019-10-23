@@ -1,0 +1,210 @@
+---
+title: "P_Practical_3_Answers"
+author: "Lucy Sinke"
+date: "21 oktober 2019"
+output: 
+  md_document:
+    variant: gfm
+---
+
+***
+
+## Part 1: Bioconductor
+
+Load `IRanges`
+```{r warning=FALSE, message=FALSE}
+library(IRanges)
+```
+
+***
+
+## Part 2: IRanges
+
+Create `IRanges` object
+```{r}
+ir <- IRanges(5,10)
+ir
+```
+
+Create `IRanges` object with multiple ranges
+```{r}
+ir <- IRanges(c(4, 5, 8, 15, 19, 28, 40), width=c(15, 6, 7, 12, 9, 3, 6))
+ir
+```
+
+Give the ranges names
+```{r}
+names(ir) = letters[1:7]
+ir[c("b", "d", "e")]
+```
+
+Annotate `IRanges` object
+```{r}
+mcols(ir) <- mtcars[1:7, 1:3]
+ir
+```
+
+#### Answers to Question 1
+
+What is the mean `disp` for ranges whose `start` is less than 20?
+**209.2**
+```{r}
+mean(mcols(ir[start(ir) < 20])$disp)
+```
+
+What is the maximum `width` for ranges whose `cyl` is 6?
+**15**
+```{r}
+max(width(ir[mcols(ir)$cyl==6]))
+```
+
+***
+
+## Part 2
+
+Creating two objects
+```{r}
+ir1 <- ir[c(2,5,7)]
+ir2 <- ir[-c(2,5,7)]
+ir1
+ir2
+```
+
+Find overlaps
+```{r}
+olaps <- findOverlaps(ir1, ir2)
+olaps
+```
+
+The interpretation of the findOverlaps() output is as follows: 
+
+* The 1st range from ir1 overlaps with the 1st range in ir2 - [5,10] overlaps with [4,18] 
+* The 1st range from ir1 overlaps with the 2nd range in ir2 - [5,10] overlaps with [8,14] 
+* The 2nd range from ir1 overlaps with the 3rd range in ir2 - [19,27] overlaps with [15,26]
+
+Show ranges using `subjectHits` or `queryHits`
+```{r}
+ir2[subjectHits(olaps)]
+ir1[queryHits(olaps)]
+```
+
+Count overlaps
+```{r}
+nolaps <- countOverlaps(ir2, ir1)
+nolaps
+
+nolaps <- countOverlaps(ir1, ir2)
+nolaps
+```
+
+Add overlaps to annotation
+```{r}
+mcols(ir2)$Overlaps <- countOverlaps(ir2, ir1)
+ir2
+
+mcols(ir1)$Overlaps <- countOverlaps(ir1, ir2)
+ir1
+```
+
+Subsetting
+```{r}
+subset(ir2, Overlaps > 0)
+```
+
+#### Answers to Question 2
+
+Load in the example `IRanges`
+```{r}
+load(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/practical3_data_iranges.RData"))
+```
+
+How many overlaps are there between `ir1` and `ir2`?
+**26**
+```{r}
+nolaps <- countOverlaps(ir2, ir1)
+sum(nolaps)
+```
+
+What is the name of the range in `ir2` with the most overlaps with `ir1`?
+**r has 6 overlaps**
+```{r}
+nolaps[nolaps == max(nolaps)]
+```
+
+Subset `ir2` to show only ranges that have more than 2 overlaps with `ir1`
+```{r}
+mcols(ir2)$Overlaps <- nolaps
+ir2[mcols(ir2)$Overlaps > 2]
+```
+
+***
+
+## Part 4: Genomic Ranges
+
+```{r warning=FALSE, message=FALSE}
+library(Homo.sapiens)
+hg <- genes(Homo.sapiens)
+hg
+```
+
+Remove non-standard chromosomes
+```{r}
+hg <- keepStandardChromosomes(hg, pruning.mode="coarse")
+hg[order(seqnames(hg))]
+```
+
+***
+
+#### Answers to Question 3:
+
+How many base pairs does chromosomes 15 span?
+**102.5 million**
+```{r}
+seqinfo(hg)["chr15"]
+```
+
+Can you make a table of the number of genes in all of the standard human chromosomes?
+```{r}
+table(seqnames(hg))
+```
+
+***
+
+## Part 5: Overlap with GWAS Hits
+
+Load `gwascat`
+```{r warning=FALSE, message=FALSE}
+library(gwascat)
+```
+
+Load data
+```{r}
+data(ebicat37)
+ebicat37
+```
+
+Change genome
+```{r}
+genome(ebicat37) <- "hg19"
+```
+
+Genes that overlap GWAS hits
+```{r}
+goh <- findOverlaps(hg, ebicat37)
+goh
+```
+
+Genes that overlap hits
+```{r}
+length(unique(queryHits(goh)))
+```
+
+Estimate proportion of GWAS SNPs in genes / exons
+```{r}
+mean(reduce(ebicat37) %over% hg)
+mean(reduce(ebicat37) %over% exons(Homo.sapiens))
+```
+
+
+
+

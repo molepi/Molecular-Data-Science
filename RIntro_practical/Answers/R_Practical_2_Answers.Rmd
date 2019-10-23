@@ -1,0 +1,292 @@
+---
+title: "R_Practical_2_Answers"
+author: "Lucy Sinke"
+date: "20 October 2019"
+output: 
+  md_document:
+    variant: gfm
+---
+
+***
+
+## Part 1: Introduction to ggplot2
+
+Load in data again, keeping only complete cases
+```{r}
+fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
+fhs <- fhs[complete.cases(fhs), ]
+```
+
+Load `tidyverse`
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+***
+
+#### Answers to Question 1:
+
+A bar plot of MI, coloured by smoking status
+```{r}
+fhs %>%
+  ggplot() +
+  geom_bar(aes(MI, fill=CURSMOKE)) +
+  ggtitle("Bar chart of MI coloured by smoking status") +
+  xlab("MI status") 
+```
+
+A histogram of total cholesterol in overweight individuals
+```{r}
+fhs %>%
+  filter(BMI >= 30) %>%
+  ggplot() +
+  geom_histogram(aes(TOTCHOL), binwidth = 5, colour="cadetblue3") +
+  ggtitle("Histogram of total cholesterol in overweight individuals") +
+  xlab("Total cholesterol (mg/dL)") +
+  geom_vline(aes(xintercept=240), colour='red', size=1.5)
+```
+
+Four density plots of age for each education level
+```{r}
+fhs %>%
+  ggplot() +
+  geom_density(aes(AGE, fill=EDUC), show.legend = F) +
+  facet_wrap(~EDUC, labeller=label_both) +
+  ggtitle("Density plots of age for each education level") +
+  xlab("Age (years)")
+```
+
+Two bar plots of sex in current and non-smokers for those who experienced MI
+```{r}
+fhs %>%
+  filter(MI == "Yes") %>%
+  ggplot() +
+  geom_bar(aes(SEX, fill=SEX)) + 
+  facet_wrap(~ CURSMOKE) +
+  ggtitle("Bar chart of sex in current and non-smokers", subtitle="for those who experienced MI") +
+  xlab("Sex")
+```
+
+***
+
+## Part 2: Comparative plots
+
+***
+
+#### Answers to Question 2:
+
+A scatter plot of glucose levels against BMI, coloured by diabetes status
+```{r}
+fhs %>%
+  ggplot() +
+  geom_point(aes(GLUCOSE, BMI, colour=DIABETES)) +
+  ggtitle("Scatter plot of glucose levels against BMI", subtitle="coloured by diabetes status") +
+  xlab("Glucose level (mg/dL)") +
+  ylab("BMI (kg/m^2)")
+```
+
+A horizontal box plot of systolic BP by sex for people over the age of 60
+
+```{r}
+fhs %>%
+  filter(AGE >= 60) %>%
+  ggplot() +
+  geom_boxplot(aes(SEX, SYSBP, fill=SEX), show.legend=F) +
+  coord_flip() +
+  ggtitle("Horizontal box plot of systolic BP by sex", subtitle="for people over the age of 60")
+```
+
+A scatter plot of total cholesterol against glucose for categories of BMI
+
+```{r}
+fhs %>%
+  ggplot() +
+  geom_point(aes(TOTCHOL, GLUCOSE), colour='grey30') +
+  facet_wrap(~cut(BMI, c(10,20,25,30,100))) +
+  ggtitle("Scatter plot of total cholesterol against glucose", subtitle="for categories of BMI") +
+  xlab("Total cholesterol (mg/dL)") +
+  ylab("Glucose levels (mg/dL)")
+  
+```
+
+***
+
+## Part 3: Statistical Tests
+
+Define table of smoking against MI
+```{r}
+SMOKE_MI <- xtabs(~CURSMOKE+MI, fhs)
+SMOKE_MI
+```
+
+Chi-square test
+```{r}
+chisq <- chisq.test(SMOKE_MI)
+chisq
+```
+
+This shows we have strong evidence (p=0.001) that smoking status and MI are associated.
+
+Looking at the Pearson residuals, we see that people who had MI contribute most to this association.
+
+```{r}
+round(chisq$residuals, 3)
+```
+
+***
+
+Pearson's correlation coefficient
+```{r}
+cor <- cor.test(~ SYSBP + DIABP, fhs) 
+cor
+```
+
+There is very strong evidence (p<0.001) that systolic and diastolic blood pressure are strongly correlated (r2=0.786).
+
+***
+
+T-test for age difference between MI
+```{r}
+tt <- t.test(AGE ~ MI, fhs) 
+tt
+```
+
+There is very strong (p<0.001) evidence that people who have had MI are older than those who didn't.
+
+***
+
+Logistic regression
+```{r}
+glmfit <- glm(MI ~ BMI + AGE + SEX, fhs, family = "binomial") 
+summary(glmfit)
+```
+
+Odds ratios can also be accessed.
+
+```{r}
+exp(coef(glmfit))
+```
+
+***
+
+#### Answers to Question 3:
+
+Is age correlated with total cholesterol?
+**Yes, there is strong evidence (p<0.001) that age is mildly correlated (r=0.252) with total cholesterol**
+```{r}
+cor <- cor.test(~ AGE + TOTCHOL, fhs) 
+cor
+```
+
+Do diabetes have significantly different glucose levels when compared to non-diabetics?
+**Yes, there is strong evidence (t=-10.99, p<0.001) that diabetics have higher glucose levels than non-diabetics**
+```{r}
+tt <- t.test(GLUCOSE ~ DIABETES, fhs) 
+tt
+```
+
+Is MI associated with total cholesterol in individuals over the age of 50?
+**Yes, there is strong evidence (p=0.003) that total cholesterol is associated with an increased risk of MI. Increasing total cholesterol by 1 unit confers a 0.3% increased odds of MI**
+```{r}
+fhs50 <- filter(fhs, AGE > 50)
+glmfit <- glm(MI ~ TOTCHOL, fhs50, family = "binomial") 
+summary(glmfit)
+exp(coef(glmfit))
+```
+
+***
+
+## Part 4: Loops
+
+***
+
+#### Answers to Question 4
+
+Write a loop that returns the square of the first 3 elements in a vector
+```{r}
+x <- c(1,2,3,4)
+
+for (i in 1:3) {
+  out <- paste("The square of element", i, "of the vector is", x[i]^2)
+  print(out)
+}
+```
+
+Write a loop that prints each column name in the FHS dataset, alongside the number of characters in it.
+```{r}
+for (i in colnames(fhs)) {
+  out <- paste(i, "-", nchar(i))
+  print(out)
+}
+```
+
+Write a loop that tells you at what integer the product of all previous positive integers is over 5 million
+
+```{r}
+x <- 1
+product <- 1
+
+while (product < 5000000) {
+  x <- x + 1
+  product <- product * x
+}
+
+print(x)
+```
+
+***
+
+## Part 5: Functions
+
+***
+
+#### Answers to Question 5
+
+Write a function that takes x, y, and z as arguments and returns their product
+```{r}
+product <- function(x, y, z) {
+  p <- x * y * z
+  return(p)
+}
+
+product(1, 2, 3)
+```
+
+Write a function that returns the correlation of all variables in the FHS data with BMI
+
+```{r}
+correlation <- function(x) {
+  results <- vector()
+  
+  for (i in colnames(x)) {
+    cor <- cor.test(~ as.numeric(get(i)) + BMI, x)
+    results <- c(results, cor$estimate)
+    }
+  results <- data.frame(corr = results, row.names = colnames(x))
+  results
+}
+
+correlation(fhs)
+```
+
+A function that associates all variables in the FHS data with age
+```{r}
+linearAllAge <- function(x) {
+  results <- data.frame()
+  fhsCov <- select(x, -AGE)
+  
+  for (i in colnames(fhsCov)) {
+    fit <- lm(AGE ~ get(i), x)
+    results <- rbind(results, summary(fit)$coefficients[2, , drop=F])
+  }
+  
+  results <- cbind(Covariate = colnames(fhsCov), results)
+  
+  results %>%
+    arrange(`Pr(>|t|)`) %>%
+    print
+}
+
+linearAllAge(fhs)
+```
+

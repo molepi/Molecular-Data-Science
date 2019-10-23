@@ -1,0 +1,242 @@
+---
+title: "R_Practical_1_Answers"
+author: "Lucy Sinke"
+date: "20 October 2019"
+output: 
+  md_document:
+    variant: gfm
+---
+
+***
+
+## Part 1: RStudio and R Markdown
+
+***
+
+#### Answers to Question 1:
+
+* `na.rm` indicates whether missing (NA) values should be stripped before the `mean` is calculated
+* `sqrt` accepts numeric or complex vectors and arrays
+
+***
+
+## Part 2: Vectors
+
+Define numeric variable `x`
+```{r}
+x <- 1 + 1
+x
+```
+
+Load `tidyverse`
+```{r message=F, warning=F}
+library(tidyverse)
+```
+
+Define numeric vector `y`
+```{r}
+y <- c(5, 6, 7)
+y
+```
+
+Define character vector `z`
+```{r}
+z <- c("a", "b", "c")
+z
+```
+
+Define logical vector `w`
+```{r}
+w <- c(T, T, F)
+w
+```
+
+***
+
+#### Answers to Question 2:
+
+```{r}
+y[3]
+```
+
+```{r}
+z[c(1,3)]
+```
+
+```{r}
+y + 0:x
+```
+
+```{r}
+rev(z)
+```
+
+***
+
+## Part 3: Data Frames
+
+Combine `y` and `z` into data frame `df`
+```{r}
+df <- data.frame(col1 = y, col2 = z, row.names = c("row1", "row2", "row3"))
+df
+```
+
+Add `col3` to `df`
+```{r}
+df$col3 <- w
+df
+```
+
+Add `row4` to `df` to make `df3`
+```{r}
+df2 <- data.frame(col1 = 8, col2 = "d", col3 = F, row.names = "row4")
+df3 <- rbind(df, df2)
+df3
+```
+
+#### Answers to Question 3:
+
+Add a new column with the name `col4` to data frame `df` with the values `1, 1, 1`
+```{r}
+df$col4 <- c(1,1,1)
+df
+```
+
+Make a new data frame `df4`, which is a subset of data frame `df` but only contains columns `col1` and `col2`, and rows `row2` and `row3`
+```{r}
+df4 <- df[c("row2", "row3"), c("col1", "col2")]
+df4
+```
+
+Calculate the sum of `col1` of data frame `df3`
+```{r}
+sum(df3["col1"])
+```
+
+Change the row names of data frame `df4` to `rowX` and `rowY`
+```{r}
+rownames(df4) <- c("rowX", "rowY")
+df4
+```
+
+***
+
+## Part 4: Real Data
+
+Read in the FHS data
+```{r}
+fhs <- read.csv(url("https://raw.githubusercontent.com/molepi/Molecular-Data-Science/master/RIntro_practical/data.csv"))
+```
+
+Remove observations with missing values
+```{r}
+fhs <- fhs[complete.cases(fhs), ]
+sum(is.na(fhs))
+```
+
+Define formula `f`
+```{r}
+f <- y ~ x + z
+f
+```
+
+#### Question 4:
+
+Make a table of current smoking status
+```{r}
+xtabs(~ CURSMOKE, fhs)
+```
+
+Make a proportion table of BP medication
+```{r}
+prop.table(xtabs(~ BPMEDS, fhs))
+```
+
+Make a table showing the number of smokers for each education level
+```{r}
+xtabs(~ CURSMOKE + EDUC, fhs)
+```
+
+***
+
+## Part 5: Data Manipulation
+
+Create a subset of FHS containing BP variables
+```{r}
+fhsBP <- select(fhs, SYSBP, DIABP, BPMEDS)
+head(fhsBP)
+```
+
+Create a subset of FHS containing all variables but MI
+```{r}
+fhsCOV <- select(fhs, -MI)
+```
+
+Create a subset of FHS containing BP variables using the `contains()` function
+```{r}
+fhsBP <- select(fhs, contains("BP"))
+```
+
+Show only observations where `BMI` is greater or equal to 40
+```{r}
+fhsBMI40 <- filter(fhs, BMI >= 40)
+```
+
+Show only observations for female smokers
+```{r}
+fhsSmokeF <- filter(fhs, SEX == 'Female', CURSMOKE == 'Yes')
+```
+
+***
+
+#### Answers to Question 5:
+
+What is the sex and smoking status of the youngest diabetic? 
+**Female non-smoker**
+```{r}
+fhs %>%
+  select(SEX, CURSMOKE, AGE, DIABETES) %>%
+  filter(DIABETES == "Yes") %>%
+  arrange(AGE) %>%
+  head(n = 1)
+```
+
+What is the average systolic blood pressure of smokers who currently take BP medication? 
+**168 mmHg**
+```{r}
+fhs %>%
+  filter(CURSMOKE == "Yes", BPMEDS == "Yes") %>%
+  summarise(AVG_SYSBP = mean(SYSBP))
+```
+
+For diabetics who experienced MI, what is their mean age, BMI, and glucose level? 
+**55.4 years, 27.9 kg/m^2, and 165 mg/dL**
+```{r}
+fhs %>%
+  filter(DIABETES == "Yes", MI == "Yes") %>%
+  summarise(AVG_AGE = mean(AGE),
+            AVG_BMI = mean(BMI),
+            AVG_GLU = mean(GLUCOSE))
+```
+
+How many overweight smokers are in each education category? Do you notice a trend?
+**Yes, there are less smokers in higher education groups**
+```{r}
+fhs %>%
+  filter(BMI >= 30, CURSMOKE == "Yes") %>%
+  group_by(EDUC) %>%
+  summarise(N_EDUC = n())
+```
+
+Now look at the total number of people in each education category alongside the percentage who are overweight smokers. Is there a trend now?
+**No, when looking at the percentage there doesn't appear to be a trend**
+```{r}
+fhs %>%
+  mutate(OVRSM = ifelse(BMI >= 30 & CURSMOKE == "Yes", 1, 0)) %>%
+  group_by(EDUC) %>%
+  summarise(EDUC_N = n(),
+            OVRSM_N = sum(OVRSM),
+            PERC = OVRSM_N * 100 / EDUC_N)
+```
+
+***
