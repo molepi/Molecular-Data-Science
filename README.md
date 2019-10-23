@@ -62,13 +62,13 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Further Introduction to R                                              | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) | Lucy Sinke | J1-84 |
+| 09.00-10.00 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) [(Answers)](RIntro_practical/Answers/R_Practical_2_Answers.md)| Lucy Sinke | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) | Lucy Sinke | J1-84 |
+| 10.15-12.30 | Practical: [Introduction to R: Visualizations & Statistics](RIntro_practical/R_Intro_Practical_2.md) [(Answers)](RIntro_practical/Answers/R_Practical_2_Answers.md) | Lucy Sinke | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) | Lucy Sinke | J1-84 |
+| 13.30-15.00 | Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) [(Answers)](RIntro_practical/Answers/R_Practical_3_Answers.md) | Lucy Sinke | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 |  Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) | Lucy Sinke | J1-84 |
+| 15.15-17.00 |  Practical: [Introduction to R: Bioconductor](RIntro_practical/R_Intro_Practical_3.md) [(Answers)](RIntro_practical/Answers/R_Practical_3_Answers.md) | Lucy Sinke | J1-84 |
 
 
 #### Wednesday October 23 (Location J1-84/building 1, LUMC) ####
