@@ -49,7 +49,7 @@ str(TissueData) # Characteristics of the data
 unique(TissueData$Tissue) # What groups are in the vector?
 ```
 
-**B Make a boxplot of DNA methylation in the different tissues. Also, calculate the mean methylation and standard deviation for the tissues. Do you think that these differences are biologically relevant?**
+**B Make a plot of DNA methylation in the different tissues. Also, calculate the mean methylation and standard deviation for the tissues. Do you think that these differences are biologically relevant?**
 
 ```{r Q1B, eval=FALSE}
 ggplot(TissueData, aes(x=Tissue, y=cg21507095, color=Tissue))+ # Assign variables to x, y, and fill
