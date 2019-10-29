@@ -154,9 +154,9 @@ Students will gain knowledge of the different study designs used in investigatio
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Metabolomics** | **Who** | **Where** |
 | 13.30-14.30 | Lecture: [Introduction to Metabolomics](MetabolomicsBiomarkers/FOSMDS_MetabolomicsLecture-MBeekman_20191030_def.pdf) | Marian Beekman | J1-84 |
-| 14.30-15.00 | Practical: [Metabolomics Data Analyses](Metabolomics_practical/FOS2017_06062017.md) | Erik van den Akker | J1-84 |
+| 14.30-15.00 | Practical: [Metabolomics Data Analyses](Metabolomics_practical/FOS2019_metabolomics.pdf) | Erik van den Akker | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Metabolomics Data Analyses](Metabolomics_practical/FOS2017_06062017.md) | Erik van den Akker | J1-84 |
+| 15.15-17.00 | Practical: [Metabolomics Data Analyses](Metabolomics_practical/FOS2019_metabolomics.pdf) | Erik van den Akker | J1-84 |
 
 
 #### Thursday October 31 (Location J1-84/building 1, LUMC) ####
