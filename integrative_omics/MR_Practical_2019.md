@@ -9,9 +9,7 @@ cardiovascular diseases, and gene transcription and DNA methylation of
 blood cells.
 
 We expect that everyone will be able to complete Part 1 on transcription
-(questions 1-10), Part 2 on DNA methylation is for fast students. Paste
-the answers to your questions in a Rscript or Word document and turn
-them in to the Blackboard.
+(questions 1-10), Part 2 on DNA methylation is for fast students. Turn in your answers using the 'Integrative approaches' Turnitin assigment on the blackboard.
 
 ## Load data
 
