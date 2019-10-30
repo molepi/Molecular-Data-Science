@@ -283,6 +283,7 @@ exp(0.43999 + c(AA = 0, AB = 1, BB = 2) * -0.12823)
 You will now estimate the effect of triglyceride levels on gene
 transcription using the genetic variant as a causal anchor.
 
+  - Install package **AER**
   - Load library **AER**.
   - Use **ivreg** to fit a two-stage least-squares model with *ABCG1*
     gene transcription as explanatory variable, triglyceride levels as
@@ -292,6 +293,7 @@ transcription using the genetic variant as a causal anchor.
 <!-- end list -->
 
 ``` r
+install.packages("AER")
 library(AER)
 summary(ivreg(transcripts$abcg1 ~ tg | tg_snp))
 ```
