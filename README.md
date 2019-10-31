@@ -165,12 +165,12 @@ Students will gain knowledge of the different study designs used in investigatio
 | 09.00-10.00 | Lecture: [Next Generation Sequencing Technology](NGS/2018-10-30_FOS_NGS.pdf)| Yavuz Ariyurek | J1-84 |
 | 10.00-10.15 | *Break* | | |
 | 10.15-11.15 | Lab tour: Next Generation Sequencing Technology | Yavuz Ariyurek | J1-84 |
-| 11.15-12.00 | Lecture: [Medical Sequencing (Principles Exome and WGA Sequencing)](ExomeSeq/Exome_sequencing_Meulenbelt_2018.pdf) | Ingrid Meulenbelt | J1-84 |
-| 12.00-12.30 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Yolande Ramos | J1-84 |
+| 11.15-12.00 | Lecture: [Medical Sequencing (Principles Exome and WGA Sequencing)](ExomeSeq/Exome_sequencing_Meulenbelt_2019.pdf) | Ingrid Meulenbelt | J1-84 |
+| 12.00-12.30 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2019_AnalyseExomeSeqData.pdf) | Yolande Ramos | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
+| 13.30-15.00 | Practical: [Exome Sequencing Early Onset OA](/ExomeSeq/BioInformatics2019_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/BioInformatics2018_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
+| 15.15-17.00 | Practical: [Exome Sequencing Early Onset OA](ExomeSeq/BioInformatics2019_AnalyseExomeSeqData.pdf) | Ingrid Meulenbelt | J1-84 |
 
 
 #### Friday November 1 (Location J1-84/building 1, LUMC) ####
