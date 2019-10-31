@@ -183,7 +183,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 11.00-12.30 | Practical: [Clustering Analysis Transcriptomic Data](Clustering/practicals/) | Marcel Reinders | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Integrative approaches** | **Who**  | **Where** |
-| 13.30-14.15 | Lecture: [Integrated Analysis of Multiple -omics Data and MR](29Oct18_1330_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
+| 13.30-14.15 | Lecture: [Integrated Analysis of Multiple -omics Data and MR](1nov19_1330_lecture_Heijmans_FOS_MultipleOmics-MR.pdf) | Bas Heijmans | J1-84 |
 | 14.15-15.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/MR_Practical_2019.md) | Bas Heijmans | J1-84 |
 | 15.00-15.15 | *Break* | | |
 | 15.15-17.00 | Practical: [Hands on Integration of -omics Datasets: eQTLs, mQTLs, and MR](integrative_omics/MR_Practical_2019.md) | Bas Heijmans | J1-84 |                                                          
@@ -207,9 +207,9 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Databases and Reproducibility                                          | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Lecture: [Databases](PublicDatabases/1nov18_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
+| 09.00-10.00 | Lecture: [Databases](PublicDatabases/5nov19_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Using Online Databases: Age and Methylation](PublicDatabases/1nov18_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
+| 10.15-12.30 | Practical: [Using Online Databases: Age and Methylation](PublicDatabases/5nov19_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Animal models on ageing** | **Who** | **Where** |
 | 13.30-14.00 | Lecture: [Mouse model of Ageing](AnimalModels/) | Vered Raz | J1-84 |
