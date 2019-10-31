@@ -121,7 +121,7 @@ Students will gain knowledge of the different study designs used in investigatio
 | 09.00-10.15 | Self-study: [Freedman et al. (2011)](postGWAS/Freedman_functional%20characterization.pdf) | Ingrid Meulenbelt | J1-84 |
 | 10.15-10.30 |  *Break* | | |
 | 10.30-11.30 | Paper discussion: [Freedman et al. (2011)](postGWAS/Questions_and_discussion_items_Freedman_etal2011.pdf) | Ingrid Meulenbelt | J1-84 |
-| 11.30-12.30 | Lecture: [Functional Genomics](postGWAS/Functional%20Genomics%20in%20Osteoarthritis.pdf) | Ingrid Meulenbelt | J1-84 |
+| 11.30-12.30 | Lecture: [Functional Genomics](postGWAS/Functional%20Genomics%20in%20Osteoarthritis%202019.pdf) | Ingrid Meulenbelt | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: DNA Methylomics** | **Who** | **Where** |
 | 13.30-14.30 | Lecture: [Introduction to the Epigenome](28oct19_1330_lecture_Heijmans_FOS_IntroductionEpigenetics.pdf) | Roderick Slieker | J1-84 |
