@@ -194,7 +194,7 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Single Cell RNA-Sequencing                                             | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-17.00 | Lecture:[Single cell RNA-sequencing](SingleCells/2019.11.04 FOS_MDS.pdf)                     | Ahmed Mahfouz | J1-84 |
+| 09.00-17.00 | Lecture: [Single cell RNA-sequencing](SingleCells/2019.11.04 FOS_MDS.pdf)                     | Ahmed Mahfouz | J1-84 |
 | 09.00-10.00 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partA.pdf) | Ahmed Mahfouz | J1-84 |
 | 10.00-10.15 | *Break* | | |
 | 10.15-12.30 | Practical: [Single cell RNA-sequencing](SingleCells/Single_cell_RNA_seq_practical_partB.pdf) | Ahmed Mahfouz | J1-84 |
