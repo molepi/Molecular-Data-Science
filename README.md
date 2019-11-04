@@ -227,9 +227,9 @@ Students will gain knowledge of the different study designs used in investigatio
 | 10.00-10.15 | *Break* | | |
 | 10.15-12.30 | Free | Self | ### |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | V5-39 |
+| 13.30-15.00 | From Ideas to Study: [Vandenbroucke and Pearce (2018)](6Nov19_12.30_Cannegieter_FromIdeasToStudy.pdf) | Suzanne Cannegieter | V5-39 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | V5-39 |
+| 15.15-17.00 | From Ideas to Study: [Vandenbroucke and Pearce (2018)](6Nov19_12.30_Cannegieter_FromIdeasToStudy.pdf) | Suzanne Cannegieter | V5-39 |
 
 
 ***
