@@ -222,13 +222,13 @@ Students will gain knowledge of the different study designs used in investigatio
 
 | When        | What: Research Findings                                                      | Who             | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-10.00 | Self-study | Self | J1-84 |
+| 09.00-10.00 | Free | Self | ### |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Self-study | Self | J1-84 |
+| 10.15-12.30 | Free | Self | ### |
 | 12.30-13.30 | *Lunch* | | |
-| 13.30-15.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | J1-84 |
+| 13.30-15.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | V5-39 |
 | 15.00-15.15 | *Break* | | |
-| 15.15-17.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | J1-84 |
+| 15.15-17.00 | From Ideas to Study: Vandenbroucke and Pearce (2018) | Suzanne Cannegieter | V5-39 |
 
 
 ***
