@@ -209,7 +209,7 @@ Students will gain knowledge of the different study designs used in investigatio
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
 | 09.00-10.00 | Lecture: [Databases](PublicDatabases/5nov19_0900_lecture_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 10.00-10.15 | *Break* | | |
-| 10.15-12.30 | Practical: [Using Online Databases: Age and Methylation](PublicDatabases/5nov19_1000_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
+| 10.15-12.30 | Practical: [Using Online Databases: Age and Methylation](PublicDatabases/5nov19_1015_practical_Heijmans_FOS_PublicData.pdf) | Bas Heijmans | J1-84 |
 | 12.30-13.30 | *Lunch* | | |
 | **When**    | **What: Animal models on ageing** | **Who** | **Where** |
 | 13.30-14.00 | Lecture: [Mouse model of Ageing](AnimalModels/) | Vered Raz | J1-84 |
