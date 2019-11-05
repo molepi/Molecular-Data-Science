@@ -280,7 +280,7 @@ Students will apply newly acquired skills to write a research proposal that foll
 | When        | What: Final assignment               | Who  | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
 | 09.00-17.00 | Work on the Project Proposal         | Self | J1-84 |
-| 17.00-23.59 | Hand in Synopsis Project Proposal (Blackboard)        | Self | J1-84 |
+| 17.00-23.59 | [Hand in Synopsis Project Proposal (Blackboard)](https://github.com/molepi/Molecular-Data-Science/blob/master/13Nov19_17.00_SynopsisProposal_Format_FOS-MDS2019.docx)        | Self | J1-84 |
 
 
 #### Thursday November 14 (Location J1-84/building 1, LUMC) ####
