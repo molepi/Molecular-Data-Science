@@ -280,6 +280,7 @@ Students will apply newly acquired skills to write a research proposal that foll
 | When        | What: Final assignment               | Who  | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
 | 09.00-17.00 | Work on the Project Proposal         | Self | J1-84 |
+| 17.00-17.30 | Hand in Project Synopsis (Blackboard)        | Self | J1-84 |
 
 
 #### Thursday November 14 (Location J1-84/building 1, LUMC) ####
