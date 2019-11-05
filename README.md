@@ -288,9 +288,8 @@ Students will apply newly acquired skills to write a research proposal that foll
 | When        | What: Final assignment               | Who  | Where |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
 | 09.00-12.30 | Work on the Project Proposal         | Self | J1-84 |
-| 12.30-13.30 | *Lunch* | | |
-| 13.30-16.30 | Oral Presentation and Defense of Project Proposal | All | J1-84 |
-| 16.30-17.00 | Looking Back on Course | All | J1-84 |
+| 12.00-13.00 | *Lunch* | | |
+| 13.00-17.00 | Oral Presentation and Defense of Project Proposal | All | J1-84 |
 
 
 #### Friday November 15  (Location J1-84/building 1, LUMC) ####
