@@ -296,6 +296,6 @@ Students will apply newly acquired skills to write a research proposal that foll
 
 | When        | What Final assignment  | Who  | Where  |
 |-------------|-----------------------------------------------------------------------------------------|-----------------------|-------|
-| 09.00-13.00 | Self study             | Self | J1-84  |
-| 13.00-15.00 | Reflective Assignment  | All  | J1-84  |
+| 09.00-13.00 | Self study             | Self | J1-82  |
+| 13.00-15.00 | Reflective Assignment  | All  | J1-82  |
 | 15:00       | End of course          |      |        |
